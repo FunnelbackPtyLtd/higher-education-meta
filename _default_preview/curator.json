@@ -1,0 +1,64 @@
+[ {
+  "created" : "2017-06-13T09:49:12.186-07:00",
+  "lastModified" : "2017-06-13T10:28:26.778-07:00",
+  "id" : "53ca94ee-cd8a-4c11-9d18-fbad04f324d6",
+  "name" : "Open Day",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "FacetSelection",
+        "facetName" : "Tabs",
+        "categoryValue" : "Courses",
+        "matchType" : "EXACT"
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "OPEN DAY",
+    "displayUrl" : "-",
+    "linkUrl" : "-",
+    "descriptionHtml" : "<div>\nLive a different perspective\n<small>May 3rd</small>\n</div>\n\n\n\n<a href=\"http://funnelback.edu/open-day\" target=\"_blank\" class=\"btn btn-primary float-right\">Find out more</a>",
+    "additionalProperties" : {
+      "position" : "left",
+      "class" : "open-day",
+      "url" : "false"
+    },
+    "category" : "",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-06-13T10:29:37.53-07:00",
+  "lastModified" : "2017-06-13T10:47:59.593-07:00",
+  "id" : "0129fbef-5729-4c02-84d9-82e5400b2b5d",
+  "name" : "Campus Life",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "campus" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Discover life a the FBU campus",
+    "displayUrl" : "-",
+    "linkUrl" : "-",
+    "descriptionHtml" : "<img class=\"card-img img-fluid\" src=\"/s/resources/higher-education-meta-ng/img/campus-life.png\">\n<div class=\"card-img-overlay\">\n  <a class=\"float-right\" href=\"http://funnelback.edu/campus-life\">Discover life at the FBU campus <span class=\"fa fa-arrow-right\"></span></a>\n</div>",
+    "additionalProperties" : {
+      "position" : "center",
+      "class" : "campus-life"
+    },
+    "category" : "",
+    "removeCollectionUrl" : false
+  } ]
+} ]
