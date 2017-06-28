@@ -31,20 +31,20 @@
                 </a>
               </h4>
               <div class="card-subtitle">
-                <h5><@s.boldicize><@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["peoplePosition"]! /></@s.boldicize></h5>            
+                <h5><@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["peoplePosition"]! /></@s.boldicize></h5>            
               </div>
               <div class="card-subtitle text-muted">
-                <@s.boldicize><@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["peopleDepartment"]! /></@s.boldicize>
+                <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["peopleDepartment"]! /></@s.boldicize>
               </div>
             </div>
 
             <div class="card-text">
               <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                   <span class="fa fa-envelope-o text-muted"></span>
                   <a class="text-muted" href="mailto:${result.metaData["peopleEmail"]!}">${result.metaData["peopleEmail"]!}</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <span class="fa fa-phone text-muted"></span>
                   <a class="text-muted" href="tel:${result.metaData["peoplePhone"]!}">${result.metaData["peoplePhone"]!}</a>
                 </div>
