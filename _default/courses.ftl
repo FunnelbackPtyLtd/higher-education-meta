@@ -60,4 +60,16 @@
     </div>
   </li>
 </#macro>
+
+<#macro AutoCompleteTemplate>
+  <script id="auto-completion-courses" type="text/x-handlebar-template">
+    <div>
+      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.code}}</small></h6>
+      <div class="details">
+        <div>{{extra.disp.department}}</div>
+        <div class="text-muted">{{extra.disp.level}}</div>
+      </div>
+    </div>
+  </script>
+</#macro>
 <#-- vim: set expandtab ts=2 sw=2 sts=2 :-->

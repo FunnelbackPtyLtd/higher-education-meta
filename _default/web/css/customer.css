@@ -120,6 +120,10 @@ footer.customer ul.social li {
     font-size: xx-large;
 }
 
+#query {
+    width: 100%;
+}
+
 .jumbotron button {
     background-color: #1e1e1e;
     border: none;

@@ -6,6 +6,8 @@
 <#import "/share/stencils/libraries/base/client_includes.ftl" as client_includes />
 
 <#import "project.ftl" as project />
+<#import "courses.ftl" as courses />
+<#import "people.ftl" as people />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,10 +49,19 @@
   <script src="/stencils/resources/thirdparty/bootstrap/v4.0.0-alpha.6/js/bootstrap.min.js"></script>
   <script src="/stencils/resources/base/v15.8/js/base.js"></script>
 
+  <script src="/stencils/resources/autocompletion/js/typeahead.bundle.js"></script>
+  <script src="/stencils/resources/autocompletion/js/handlebars.js"></script>
+  <script src="/s/resources/${question.collection.id}/${question.profile}/js/typeahead.fb.js"></script>
+
+  <@courses.AutoCompleteTemplate />
+  <@people.AutoCompleteTemplate />
+
   <script>
     jQuery(document).ready( function() {
       setupDeferredImages();
       setupFacetLessMoreButtons(${question.collection.configuration.value("stencils.faceted_navigation.max_displayed_categories", "8")}, '.search-facets ul');
+
+      <@project.AutoComplete />
     });
   </script>
 

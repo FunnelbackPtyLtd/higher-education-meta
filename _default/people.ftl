@@ -61,4 +61,24 @@
     </div>
   </li>
 </#macro>
+
+<#macro AutoCompleteTemplate>
+  <script id="auto-completion-people" type="text/x-handlebar-template">
+    <div class="media">
+      {{#if extra.disp.image}}
+        <img class="d-flex mr-3 rounded-circle" src="{{extra.disp.image}}" alt="{{extra.disp.title}}" />
+      {{/if}}
+      <div class="media-body">
+        <h6>{{extra.disp.title}}</h6>
+        <div>{{extra.disp.position}}</div>
+        <div class="details text-muted">
+          {{#if extra.disp.department}}<div><small><span class="fa fa-university text-muted" aria-hidden="true"></span> {{extra.disp.department}}</small></div>{{/if}}
+          {{#if extra.disp.phone}}<div><small><span class="fa fa-phone text-muted" aria-hidden="true"></span> {{extra.disp.phone}}</small></div>{{/if}}
+          {{#if extra.disp.email}}<div><small><span class="fa fa-envelope-o text-muted" aria-hidden="true"></span> {{extra.disp.email}}</small></div>{{/if}}
+        </div>
+      </div>
+    </div>
+  </script>
+</#macro>
+
 <#-- vim: set expandtab ts=2 sw=2 sts=2 :-->
