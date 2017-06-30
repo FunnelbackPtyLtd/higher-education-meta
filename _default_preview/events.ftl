@@ -16,10 +16,7 @@
             </a>
           </h4>
           <div class="card-subtitle">
-            <h5 class="text-muted">${result.metaData["eventContact"]!}</h5>
-          </div>
-          <div class="card-subtitle text-muted">
-            <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["peopleDepartment"]! /></@s.boldicize>
+            <span class="text-muted">${result.metaData["eventContact"]!}</span>
           </div>
         </div>
 
@@ -37,7 +34,7 @@
 
               <#if result.metaData["eventStartTime"]??>
                 <div class="text-center">
-                  <small class="text-muted">
+                  <small>
                     ${result.metaData["eventStartTime"]!}
                     <#if result.metaData["eventEndTime"]??>
                       - ${result.metaData["eventEndTime"]!}
@@ -70,7 +67,7 @@
           <#if result.metaData["eventContactPhone"]??>
             <div class="col">
               <span class="fa fa-phone text-muted"></span>
-              <a class="text-muted" href="tel:result.metaData["eventContactPhone"]!">${result.metaData["eventContactPhone"]!}</a>
+              <a class="text-muted" href="tel:${result.metaData["eventContactPhone"]!?url}">${result.metaData["eventContactPhone"]!}</a>
             </div>
           </#if>
         </div>

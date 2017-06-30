@@ -330,7 +330,9 @@ section.search-cart {
     width: 100%;
     border: solid 2px #9a1904;
     max-width: 5rem;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .5rem;
 }
 
 .search-result-event .search-event-date-month {
