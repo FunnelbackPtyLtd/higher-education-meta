@@ -7,6 +7,7 @@
 <#import "courses.ftl" as courses />
 <#import "people.ftl" as people />
 <#import "video.ftl" as video />
+<#import "events.ftl" as event />
 
 <#macro SearchForm>
   <div class="jumbotron jumbotron-fluid">

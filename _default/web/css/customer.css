@@ -120,10 +120,6 @@ footer.customer ul.social li {
     font-size: xx-large;
 }
 
-#query {
-    width: 100%;
-}
-
 .jumbotron button {
     background-color: #1e1e1e;
     border: none;
@@ -327,6 +323,30 @@ section.search-cart {
 .search-result-video a:hover .card-img-overlay .fa-play-circle-o {
     color: white;
 }
+
+/** Results - Events */
+
+.search-result-event .search-event-date {
+    width: 100%;
+    border: solid 2px #9a1904;
+    max-width: 5rem;
+    margin: auto;
+}
+
+.search-result-event .search-event-date-month {
+    background-color: #9a1904;
+    color: white;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.search-result-event .search-event-date-day {
+    font-size: xx-large;
+    font-weight: bold;
+    height: 4rem;
+    padding-top: .5rem;
+}
+
 
 /** Contextual Navigation */
 
