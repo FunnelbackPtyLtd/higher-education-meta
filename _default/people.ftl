@@ -1,6 +1,6 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "/share/stencils/libraries/base/base.ftl" as base />
-<#import "/share/stencils/libraries/base/history_cart.ftl" as history_cart />
+<#import "base.ftl" as base />
+<#import "history_cart.ftl" as history_cart />
 
 <#macro Result result>
   <li class="search-result search-result-people">

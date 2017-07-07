@@ -2,7 +2,7 @@
 <#import "/web/templates/modernui/funnelback_classic.ftl" as s/>
 <#import "/web/templates/modernui/funnelback.ftl" as fb />
 
-<#import "/share/stencils/libraries/base/history_cart.ftl" as history_cart />
+<#import "history_cart.ftl" as history_cart />
 <#import "/share/stencils/libraries/base/client_includes.ftl" as client_includes />
 
 <#import "project.ftl" as project />

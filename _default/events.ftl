@@ -1,5 +1,5 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "/share/stencils/libraries/base/base.ftl" as base />
+<#import "base.ftl" as base />
 
 <#macro Result result>
   <li class="search-result search-result-event">

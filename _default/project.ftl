@@ -1,8 +1,8 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "/share/stencils/libraries/base/base.ftl" as base />
-<#import "/share/stencils/libraries/tabs/tabs.ftl" as tabs />
-<#import "/share/stencils/libraries/facets/facets.ftl" as facets />
-<#import "/share/stencils/libraries/base/history_cart.ftl" as history_cart />
+<#import "base.ftl" as base />
+<#import "tabs.ftl" as tabs />
+<#import "facets.ftl" as facets />
+<#import "history_cart.ftl" as history_cart />
 
 <#import "courses.ftl" as courses />
 <#import "people.ftl" as people />
