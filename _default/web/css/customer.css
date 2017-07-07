@@ -157,8 +157,12 @@ footer.customer ul.social li {
 
 /** Tabs */
 
-ul.nav-tabs {
+nav.container-fluid {
     background-color: #9a1904;
+}
+
+ul.nav-tabs {
+    border-bottom: none;
 }
 
 ul.nav-tabs li.nav-item {

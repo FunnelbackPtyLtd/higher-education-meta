@@ -59,7 +59,7 @@
   <script>
     jQuery(document).ready( function() {
       setupDeferredImages();
-      setupFacetLessMoreButtons(${question.collection.configuration.value("stencils.faceted_navigation.max_displayed_categories", "8")}, '.search-facets ul');
+      setupFacetLessMoreButtons(${question.collection.configuration.value("stencils.faceted_navigation.max_displayed_categories", "8")}, '.search-facet');
 
       <@project.AutoComplete />
     });

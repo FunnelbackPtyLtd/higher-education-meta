@@ -53,10 +53,12 @@
 </#macro>
 
 <#macro Tabs>
-  <nav class="row">
-    <div class="col-md-12">
-      <h2 class="sr-only">Tabs</h2>
-      <@tabs.Tabs />
+  <nav class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="sr-only">Tabs</h2>
+        <@tabs.Tabs />
+      </div>
     </div>
   </nav>
 </#macro>
