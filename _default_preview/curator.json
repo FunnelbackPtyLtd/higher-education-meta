@@ -53,12 +53,33 @@
     "titleHtml" : "Discover life a the FBU campus",
     "displayUrl" : "-",
     "linkUrl" : "-",
-    "descriptionHtml" : "<img class=\"card-img img-fluid\" src=\"/s/resources/higher-education-meta-ng/img/campus-life.png\">\n<div class=\"card-img-overlay\">\n  <a class=\"float-right\" href=\"http://funnelback.edu/campus-life\">Discover life at the FBU campus <span class=\"fa fa-arrow-right\"></span></a>\n</div>",
+    "descriptionHtml" : "<img class=\"card-img img-fluid\" src=\"/s/resources/higher-education-meta/img/campus-life.png\">\n<div class=\"card-img-overlay\">\n  <a class=\"float-right\" href=\"http://funnelback.edu/campus-life\">Discover life at the FBU campus <span class=\"fa fa-arrow-right\"></span></a>\n</div>",
     "additionalProperties" : {
       "position" : "center",
       "class" : "campus-life"
     },
     "category" : "",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-07-07T16:30:16.688-07:00",
+  "lastModified" : "2017-07-07T16:30:16.688-07:00",
+  "id" : "3f3c203c-75a2-40f8-88f5-9e582896a514",
+  "name" : "",
+  "label" : "BEST_BETS",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "AllQueryWords",
+    "triggerWords" : [ "admissions" ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Admissions open September 12th",
+    "displayUrl" : "funnelback.edu/apply",
+    "linkUrl" : "https://funnelback.edu/apply",
+    "descriptionHtml" : "Ready to apply? You will be joining thousands Funnelback University students ready to change the world!",
+    "additionalProperties" : null,
+    "category" : "BEST_BETS",
     "removeCollectionUrl" : false
   } ]
 } ]

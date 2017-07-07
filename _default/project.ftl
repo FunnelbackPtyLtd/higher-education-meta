@@ -86,6 +86,7 @@
 
         <div class="col-md-<#if tabFacets?has_content>9<#else>12</#if>">
 
+          <@base.BestBets />
           <@base.CuratorExhibits position="center" />
 
           <#if (response.resultPacket.resultsSummary.totalMatching)! != 0>
