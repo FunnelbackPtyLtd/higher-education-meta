@@ -15,14 +15,13 @@
 /** Very top navbar */
 
 .navbar.navbar-inverse {
-    height: 32px;
+    padding: 0;
     font-size: small;
 }
 
 /** Main navbar (logo + menu) */
 
 nav.customer {
-    height: 86px;
     padding: 0;
     background-color: #ebece6;
 }
@@ -43,8 +42,8 @@ nav.customer .nav-item {
     border-left: solid 1px #cfcfca;
 }
 
-nav.customer .nav-item a {
-    color: initial;
+nav.customer .navbar-nav .nav-link {
+    color: black;
 }
 
 nav.customer .nav-item:last-child {
