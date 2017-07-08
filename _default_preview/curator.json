@@ -82,4 +82,32 @@
     "category" : "BEST_BETS",
     "removeCollectionUrl" : false
   } ]
+}, {
+  "created" : "2017-07-07T17:26:06.115-07:00",
+  "lastModified" : "2017-07-07T17:31:55.972-07:00",
+  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
+  "name" : "IT maintenance",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "internet" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "computer" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayMessage",
+    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on January 14th between 5pm - 7pm",
+    "additionalProperties" : {
+      "position" : "center"
+    },
+    "category" : ""
+  } ]
 } ]
