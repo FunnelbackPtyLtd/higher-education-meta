@@ -10,13 +10,6 @@
     border-radius: .25rem;
 }
 
-.tt-dataset-organicx {
-    float: none;
-    display: block;
-    clear: both;
-    width: 100%;
-}
-
 .tt-dataset {
     float: left;
     display: table-cell;
