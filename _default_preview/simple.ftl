@@ -6,6 +6,8 @@
 <#import "/share/stencils/libraries/base/client_includes.ftl" as client_includes />
 
 <#import "project.ftl" as project />
+<#import "courses.ftl" as courses />
+<#import "people.ftl" as people />
 
 <!DOCTYPE html>
 <html lang="en">
