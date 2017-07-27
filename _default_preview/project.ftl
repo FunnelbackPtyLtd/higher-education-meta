@@ -8,6 +8,7 @@
 <#import "people.ftl" as people />
 <#import "video.ftl" as video />
 <#import "events.ftl" as event />
+<#import "facebook.ftl" as facebook />
 
 <#macro SearchForm>
   <div class="jumbotron jumbotron-fluid">
