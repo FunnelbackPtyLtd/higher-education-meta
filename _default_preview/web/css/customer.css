@@ -352,6 +352,11 @@ section.search-cart {
     padding-top: .5rem;
 }
 
+/** Results - Twitter Cards */
+
+.search-result-twitter-tweet {
+    min-height: 4.5rem;
+}
 
 /** Contextual Navigation */
 

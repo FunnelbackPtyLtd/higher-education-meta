@@ -9,6 +9,7 @@
 <#import "video.ftl" as video />
 <#import "events.ftl" as event />
 <#import "facebook.ftl" as facebook />
+<#import "twitter.ftl" as twitter />
 
 <#macro SearchForm>
   <div class="jumbotron jumbotron-fluid">
@@ -120,7 +121,20 @@
           </div>
 
           <@base.NoResults />
-          <@base.ResultList rootNamespace=.namespace />
+          <@base.ResultList rootNamespace=.namespace nestedRank=3>
+            <@fb.ExtraResults name="twitter">
+              <li><h4 class="sr-only">Tweet results</h4></li>
+              <li class="search-results-twitter">
+                <div class="row">
+                  <#list (response.resultPacket.results)![] as result>
+                    <div class="col-md-4">
+                      <@twitter.TwitterCard result=result />
+                    </div>
+                  </#list>
+                </div>
+              </li>
+            </@fb.ExtraResults>
+          </@base.ResultList>
 
           <@base.Paging />
         </div>
