@@ -356,6 +356,7 @@ section.search-cart {
 
 .search-result-twitter-tweet {
     min-height: 4.5rem;
+    max-height: 4.5rem;
 }
 
 /** Contextual Navigation */
