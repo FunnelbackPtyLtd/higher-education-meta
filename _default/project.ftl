@@ -121,7 +121,7 @@
           </div>
 
           <@base.NoResults />
-          <@base.ResultList rootNamespace=.namespace nestedRank=3>
+          <@base.ResultList nestedRank=3>
             <@fb.ExtraResults name="twitter">
               <li><h4 class="sr-only">Tweet results</h4></li>
               <li class="search-results-twitter">
