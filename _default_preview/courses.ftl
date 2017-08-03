@@ -61,6 +61,54 @@
   </li>
 </#macro>
 
+<#macro ShortListTemplate>
+  <div class="card search-result-course">
+
+    <div class="card-header">
+      <a href="javascript:;" class="btn btn-secondary float-right ng-cloak" data-ng-click="remove(item.indexUrl)">
+        <span class="fa fa-times"></span>
+        <span class="ng-cloak">Remove</span>
+      </a>
+
+      <h4>
+        <a data-ng-href="{{item.indexUrl}}">
+          {{item.title}}
+        </a>
+          <small data-ng-show="item.metaData.coursesCode" class="text-muted">({{item.metaData.coursesCode}})</small>
+      </h4>
+      <div class="card-subtitle text-muted">
+        {{item.metaData.coursesDepartment}}
+      </div>
+    </div>
+
+    <div class="card-block">
+      <div class="card-text">
+        <img data-ng-show="item.metaData.I" class="img-fluid float-right ng-cloak" alt="Thumbnail for {{result.title}}" data-ng-src="{{item.metaData.I}}">
+
+        {{item.metaData.coursesDesc}}
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Level</h5>
+          <span>{{item.metaData.coursesLevel || '-'}}</span>
+        </div>
+
+        <div class="col-md-4">
+          <h5>Location</h5>
+          <span>{{item.metaData.coursesLocation.replace('|', ', ') || '-'}}</span>
+        </div>
+
+        <div class="col-md-4">
+          <h5>Duration</h5>
+          <span>{{item.metaData.coursesDuration.replace('|', ', ') || '-'}}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</#macro>
+
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-courses" type="text/x-handlebar-template">
     <div>

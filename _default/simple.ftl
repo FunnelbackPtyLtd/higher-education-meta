@@ -5,9 +5,14 @@
 <#import "history_cart.ftl" as history_cart />
 <#import "/share/stencils/libraries/base/client_includes.ftl" as client_includes />
 
+<#-- These imports are required for the automatic template selection to work
+  The various namespaces (e.g. 'video', 'facebook') need to be on the main scope -->
 <#import "project.ftl" as project />
 <#import "courses.ftl" as courses />
 <#import "people.ftl" as people />
+<#import "video.ftl" as video />
+<#import "facebook.ftl" as facebook />
+<#import "events.ftl" as events />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +42,9 @@
       <@s.AfterSearchOnly>
         <@project.Tabs />
         <@project.Results />
-        <@history_cart.SearchHistory />
-        <@history_cart.Cart />
       </@s.AfterSearchOnly>
+      <@history_cart.SearchHistory />
+      <@history_cart.Cart />
   </main>
 
   <@client_includes.ContentFooter />

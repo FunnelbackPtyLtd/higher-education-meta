@@ -4,11 +4,6 @@
 <#import "facets.ftl" as facets />
 <#import "history_cart.ftl" as history_cart />
 
-<#import "courses.ftl" as courses />
-<#import "people.ftl" as people />
-<#import "video.ftl" as video />
-<#import "events.ftl" as event />
-<#import "facebook.ftl" as facebook />
 <#import "twitter.ftl" as twitter />
 
 <#macro SearchForm>
