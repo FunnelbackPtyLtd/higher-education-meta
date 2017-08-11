@@ -49,8 +49,8 @@
                 <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">            
               </#if>
 
-              <p>${result.summary?no_esc}</p>
-              <span class="text-muted"><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventCategory"]! /></span>
+              <p><@s.boldicize>${result.summary?no_esc}</@s.boldicize></p>
+              <span class="text-muted"><@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventCategory"]! /></@s.boldicize></span>
             </div>
           </div>
         </div>
