@@ -39,7 +39,7 @@
           <div class="media-body">
             <i class="fa fa-facebook-official float-right text-muted" aria-hidden="true"></i>
             <h4>
-              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["a"]}</a>
+              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["a"]!"Unknown author"}</a>
             </h4>
             <div class="card-subtitle text-muted">
               ${result.date?date?string("MMMM dd, yyyy")} via Facebook
@@ -84,7 +84,7 @@
 
               </h4>
               <div class="card-subtitle text-muted">
-                <a class="text-muted" href="${result.metaData["stencilsFacebookProfileUrl"]!}">${result.metaData["a"]}</a> via Facebook
+                <a class="text-muted" href="${result.metaData["stencilsFacebookProfileUrl"]!}">${result.metaData["a"]!"Unknown author"}</a> via Facebook
                 <@history_cart.LastVisitedLink result=result/>
               </div>
             </div>
@@ -151,7 +151,7 @@
           <div class="media-body">
             <i class="fa fa-facebook-official float-right text-muted" aria-hidden="true"></i>
             <h4>
-              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["a"]}</a>
+              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["a"]!"Unknown author"}</a>
             </h4>
             <div class="card-subtitle text-muted">
               ${result.metaData["stencilsFacebookPageCity"]!}, ${result.metaData["stencilsFacebookPageCountry"]!}
