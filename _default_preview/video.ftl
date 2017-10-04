@@ -8,7 +8,7 @@
       <div class="row no-gutters">
         <div class="col-md-3 my-auto">
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}" target="_blank">
-            <img class="card-img img-fluid" alt="Thumbnail for ${result.title}" src="${result.metaData["videosImg"]}">
+            <img class="card-img img-fluid" alt="Thumbnail for ${result.title}" src="${result.metaData["videosImg"]!}">
             
             <div class="card-img-overlay text-center">
               <span class="fa fa-play-circle-o fa-4x"></span>
