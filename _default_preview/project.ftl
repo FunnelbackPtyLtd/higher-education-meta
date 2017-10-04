@@ -174,8 +174,8 @@
 
         <#if result.metaData["a"]?? || result.metaData["p"]??>
           <div class="card-text search-metadata text-muted">
-            <#if result.metaData["a"]??><div><strong>By:</strong> <span>${result.metaData["a"]!?split("|")?join(", ")}</span></div></#if>
-            <#if result.metaData["p"]??><div><strong>Publisher:</strong> <span>${result.metaData["p"]!?split("|")?join(", ")}</span></div></#if>
+            <#if result.metaData["a"]??><div><strong>By:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["a"]! /></span></div></#if>
+            <#if result.metaData["p"]??><div><strong>Publisher:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["p"]! /></span></div></#if>
           </div>
         </#if>
       </div>
