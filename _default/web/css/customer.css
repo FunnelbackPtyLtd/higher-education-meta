@@ -225,6 +225,13 @@ section.search-cart {
     margin-bottom: 1rem;
 }
 
+@media (max-width: 768px) {
+    /* Hide sort / limit controls on small screens */
+    .search-results .dropdown {
+        display: none;
+    }
+}
+
 /** Facets */
 
 .search-facets {
