@@ -198,6 +198,19 @@ ul.nav-tabs li.nav-item a.disabled {
     color: #999;
 }
 
+@media (max-width: 768px) {
+    /* Stack the tabs on small screens */
+    ul.nav-tabs,
+    li.nav-item {
+        display: block;
+        width: 100%;
+    }
+
+    ul.nav-tabs {
+        margin-bottom: 1rem;
+    }
+}
+
 /** Search results */
 
 section.search-results,
@@ -213,6 +226,12 @@ section.search-cart {
 }
 
 /** Facets */
+
+.search-facets {
+    /* This margin is needed for responsive design as the facets
+     * will get stacked above the results */
+    margin-bottom: 1rem;
+}
 
 .search-facets .card.search-refine {
     border-bottom: none;
