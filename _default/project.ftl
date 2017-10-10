@@ -122,9 +122,12 @@
               <li class="search-results-twitter">
                 <div class="row">
                   <#list (response.resultPacket.results)![] as result>
-                    <div class="col-md-4">
-                      <@twitter.TwitterCard result=result />
-                    </div>
+                    <#-- Limit to only 3 Twitter cards -->
+                    <#if result?index lt 3>
+                      <div class="col-md-4">
+                        <@twitter.TwitterCard result=result />
+                      </div>
+                    </#if>
                   </#list>
                 </div>
               </li>
