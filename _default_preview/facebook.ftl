@@ -17,7 +17,7 @@
       <div class="alert alert-danger" role="alert">
         <#if !result.metaData["stencilsFacebookType"]!?has_content>
           <strong>Facebook content type not available</strong>: Ensure the content possesses a
-          <code>facebookType</code> metadata and that it is returned in the data model.
+          <code>stencilsFacebookType</code> metadata and that it is returned in the data model.
         <#else>
           <strong>Unsupported Facebook content type "${result.metaData["stencilsFacebookType"]!}":</strong>
           You may need to create a result template for this content type
