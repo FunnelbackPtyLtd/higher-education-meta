@@ -2,7 +2,7 @@
 
 <#macro TwitterCard result>
   <div class="card search-result search-result-twitter">
-    <div class="card-block p-2">
+    <div class="card-body p-2">
       <div class="card-text">
 
         <div class="media">

@@ -31,7 +31,7 @@
   <li class="search-result search-result-facebook search-result-facebook-post">
     <div class="card">
 
-      <div class="card-block">
+      <div class="card-body">
         <div class="media">
           <a href="${result.customData["stencilsFacebookProfileUrl"]!}">
             <img class="mr-3" src="${result.customData["stencilsFacebookProfileImageUrl"]!}">
@@ -68,7 +68,7 @@
 <#macro EventResult result=result>
   <li class="search-result search-result-event search-result-facebook search-result-facebook-event">
     <div class="card">
-      <div class="card-block">
+      <div class="card-body">
 
         <div class="card-title">
           <div class="media">
@@ -142,7 +142,7 @@
 <#macro PageResult result=result>
   <li class="search-result search-result-facebook search-result-facebook-page">
     <div class="card">
-      <div class="card-block">
+      <div class="card-body">
 
         <div class="media">
           <a href="${result.customData["stencilsFacebookPageImageUrl"]!}">

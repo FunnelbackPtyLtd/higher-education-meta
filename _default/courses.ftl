@@ -8,7 +8,7 @@
 
       <div class="card-header">
         <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-          <a href="javascript:;" class="btn btn-secondary float-right ng-cloak" data-ng-click="toggle()" data-cart-link data-css="star-o|star" data-labels="Add to shortlist|Remove" title="{{label}}">
+          <a href="javascript:;" class="btn btn-light border border-secondary float-right ng-cloak" data-ng-click="toggle()" data-cart-link data-css="star-o|star" data-labels="Add to shortlist|Remove" title="{{label}}">
             <span class="fa fa-{{css}}"></span>
             <span class="ng-cloak">{{label}}</span>
           </a>
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="card-block">
+      <div class="card-body">
         <div class="card-text">
           <#if result.metaData["I"]??>
             <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
@@ -65,7 +65,7 @@
   <div class="card search-result-course">
 
     <div class="card-header">
-      <a href="javascript:;" class="btn btn-secondary float-right ng-cloak" data-ng-click="remove(item.indexUrl)">
+      <a href="javascript:;" class="btn btn-light border border-secondary float-right ng-cloak" data-ng-click="remove(item.indexUrl)">
         <span class="fa fa-times"></span>
         <span class="ng-cloak">Remove</span>
       </a>
@@ -81,7 +81,7 @@
       </div>
     </div>
 
-    <div class="card-block">
+    <div class="card-body">
       <div class="card-text">
         <img data-ng-show="item.metaData.I" class="img-fluid float-right ng-cloak" alt="Thumbnail for {{result.title}}" data-ng-src="{{item.metaData.I}}">
 

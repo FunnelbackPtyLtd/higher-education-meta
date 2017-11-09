@@ -72,7 +72,7 @@
             <@base.CuratorExhibits position="left" />
 
             <div class="card search-refine">
-              <div class="card-header bg-inverse text-white">
+              <div class="card-header bg-dark text-white">
                 <h3>Refine your results</h3>
               </div>
             </div>
@@ -163,7 +163,7 @@
         </div>
       </div>
 
-      <div class="card-block">
+      <div class="card-body">
         <div class="card-text">
           <#if result.metaData["I"]??>
             <img class="img-fluid float-right deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">

@@ -1,28 +1,28 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+<nav class="navbar navbar-expand-md bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-nav" aria-expanded="false" aria-label="Toggle navigation">
     <small class="navbar-toggler-icon"></small>
   </button>
   <h1 class="sr-only">Toolbar</h1>
 
-  <div class="collapse navbar-collapse bg-inverse" id="top-nav">
+  <div class="collapse navbar-collapse bg-dark" id="top-nav">
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Jobs</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Newsroom</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Giving to FBU</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#">Jobs</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#">Newsroom</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#">Giving to FBU</a></li>
     </ul>
     <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-graduation-cap"></span> Alumni</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-users"></span> My FBU</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-book"></span> Library</a></li>
-        <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-search"></span><span class="sr-only">Search</span></a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#"><span class="fa fa-graduation-cap"></span> Alumni</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#"><span class="fa fa-users"></span> My FBU</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#"><span class="fa fa-book"></span> Library</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#"><span class="fa fa-search"></span><span class="sr-only">Search</span></a></li>
     </ul>
   </div>
 </nav>
 
-<nav class="navbar navbar-light navbar-toggleable-md customer">
+<nav class="navbar navbar-light navbar-expand-md customer">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
     <small class="navbar-toggler-icon"></small>
   </button>

@@ -1,6 +1,6 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
-<footer class="bg-inverse customer">
+<footer class="bg-dark customer">
   <div class="container">
     <div class="row">
       <div class="col-md-4">

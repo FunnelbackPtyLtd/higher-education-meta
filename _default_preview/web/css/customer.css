@@ -14,9 +14,13 @@
 
 /** Very top navbar */
 
-.navbar.navbar-inverse {
+.navbar.bg-dark {
     padding: 0;
     font-size: small;
+}
+
+.navbar.bg-dark a {
+    padding: 0.25rem;
 }
 
 /** Main navbar (logo + menu) */
@@ -310,6 +314,10 @@ section.search-cart {
     color: #9a1904;
 }
 
+.search-result-course a.border-secondary {
+    border-color: #ccc !important;
+}
+
 /** Results - People */
 
 .search-result-people h4 a {
@@ -433,14 +441,13 @@ section.search-cart {
     margin-top: 1rem;
 }
 
-.search-exhibit.open-day .card-block {
+.search-exhibit.open-day .card-body {
     padding-top: 0;
     font-size: x-large;
     font-weight: bold;
 }
 
-.search-exhibit.open-day .card-block div {
-    width: 50%;
+.search-exhibit.open-day .card-body div {
     padding-top: .5rem;
     padding-bottom: 1rem;
 }
@@ -448,6 +455,7 @@ section.search-cart {
 .search-exhibit.open-day small {
     color: #d7d8d2;
     font-size: medium;
+    display: block;
 }
 
 /** Campus Life Exhibit */
@@ -456,11 +464,11 @@ section.search-cart {
     display: none;
 }
 
-.search-exhibit.campus-life .card-block {
+.search-exhibit.campus-life .card-body {
     padding: 0;
 }
 
-.search-exhibit.campus-life .card-block a {
+.search-exhibit.campus-life .card-body a {
     color: white;
     text-shadow: 2px 2px #333;
     font-size: x-large;

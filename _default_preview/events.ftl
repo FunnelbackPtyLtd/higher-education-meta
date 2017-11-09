@@ -4,7 +4,7 @@
 <#macro Result result>
   <li class="search-result search-result-event">
     <div class="card">
-      <div class="card-block">
+      <div class="card-body">
 
         <div class="card-title">
           <div class="float-right">

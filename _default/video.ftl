@@ -24,7 +24,7 @@
 
 
         <div class="col-md-9">
-          <div class="card-block">
+          <div class="card-body">
             <div class="card-title">
               <h4>
                 <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
