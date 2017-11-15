@@ -54,8 +54,8 @@
   <script src="/stencils/resources/thirdparty/bootstrap/v4.0.0-beta.2/js/bootstrap.min.js"></script>
   <script src="/stencils/resources/base/v15.8/js/base.js"></script>
 
-  <script src="/stencils/resources/autocompletion/js/typeahead.bundle.js"></script>
-  <script src="/stencils/resources/autocompletion/js/handlebars.js"></script>
+  <script src="/stencils/resources/autocompletion/js/typeahead.bundle-0.11.1.min.js"></script>
+  <script src="/stencils/resources/autocompletion/js/handlebars.min-v4.0.5.js"></script>
   <script src="/s/resources/${question.collection.id}/${question.profile}/js/typeahead.fb.js"></script>
 
   <@courses.AutoCompleteTemplate />
@@ -71,8 +71,8 @@
   </script>
 
   <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-    <script src="${GlobalResourcesPrefix}thirdparty/angular-1.0.7/angular.js"></script>
-    <script src="${GlobalResourcesPrefix}thirdparty/angular-1.0.7/angular-resource.js"></script>
+    <script src="${GlobalResourcesPrefix}thirdparty/angular-1.0.7/angular.min.js"></script>
+    <script src="${GlobalResourcesPrefix}thirdparty/angular-1.0.7/angular-resource.min.js"></script>
     <script src="${GlobalResourcesPrefix}js/funnelback-session.js"></script>
   </#if>
 
