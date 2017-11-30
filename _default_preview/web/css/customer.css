@@ -413,6 +413,11 @@ section.search-cart {
     margin-bottom: 1rem;
 }
 
+blockquote.search-exhibit {
+    border-left: solid .25rem #eeefea;
+    padding-left: .5rem;
+}
+
 /** Open Day Exhibit */
 
 .search-exhibit.open-day {
