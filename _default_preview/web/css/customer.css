@@ -328,6 +328,13 @@ section.search-cart {
     padding-left: 1.25rem;
 }
 
+@media (max-width: 576px) {
+    .search-result-people img {
+        margin-top: 1rem;
+        width: 35%;
+    }
+}
+
 .search-result-people .fa-user {
     font-size: 600%;
     color: #d7d8d2;
