@@ -98,6 +98,13 @@ footer.customer ul.social li {
     color: white;
 }
 
+@media (max-width: 768px) {
+    .jumbotron {
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+    }
+}
+
 .jumbotron h1 {
     margin-bottom: 3rem;
 }

@@ -66,20 +66,6 @@
       <div class="row">
 
         <#local tabFacets = question.collection.configuration.value("stencils.tabs.facets.${(response.customData.stencilsTabsSelectedTab)!}", "") />
-        <#if tabFacets?has_content>
-          <div class="col-md-3 search-facets">
-
-            <@base.CuratorExhibits position="left" />
-
-            <div class="card search-refine">
-              <div class="card-header bg-dark text-white">
-                <h3>Refine your results</h3>
-              </div>
-            </div>
-            
-            <@facets.Facets facets=tabFacets />
-          </div>
-        </#if>
 
         <div class="col-md-<#if tabFacets?has_content>9<#else>12</#if>">
 
@@ -136,6 +122,21 @@
 
           <@base.Paging />
         </div>
+
+        <#if tabFacets?has_content>
+          <div class="col-md-3 search-facets order-md-first order-lg-first order-xl-first">
+
+            <@base.CuratorExhibits position="left" />
+
+            <div class="card search-refine">
+              <div class="card-header bg-dark text-white">
+                <h3>Refine your results</h3>
+              </div>
+            </div>
+            
+            <@facets.Facets facets=tabFacets />
+          </div>
+        </#if>
       </div>
 
       <div class="row">

@@ -1,6 +1,6 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
-<nav class="navbar navbar-expand-md bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-nav" aria-expanded="false" aria-label="Toggle navigation">
     <small class="navbar-toggler-icon"></small>
   </button>
