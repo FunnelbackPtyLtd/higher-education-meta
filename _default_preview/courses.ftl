@@ -17,8 +17,8 @@
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
             <@s.boldicize><@s.Truncate length=70>${result.title}</@s.Truncate></@s.boldicize>
           </a>
-          <#if result.metaData["coursesCode"]??>
-            <small class="text-muted">(${result.metaData["coursesCode"]})</small>
+          <#if result.metaData["coursesSubject"]?? && result.metaData["coursesNumber"]??>
+            <small class="text-muted">(${result.metaData["coursesSubject"]!}-${result.metaData["coursesNumber"]!})</small>
           </#if>
         </h4>
         <div class="card-subtitle text-muted">
@@ -42,18 +42,18 @@
 
         <div class="row">
           <div class="col-md-4">
-            <h5>Level</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesLevel"]!"-" /></span>
+            <h5>Credits</h5>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesCredit"]!"-" /></span>
           </div>
 
           <div class="col-md-4">
-            <h5>Location</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesLocation"]!"-" /></span>
+            <h5>Term</h5>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesTerm"]!"-" /></span>
           </div>
 
           <div class="col-md-4">
-            <h5>Duration</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesDuration"]!"-" /></span>
+            <h5>Delivery</h5>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesDelivery"]!"-" /></span>
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@
         <a data-ng-href="{{item.indexUrl}}">
           {{item.title}}
         </a>
-          <small data-ng-show="item.metaData.coursesCode" class="text-muted">({{item.metaData.coursesCode}})</small>
+          <small data-ng-show="item.metaData.coursesSubject && item.metaData.coursesNumber" class="text-muted">({{item.metaData.coursesSubject}}-{{item.metaData.coursesNumber}})</small>
       </h4>
       <div class="card-subtitle text-muted">
         {{item.metaData.coursesDepartment}}
@@ -90,18 +90,18 @@
 
       <div class="row">
         <div class="col-md-4">
-          <h5>Level</h5>
-          <span>{{item.metaData.coursesLevel || '-'}}</span>
+          <h5>Credits</h5>
+          <span>{{item.metaData.coursesCredit || '-'}}</span>
         </div>
 
         <div class="col-md-4">
-          <h5>Location</h5>
-          <span>{{item.metaData.coursesLocation.replace('|', ', ') || '-'}}</span>
+          <h5>Term</h5>
+          <span>{{item.metaData.coursesTerm.replace('|', ', ').replace('|', ', ') || '-'}}</span>
         </div>
 
         <div class="col-md-4">
-          <h5>Duration</h5>
-          <span>{{item.metaData.coursesDuration.replace('|', ', ') || '-'}}</span>
+          <h5>Delivery</h5>
+          <span>{{item.metaData.coursesDelivery.replace('|', ', ') || '-'}}</span>
         </div>
       </div>
 
@@ -112,10 +112,9 @@
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-courses" type="text/x-handlebar-template">
     <div>
-      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.code}}</small></h6>
+      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.subject}}-{{extra.disp.number}}</small></h6>
       <div class="details">
-        <div>{{extra.disp.department}}</div>
-        <div class="text-muted">{{extra.disp.level}}</div>
+        <small>{{extra.disp.term}}</small>
       </div>
     </div>
   </script>
