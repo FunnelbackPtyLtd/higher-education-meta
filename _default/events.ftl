@@ -46,11 +46,12 @@
 
             <div class="col-md-10">
               <#if result.metaData["I"]??>
-                <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">            
+                <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />"> 
               </#if>
 
               <p><@s.boldicize>${result.summary?no_esc}</@s.boldicize></p>
-              <span class="text-muted"><@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventCategory"]! /></@s.boldicize></span>
+              <span class="text-muted ml-2">Tags: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventCategory"]! /></@s.boldicize></span><br>
+              <span class="text-muted ml-2">For: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventAudience"]! /></@s.boldicize></span>
             </div>
           </div>
         </div>
