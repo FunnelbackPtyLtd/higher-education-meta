@@ -8,14 +8,14 @@
       <div class="row no-gutters">
         <div class="col-md-3 my-auto">
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}" target="_blank">
-            <img class="card-img img-fluid" alt="Thumbnail for ${result.title}" src="${result.metaData["videosImg"]!}">
+            <img class="card-img img-fluid" alt="Thumbnail for ${result.title}" src="${result.metaData["I"]!}">
             
             <div class="card-img-overlay text-center">
               <span class="fa fa-play-circle-o fa-4x"></span>
-              <#if result.metaData["videosDurationPretty"]??>
-                <span class="badge badge-default">${result.metaData["videosDurationPretty"]!}</span>
-              <#elseif result.metaData["videosDuration"]??>
-                <span class="badge badge-default">${result.metaData["videosDuration"]!?number}s</span>
+              <#if result.metaData["stencilsVideoDurationPretty"]??>
+                <span class="badge badge-default">${result.metaData["stencilsVideoDurationPretty"]!}</span>
+              <#elseif result.metaData["stencilsVideoDuration"]??>
+                <span class="badge badge-default">${result.metaData["stencilsVideoDuration"]!?number}s</span>
               </#if>
             </div>
           </a>
@@ -32,7 +32,7 @@
                 </a>
               </h4>
               <div class="card-subtitle text-muted">
-                <small>${result.date?date?string.short!} - Uploaded by ${result.metaData["videosAuthor"]!"Unknown"}</small>
+                <small>${result.date?date?string.short!} - Uploaded by ${result.metaData["stencilsVideoAuthor"]!"Unknown"}</small>
                 <@history_cart.LastVisitedLink result=result/>
               </div>
             </div>
