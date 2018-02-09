@@ -17,13 +17,13 @@
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
             <@s.boldicize><@s.Truncate length=70>${result.title}</@s.Truncate></@s.boldicize>
           </a>
-          <#if result.metaData["coursesSubject"]?? && result.metaData["coursesNumber"]??>
-            <small class="text-muted">(${result.metaData["coursesSubject"]!}-${result.metaData["coursesNumber"]!})</small>
+          <#if result.metaData["courseSubject"]?? && result.metaData["courseNumber"]??>
+            <small class="text-muted">(${result.metaData["courseSubject"]!}-${result.metaData["courseNumber"]!})</small>
           </#if>
         </h4>
         <div class="card-subtitle text-muted">
-          <#if result.metaData["coursesDepartment"]??>
-            ${result.metaData["coursesDepartment"]}
+          <#if result.metaData["courseDepartment"]??>
+            ${result.metaData["courseDepartment"]}
           </#if>
           <@history_cart.LastVisitedLink result=result/>
         </div>
@@ -35,25 +35,25 @@
             <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
           </#if>
 
-          <#if result.metaData["coursesDesc"]??>
-            <@s.boldicize>${result.metaData["coursesDesc"]?no_esc}</@s.boldicize>
+          <#if result.metaData["courseDesc"]??>
+            <@s.boldicize>${result.metaData["courseDesc"]?no_esc}</@s.boldicize>
           </#if>
         </div>
 
         <div class="row">
           <div class="col-md-4">
             <h5>Credits</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesCredit"]!"-" /></span>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseCredit"]!"-" /></span>
           </div>
 
           <div class="col-md-4">
             <h5>Term</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesTerm"]!"-" /></span>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseTerm"]!"-" /></span>
           </div>
 
           <div class="col-md-4">
             <h5>Delivery</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["coursesDelivery"]!"-" /></span>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseDelivery"]!"-" /></span>
           </div>
         </div>
       </div>
@@ -74,10 +74,10 @@
         <a data-ng-href="{{item.indexUrl}}">
           {{item.title}}
         </a>
-          <small data-ng-show="item.metaData.coursesSubject && item.metaData.coursesNumber" class="text-muted">({{item.metaData.coursesSubject}}-{{item.metaData.coursesNumber}})</small>
+          <small data-ng-show="item.metaData.courseSubject && item.metaData.courseNumber" class="text-muted">({{item.metaData.courseSubject}}-{{item.metaData.courseNumber}})</small>
       </h4>
       <div class="card-subtitle text-muted">
-        {{item.metaData.coursesDepartment}}
+        {{item.metaData.courseDepartment}}
       </div>
     </div>
 
@@ -85,23 +85,23 @@
       <div class="card-text">
         <img data-ng-show="item.metaData.I" class="img-fluid float-right ng-cloak" alt="Thumbnail for {{result.title}}" data-ng-src="{{item.metaData.I}}">
 
-        {{item.metaData.coursesDesc}}
+        {{item.metaData.courseDesc}}
       </div>
 
       <div class="row">
         <div class="col-md-4">
           <h5>Credits</h5>
-          <span>{{item.metaData.coursesCredit || '-'}}</span>
+          <span>{{item.metaData.courseCredit || '-'}}</span>
         </div>
 
         <div class="col-md-4">
           <h5>Term</h5>
-          <span>{{item.metaData.coursesTerm.replace('|', ', ').replace('|', ', ') || '-'}}</span>
+          <span>{{item.metaData.courseTerm.replace('|', ', ').replace('|', ', ') || '-'}}</span>
         </div>
 
         <div class="col-md-4">
           <h5>Delivery</h5>
-          <span>{{item.metaData.coursesDelivery.replace('|', ', ') || '-'}}</span>
+          <span>{{item.metaData.courseDelivery.replace('|', ', ') || '-'}}</span>
         </div>
       </div>
 
