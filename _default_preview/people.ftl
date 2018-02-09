@@ -27,14 +27,14 @@
               </div>
               <h4>
                 <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
-                  <@s.boldicize><@s.Truncate length=70>${result.metaData["peopleFirstName"]!} ${result.metaData["peopleLastName"]!}</@s.Truncate></@s.boldicize>
+                  <@s.boldicize><@s.Truncate length=70>${result.metaData["stencilsPeopleFirstName"]!} ${result.metaData["stencilsPeopleLastName"]!}</@s.Truncate></@s.boldicize>
                 </a>
               </h4>
               <div class="card-subtitle">
-                <h5><@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["peoplePosition"]! /></@s.boldicize></h5>            
+                <h5><@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsPeoplePosition"]! /></@s.boldicize></h5>            
               </div>
               <div class="card-subtitle text-muted">
-                <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["peopleDepartment"]! /></@s.boldicize>
+                <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsPeopleDepartment"]! /></@s.boldicize>
               </div>
             </div>
 
@@ -42,18 +42,18 @@
               <div class="row">
                 <div class="col-md-5">
                   <span class="fa fa-envelope-o text-muted"></span>
-                  <a class="text-muted" href="mailto:${result.metaData["peopleEmail"]!}">${result.metaData["peopleEmail"]!}</a>
+                  <a class="text-muted" href="mailto:${result.metaData["stencilsPeopleEmail"]!}">${result.metaData["stencilsPeopleEmail"]!}</a>
                 </div>
-                <#if result.metaData["peoplePhone"]??>
+                <#if result.metaData["stencilsPeoplePhone"]??>
                   <div class="col-md-3">
                     <span class="fa fa-phone text-muted"></span>
-                    <a class="text-muted" href="tel:${result.metaData["peoplePhone"]!}">${result.metaData["peoplePhone"]!}</a>
+                    <a class="text-muted" href="tel:${result.metaData["stencilsPeoplePhone"]!}">${result.metaData["stencilsPeoplePhone"]!}</a>
                   </div>
                 </#if>
-                <#if result.metaData["peopleLocation"]??>
+                <#if result.metaData["stencilsPeopleLocation"]??>
                   <div class="col-md-4">
                     <span class="fa fa-map-marker text-muted"></span>
-                    <a class="text-muted" href="https://maps.google.com/?q=${result.metaData["peopleLocation"]!?url}" target="_blank">${result.metaData["peopleLocation"]!}</a>
+                    <a class="text-muted" href="https://maps.google.com/?q=${result.metaData["stencilsPeopleLocation"]!?url}" target="_blank">${result.metaData["stencilsPeopleLocation"]!}</a>
                   </div>
                 </#if>
               </div>
