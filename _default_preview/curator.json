@@ -79,7 +79,7 @@
   } ]
 }, {
   "created" : "2017-06-13T09:49:12.186-07:00",
-  "lastModified" : "2017-11-17T14:35:35.333-08:00",
+  "lastModified" : "2018-02-22T05:03:17.908+11:00",
   "id" : "53ca94ee-cd8a-4c11-9d18-fbad04f324d6",
   "name" : "Open Day",
   "label" : "DEFAULT",
@@ -98,10 +98,10 @@
   },
   "actions" : [ {
     "type" : "DisplayUrlAdvert",
-    "titleHtml" : "OPEN DAY",
+    "titleHtml" : "CAMPUS TOUR",
     "displayUrl" : "-",
     "linkUrl" : "-",
-    "descriptionHtml" : "<div>\nLive a different perspective\n<small>May 3rd</small>\n</div>\n\n\n\n<a href=\"http://funnelback.edu/open-day\" target=\"_blank\" class=\"btn btn-primary float-right\">Find out more</a>",
+    "descriptionHtml" : "<div>\nLive a different perspective\n<small>March 3rd</small>\n</div>\n\n\n\n<a href=\"http://funnelback.edu/open-day\" target=\"_blank\" class=\"btn btn-primary float-right\">Find out more</a>",
     "additionalProperties" : {
       "position" : "left",
       "class" : "open-day"
