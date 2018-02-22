@@ -57,7 +57,7 @@
 
   <script src="/stencils/resources/autocompletion/js/typeahead.bundle-0.11.1.min.js"></script>
   <script src="/stencils/resources/autocompletion/js/handlebars.min-v4.0.5.js"></script>
-  <script src="/s/resources/${question.collection.id}/${question.profile}/js/typeahead.fb.js"></script>
+  <script src="/s/resources/${question.collection.id}/${question.profile}/js/typeahead.fb-2.6.js"></script>
 
   <@courses.AutoCompleteTemplate />
   <@people.AutoCompleteTemplate />

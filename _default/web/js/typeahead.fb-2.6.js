@@ -1,15 +1,15 @@
 /*
- * Funnelback concierge auto-completion plugin
- * version 2.2
+ * Funnelback auto-completion plugin
+ * version 2.6
  *
  * author: Liliana Nowak
- * Copyright Funnelback, 2015-2016
+ * Copyright Funnelback, 2015-2017
  *
  * @requires jQuery https://jquery.com/
  * @requires typeahead.js https://twitter.github.io/typeahead.js/
  */
 (function($) {
-	'use strict';
+    'use strict';
 
 	var qc = function(element, options) {
 		// Global references
@@ -22,10 +22,10 @@
 	// Default options
 	qc.defaults = {
 		// set configuration
-		datasets : null,				// {set1: {url: ''}, set2: {...}, set3: {...}}       
+		datasets : null,				// {set1: {url: ''}, set2: {...}, set3: {...}}
 		/*
 		defaultCall   : {				// 'string'|[]|{}; use to trigger auto-completion when input value is empty and length=0
-			filter    : _processDataTopQueries,	// function(set, data); filter function used to map response data
+			filter    : customFunctionToMapData,// function(set, data); filter function used to map response data
 			params    : {},						// {}; list of parameters added to request
 			url       : '' 						// 'string'; URL to call request
 		},
@@ -40,13 +40,23 @@
 		filter 			: _processSetData, // function(set, suggestion, index); filter function used to map response data
 		group 			: false,		// true|false; enable grouping suggestions based on parameter itemGroup
 		groupOrder 		: [],			// []; list of group headers used to sort grouped suggestions in that order
+		facets 			: {				// {}; list of parameters applied when default search-based auto-completion is enabled
+			blacklist	: [],	// []; list of facet categories names not to displayed
+			whitelist	: [],	// []; list of facet categories names to display
+			show		: 2,	// integer; maximum number of facets values to display per facet category; if not set will display all facet category values
+			url 		: null, // string; the target URL to apply facets parameters to; By default it'll be current location
+		},
 		itemGroup 		: 'category',	// 'string'; the name of field used to group suggestions and display as group header in dropdown
-		itemLabel 		: 'label',		// 'string'; the name of a field to be displayed as label in input field and for default template in dropdown menu
-		template 		: {},			// {notFound: '', pending: '', header: '', footer: '', suggestion: ''}
+		itemLabel 		: 'value',		// 'string'; the name of a field to be displayed in input field
+		template 		: {				// {notFound: '', pending: '', header: '', footer: '', group: '', suggestion: ''}
+			group: function(context) { return $('<div>').html(String(context.label)); },
+			suggestion: function(context) { return $('<div>').html(String(context.label)); }
+		},
 		templateMerge 	: true,			// true|false; to wrap notFound and pending template with header and footer template
 
 		// URL settings
 		collection 		: null,			// 'string'; the collection name
+		dataType 		: 'json',		// 'json'|'jsonp'; the type of data returned back from the server
 		alpha 			: '0.5',		// 'string'; adjust the balance between length and relevancy for spelling based suggestions
 		format 			: 'extended',	// 'simple|extended'; mapping into 'json' or 'json++'
 		params 			: null,			// {}; custom URL parameters
@@ -55,7 +65,7 @@
 		show 			: 10,			// integer; maximum number of suggestions to diplay in dropdown per set
 		sort 			: 0,			// integer; set the auto-completion suggestions sort order when program='/s/suggest.json'
 		queryKey 		: 'partial_query', // 'string'; the name of URL parameter to run search query
-		queryVal 		: '%QUERY',	// 'string'; the value to be replaced in url with the URI encoded query
+		queryVal 		: '%QUERY',		// 'string'; the value to be replaced in url with the URI encoded query
 
 		// display settings
 		length      	: 3,			// integer; the minimum character length to trigger query completion
@@ -74,12 +84,16 @@
 			events      : {				// {eventName: function}; events get triggered on the input element during the life-cycle of a typeahead
 				select  : function(event, suggestion) {
 					_selectItem(suggestion, $(event.target));
+				},
+				afterselect: function(event, suggestion) {
+					if (suggestion.extra.action_t == 'E') $(event.target).focus();
 				}
 			}
 		},
 	};
 
-	// Public methods
+	/* Public methods */
+	
 	qc.prototype.init = function() {
 		this.option(this.options);
 
@@ -115,7 +129,7 @@
 			if (key === 'debug') _debug = val;
 			if (key === 'horizontal' && val) {
 				that.setTypeaheadClass('menu', 'tt-horizontal');
-				
+
 				that.options.typeahead.events.render = function(event) {
 					_renderSetWidth(that.getTypeaheadMenu(), 'tt-horizontal', 'tt-dataset');
 				};
@@ -141,10 +155,10 @@
 		});
 
 		that.$element.typeahead({
-			minLength   : that.options.length,
-			hint        : that.options.typeahead.hint,
-			highlight   : that.options.typeahead.highlight,
-			classNames  : that.options.typeahead.classNames
+			minLength : parseInt(that.options.length),
+			hint      : that.options.typeahead.hint,
+			highlight : that.options.typeahead.highlight,
+			classNames: that.options.typeahead.classNames
 		}, data);
 
 		if (that.options.typeahead.events) {
@@ -156,6 +170,12 @@
 		if (that.options.horizontal) {
 			var data = that.$element.data(), menu = that.getTypeaheadMenu();
 
+			/* 
+			 * 37 - code for left arrow key
+			 * 38 - code for up arrow key
+			 * 39 - code for right arrow key
+			 * 40 - code for down arrow key
+			 */
 			data.ttTypeahead._onDownKeyed = function() {
 				_navCursorUD(40, menu, that.$element);
 			};
@@ -200,12 +220,14 @@
 		this.options.typeahead.classNames[name] += ' ' + className;
 	}
 
-	// Private variables
+	/* Private variables */
 	var _debug = false,
-	_mapKeys = ['collection', 'callback', 'alpha', 'filter', 'format', 'group', 'groupOrder', 'itemGroup', 'itemLabel', 'params', 'profile', 'program', 'show', 'sort', 'queryKey', 'queryVal', 'template', 'templateMerge'],
+	_mapKeys = ['collection', 'callback', 'dataType', 'alpha', 'facets', 'filter', 'format', 'group', 'groupOrder', 'itemGroup', 'itemLabel', 'params', 'profile', 'program', 'show', 'sort', 'queryKey', 'queryVal', 'template', 'templateMerge'],
 	_navCols = {cursor : null, query  : ''};
 
-	// Private methods
+	/* Private methods */
+	
+	// Check if there is enough data to trigger auto-completion
 	function _isEnabled(options) {
 		var bState = false;
 
@@ -218,7 +240,7 @@
 		return bState;
 	}
 
-	// Handle options
+	// Map global options per dataset
 	function _mapOptions(options, datasets) {
 		var map = {};
 		$.each(_mapKeys, function(i, key) { map[key] = options[key] });
@@ -231,14 +253,7 @@
 		var engine = new Bloodhound({
 			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('value'),
 			queryTokenizer : Bloodhound.tokenizers.whitespace,
-			remote         : {
-				url      : set.url ? set.url : _getSetUrl(set),
-				wildcard : set.queryVal,
-				filter   : function (response) {
-					var query = getQuery($(this).get(0).transport.lastReq);
-					return _handleSetData(set, $.map(response, function(suggestion, i) { return set.filter(set, suggestion, i, name, query) }));
-				}
-			}
+			remote         : getBloodhoundRemote()
 		});
 		engine.initialize();
 
@@ -246,12 +261,37 @@
 			name 	: name,
 			limit 	: 10000, // hack to display all returned data
 			source 	: source,
-			display : 'value',
+			display : displayVal,
 			templates : _renderSetTemplate(set)
-		};
+		}
+
+		function displayVal(suggestion) {
+			return $.isFunction(set.itemLabel) ? set.itemLabel.call(undefined, suggestion) : $.dataVals(suggestion, set.itemLabel);
+		}
+
+		function getBloodhoundRemote() {
+			var remote = {
+				url    : set.url ? set.url : _getSetUrl(set),
+				filter : function (response) {
+					var query = getQuery($(this).get(0).transport.lastReq);
+					return _handleSetData(set, $.map(response, function(suggestion, i) { return set.filter(set, suggestion, i, name, query) }));
+				}
+			};
+			if (set.dataType === 'jsonp') {
+				remote['prepare'] = function(query, settings) {
+					settings.dataType = 'jsonp';
+					settings.url = settings.url.replace(set.queryVal, query);
+					return settings;
+				};
+			} else {
+				remote['wildcard'] = set.queryVal;
+			}
+			return remote;
+		}
 
 		function getQuery(str) {
 			if (!$.exist(str, true)) return str;
+			str = decodeURIComponent(str);
 			return str.substring(str.lastIndexOf(set.queryKey + '=') + (set.queryKey.length + 1), str.lastIndexOf('GET'));
 		}
 
@@ -284,6 +324,7 @@
 		}
 	}
 
+	// Returned request URL based on provided parameters
 	function _getSetUrl(set) {
 		var params = {collection: set.collection};
 
@@ -297,6 +338,7 @@
 		return set.program + '?' + $.param(params) + '&' + set.queryKey + '=' + set.queryVal;
 	}
 
+	// Group results into categories
 	function _groupSetData(set, results) {
 		var grouped = {'':[]}, i, len;
 
@@ -322,6 +364,8 @@
 		return results;
 	}
 
+	// Limit number of returned results
+	// Trigger grouping them or apply custom callback
 	function _handleSetData(set, results) {
 		results = results.slice(0, set.show);
 		if (set.callback && $.isFunction(set.callback)) results = set.callback.call(undefined, set, results) || [];
@@ -330,33 +374,35 @@
 	}
 
 	function _processSetData(set, suggestion, i, name, query) {
-		return {
-			label    : (suggestion.disp) ? suggestion.disp : suggestion.key,
-			value    : (suggestion.action_t == 'Q') ? suggestion.action : suggestion.key,
-			extra    : suggestion,
-			category : suggestion.cat ? suggestion.cat : '',
-			rank     : i + 1,
-			dataset	 : name,
-			query    : query
-		};
+		return $.autocompletion.processSetData(set, suggestion, i, name, query);
 	}
 
+	// Adjust columns width depends on columns number
+	// If column has assigned CSS "width" property with "!important" declaration, this will be respected
 	function _renderSetWidth(menu, classWrapper, className) {
-		var cols = 0, colsW = 0, styles, parts;
+		var cols = 0, colsW = 0, styles, parts, menuW = menu.width();
 		className 	 = '.' + className;
 		classWrapper = '.' + classWrapper;
 
 		$.each(menu.children(className), function() {
 			parts  = $(this).attr('class').split(' ');
 			styles = $.cssStyle(classWrapper + ' .' + parts[1]) || $.cssStyle(classWrapper + ' .' + parts.join('.'));
-			if (styles.width && styles.width.indexOf('important')) colsW += parseFloat(styles.width);
+
+			if (styles.width && styles.width.indexOf('important') && styles.width.indexOf('auto') < 0 && styles.width.indexOf('initial') < 0 && styles.width.indexOf('inherit') < 0) {
+				if (styles.width.indexOf('%') > 0) colsW += menuW * parseFloat(styles.width) / 100;
+				else colsW += parseFloat(styles.width);
+			}
 			else if ($.hasContent($(this))) cols++;
 		});
 
-		var minW = parseFloat(menu.children(className).css('min-width')), menuW = menu.width() - colsW, colW = menuW / cols;
-		if (minW <= colW) menu.children(className).css('width', (colW * 100 / menuW) + '%');
+		if (cols) {
+			menuW -= colsW + 0.5;
+			var minW = parseFloat(menu.children(className).css('min-width')), colW = menuW / cols;
+			if (minW <= colW) menu.children(className).css('width', colW + 'px');
+		}
 	}
 
+	// Pre-compile templates using Handlebars
 	function _renderSetTemplate(set) {
 		_setSetTemplateHeader(set);
 
@@ -385,11 +431,12 @@
 		}
 	}
 
+	// Set default template to display column header if column name is defined
 	function _setSetTemplateHeader(set) {
 		if (!set.template.header && $.exist(set.name, true)) set.template.header = '<h5 class="tt-category">' + set.name + '</h5>';
 	}
 
-	// Handle set item
+	// Handle selected item based on "action_t" parameter
 	function _selectItem(item, target) {
 		if ($.exist(item.extra)) {
 			switch(item.extra.action_t) {
@@ -398,15 +445,13 @@
 				case 'U':
 					document.location = item.extra.action; break;
 				case 'E':
-					break;
+					target.typeahead('val', item.extra.action); break;
 				case undefined:
 				case '':
-					formSend(item.value); break;
 				case 'S':
-					formSend(item.extra.key); break;
 				case 'Q':
 				default:
-					formSend(item.extra.action); break;
+					formSend(item.value); break;
 			}
 		} else {
 			formSend(item.value);
@@ -422,7 +467,9 @@
 		return $.exist(item.data()) ? item.data().ttSelectableDisplay : item.text();
 	}
 
-	// Handle Typeahead navigation
+	/* Handle Typeahead navigation */
+	
+	// Navigate dropdown list  left - right (switching between columns)
 	function _navCursorLR(code, cols, target) {
 		if (!$.exist(_navCols.cursor)) return;
 
@@ -447,6 +494,7 @@
 		}
 	}
 
+	// Navigate dropdown list  up - down
 	function _navCursorUD(code, menu, target) {
 		if (!$.exist(menu.find('.tt-cursor'))) {
 			_navCols.cursor = code == 38 ? menu.find('.tt-selectable').last() : menu.find('.tt-selectable').first();
@@ -462,7 +510,7 @@
 		if(!$.exist(currColItems)) return;
 
 		var cursorIdx = currColItems.index(_navCols.cursor), delta = code == 38 ? -1 : 1;
-		
+
 		$(_navCols.cursor).removeClass('tt-cursor');
 
 		if (!$.exist(currColItems[cursorIdx + delta])) {
@@ -520,17 +568,77 @@
 
 		return this.each(function () {
 			var $this = $(this),
-				data    = $this.data('fb.qc'),
+				data    = $this.data('flb.qc'),
 				options = $.extend(true, {}, qc.defaults, data || {}, $.isObject(option) && option);
 
 			if (!data && /destroy|hide/.test(option)) return;
-			if (!data) $this.data('fb.qc', (data = new qc(this, options)));
-			if ($.isString(option) && $.isFunction(data[option])) data[option].apply($this, args);	
+			if (!data) $this.data('flb.qc', (data = new qc(this, options)));
+			if ($.isString(option) && $.isFunction(data[option])) data[option].apply($this, args);
 		});
 	}
-	
+
 	$.fn.qc             = Plugin;
 	$.fn.qc.Constructor = qc;
+
+	// List of predefnied mapping functions
+	$.autocompletion = {
+		// Map /s/suggest.json output
+		processSetData: function(set, suggestion, i, name, query) {
+			var value = suggestion.key, label = suggestion.key;
+			if (suggestion.action_t == 'Q') value = suggestion.action;
+			if (suggestion.action_t == 'S') value = suggestion.disp;
+			if (suggestion.disp_t == 'C') label = eval(suggestion.disp);
+			else if (suggestion.disp) label = suggestion.disp;
+
+			return {
+				label    : label,
+				value    : value,
+				extra    : suggestion,
+				category : suggestion.cat ? suggestion.cat : '',
+				rank     : i + 1,
+				dataset	 : name,
+				query    : query
+			};
+		},
+
+		// Map /s/search.json output
+		processSetDataFacets: function(set, suggestion, i, name, query) {
+			if (i !== 'response' || !$.exist(suggestion.facets)) return;
+
+			var suggestions = [], rank = 1;
+			for (var i = 0, leni = suggestion.facets.length; i < leni; i++) {
+				var facet = suggestion.facets[i];
+
+				if (!$.exist(facet.allValues)) continue;
+				if ($.exist(set.facets.blacklist) && set.facets.blacklist.indexOf(facet.name) > -1) continue;
+				if ($.exist(set.facets.whitelist) && set.facets.whitelist.indexOf(facet.name) < 0) continue;
+
+				for (var j = 0, lenj = facet.allValues.length; j < lenj; j++) {
+					if ($.exist(set.facets.show) && j > parseInt(set.facets.show) - 1) break;
+					if (!facet.allValues[j].count) continue;
+
+					suggestions.push({
+						label   : facet.allValues[j].label,
+						value   : facet.allValues[j].data,
+						extra   : {
+							action  : getUrl(facet.allValues[j]),
+							action_t: 'U'
+						},
+						category: facet.name,
+						rank    : rank++,
+						dataset	: name,
+						query   : query
+					});
+				}
+			}
+
+			return suggestions;
+
+			function getUrl(facet) {
+				return ($.exist(set.facets.url, true) ? set.facets.url : window.location.origin + window.location.pathname) + facet.selectUrl;
+			}
+		}
+	}
 
 	// Helpers
 	$.exist      = function(obj, bString) { if (!$.isDefinied(bString)) bString = false; var obj = bString ? obj : $(obj); return $.isDefinied(obj) && obj != null && ($.isString(obj) ? obj + '' : obj).length > 0; }
