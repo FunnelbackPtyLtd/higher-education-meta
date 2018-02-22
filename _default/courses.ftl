@@ -112,9 +112,9 @@
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-courses" type="text/x-handlebar-template">
     <div>
-      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.subject}}-{{extra.disp.number}}</small></h6>
+      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.metaData.stencilsCourseSubject}}-{{extra.disp.metaData.stencilsCourseNumber}}</small></h6>
       <div class="details">
-        <small>{{extra.disp.term}}</small>
+        <small>{{extra.disp.metaData.stencilsCourseTerm}}</small>
       </div>
     </div>
   </script>
