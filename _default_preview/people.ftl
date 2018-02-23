@@ -69,16 +69,16 @@
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-people" type="text/x-handlebar-template">
     <div class="media">
-      {{#if extra.disp.image}}
-        <img class="d-flex mr-3 rounded-circle" src="{{extra.disp.image}}" alt="{{extra.disp.title}}" />
+      {{#if extra.disp.metaData.I}}
+        <img class="d-flex mr-3 rounded-circle" src="{{extra.disp.metaData.I}}" alt="{{extra.disp.title}}" />
       {{/if}}
       <div class="media-body">
-        <h6>{{extra.disp.title}}</h6>
-        <div>{{extra.disp.position}}</div>
+        <h6>{{extra.disp.metaData.stencilsPeopleFirstName}} {{extra.disp.metaData.stencilsPeopleLastName}}</h6>
+        <div>{{extra.disp.metaData.stencilsPeoplePosition}}</div>
         <div class="details text-muted">
-          {{#if extra.disp.department}}<div><small><span class="fa fa-university text-muted" aria-hidden="true"></span> {{extra.disp.department}}</small></div>{{/if}}
-          {{#if extra.disp.phone}}<div><small><span class="fa fa-phone text-muted" aria-hidden="true"></span> {{extra.disp.phone}}</small></div>{{/if}}
-          {{#if extra.disp.email}}<div><small><span class="fa fa-envelope-o text-muted" aria-hidden="true"></span> {{extra.disp.email}}</small></div>{{/if}}
+          {{#if extra.disp.metaData.stencilsPeopleDepartment}}<div><small><span class="fa fa-university text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeopleDepartment}}</small></div>{{/if}}
+          {{#if extra.disp.metaData.stencilsPeoplePhone}}<div><small><span class="fa fa-phone text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeoplePhone}}</small></div>{{/if}}
+          {{#if extra.disp.metaData.stencilsPeopleEmail}}<div><small><span class="fa fa-envelope-o text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeopleEmail}}</small></div>{{/if}}
         </div>
       </div>
     </div>
