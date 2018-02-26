@@ -267,6 +267,10 @@ section.search-cart {
     border-bottom: dotted 1px #eeefea;
 }
 
+.search-facets .search-facet li {
+    clear: right;
+}
+
 .search-facets .badge-default {
     color: #636c72; /* == text-muted */
     background-color: #eeefea;
