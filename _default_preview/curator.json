@@ -50,34 +50,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2017-07-07T17:26:06.115-07:00",
-  "lastModified" : "2018-02-22T05:03:54.632+11:00",
-  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
-  "name" : "IT maintenance",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "And",
-    "triggers" : [ {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "internet" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "computer" ]
-      } ]
-    } ]
-  },
-  "actions" : [ {
-    "type" : "DisplayMessage",
-    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on March 14th between 5pm - 7pm",
-    "additionalProperties" : {
-      "position" : "center"
-    },
-    "category" : ""
-  } ]
-}, {
   "created" : "2017-06-13T09:49:12.186-07:00",
   "lastModified" : "2018-03-14T03:13:41.712+11:00",
   "id" : "53ca94ee-cd8a-4c11-9d18-fbad04f324d6",
@@ -108,5 +80,37 @@
     },
     "category" : "",
     "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-07-07T17:26:06.115-07:00",
+  "lastModified" : "2018-03-14T04:33:32.001+11:00",
+  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
+  "name" : "IT maintenance",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "internet" ]
+      } ]
+    }, {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "DateRange",
+        "startDate" : 1520924400000,
+        "endDate" : 1521097200000
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayMessage",
+    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on March 14th between 5pm - 7pm",
+    "additionalProperties" : {
+      "position" : "center"
+    },
+    "category" : ""
   } ]
 } ]
