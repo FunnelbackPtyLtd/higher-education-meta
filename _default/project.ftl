@@ -14,10 +14,11 @@
         <div class="row">
           <div class="col-md-8 offset-md-2">
             <div class="input-group">
-              <div class="input-group-addon"><span class="fa fa-search"></span></div>
-              <input required name="query" id="query" title="Search query" type="search" autofocus value="${question.query!}" accesskey="q" class="form-control input-lg query">
-
-              <div class="input-group-addon">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><span class="fa fa-search"></span></span>
+              </div>
+              <input required name="query" id="query" title="Search query" type="search" autofocus value="${question.query!}" accesskey="q" class="form-control">
+              <div class="input-group-text">
                 <button type="submit" class="btn btn-primary">Search</button>
               </div>
             </div>

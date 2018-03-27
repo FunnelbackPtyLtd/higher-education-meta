@@ -21,9 +21,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="nofollow,noindex">
   
-  <link rel="stylesheet" href="/stencils/resources/he/v15.8/css/he.css">
+  <link rel="stylesheet" href="/stencils/resources/he/v15.12/css/he.css">
 
-  <link rel="stylesheet" href="/stencils/resources/thirdparty/bootstrap/v4.0.0-beta.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stencils/resources/thirdparty/bootstrap/v4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/stencils/resources/thirdparty/font-awesome/v4.7.0/css/font-awesome.min.css">
 
   <@client_includes.HTMLHeader />
@@ -52,7 +52,7 @@
 
   <script src="/stencils/resources/thirdparty/jquery/v3.2.1/jquery-3.2.1.min.js"></script>
   <script src="/stencils/resources/thirdparty/popper/v1.12.3/umd/popper.min.js"></script>
-  <script src="/stencils/resources/thirdparty/bootstrap/v4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script src="/stencils/resources/thirdparty/bootstrap/v4.0.0/js/bootstrap.min.js"></script>
   <script src="/stencils/resources/base/v15.8/js/base.js"></script>
 
   <script src="/stencils/resources/autocompletion/js/typeahead.bundle-0.11.1.min.js"></script>
