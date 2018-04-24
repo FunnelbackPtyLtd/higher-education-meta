@@ -61,38 +61,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2017-07-07T17:26:06.115-07:00",
-  "lastModified" : "2018-03-14T04:33:32.001+11:00",
-  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
-  "name" : "IT maintenance",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "And",
-    "triggers" : [ {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "internet" ]
-      } ]
-    }, {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "DateRange",
-        "startDate" : 1520924400000,
-        "endDate" : 1521097200000
-      } ]
-    } ]
-  },
-  "actions" : [ {
-    "type" : "DisplayMessage",
-    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on March 14th between 5pm - 7pm",
-    "additionalProperties" : {
-      "position" : "center"
-    },
-    "category" : ""
-  } ]
-}, {
   "created" : "2018-04-24T09:19:32.889+10:00",
   "lastModified" : "2018-04-24T09:19:32.889+10:00",
   "id" : "3f3c203c-75a2-40f8-88f5-9e582896a514",
@@ -112,5 +80,37 @@
     "additionalProperties" : null,
     "category" : "BEST_BETS",
     "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-07-07T17:26:06.115-07:00",
+  "lastModified" : "2018-04-25T07:21:20.85+10:00",
+  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
+  "name" : "IT maintenance",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "internet" ]
+      } ]
+    }, {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "DateRange",
+        "startDate" : 1520924400000,
+        "endDate" : 1527750000000
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayMessage",
+    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on March 14th between 5pm - 7pm",
+    "additionalProperties" : {
+      "position" : "center"
+    },
+    "category" : ""
   } ]
 } ]
