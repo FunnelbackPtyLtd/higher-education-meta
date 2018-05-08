@@ -61,20 +61,20 @@
         <div class="row">
           <#if result.metaData["stencilsEventContactEmail"]??>
             <div class="col">
-              <span class="fa fa-info text-muted"></span>
+              <span class="fa fa-fw fa-info text-muted"></span>
               <a class="text-muted" href="mailto:${result.metaData["stencilsEventContactEmail"]!}">${result.metaData["stencilsEventContactEmail"]!}</a>
             </div>
           </#if>
           <#if result.metaData["stencilsEventContactPhone"]??>
             <div class="col">
-              <span class="fa fa-phone text-muted"></span>
+              <span class="fa fa-fw fa-phone text-muted"></span>
               <a class="text-muted" href="tel:${result.metaData["stencilsEventContactPhone"]!?url}">${result.metaData["stencilsEventContactPhone"]!}</a>
             </div>
           </#if>
         </div>
         <div class="row">
           <div class="col">
-            <span class="fa fa-map-marker text-muted"></span>
+            <span class="fa fa-fw fa-map-marker text-muted"></span>
             <#if result.metaData["stencilsEventLocationUrl"]??>
               <a class="text-muted" href="${result.metaData["stencilsEventLocationUrl"]}" target="_blank">${result.metaData["stencilsEventLocation"]!}</a>
             <#else>

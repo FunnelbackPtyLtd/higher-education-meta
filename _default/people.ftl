@@ -41,18 +41,18 @@
             <div class="card-text">
               <div class="row">
                 <div class="col-md-5">
-                  <span class="fa fa-envelope-o text-muted"></span>
+                  <span class="fa fa-fw fa-envelope-o text-muted"></span>
                   <a class="text-muted" href="mailto:${result.metaData["stencilsPeopleEmail"]!}">${result.metaData["stencilsPeopleEmail"]!}</a>
                 </div>
                 <#if result.metaData["stencilsPeoplePhone"]??>
                   <div class="col-md-3">
-                    <span class="fa fa-phone text-muted"></span>
+                    <span class="fa fa-fw fa-phone text-muted"></span>
                     <a class="text-muted" href="tel:${result.metaData["stencilsPeoplePhone"]!}">${result.metaData["stencilsPeoplePhone"]!}</a>
                   </div>
                 </#if>
                 <#if result.metaData["stencilsPeopleLocation"]??>
                   <div class="col-md-4">
-                    <span class="fa fa-map-marker text-muted"></span>
+                    <span class="fa fa-fw fa-map-marker text-muted"></span>
                     <a class="text-muted" href="https://maps.google.com/?q=${result.metaData["stencilsPeopleLocation"]!?url}" target="_blank">${result.metaData["stencilsPeopleLocation"]!}</a>
                   </div>
                 </#if>
@@ -76,9 +76,9 @@
         <h6>{{extra.disp.metaData.stencilsPeopleFirstName}} {{extra.disp.metaData.stencilsPeopleLastName}}</h6>
         <div>{{extra.disp.metaData.stencilsPeoplePosition}}</div>
         <div class="details text-muted">
-          {{#if extra.disp.metaData.stencilsPeopleDepartment}}<div><small><span class="fa fa-university text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeopleDepartment}}</small></div>{{/if}}
-          {{#if extra.disp.metaData.stencilsPeoplePhone}}<div><small><span class="fa fa-phone text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeoplePhone}}</small></div>{{/if}}
-          {{#if extra.disp.metaData.stencilsPeopleEmail}}<div><small><span class="fa fa-envelope-o text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeopleEmail}}</small></div>{{/if}}
+          {{#if extra.disp.metaData.stencilsPeopleDepartment}}<div><small><span class="fa fa-fw fa-university text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeopleDepartment}}</small></div>{{/if}}
+          {{#if extra.disp.metaData.stencilsPeoplePhone}}<div><small><span class="fa fa-fw fa-phone text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeoplePhone}}</small></div>{{/if}}
+          {{#if extra.disp.metaData.stencilsPeopleEmail}}<div><small><span class="fa fa-fw fa-envelope-o text-muted" aria-hidden="true"></span> {{extra.disp.metaData.stencilsPeopleEmail}}</small></div>{{/if}}
         </div>
       </div>
     </div>

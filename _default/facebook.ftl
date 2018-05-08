@@ -131,7 +131,7 @@
 
       <#if result.metaData["stencilsFacebookEventLocation"]??>
         <div class="card-footer">
-          <span class="fa fa-map-marker text-muted"></span>
+          <span class="fa fa-fw fa-map-marker text-muted"></span>
           <a class="text-muted" href="https://maps.google.com/?q=${result.metaData["stencilsFacebookEventCoordinates"]!result.metaData["stencilsFacebookEventLocation"]}" target="_blank">${result.metaData["stencilsFacebookEventLocation"]!}</a>
         </div>
       </#if>
@@ -164,7 +164,7 @@
           <p><@s.boldicize>${response.customData.stencilsMethods.linkify(result.metaData["c"]!)?no_esc}</@s.boldicize></p>
 
           <#if result.metaData["stencilsFacebookPageInfo"]??>
-              <span class="fa fa-info-circle text-muted"></span>
+              <span class="fa fa-fw fa-info-circle text-muted"></span>
               ${response.customData.stencilsMethods.linkify(result.metaData["stencilsFacebookPageInfo"]!)?no_esc}
           </#if>
         </div>
@@ -174,13 +174,13 @@
         <div class="row">
           <#if result.metaData["stencilsFacebookPageWebsite"]??>
             <div class="col">
-              <span class="fa fa-globe text-muted"></span>
+              <span class="fa fa-fw fa-globe text-muted"></span>
               <a class="text-muted" href="tel:${result.metaData["stencilsFacebookPageWebsite"]!}">${result.metaData["stencilsFacebookPageWebsite"]!}</a>
             </div>
           </#if>
           <#if result.metaData["stencilsFacebookPagePhone"]??>
             <div class="col">
-              <span class="fa fa-phone text-muted"></span>
+              <span class="fa fa-fw fa-phone text-muted"></span>
               <a class="text-muted" href="tel:${result.metaData["stencilsFacebookPagePhone"]!}">${result.metaData["stencilsFacebookPagePhone"]!}</a>
             </div>
           </#if>
