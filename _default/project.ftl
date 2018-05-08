@@ -154,6 +154,25 @@
     <div class="card">
 
       <div class="card-header">
+        <#switch result.fileType>
+          <#case "pdf">
+            <i class="fa fa-file-pdf-o float-right text-muted" aria-hidden="true"></i>
+            <#break>
+          <#case "doc">
+          <#case "docx">
+          <#case "rtf">
+            <i class="fa fa-file-word-o float-right text-muted" aria-hidden="true"></i>
+            <#break>
+          <#case "xls">
+          <#case "xlsx">
+            <i class="fa fa-file-excel-o float-right text-muted" aria-hidden="true"></i>
+            <#break>
+          <#case "ppt">
+          <#case "pptx">
+            <i class="fa fa-file-powerpoint-o float-right text-muted" aria-hidden="true"></i>
+            <#break>
+        </#switch>
+
         <h4>
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
             <@s.boldicize><@s.Truncate length=70>${result.title}</@s.Truncate></@s.boldicize>
