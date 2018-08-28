@@ -51,7 +51,7 @@
 </#macro>
 
 <#macro Tabs>
-  <nav class="container-fluid">
+  <nav class="tabs">
     <div class="row">
       <div class="col-md-12">
         <h2 class="sr-only">Tabs</h2>

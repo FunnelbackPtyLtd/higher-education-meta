@@ -167,12 +167,13 @@ footer.customer ul.social li {
 
 /** Tabs */
 
-nav.container-fluid {
+nav.tabs {
     background-color: #9a1904;
 }
 
 ul.nav-tabs {
-    border-bottom: none;
+    width: 100%;
+    border-bottom: solid 1px rgba(0, 0, 0, .125);
 }
 
 ul.nav-tabs li.nav-item {
@@ -184,8 +185,9 @@ ul.nav-tabs li.nav-item {
 
 ul.nav-tabs li.nav-item a {
     color: white;
-    border-bottom: none;
     font-weight: bold;
+    border: solid 1px rgba(0, 0, 0, .125);
+    border-bottom: none;
 }
 
 ul.nav-tabs li.nav-item .search-facet-count {
@@ -195,13 +197,13 @@ ul.nav-tabs li.nav-item .search-facet-count {
 ul.nav-tabs li.nav-item a:hover,
 ul.nav-tabs li.nav-item a:active,
 ul.nav-tabs li.nav-item a:focus {
-    border-bottom: none;
     border-color: rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, .1);
     border-radius: 0;
 }
 
 ul.nav-tabs li.nav-item a.active {
+    border-color: rgba(0, 0, 0, .125);
     background-color: #d7d8d2;
 }
 
