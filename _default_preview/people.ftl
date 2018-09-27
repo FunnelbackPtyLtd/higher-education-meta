@@ -3,14 +3,14 @@
 <#import "history_cart.ftl" as history_cart />
 
 <#macro Result result>
-  <li class="search-result search-result-people">
+  <li class="search-result search-result-people mb-3">
     <div class="card">
 
       <div class="row no-gutters">
 
         <div class="col-md-2 text-center my-auto">
           <#if result.metaData["I"]??>
-            <img class="img-fluid rounded-circle" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">            
+            <img class="img-fluid rounded-circle pl-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">            
           <#else>
             <div class="text-center">
               <span class="fa fa-user"></span>

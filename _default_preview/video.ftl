@@ -2,7 +2,7 @@
 <#import "history_cart.ftl" as history_cart />
 
 <#macro Result result>
-  <li class="search-result search-result-video">
+  <li class="search-result search-result-video mb-3">
     <div class="card">
 
       <div class="row no-gutters">

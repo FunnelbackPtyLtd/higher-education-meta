@@ -28,7 +28,7 @@
 </#macro>
 
 <#macro PostResult result=result>
-  <li class="search-result search-result-facebook search-result-facebook-post">
+  <li class="search-result search-result-facebook search-result-facebook-post mb-3">
     <div class="card">
 
       <div class="card-body">
@@ -54,7 +54,7 @@
           <#if result.metaData["stencilsFacebookPostLink"]??>
             <hr>
             <#if result.metaData["I"]??>
-              <img class="img-fluid float-right deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+              <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
             </#if>
             <h5><a href="${result.metaData["stencilsFacebookPostLink"]!}">${result.metaData["stencilsFacebookPostLinkName"]!}</a></h5>
             <p><@s.Truncate length=120>${result.metaData["stencilsFacebookPostLinkDescription"]!}</@s.Truncate></p>
@@ -66,7 +66,7 @@
 </#macro>
 
 <#macro EventResult result=result>
-  <li class="search-result search-result-event search-result-facebook search-result-facebook-event">
+  <li class="search-result search-result-event search-result-facebook search-result-facebook-event mb-3">
     <div class="card">
       <div class="card-body">
 
@@ -119,7 +119,7 @@
 
             <div class="col-md-10">
               <#if result.metaData["I"]??>
-                <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
               </#if>
               
               <p><@s.boldicize><@s.Truncate length=250>${response.customData.stencilsMethods.linkify(result.metaData["c"]!)?no_esc}</@s.Truncate></@s.boldicize></p>
@@ -140,7 +140,7 @@
 </#macro>
 
 <#macro PageResult result=result>
-  <li class="search-result search-result-facebook search-result-facebook-page">
+  <li class="search-result search-result-facebook search-result-facebook-page mb-3">
     <div class="card">
       <div class="card-body">
 

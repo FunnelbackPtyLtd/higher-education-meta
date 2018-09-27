@@ -83,7 +83,7 @@
   } ]
 }, {
   "created" : "2017-07-07T17:26:06.115-07:00",
-  "lastModified" : "2018-04-25T07:21:20.85+10:00",
+  "lastModified" : "2018-09-27T15:01:42.375-07:00",
   "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
   "name" : "IT maintenance",
   "label" : "DEFAULT",
@@ -95,13 +95,6 @@
       "triggers" : [ {
         "type" : "AllQueryWords",
         "triggerWords" : [ "internet" ]
-      } ]
-    }, {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "DateRange",
-        "startDate" : 1520924400000,
-        "endDate" : 1527750000000
       } ]
     } ]
   },

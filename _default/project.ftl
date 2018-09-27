@@ -7,32 +7,32 @@
 <#import "twitter.ftl" as twitter />
 
 <#macro SearchForm>
-  <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid mb-0">
     <div class="container">
-    <h2 class="text-center">Search Funnelback University</h2>
+    <h2 class="text-center mb-4">Search Funnelback University</h2>
       <@base.SearchForm>
         <div class="row">
           <div class="col-md-8 offset-md-2">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text"><span class="fa fa-search"></span></span>
+                <span class="input-group-text border-0 pl-0"><span class="fa fa-search"></span></span>
               </div>
               <input required name="query" id="query" title="Search query" type="search" autofocus value="${question.query!}" accesskey="q" class="form-control">
-              <div class="input-group-text">
-                <button type="submit" class="btn btn-primary">Search</button>
+              <div class="input-group-text border-0 pr-0">
+                <button type="submit" class="btn btn-primary px-4">Search</button>
               </div>
             </div>
 
             <ul class="float-right list-inline">
               <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-                <li class="list-inline-item">
+                <li class="list-inline-item ml-3">
                   <small>
                     <a data-ng-class="{active: isDisplayed('cart'), disabled: cart.length < 1}" data-ng-click="toggleCart()" title="{{cart.length}} item(s) in your shortlist" href="#">
                       <span class="fa fa-star-o"></span> Shortlist (<span class="ng-cloak">{{cart.length}}</span><span data-ng-show>0</span>)
                     </a>
                   </small>
                 </li>
-                <li class="list-inline-item">
+                <li class="list-inline-item ml-3">
                   <small>
                     <a data-ng-class="{active: isDisplayed('history')}" data-ng-click="toggleHistory()" href="#">
                       <span class="fa fa-history"></span> History
@@ -42,7 +42,7 @@
               </#if>
             </ul>
 
-            <small class="float-left">Search powered by Funnelback</small>
+            <small class="float-left pt-1">Search powered by Funnelback</small>
           </div>
         </div>
       </@base.SearchForm>
@@ -62,7 +62,7 @@
 </#macro>
 
 <#macro Results>
-  <section class="search-results" data-ng-show="isDisplayed('results')">
+  <section class="search-results pt-3" data-ng-show="isDisplayed('results')">
     <div class="container">
       <div class="row">
 
@@ -81,7 +81,7 @@
           <@facets.SelectedFacetValues />
 
           <#if (response.resultPacket.spell)??>
-            <div class="row search-spelling">
+            <div class="row search-spelling mb-3">
               <div class="col-md-12">
                 <@base.Spelling />
               </div>
@@ -96,7 +96,7 @@
             </div>
           </#if>
 
-          <div class="row search-counts text-muted">
+          <div class="row search-counts text-muted mb-3">
             <div class="col-md-12">
               <@base.Counts />
             </div>
@@ -107,7 +107,7 @@
             <@fb.ExtraResults name="twitter">
               <li><h4 class="sr-only">Tweet results</h4></li>
               <li class="search-results-twitter">
-                <div class="row">
+                <div class="row mb-3">
                   <#list (response.resultPacket.results)![] as result>
                     <#-- Limit to only 3 Twitter cards -->
                     <#if result?index lt 3>
@@ -125,13 +125,13 @@
         </div>
 
         <#if tabFacets?has_content>
-          <div class="col-md-3 search-facets order-md-first order-lg-first order-xl-first">
+          <div class="col-md-3 search-facets order-md-first order-lg-first order-xl-first mb-3">
 
             <@base.CuratorExhibits position="left" />
 
             <div class="card search-refine">
               <div class="card-header bg-dark text-white">
-                <h3>Refine your results</h3>
+                <h3 class="mb-0">Refine your results</h3>
               </div>
             </div>
             
@@ -140,7 +140,7 @@
         </#if>
       </div>
 
-      <div class="row">
+      <div class="row mb-3">
         <div class="col-md-12">
           <@base.ContextualNavigation />
         </div>
@@ -150,7 +150,7 @@
 </#macro>
 
 <#macro Result result>
-  <li class="search-result search-result-default">
+  <li class="search-result search-result-default mb-3">
     <div class="card">
 
       <div class="card-header">
@@ -187,7 +187,7 @@
       <div class="card-body">
         <div class="card-text">
           <#if result.metaData["I"]??>
-            <img class="img-fluid float-right deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
           </#if>
 
           <#if result.summary??>
@@ -197,7 +197,7 @@
         </div>
 
         <#if result.metaData["a"]?? || result.metaData["p"]??>
-          <div class="card-text search-metadata text-muted">
+          <div class="card-text search-metadata mt-1 text-muted">
             <#if result.metaData["a"]??><div><strong>By:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["a"]! /></span></div></#if>
             <#if result.metaData["p"]??><div><strong>Publisher:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["p"]! /></span></div></#if>
           </div>

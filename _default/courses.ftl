@@ -3,7 +3,7 @@
 <#import "history_cart.ftl" as history_cart />
 
 <#macro Result result>
-  <li data-fb-result="${result.indexUrl}" class="search-result search-result-course">
+  <li data-fb-result="${result.indexUrl}" class="search-result search-result-course mb-3">
     <div class="card">
 
       <div class="card-header">
@@ -32,7 +32,7 @@
       <div class="card-body">
         <div class="card-text">
           <#if result.metaData["I"]??>
-            <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
           </#if>
 
           <#if result.metaData["stencilsCourseDesc"]??>
@@ -40,7 +40,7 @@
           </#if>
         </div>
 
-        <div class="row">
+        <div class="row mt-3">
           <div class="col-md-4">
             <h5>Credits</h5>
             <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsCourseCredit"]!"-" /></span>

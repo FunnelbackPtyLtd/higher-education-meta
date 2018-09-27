@@ -2,7 +2,7 @@
 <#import "base.ftl" as base />
 
 <#macro Result result>
-  <li class="search-result search-result-event">
+  <li class="search-result search-result-event mb-3">
     <div class="card">
       <div class="card-body">
 
@@ -23,11 +23,11 @@
         <div class="card-text">
           <div class="row no-gutters">
             <div class="col-md-2">
-              <div class="search-event-date text-center">
+              <div class="search-event-date mx-auto mt-2 text-center">
                 <div class="search-event-date-month">
                   ${result.date?string("MMM")?upper_case}
                 </div>
-                <div class="search-event-date-day">
+                <div class="search-event-date-day pt-2">
                   ${result.date?string("dd")}
                 </div>
               </div>
@@ -46,17 +46,22 @@
 
             <div class="col-md-10">
               <#if result.metaData["I"]??>
-                <img class="img-fluid float-right" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />"> 
+                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />"> 
               </#if>
 
               <p><@s.boldicize>${result.summary?no_esc}</@s.boldicize></p>
-              <span class="text-muted ml-2">Tags: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsEventCategory"]! /></@s.boldicize></span><br>
-              <span class="text-muted ml-2">For: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsEventAudience"]! /></@s.boldicize></span>
+              <#if result.metaData["stencilsEventCategory"]??>
+                <span class="text-muted ml-2">Tags: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsEventCategory"]! /></@s.boldicize></span><br>
+              </#if>
+              <#if result.metaData["stencilsEventAudience"]??>
+                <span class="text-muted ml-2">For: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsEventAudience"]! /></@s.boldicize></span>
+              </#if>
             </div>
           </div>
         </div>
       </div>
 
+      <#if result.metaData["stencilsEventContactEmail"]?? || result.metaData["stencilsEventContactPhone"]?? || result.metaData["stencilsEventLocationUrl"]?? || result.metaData["stencilsEventLocation"]??>
       <div class="card-footer">
         <div class="row">
           <#if result.metaData["stencilsEventContactEmail"]??>
@@ -83,7 +88,8 @@
           </div>
         </div>
       </div>
-
+      </#if>
+      
     </div>
   </li>
 </#macro>
