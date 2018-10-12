@@ -88,7 +88,7 @@
         {{item.metaData.stencilsCourseDesc}}
       </div>
 
-      <div class="row">
+      <div class="row mt-3">
         <div class="col-md-4">
           <h5>Credits</h5>
           <span>{{item.metaData.stencilsCourseCredit || '-'}}</span>
