@@ -61,27 +61,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2018-04-24T09:19:32.889+10:00",
-  "lastModified" : "2018-04-24T09:19:32.889+10:00",
-  "id" : "3f3c203c-75a2-40f8-88f5-9e582896a514",
-  "name" : "",
-  "label" : "BEST_BETS",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "AllQueryWords",
-    "triggerWords" : [ "admissions" ]
-  },
-  "actions" : [ {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Admissions open April 30th",
-    "displayUrl" : "funnelback.edu/apply",
-    "linkUrl" : "https://funnelback.edu/apply",
-    "descriptionHtml" : "Apply to Funnelback University now to join thousands of students and access numerous academic opportunities!",
-    "additionalProperties" : null,
-    "category" : "BEST_BETS",
-    "removeCollectionUrl" : false
-  } ]
-}, {
   "created" : "2017-07-07T17:26:06.115-07:00",
   "lastModified" : "2018-09-27T15:01:42.375-07:00",
   "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
@@ -105,5 +84,26 @@
       "position" : "center"
     },
     "category" : ""
+  } ]
+}, {
+  "created" : "2018-11-21T09:35:16.971+11:00",
+  "lastModified" : "2018-11-21T09:35:16.971+11:00",
+  "id" : "3f3c203c-75a2-40f8-88f5-9e582896a514",
+  "name" : "",
+  "label" : "BEST_BETS",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "AllQueryWords",
+    "triggerWords" : [ "admissions" ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Admissions open Dec 30th",
+    "displayUrl" : "funnelback.edu/apply",
+    "linkUrl" : "https://funnelback.edu/apply",
+    "descriptionHtml" : "Apply to Funnelback University now to join thousands of students and access numerous academic opportunities!",
+    "additionalProperties" : null,
+    "category" : "BEST_BETS",
+    "removeCollectionUrl" : false
   } ]
 } ]
