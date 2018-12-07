@@ -152,6 +152,10 @@ nav.tabs {
     background-color: #9a1904;
 }
 
+nav.tabs .row {
+    margin: auto;
+}
+
 ul.nav-tabs {
     width: 100%;
     border-bottom: solid 1px rgba(0, 0, 0, .125);
