@@ -29,31 +29,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2017-07-07T17:26:06.115-07:00",
-  "lastModified" : "2018-09-27T15:01:42.375-07:00",
-  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
-  "name" : "IT maintenance",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "And",
-    "triggers" : [ {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "internet" ]
-      } ]
-    } ]
-  },
-  "actions" : [ {
-    "type" : "DisplayMessage",
-    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on March 14th between 5pm - 7pm",
-    "additionalProperties" : {
-      "position" : "center"
-    },
-    "category" : ""
-  } ]
-}, {
   "created" : "2018-11-21T09:35:16.971+11:00",
   "lastModified" : "2018-11-21T09:35:16.971+11:00",
   "id" : "3f3c203c-75a2-40f8-88f5-9e582896a514",
@@ -105,5 +80,30 @@
     },
     "category" : "",
     "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-07-07T17:26:06.115-07:00",
+  "lastModified" : "2019-01-10T03:35:11.193+11:00",
+  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
+  "name" : "IT Lab Closure",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "internet" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayMessage",
+    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on January 14th between 5pm - 7pm",
+    "additionalProperties" : {
+      "position" : "center"
+    },
+    "category" : ""
   } ]
 } ]
