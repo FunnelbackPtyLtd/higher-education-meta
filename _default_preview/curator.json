@@ -29,38 +29,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2017-06-13T09:49:12.186-07:00",
-  "lastModified" : "2018-03-14T03:13:41.712+11:00",
-  "id" : "53ca94ee-cd8a-4c11-9d18-fbad04f324d6",
-  "name" : "Open Day",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "And",
-    "triggers" : [ {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "FacetSelection",
-        "facetName" : "Tabs",
-        "categoryValue" : "Courses",
-        "matchType" : "EXACT"
-      } ]
-    } ]
-  },
-  "actions" : [ {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "CAMPUS TOUR",
-    "displayUrl" : "-",
-    "linkUrl" : "-",
-    "descriptionHtml" : "<div>\nLive a different perspective\n<small>March 17th</small>\n</div>\n\n\n\n<a href=\"http://funnelback.edu/open-day\" target=\"_blank\" class=\"btn btn-primary float-right\">Find out more</a>",
-    "additionalProperties" : {
-      "position" : "left",
-      "class" : "open-day"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  } ]
-}, {
   "created" : "2017-07-07T17:26:06.115-07:00",
   "lastModified" : "2018-09-27T15:01:42.375-07:00",
   "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
@@ -104,6 +72,38 @@
     "descriptionHtml" : "Apply to Funnelback University now to join thousands of students and access numerous academic opportunities!",
     "additionalProperties" : null,
     "category" : "BEST_BETS",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-06-13T09:49:12.186-07:00",
+  "lastModified" : "2019-01-10T03:34:22.779+11:00",
+  "id" : "53ca94ee-cd8a-4c11-9d18-fbad04f324d6",
+  "name" : "Open House",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "FacetSelection",
+        "facetName" : "Tabs",
+        "categoryValue" : "Courses",
+        "matchType" : "EXACT"
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "CAMPUS TOUR",
+    "displayUrl" : "-",
+    "linkUrl" : "-",
+    "descriptionHtml" : "<div>\nLive a different perspective\n<small>March 17th</small>\n</div>\n\n\n\n<a href=\"http://funnelback.edu/open-day\" target=\"_blank\" class=\"btn btn-primary float-right\">Find out more</a>",
+    "additionalProperties" : {
+      "position" : "left",
+      "class" : "open-day"
+    },
+    "category" : "",
     "removeCollectionUrl" : false
   } ]
 } ]
