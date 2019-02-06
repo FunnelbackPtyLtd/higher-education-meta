@@ -83,7 +83,7 @@
   } ]
 }, {
   "created" : "2017-07-07T17:26:06.115-07:00",
-  "lastModified" : "2019-01-30T07:32:55.798+11:00",
+  "lastModified" : "2019-02-07T06:53:17.301+11:00",
   "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
   "name" : "IT Lab Closure",
   "label" : "DEFAULT",
@@ -101,13 +101,13 @@
       "triggers" : [ {
         "type" : "DateRange",
         "startDate" : 1546934400000,
-        "endDate" : 1548835200000
+        "endDate" : 1549612800000
       } ]
     } ]
   },
   "actions" : [ {
     "type" : "DisplayMessage",
-    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on January 18th between 5pm - 7pm",
+    "messageHtml" : "<strong>Notice:</strong> The IT lab will be unavailable on February 7th between 5pm - 7pm",
     "additionalProperties" : {
       "position" : "center"
     },
