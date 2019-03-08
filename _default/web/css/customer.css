@@ -142,7 +142,7 @@ footer.customer ul.social li {
 .jumbotron a.disabled,
 .jumbotron a.disabled:hover,
 .jumbotron a.disabled:active,
-.jumbotron a.disabled:focus, {
+.jumbotron a.disabled:focus {
     text-decoration: none;
 }
 
