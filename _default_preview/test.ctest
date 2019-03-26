@@ -2,6 +2,18 @@
 <!DOCTYPE testfile SYSTEM
 "http://es.csiro.au/C-TEST/testfile_v1.0.dtd">
 <testfile>
+  <query id="02b728bd-3237-443b-8d06-76126abc7bd0" text="design">
+    <interpretation id="53914fb6-a9ad-49ae-b505-40130e3469f5" label="" weight="1.0">
+      <eset util="1.0">
+        <docid>http://sydney.edu.au/about-us/our-world-rankings.html</docid>
+      </eset>
+      <eset util="1.0">
+        <docid>http://sydney.edu.au/careers/home.html</docid>
+      </eset>
+    </interpretation>
+    <created>2019-02-07T07:39:06.412+11:00</created>
+    <lastModified>2019-02-07T07:39:06.412+11:00</lastModified>
+  </query>
   <query id="8bcce5ce-290a-4a79-9aad-d563ae5b8dac" text="apply">
     <interpretation id="e6cea2c1-ff22-40d3-8aaa-4b100e0ea7da" label="" weight="1.0">
       <eset util="1.0">
@@ -61,6 +73,18 @@
     </interpretation>
     <created>2018-10-17T01:41:43.884+11:00</created>
     <lastModified>2018-10-17T01:41:43.884+11:00</lastModified>
+  </query>
+  <query id="f128a2c9-a5eb-4282-8524-59e77813202d" text="apply">
+    <interpretation id="8d505690-d1c4-440e-a480-e6a6e4eee8c1" label="" weight="1.0">
+      <eset util="1.0">
+        <docid>https://online.westernsydney.edu.au/apply-now/</docid>
+      </eset>
+      <eset util="1.0">
+        <docid>https://library.sydney.edu.au/libraries/membership.html</docid>
+      </eset>
+    </interpretation>
+    <created>2019-02-09T03:39:30.995+11:00</created>
+    <lastModified>2019-02-09T03:39:30.995+11:00</lastModified>
   </query>
   <query id="4ab2cf85-6080-4c0b-b0f9-77f24ed556bc" text="campus">
     <interpretation id="a3d3fbcc-4d84-4c91-a59b-1c2a5b96c2c2" label="" weight="1.0">
