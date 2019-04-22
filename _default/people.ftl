@@ -8,9 +8,9 @@
 
       <div class="row no-gutters">
 
-        <div class="col-md-2 text-center my-auto">
+        <div class="col-md-2 text-center my-auto pl-3">
           <#if result.metaData["I"]??>
-            <img class="img-fluid rounded-circle pl-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">            
+            <img class="img-fluid rounded-circle" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">            
           <#else>
             <div class="text-center">
               <span class="fa fa-user"></span>
