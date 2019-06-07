@@ -118,6 +118,10 @@ footer.customer ul.social li {
     font-size: xx-large;
 }
 
+.jumbotron input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+}
+
 .jumbotron button {
     background-color: #1e1e1e;
     border: none;
