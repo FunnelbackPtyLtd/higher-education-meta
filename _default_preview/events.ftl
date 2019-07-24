@@ -6,6 +6,7 @@
     <div class="card">
       <div class="card-body">
 
+
         <div class="card-title">
           <div class="float-right">
             <@history_cart.LastVisitedLink result=result/>
@@ -45,8 +46,8 @@
             </div>
 
             <div class="col-md-10">
-              <#if result.metaData["I"]??>
-                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />"> 
+              <#if result.metaData["image"]??>
+                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />"> 
               </#if>
 
               <p><@s.boldicize>${result.summary?no_esc}</@s.boldicize></p>

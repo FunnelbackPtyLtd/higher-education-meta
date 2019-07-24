@@ -6,12 +6,12 @@
       <div class="card-text">
 
         <div class="media">
-          <a href="https://twitter.com/${result.metaData["a"]!}" title="@${result.metaData["a"]} Twitter feed">
-            <img class="ml-0 mr-1" src="${result.metaData["I"]!}" alt="@${result.metaData["a"]} avatar">
+          <a href="https://twitter.com/${result.metaData["author"]!}" title="@${result.metaData["author"]} Twitter feed">
+            <img class="ml-0 mr-1" src="${result.metaData["image"]!}" alt="@${result.metaData["author"]} avatar">
           </a>
           <div class="media-body">
 
-            <a class="text-muted" href="https://twitter.com/${result.metaData["a"]!}" title="@${result.metaData["a"]} Twitter feed">@${result.metaData["a"]!}</a><br>
+            <a class="text-muted" href="https://twitter.com/${result.metaData["author"]!}" title="@${result.metaData["author"]} Twitter feed">@${result.metaData["author"]!}</a><br>
 
             <small class="text-muted">
               ${result.date?date?string("MMMM dd, yyyy")}

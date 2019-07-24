@@ -186,8 +186,8 @@
 
       <div class="card-body">
         <div class="card-text">
-          <#if result.metaData["I"]??>
-            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+          <#if result.metaData["image"]??>
+            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
           </#if>
 
           <#if result.summary??>
@@ -196,10 +196,10 @@
           </#if>
         </div>
 
-        <#if result.metaData["a"]?? || result.metaData["p"]??>
+        <#if result.metaData["author"]?? || result.metaData["publisher"]??>
           <div class="card-text search-metadata mt-1 text-muted">
-            <#if result.metaData["a"]??><div><strong>By:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["a"]! /></span></div></#if>
-            <#if result.metaData["p"]??><div><strong>Publisher:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["p"]! /></span></div></#if>
+            <#if result.metaData["author"]??><div><strong>By:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["author"]! /></span></div></#if>
+            <#if result.metaData["publisher"]??><div><strong>Publisher:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["publisher"]! /></span></div></#if>
           </div>
         </#if>
       </div>
