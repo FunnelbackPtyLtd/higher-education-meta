@@ -22,7 +22,7 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-light navbar-expand-md customer">
+<nav class="navbar navbar-dark navbar-expand-md customer">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
     <small class="navbar-toggler-icon"></small>
   </button>
