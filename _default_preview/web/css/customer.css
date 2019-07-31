@@ -123,8 +123,8 @@ footer.customer ul.social li {
 /** Search form */
 
 .jumbotron {
-    background-color: #9a1904;
-    color: white;
+    background: #fff url(${ContextPath}/resources/${question.collection.id}/${question.profile}/img/jumbotron-bg.jpg);
+    color: #242D3D;
 }
 
 .jumbotron h2{
