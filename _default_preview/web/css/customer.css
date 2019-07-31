@@ -52,7 +52,12 @@ nav.customer .container, nav.customer .container #main-nav{
 }
 
 nav.customer a.navbar-brand {
-    padding: 0;
+    padding: 15px 0 0 0;
+    height: 87px;
+}
+
+nav.customer a.navbar-brand img {
+    width: 10rem;
 }
 
 nav.customer .navbar-nav .nav-item
@@ -67,8 +72,8 @@ nav.customer .nav-item {
     text-transform: uppercase;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-weight: bold;
-    border-left: solid 1px #cfcfca;
+    font-weight: lighter;
+    border-left: solid 1px #666C77;
 }
 
 nav.customer .navbar-nav .nav-link {
@@ -76,7 +81,7 @@ nav.customer .navbar-nav .nav-link {
 }
 
 nav.customer .nav-item:last-child {
-    border-right: solid 1px #cfcfca;
+    border-right: solid 1px #666C77;
 }
 
 nav.customer .customer-study {
@@ -120,6 +125,10 @@ footer.customer ul.social li {
 .jumbotron {
     background-color: #9a1904;
     color: white;
+}
+
+.jumbotron h2{
+    display: none; 
 }
 
 @media (max-width: 768px) {
