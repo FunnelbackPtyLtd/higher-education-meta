@@ -30,15 +30,14 @@
 nav.customer {
     padding: 0;
     background-color: #242D3D;
+    min-height: 86px;
 }
 
 nav.customer a.navbar-brand {
     padding: 0;
-    margin-right: 100px;
 }
 
 nav.customer .nav-item {
-    height: 86px;
     text-align: center;
     text-transform: uppercase;
     padding-left: 2rem;
@@ -49,7 +48,7 @@ nav.customer .nav-item {
 }
 
 nav.customer .navbar-nav .nav-link {
-    color: black;
+    color:#fff;
 }
 
 nav.customer .nav-item:last-child {
