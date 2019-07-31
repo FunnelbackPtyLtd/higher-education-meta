@@ -30,7 +30,7 @@
 nav.customer {
     padding: 0;
     background-color: #242D3D;
-    min-height: 86px;
+    min-height: 86px; 
 }
 
 nav.customer a.navbar-brand {
