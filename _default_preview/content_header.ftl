@@ -1,10 +1,10 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="container">
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="#">About</a>
@@ -23,12 +23,11 @@
 </nav>
 
 <nav class="navbar navbar-dark navbar-expand-md customer">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
-    <small class="navbar-toggler-icon"></small>
-  </button>
   <h1 class="sr-only">Main menu</h1>
   <div class="container">
-    
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <small class="navbar-toggler-icon"></small>
+  </button>
       <a class="navbar-brand" href="#">
         <img src="${ContextPath}/resources/${question.collection.id}/${question.profile}/img/brand.png" alt="Funnelback University">
       </a>
