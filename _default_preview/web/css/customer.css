@@ -152,7 +152,7 @@ footer.customer ul.social li {
 }
 
 .jumbotron .input-group {
-    border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+    border-bottom: solid 1px #242D3D;
 }
 
 .jumbotron input,
@@ -161,21 +161,21 @@ footer.customer ul.social li {
     box-shadow: none;
     border: none;
     background-color: transparent;
-    color: white;
+    color: #242D3D;
     font-size: xx-large;
 }
 
 .jumbotron button {
-    background-color: #1e1e1e;
+    background-color: #242D3D;
     border: none;
 }
 
 .jumbotron .list-inline-item a {
-    color: #d7d8d2;
+    color: #242D3D;
 }
 
 .jumbotron small.float-left {
-    color: rgba(255, 255, 255, .5);
+    color: #242D3D;
     font-style: italic;
     font-size: x-small;
 }
@@ -183,7 +183,7 @@ footer.customer ul.social li {
 .jumbotron a.disabled {
     text-decoration: none;
     cursor: default;
-    color: #999;
+    color: #333;
 }
 
 .jumbotron a.disabled,
