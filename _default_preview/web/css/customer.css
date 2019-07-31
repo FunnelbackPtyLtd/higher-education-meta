@@ -77,6 +77,7 @@ nav.customer .nav-item {
     text-transform: uppercase;
     padding-left: 2rem;
     padding-right: 2rem;
+    font-family: 'Open Sans Light';
     font-weight: lighter;
     border-left: solid 1px #666C77;
 }
@@ -168,6 +169,7 @@ footer.customer ul.social li {
     background-color: transparent;
     color: #242D3D;
     font-size: xx-large;
+    font-family: 'Open Sans Light';
 }
 
 .jumbotron button {
