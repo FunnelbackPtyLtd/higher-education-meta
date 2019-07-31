@@ -45,8 +45,8 @@ nav.customer .container, nav.customer .container #main-nav{
 }
 
 
-@media only screen (max-width: 768px){
-    nav.customer .container, nav.customer .container #main-nav{
+@media (max-width: 768px){
+    nav.customer .container #main-nav{
         align-items: baseline;
     }
 }
