@@ -262,6 +262,11 @@ section.search-cart {
     background-color: #F7F7F7;
 }
 
+section.search-results .container,
+section.search-history .container,
+section.search-cart .container{
+    padding-top: 3rem;
+}
 
 
 @media (max-width: 768px) {
