@@ -26,7 +26,7 @@
   <h1 class="sr-only">Main menu</h1>
   <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="${ContextPath}/resources/${question.collection.id}/${question.profile}/img/brand.png" alt="Funnelback University">
+        <img src="${ContextPath}/resources/${question.collection.id}/${question.profile}/img/brand.svg" alt="Funnelback University">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
     <small class="navbar-toggler-icon"></small>
