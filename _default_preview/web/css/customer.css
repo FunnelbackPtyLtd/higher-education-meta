@@ -127,6 +127,17 @@ footer.customer ul.social li {
     background-size: cover;
     color: #242D3D;
     min-height: 330px;
+    display: flex;
+}
+
+.jumbotron .container
+{
+    display: flex;
+    align-items: center;
+}
+
+.jumbotron .container form{
+    width: 100%;
 }
 
 .jumbotron h2{
