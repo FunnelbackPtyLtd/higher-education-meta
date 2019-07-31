@@ -33,16 +33,21 @@ nav.customer {
     min-height: 86px;
 }
 
+nav.customer .container, nav.customer .container #main-nav{
+    align-items: stretch;
+}
+
 nav.customer a.navbar-brand {
     padding: 0;
 }
 
+/*
 nav.customer .navbar-nav
 {
     display: flex;
     align-items:stretch;
 }
-
+*/
 nav.customer .navbar-nav .nav-item
 {
     align-self: auto;
