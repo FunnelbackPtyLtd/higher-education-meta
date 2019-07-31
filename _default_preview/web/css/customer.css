@@ -44,17 +44,17 @@ nav.customer .container, nav.customer .container #main-nav{
     align-items: stretch;
 }
 
+
+@media only screen (max-width: 768px){
+    nav.customer .container, nav.customer .container #main-nav{
+        align-items: baseline;
+    }
+}
+
 nav.customer a.navbar-brand {
     padding: 0;
 }
 
-/*
-nav.customer .navbar-nav
-{
-    display: flex;
-    align-items:stretch;
-}
-*/
 nav.customer .navbar-nav .nav-item
 {
     display: flex;
