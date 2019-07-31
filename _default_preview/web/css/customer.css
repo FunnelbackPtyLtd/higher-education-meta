@@ -50,7 +50,9 @@ nav.customer .navbar-nav
 */
 nav.customer .navbar-nav .nav-item
 {
-    align-self: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 nav.customer .nav-item {
