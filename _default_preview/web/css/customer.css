@@ -30,11 +30,22 @@
 nav.customer {
     padding: 0;
     background-color: #242D3D;
-    min-height: 86px; 
+    min-height: 86px;
 }
 
 nav.customer a.navbar-brand {
     padding: 0;
+}
+
+nav.customer .navbar-nav
+{
+    display: flex;
+    align-items:stretch;
+}
+
+nav.customer .navbar-nav .nav-item
+{
+    align-self: auto;
 }
 
 nav.customer .nav-item {
@@ -42,7 +53,6 @@ nav.customer .nav-item {
     text-transform: uppercase;
     padding-left: 2rem;
     padding-right: 2rem;
-    padding-top: 22px;
     font-weight: bold;
     border-left: solid 1px #cfcfca;
 }
