@@ -2,3 +2,4 @@
 
 <link rel="stylesheet" href="${ContextPath}/resources/${question.collection.id}/${question.profile}/css/customer.css">
 <link rel="stylesheet" href="/s/resources/${question.collection.id}/${question.profile}/css/customer-typeahead.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
