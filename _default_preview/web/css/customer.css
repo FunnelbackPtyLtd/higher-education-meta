@@ -262,6 +262,8 @@ section.search-cart {
     background-color: #F7F7F7;
 }
 
+
+
 @media (max-width: 768px) {
     /* Hide sort / limit controls on small screens */
     .search-results .dropdown {
@@ -303,7 +305,7 @@ section.search-cart {
 
 .search-results .card-header,
 .search-results .card-footer {
-    background-color: #eeefea;
+    background-color: #DDDDDD;
 }
 
 .search-results .card-text img {
