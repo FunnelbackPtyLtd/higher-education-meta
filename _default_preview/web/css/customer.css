@@ -221,7 +221,7 @@ ul.nav-tabs li.nav-item a:focus {
 
 ul.nav-tabs li.nav-item a.active {
     border-color: rgba(0, 0, 0, .125);
-    background-color: #d7d8d2;
+    background-color: #F7F7F7;
 }
 
 ul.nav-tabs li.nav-item a.disabled {
@@ -246,7 +246,7 @@ ul.nav-tabs li.nav-item a.disabled {
 section.search-results,
 section.search-history,
 section.search-cart {
-    background-color: #d7d8d2;
+    background-color: #F7F7F7;
 }
 
 @media (max-width: 768px) {
