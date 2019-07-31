@@ -28,10 +28,11 @@
   </button>
   <h1 class="sr-only">Main menu</h1>
   <div class="container">
-    <div class="collapse navbar-collapse" id="main-nav">
+    
       <a class="navbar-brand" href="#">
         <img src="${ContextPath}/resources/${question.collection.id}/${question.profile}/img/brand.png" alt="Funnelback University">
       </a>
+    <div class="collapse navbar-collapse" id="main-nav">
       <ul class="navbar-nav">
         <li class="nav-item customer-study"><a class="nav-link" href="#">Study at FBU</a></li>
         <li class="nav-item customer-research"><a class="nav-link" href="#">Research &amp; Innovation</a></li>
