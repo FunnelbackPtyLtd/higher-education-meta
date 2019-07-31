@@ -15,7 +15,7 @@
 /** Very top navbar */
 
 .navbar.bg-light {
-    padding: 0;
+    padding: 0.25em;
     font-size: small;
     background: #F7F7F7;
 }
