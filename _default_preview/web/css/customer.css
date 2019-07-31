@@ -17,6 +17,7 @@
 .navbar.bg-dark {
     padding: 0;
     font-size: small;
+    display: none !important;
 }
 
 .navbar.bg-dark a {
