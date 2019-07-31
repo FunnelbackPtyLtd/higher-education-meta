@@ -14,20 +14,22 @@
 
 /** Very top navbar */
 
-.navbar.bg-dark {
+.navbar.bg-light {
     padding: 0;
     font-size: small;
+    background: #F7F7F7;
 }
 
 .navbar.bg-dark a {
     padding: 0.25rem;
+    color: #6C757D;
 }
 
 /** Main navbar (logo + menu) */
 
 nav.customer {
     padding: 0;
-    background-color: #ebece6;
+    background-color: #242D3D;
 }
 
 nav.customer a.navbar-brand {
