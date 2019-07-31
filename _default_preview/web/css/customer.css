@@ -19,7 +19,7 @@ body
     color: #9a1904;
 }
 
-/** Very top navbar */ 
+/** Very top navbar */
 
 .navbar.bg-light {
     padding: 0.25em;
@@ -46,7 +46,7 @@ nav.customer .container, nav.customer .container #main-nav{
 
 
 @media (max-width: 768px){
-    nav.customer .container #main-nav{
+    nav.customer .container{
         align-items: baseline;
     }
 }
