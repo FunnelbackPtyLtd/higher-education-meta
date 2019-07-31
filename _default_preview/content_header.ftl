@@ -32,7 +32,7 @@
     <small class="navbar-toggler-icon"></small>
   </button>
     <div class="collapse navbar-collapse" id="main-nav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item customer-study"><a class="nav-link" href="#">Study at FBU</a></li>
         <li class="nav-item customer-research"><a class="nav-link" href="#">Research &amp; Innovation</a></li>
         <li class="nav-item customer-community"><a class="nav-link" href="#">Industry &amp; Community</a></li>
