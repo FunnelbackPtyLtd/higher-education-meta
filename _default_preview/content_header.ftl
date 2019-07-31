@@ -6,7 +6,7 @@
   </button>
   <h1 class="sr-only">Toolbar</h1>
 
-  <div class="collapse navbar-collapse bg-dark" id="top-nav">
+  <div class="collapse navbar-collapse navbar-light bg-light" id="top-nav">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a class="nav-link text-secondary" href="#">About</a></li>
         <li class="nav-item"><a class="nav-link text-secondary" href="#">Jobs</a></li>
