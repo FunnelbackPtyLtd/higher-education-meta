@@ -123,8 +123,10 @@ footer.customer ul.social li {
 /** Search form */
 
 .jumbotron {
-    background: #fff url(../img/jumbotron-bg.jpg);
+    background: #fff url(../img/jumbotron-bg.jpg) 0% 40%;
+    background-size: cover;
     color: #242D3D;
+    min-height: 330px;
 }
 
 .jumbotron h2{
