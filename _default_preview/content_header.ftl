@@ -4,19 +4,21 @@
   <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav mr-auto">
-        <a class="nav-item nav-link" href="#">About</a>
-        <a class="nav-item nav-link" href="#">Jobs</a>
-        <a class="nav-item nav-link" href="#">Newsroom</a>
-        <a class="nav-item nav-link" href="#">Giving to FBU</a>
-    </div>
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" href="#"><span class="fa fa-graduation-cap"></span> Alumni</a>
-        <a class="nav-item nav-link" href="#"><span class="fa fa-users"></span> My FBU</a>
-        <a class="nav-item nav-link" href="#"><span class="fa fa-book"></span> Library</a>
-        <a class="nav-item nav-link" href="#"><span class="fa fa-search"></span>Search</a>
-    </div>
+  <div class="container">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="#">About</a>
+                <a class="nav-item nav-link" href="#">Jobs</a>
+                <a class="nav-item nav-link" href="#">Newsroom</a>
+                <a class="nav-item nav-link" href="#">Giving to FBU</a>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#"><span class="fa fa-graduation-cap"></span> Alumni</a>
+                <a class="nav-item nav-link" href="#"><span class="fa fa-users"></span> My FBU</a>
+                <a class="nav-item nav-link" href="#"><span class="fa fa-book"></span> Library</a>
+                <a class="nav-item nav-link" href="#"><span class="fa fa-search"></span>Search</a>
+            </div>
+        </div>
   </div>
 </nav>
 
