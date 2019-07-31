@@ -183,7 +183,7 @@ footer.customer ul.social li {
 /** Tabs */
 
 nav.tabs {
-    background-color: #9a1904;
+    margin-top: -2.51em;
 }
 
 nav.tabs .row {
