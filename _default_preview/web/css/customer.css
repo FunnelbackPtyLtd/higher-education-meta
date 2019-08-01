@@ -281,12 +281,17 @@ ul.nav-tabs li.nav-item a.disabled {
     /* Stack the tabs on small screens */
     ul.nav-tabs,
     li.nav-item {
-        display: block;
-        width: 100%;
+        display: inline-block;
+        width: auto;
+        margin-bottom: 0.75em;
     }
 
-    ul.nav-tabs {
-        margin-bottom: 1rem;
+    ul.nav-tabs li.nav-item a
+    {
+        color: #242D3D;
+        border: 1px solid #242D3D;
+        background: #fff;
+        border-radius: 0.25em;
     }
 }
 
