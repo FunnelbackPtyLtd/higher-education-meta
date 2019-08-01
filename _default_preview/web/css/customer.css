@@ -435,12 +435,12 @@ section.search-cart .container{
     background-color: #242D3D;
     color: white;
     font-size: x-large;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .search-result-event .search-event-date-day {
     font-size: xx-large;
-    font-weight: bold;
+    font-weight: 600;
     height: 4rem;
 }
 
@@ -468,8 +468,7 @@ blockquote.search-exhibit {
 /** Open Day Exhibit */
 
 .search-exhibit.open-day {
-    background-color: #292b2c;
-    color: white;
+    background-color: #fff;
 }
 
 .search-exhibit.open-day.card {
@@ -477,14 +476,14 @@ blockquote.search-exhibit {
 }
 
 .search-exhibit.open-day .card-header {
-    background-color: #292b2c;
+    background-color: #242D3D;
+    padding: .75rem 1.25rem .25rem 1.25rem;
 }
 
 .search-exhibit.open-day .card-header a {
     font-size: x-large;
-    font-weight: bold;
+    font-weight: 600;
     color: white;
-    border-bottom: solid 4px #242D3D;;
 }
 
 .search-exhibit.open-day .btn-primary {
@@ -496,7 +495,7 @@ blockquote.search-exhibit {
 .search-exhibit.open-day .card-body {
     padding-top: 0;
     font-size: x-large;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .search-exhibit.open-day .card-body div {
@@ -524,7 +523,7 @@ blockquote.search-exhibit {
     color: white;
     text-shadow: 2px 2px #333;
     font-size: x-large;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /** Paging */
