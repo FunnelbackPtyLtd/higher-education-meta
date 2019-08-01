@@ -245,7 +245,16 @@ ul.nav-tabs li.nav-item a {
     ul.nav-tabs li.nav-item a {
         font-size: 0.9em;
     }
+
+    nav.tabs {
+        margin-top: 1em;
+    }
 }   
+
+section .btn-light
+{
+    background: #fff;
+}
 
 ul.nav-tabs li.nav-item .search-facet-count {
     font-weight: initial;
