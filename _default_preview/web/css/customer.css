@@ -235,6 +235,10 @@ ul.nav-tabs li.nav-item {
     background-color: rgba(36, 45, 61, 0.25);
 }
 
+ul.nav-tabs li.nav-item:hover {
+    background-color: rgba(36, 45, 61, 0.75);
+}
+
 ul.nav-tabs li.nav-item a {
     color: white;
     font-weight: bold;
@@ -264,7 +268,6 @@ ul.nav-tabs li.nav-item a:hover,
 ul.nav-tabs li.nav-item a:active,
 ul.nav-tabs li.nav-item a:focus {
     border-color: rgba(0, 0, 0, 0.1);
-    background-color: rgba(0, 0, 0, .1);
     border-radius: 0;
 }
 
