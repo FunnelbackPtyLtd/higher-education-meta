@@ -23,7 +23,7 @@ body
 * .btn-link:active,
 * .btn-link:focus {
     color: #9a1904;
-    transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-out;
 }
 
 /** Very top navbar */
