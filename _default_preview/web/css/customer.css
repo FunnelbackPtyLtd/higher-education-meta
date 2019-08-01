@@ -72,6 +72,20 @@ nav.customer .navbar-nav .nav-item
     justify-content: center;
 }
 
+@media (max-width: 768px){
+    nav.customer .navbar-nav .nav-item
+        {
+        text-align: end;
+        border: 0px !important;
+        padding-right: 0px;
+        }
+    nav.customer #main-nav
+    {
+        margin-bottom: 1rem;
+        margin-top: -1rem;
+    }
+}
+
 nav.customer .nav-item {
     text-align: center;
     text-transform: uppercase;
