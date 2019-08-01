@@ -345,7 +345,7 @@ section.search-cart .container{
 
 .bg-dark
 {
-    background: #242D3D;
+    background: #242D3D !important;
 }
 
 /** Results */
