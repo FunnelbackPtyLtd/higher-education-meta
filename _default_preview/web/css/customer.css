@@ -50,6 +50,11 @@ nav.customer .container, nav.customer .container #main-nav{
         align-items: baseline;
     }
 }
+@media (max-width: 576px){
+    nav.customer .container{
+        padding: 0 0.75rem;
+    }
+}
 
 nav.customer a.navbar-brand {
     padding: 15px 0 0 0;
