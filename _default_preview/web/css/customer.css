@@ -241,6 +241,8 @@ ul.nav-tabs li.nav-item a {
     border-bottom: none;
     background-color: rgba(36, 45, 61, 0.5);
     font-weight: 600; 
+    font-size: 0.95em;
+    padding: 0.45em;
 }
 @media (max-width: 992px) {
     ul.nav-tabs li.nav-item a {
