@@ -162,6 +162,8 @@ footer.customer ul.social li {
     .jumbotron {
         padding-top: .5rem;
         padding-bottom: .5rem;
+        min-height: 180px;
+        background: #fff url(../img/jumbotron-bg.jpg) 0% 0%;
     }
 }
 
