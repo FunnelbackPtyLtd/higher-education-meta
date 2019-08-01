@@ -337,7 +337,8 @@ section.search-cart .container{
     font-size: medium;
     text-transform: uppercase;
     font-weight: bold;
-    border-bottom: dotted 1px #eeefea;
+    border-bottom: 1px solid #eeefea;
+    padding-bottom: 0.5rem;;
 }
 
 .search-facets .search-facet li {
