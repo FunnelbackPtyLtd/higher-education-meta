@@ -231,6 +231,10 @@ ul.nav-tabs {
     border-bottom: none;
 }
 
+ul.nav-tabs li.nav-item {
+    border-bottom: 1px solid #F7F7F7;
+    }
+
 ul.nav-tabs li.nav-item a {
     color: white;
     font-weight: bold;
