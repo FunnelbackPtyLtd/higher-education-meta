@@ -304,6 +304,17 @@ section.search-cart .container{
     padding-top: 3rem;
 }
 
+@media (max-width: 576px){
+    section.search-results .container,
+    section.search-history .container,
+    section.search-cart .container{
+        padding-top: 0rem;
+    }
+
+    .navbar-toggler .mb-3 {
+        margin-bottom: 0rem!important;
+    }
+}
 
 @media (max-width: 768px) {
     /* Hide sort / limit controls on small screens */
