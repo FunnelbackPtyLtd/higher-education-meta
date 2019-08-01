@@ -293,7 +293,7 @@ ul.nav-tabs li.nav-item a.disabled {
         background: #fff;
         border-radius: 0.25em;
     }
-    ul.nav-tabs li.nav-item a.active
+    ul.nav-tabs li.nav-item a.active, ul.nav-tabs li.nav-item a:hover
     {
         color: #fff;
         border: 1px solid #242D3D;
