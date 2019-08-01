@@ -22,7 +22,7 @@ body
 * .btn-link:hover,
 * .btn-link:active,
 * .btn-link:focus {
-    color: #9a1904;
+    color: #242D3D;
     transition: all 0.15s ease-out;
 }
 
@@ -333,7 +333,7 @@ section.search-cart .container{
 }
 
 .search-results .search-facet h4 {
-    color: #9a1904;
+    color: #242D3D;
     font-size: medium;
     text-transform: uppercase;
     font-weight: bold;
@@ -376,7 +376,7 @@ section.search-cart .container{
 /** Results - Courses */
 
 .search-result-course .row h5 {
-    color: #9a1904;
+    color: #242D3D;
 }
 
 .search-result-course a.border-secondary {
@@ -386,7 +386,7 @@ section.search-cart .container{
 /** Results - People */
 
 .search-result-people h4 a {
-    color: #9a1904;
+    color: #242D3D;
 }
 
 @media (max-width: 768px) {
@@ -404,7 +404,7 @@ section.search-cart .container{
 /** Results - Video */
 
 .search-result-video h4 a {
-    color: #9a1904;
+    color: #242D3D;
 }
 
 .search-result-video .col-md-3 a {
@@ -433,12 +433,12 @@ section.search-cart .container{
 
 .search-result-event .search-event-date {
     width: 100%;
-    border: solid 2px #9a1904;
+    border: solid 2px #242D3D;
     max-width: 5rem;
 }
 
 .search-result-event .search-event-date-month {
-    background-color: #9a1904;
+    background-color: #242D3D;
     color: white;
     font-size: x-large;
     font-weight: bold;
@@ -462,7 +462,7 @@ section.search-cart .container{
 /** Contextual Navigation */
 
 .search-contextual-navigation h3 {
-    color: #9a1904;
+    color: #242D3D;
 }
 
 /** Curator */
@@ -490,11 +490,11 @@ blockquote.search-exhibit {
     font-size: x-large;
     font-weight: bold;
     color: white;
-    border-bottom: solid 4px #9a1904;;
+    border-bottom: solid 4px #242D3D;;
 }
 
 .search-exhibit.open-day .btn-primary {
-    background-color: #9a1904;
+    background-color: #242D3D;
     border: none;
     margin-top: 1rem;
 }
@@ -539,12 +539,12 @@ a.page-link,
 a.page-link:hover,
 a.page-link:active,
 a.page-link:focus {
-    color: #9a1904;
+    color: #242D3D;
 }
 
 li.page-item.active a.page-link {
-    background-color: #9a1904;
-    border: solid 1px #9a1904;
+    background-color: #242D3D;
+    border: solid 1px #242D3D;
 }
 
 .pagination-lg .page-item:last-child .page-link,
