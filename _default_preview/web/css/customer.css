@@ -112,12 +112,12 @@ nav.customer .customer-community {
 
 footer.customer {
     font-size: small;
-    color: rgba(255, 255, 255, 0.5);
+    color: #fff;
     padding: 1rem;
 }
 
 footer.customer a {
-    color: rgba(255, 255, 255, 0.5);
+    color: #fff;
 }
 
 footer.customer h1 {
