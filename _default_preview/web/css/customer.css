@@ -177,7 +177,8 @@ footer.customer ul.social li {
     background-color: transparent;
     color: #242D3D;
     font-size: xx-large;
-    font-family: 'Open Sans Light';
+    font-family: 'Open Sans';
+    font-weight: 300;
 }
 
 .jumbotron button {
