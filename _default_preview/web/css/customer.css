@@ -277,20 +277,27 @@ ul.nav-tabs li.nav-item a.disabled {
     color: #999;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     /* Stack the tabs on small screens */
     ul.nav-tabs,
     li.nav-item {
         display: inline-block;
         width: auto;
-        margin-bottom: 0.75em;
+        margin-bottom: 0.75em !important;
     }
 
     ul.nav-tabs li.nav-item a
     {
         color: #242D3D;
-        border: 1px solid #242D3D;
+        border: 1px solid #dee2e6;
         background: #fff;
+        border-radius: 0.25em;
+    }
+    ul.nav-tabs li.nav-item a.active
+    {
+        color: #fff;
+        border: 1px solid #242D3D;
+        background: #242D3Dff;
         border-radius: 0.25em;
     }
 }
