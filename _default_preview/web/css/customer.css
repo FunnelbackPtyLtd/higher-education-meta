@@ -504,7 +504,7 @@ blockquote.search-exhibit {
 }
 
 .search-exhibit.open-day small {
-    color: #d7d8d2;
+    color: #333;
     font-size: medium;
     display: block;
 }
