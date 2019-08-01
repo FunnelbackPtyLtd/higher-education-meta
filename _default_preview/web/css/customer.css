@@ -228,6 +228,7 @@ nav.tabs .row {
 
 ul.nav-tabs {
     width: 100%;
+    border-bottom: none;
 }
 
 ul.nav-tabs li.nav-item a {
