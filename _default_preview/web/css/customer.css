@@ -15,7 +15,7 @@ body
 * .btn-link:hover,
 * .btn-link:active,
 * .btn-link:focus {
-    color: #242D3D;
+    color: #F9423A;
     transition: all 0.15s ease-out;
 }
 
@@ -230,7 +230,6 @@ ul.nav-tabs li.nav-item {
 
 ul.nav-tabs li.nav-item a {
     color: white;
-    font-weight: bold;
     border: solid 1px rgba(36, 45, 61, 0.7);
     border-bottom: none;
     background-color: rgba(36, 45, 61, 0.5);
@@ -326,10 +325,10 @@ section.search-cart .container{
 }
 
 .search-results .search-facet h4 {
-    color: #242D3D;
+    color: #F9423A;
     font-size: medium;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 600;
     border-bottom: 1px solid #eeefea;
     padding-bottom: 0.5rem;;
 }
