@@ -6,6 +6,7 @@
     <div class="card">
       <div class="card-body">
 
+
         <div class="card-title">
           <div class="float-right">
             <@history_cart.LastVisitedLink result=result/>
