@@ -31,8 +31,8 @@
 
       <div class="card-body">
         <div class="card-text">
-          <#if result.metaData["I"]??>
-            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+          <#if result.metaData["image"]??>
+            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
           </#if>
 
           <#if result.metaData["stencilsCourseDesc"]??>

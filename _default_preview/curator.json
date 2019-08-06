@@ -83,7 +83,7 @@
   } ]
 }, {
   "created" : "2017-07-07T17:26:06.115-07:00",
-  "lastModified" : "2019-02-07T06:53:17.301+11:00",
+  "lastModified" : "2019-07-31T14:00:01.845271+10:00",
   "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
   "name" : "IT Lab Closure",
   "label" : "DEFAULT",
@@ -100,8 +100,8 @@
       "type" : "Or",
       "triggers" : [ {
         "type" : "DateRange",
-        "startDate" : 1546934400000,
-        "endDate" : 1549612800000
+        "startDate" : 1563260400000,
+        "endDate" : 1565852400000
       } ]
     } ]
   },

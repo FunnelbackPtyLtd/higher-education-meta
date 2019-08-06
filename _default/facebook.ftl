@@ -39,7 +39,7 @@
           <div class="media-body">
             <i class="fa fa-facebook-official float-right text-muted" aria-hidden="true"></i>
             <h4>
-              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["a"]!"Unknown author"}</a>
+              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["author"]!"Unknown author"}</a>
             </h4>
             <div class="card-subtitle text-muted">
               ${result.date?date?string("MMMM dd, yyyy")} via Facebook
@@ -53,8 +53,8 @@
 
           <#if result.metaData["stencilsFacebookPostLink"]??>
             <hr>
-            <#if result.metaData["I"]??>
-              <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+            <#if result.metaData["image"]??>
+              <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
             </#if>
             <h5><a href="${result.metaData["stencilsFacebookPostLink"]!}">${result.metaData["stencilsFacebookPostLinkName"]!}</a></h5>
             <p><@s.Truncate length=120>${result.metaData["stencilsFacebookPostLinkDescription"]!}</@s.Truncate></p>
@@ -84,7 +84,7 @@
 
               </h4>
               <div class="card-subtitle text-muted">
-                <a class="text-muted" href="${result.metaData["stencilsFacebookProfileUrl"]!}">${result.metaData["a"]!"Unknown author"}</a> via Facebook
+                <a class="text-muted" href="${result.metaData["stencilsFacebookProfileUrl"]!}">${result.metaData["author"]!"Unknown author"}</a> via Facebook
                 <@history_cart.LastVisitedLink result=result/>
               </div>
             </div>
@@ -118,8 +118,8 @@
             </div>
 
             <div class="col-md-10">
-              <#if result.metaData["I"]??>
-                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["I"]! />">
+              <#if result.metaData["image"]??>
+                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
               </#if>
               
               <p><@s.boldicize><@s.Truncate length=250>${response.customData.stencilsMethods.linkify(result.metaData["c"]!)?no_esc}</@s.Truncate></@s.boldicize></p>
@@ -151,7 +151,7 @@
           <div class="media-body">
             <i class="fa fa-facebook-official float-right text-muted" aria-hidden="true"></i>
             <h4>
-              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["a"]!"Unknown author"}</a>
+              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["author"]!"Unknown author"}</a>
             </h4>
             <div class="card-subtitle text-muted">
               ${result.metaData["stencilsFacebookPageCity"]!}, ${result.metaData["stencilsFacebookPageCountry"]!}
