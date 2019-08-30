@@ -8,8 +8,8 @@
 
       <div class="card-header">
         <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-          <a href="javascript:;" class="btn btn-light border border-secondary float-right ng-cloak" data-ng-click="toggle()" data-cart-link data-css="star-o|star" data-labels="Add to shortlist|Remove" title="{{label}}">
-            <span class="fa fa-{{css}}"></span>
+          <a href="javascript:;" class="btn btn-light border border-secondary float-right ng-cloak" data-ng-click="toggle()" data-cart-link data-css="far fa-star|fas fa-star" data-labels="Add to shortlist|Remove" title="{{label}}">
+            <span class="{{css}}"></span>
             <span class="ng-cloak">{{label}}</span>
           </a>
         </#if>
@@ -66,7 +66,7 @@
 
     <div class="card-header">
       <a href="javascript:;" class="btn btn-light border border-secondary float-right ng-cloak" data-ng-click="remove(item.indexUrl)">
-        <span class="fa fa-times"></span>
+        <span class="fas fa-times"></span>
         <span class="ng-cloak">Remove</span>
       </a>
 

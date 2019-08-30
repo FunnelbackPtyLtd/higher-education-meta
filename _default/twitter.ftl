@@ -15,7 +15,7 @@
 
             <small class="text-muted">
               ${result.date?date?string("MMMM dd, yyyy")}
-              via <i class="fa fa-twitter text-muted" aria-hidden="true"></i>
+              via <i class="fab fa-twitter text-muted" aria-hidden="true"></i>
             </small>
           </div>
         </div>
