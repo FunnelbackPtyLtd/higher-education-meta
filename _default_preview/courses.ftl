@@ -17,13 +17,13 @@
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
             <@s.boldicize><@s.Truncate length=70>${result.title}</@s.Truncate></@s.boldicize>
           </a>
-          <#if result.metaData["stencilsCourseSubject"]?? && result.metaData["stencilsCourseNumber"]??>
-            <small class="text-muted">(${result.metaData["stencilsCourseSubject"]!}-${result.metaData["stencilsCourseNumber"]!})</small>
+          <#if result.metaData["courseSubject"]?? && result.metaData["courseNumber"]??>
+            <small class="text-muted">(${result.metaData["courseSubject"]!}-${result.metaData["courseNumber"]!})</small>
           </#if>
         </h4>
         <div class="card-subtitle text-muted">
-          <#if result.metaData["stencilsCourseDepartment"]??>
-            ${result.metaData["stencilsCourseDepartment"]}
+          <#if result.metaData["courseDepartment"]??>
+            ${result.metaData["courseDepartment"]}
           </#if>
           <@history_cart.LastVisitedLink result=result/>
         </div>
@@ -35,25 +35,25 @@
             <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
           </#if>
 
-          <#if result.metaData["stencilsCourseDesc"]??>
-            <@s.boldicize>${result.metaData["stencilsCourseDesc"]?no_esc}</@s.boldicize>
+          <#if result.metaData["courseDesc"]??>
+            <@s.boldicize>${result.metaData["courseDesc"]?no_esc}</@s.boldicize>
           </#if>
         </div>
 
         <div class="row mt-3">
           <div class="col-md-4">
             <h5>Credits</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsCourseCredit"]!"-" /></span>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseCredit"]!"-" /></span>
           </div>
 
           <div class="col-md-4">
             <h5>Term</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsCourseTerm"]!"-" /></span>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseTerm"]!"-" /></span>
           </div>
 
           <div class="col-md-4">
             <h5>Delivery</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsCourseDelivery"]!"-" /></span>
+            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseDelivery"]!"-" /></span>
           </div>
         </div>
       </div>
@@ -74,10 +74,10 @@
         <a data-ng-href="{{item.indexUrl}}">
           {{item.title}}
         </a>
-          <small data-ng-show="item.metaData.stencilsCourseSubject && item.metaData.stencilsCourseNumber" class="text-muted">({{item.metaData.stencilsCourseSubject}}-{{item.metaData.stencilsCourseNumber}})</small>
+          <small data-ng-show="item.metaData.courseSubject && item.metaData.courseNumber" class="text-muted">({{item.metaData.courseSubject}}-{{item.metaData.courseNumber}})</small>
       </h4>
       <div class="card-subtitle text-muted">
-        {{item.metaData.stencilsCourseDepartment}}
+        {{item.metaData.courseDepartment}}
       </div>
     </div>
 
@@ -85,23 +85,23 @@
       <div class="card-text">
         <img data-ng-show="item.metaData.I" class="img-fluid float-right ng-cloak" alt="Thumbnail for {{result.title}}" data-ng-src="{{item.metaData.I}}">
 
-        {{item.metaData.stencilsCourseDesc}}
+        {{item.metaData.courseDesc}}
       </div>
 
       <div class="row mt-3">
         <div class="col-md-4">
           <h5>Credits</h5>
-          <span>{{item.metaData.stencilsCourseCredit || '-'}}</span>
+          <span>{{item.metaData.courseCredit || '-'}}</span>
         </div>
 
         <div class="col-md-4">
           <h5>Term</h5>
-          <span>{{item.metaData.stencilsCourseTerm.replace('|', ', ').replace('|', ', ') || '-'}}</span>
+          <span>{{item.metaData.courseTerm.replace('|', ', ').replace('|', ', ') || '-'}}</span>
         </div>
 
         <div class="col-md-4">
           <h5>Delivery</h5>
-          <span>{{item.metaData.stencilsCourseDelivery.replace('|', ', ') || '-'}}</span>
+          <span>{{item.metaData.courseDelivery.replace('|', ', ') || '-'}}</span>
         </div>
       </div>
 
@@ -112,9 +112,9 @@
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-courses" type="text/x-handlebar-template">
     <div>
-      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.metaData.stencilsCourseSubject}}-{{extra.disp.metaData.stencilsCourseNumber}}</small></h6>
+      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.metaData.courseSubject}}-{{extra.disp.metaData.courseNumber}}</small></h6>
       <div class="details">
-        <small>{{extra.disp.metaData.stencilsCourseTerm}}</small>
+        <small>{{extra.disp.metaData.courseTerm}}</small>
       </div>
     </div>
   </script>
