@@ -11,7 +11,7 @@
             <img class="card-img img-fluid" alt="Thumbnail for ${result.title}" src="${result.metaData["image"]!}">
             
             <div class="card-img-overlay text-center">
-              <span class="fa fa-play-circle-o fa-4x"></span>
+              <span class="far fa-play-circle fa-4x"></span>
               <#if result.metaData["stencilsVideoDurationPretty"]??>
                 <span class="badge badge-default">${result.metaData["stencilsVideoDurationPretty"]!}</span>
               <#elseif result.metaData["stencilsVideoDuration"]??>

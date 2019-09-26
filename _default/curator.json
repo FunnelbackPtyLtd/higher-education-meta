@@ -20,7 +20,7 @@
     "titleHtml" : "Discover life a the FBU campus",
     "displayUrl" : "-",
     "linkUrl" : "-",
-    "descriptionHtml" : "<img class=\"card-img img-fluid\" src=\"/s/resources/higher-education-meta/img/campus-life.png\">\n<div class=\"card-img-overlay\">\n  <a class=\"float-right\" href=\"http://funnelback.edu/campus-life\">Discover life at the FBU campus <span class=\"fa fa-arrow-right\"></span></a>\n</div>",
+    "descriptionHtml" : "<img class=\"card-img img-fluid\" src=\"/s/resources/higher-education-meta/img/campus-life.png\">\n<div class=\"card-img-overlay\">\n  <a class=\"float-right\" href=\"http://funnelback.edu/campus-life\">Discover life at the FBU campus <span class=\"fas fa-arrow-right\"></span></a>\n</div>",
     "additionalProperties" : {
       "position" : "center",
       "class" : "campus-life"

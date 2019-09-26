@@ -15,7 +15,7 @@
           <div class="col-md-8 offset-md-2">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text border-0 pl-0"><span class="fa fa-search"></span></span>
+                <span class="input-group-text border-0 pl-0"><span class="fas fa-search"></span></span>
               </div>
               <input required name="query" id="query" title="Search query" type="search" autofocus value="${question.query!}" accesskey="q" class="form-control">
               <div class="input-group-text border-0 pr-0">
@@ -28,14 +28,14 @@
                 <li class="list-inline-item ml-3">
                   <small>
                     <a data-ng-class="{active: isDisplayed('cart'), disabled: cart.length < 1}" data-ng-click="toggleCart()" title="{{cart.length}} item(s) in your shortlist" href="#">
-                      <span class="fa fa-star-o"></span> Shortlist (<span class="ng-cloak">{{cart.length}}</span><span data-ng-show>0</span>)
+                      <span class="far fa-star"></span> Shortlist (<span class="ng-cloak">{{cart.length}}</span><span data-ng-show>0</span>)
                     </a>
                   </small>
                 </li>
                 <li class="list-inline-item ml-3">
                   <small>
                     <a data-ng-class="{active: isDisplayed('history')}" data-ng-click="toggleHistory()" href="#">
-                      <span class="fa fa-history"></span> History
+                      <span class="fas fa-history"></span> History
                     </a>
                   </small>
                 </li>
@@ -156,20 +156,20 @@
       <div class="card-header">
         <#switch result.fileType>
           <#case "pdf">
-            <i class="fa fa-file-pdf-o float-right text-muted" aria-hidden="true"></i>
+            <i class="far fa-file-pdf float-right text-muted" aria-hidden="true"></i>
             <#break>
           <#case "doc">
           <#case "docx">
           <#case "rtf">
-            <i class="fa fa-file-word-o float-right text-muted" aria-hidden="true"></i>
+            <i class="far fa-file-word float-right text-muted" aria-hidden="true"></i>
             <#break>
           <#case "xls">
           <#case "xlsx">
-            <i class="fa fa-file-excel-o float-right text-muted" aria-hidden="true"></i>
+            <i class="far fa-file-excel float-right text-muted" aria-hidden="true"></i>
             <#break>
           <#case "ppt">
           <#case "pptx">
-            <i class="fa fa-file-powerpoint-o float-right text-muted" aria-hidden="true"></i>
+            <i class="far fa-file-powerpoint float-right text-muted" aria-hidden="true"></i>
             <#break>
         </#switch>
 

@@ -23,9 +23,9 @@
         <h1>Connect</h1>
         <br>
         <ul class="list-inline social">
-          <li class="list-inline-item"><span class="fa fa-facebook fa-2x"></span></li>
-          <li class="list-inline-item"><span class="fa fa-twitter fa-2x"></span></li>
-          <li class="list-inline-item"><span class="fa fa-youtube fa-2x"></span></li>
+          <li class="list-inline-item"><span class="fab fa-facebook-f fa-2x"></span></li>
+          <li class="list-inline-item"><span class="fab fa-twitter fa-2x"></span></li>
+          <li class="list-inline-item"><span class="fab fa-youtube-square fa-2x"></span></li>
         </ul>
       </div>
     </div>

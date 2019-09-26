@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/stencils/resources/he/v15.12/css/he.css">
 
   <link rel="stylesheet" href="/stencils/resources/thirdparty/bootstrap/v4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/stencils/resources/thirdparty/font-awesome/v4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
 
   <@client_includes.HTMLHeader />
 

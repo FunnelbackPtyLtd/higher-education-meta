@@ -13,10 +13,10 @@
                 <a class="nav-item nav-link" href="#">Giving to FBU</a>
             </div>
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#"><span class="fa fa-graduation-cap"></span> Alumni</a>
-                <a class="nav-item nav-link" href="#"><span class="fa fa-users"></span> My FBU</a>
-                <a class="nav-item nav-link" href="#"><span class="fa fa-book"></span> Library</a>
-                <a class="nav-item nav-link" href="#"><span class="fa fa-search"></span>Search</a>
+                <a class="nav-item nav-link" href="#"><span class="fas fa-graduation-cap"></span> Alumni</a>
+                <a class="nav-item nav-link" href="#"><span class="fas fa-users"></span> My FBU</a>
+                <a class="nav-item nav-link" href="#"><span class="fas fa-book"></span> Library</a>
+                <a class="nav-item nav-link" href="#"><span class="fas fa-search"></span>Search</a>
             </div>
         </div>
   </div>
