@@ -17,7 +17,7 @@
             </a>
           </h4>
           <div class="card-subtitle">
-            <span class="text-muted">${result.metaData["stencilsEventContact"]!}</span>
+            <span class="text-muted">${result.metaData["eventContact"]!}</span>
           </div>
         </div>
 
@@ -33,12 +33,12 @@
                 </div>
               </div>
 
-              <#if result.metaData["stencilsEventStartTime"]??>
+              <#if result.metaData["eventStartTime"]??>
                 <div class="text-center">
                   <small>
-                    ${result.metaData["stencilsEventStartTime"]!}
-                    <#if result.metaData["stencilsEventEndTime"]??>
-                      - ${result.metaData["stencilsEventEndTime"]!}
+                    ${result.metaData["eventStartTime"]!}
+                    <#if result.metaData["eventEndTime"]??>
+                      - ${result.metaData["eventEndTime"]!}
                     </#if>
                   </small>
                 </div>
@@ -51,40 +51,40 @@
               </#if>
 
               <p><@s.boldicize>${result.summary?no_esc}</@s.boldicize></p>
-              <#if result.metaData["stencilsEventCategory"]??>
-                <span class="text-muted ml-2">Tags: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsEventCategory"]! /></@s.boldicize></span><br>
+              <#if result.metaData["eventCategory"]??>
+                <span class="text-muted ml-2">Tags: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventCategory"]! /></@s.boldicize></span><br>
               </#if>
-              <#if result.metaData["stencilsEventAudience"]??>
-                <span class="text-muted ml-2">For: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["stencilsEventAudience"]! /></@s.boldicize></span>
+              <#if result.metaData["eventAudience"]??>
+                <span class="text-muted ml-2">For: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventAudience"]! /></@s.boldicize></span>
               </#if>
             </div>
           </div>
         </div>
       </div>
 
-      <#if result.metaData["stencilsEventContactEmail"]?? || result.metaData["stencilsEventContactPhone"]?? || result.metaData["stencilsEventLocationUrl"]?? || result.metaData["stencilsEventLocation"]??>
+      <#if result.metaData["eventContactEmail"]?? || result.metaData["eventContactPhone"]?? || result.metaData["eventLocationUrl"]?? || result.metaData["eventLocation"]??>
       <div class="card-footer">
         <div class="row">
-          <#if result.metaData["stencilsEventContactEmail"]??>
+          <#if result.metaData["eventContactEmail"]??>
             <div class="col">
               <span class="fas fa-fw fa-info text-muted"></span>
-              <a class="text-muted" href="mailto:${result.metaData["stencilsEventContactEmail"]!}">${result.metaData["stencilsEventContactEmail"]!}</a>
+              <a class="text-muted" href="mailto:${result.metaData["eventContactEmail"]!}">${result.metaData["eventContactEmail"]!}</a>
             </div>
           </#if>
-          <#if result.metaData["stencilsEventContactPhone"]??>
+          <#if result.metaData["eventContactPhone"]??>
             <div class="col">
               <span class="fas fa-fw fa-phone text-muted"></span>
-              <a class="text-muted" href="tel:${result.metaData["stencilsEventContactPhone"]!?url}">${result.metaData["stencilsEventContactPhone"]!}</a>
+              <a class="text-muted" href="tel:${result.metaData["eventContactPhone"]!?url}">${result.metaData["eventContactPhone"]!}</a>
             </div>
           </#if>
         </div>
         <div class="row">
           <div class="col">
             <span class="fas fa-fw fa-map-marker-alt text-muted"></span>
-            <#if result.metaData["stencilsEventLocationUrl"]??>
-              <a class="text-muted" href="${result.metaData["stencilsEventLocationUrl"]}" target="_blank">${result.metaData["stencilsEventLocation"]!}</a>
+            <#if result.metaData["eventLocationUrl"]??>
+              <a class="text-muted" href="${result.metaData["eventLocationUrl"]}" target="_blank">${result.metaData["eventLocation"]!}</a>
             <#else>
-              <span class="text-muted">${result.metaData["stencilsEventLocation"]!}</span>
+              <span class="text-muted">${result.metaData["eventLocation"]!}</span>
             </#if>
           </div>
         </div>

@@ -12,10 +12,10 @@
             
             <div class="card-img-overlay text-center">
               <span class="far fa-play-circle fa-4x"></span>
-              <#if result.metaData["stencilsVideoDurationPretty"]??>
-                <span class="badge badge-default">${result.metaData["stencilsVideoDurationPretty"]!}</span>
-              <#elseif result.metaData["stencilsVideoDuration"]??>
-                <span class="badge badge-default">${result.metaData["stencilsVideoDuration"]!?number}s</span>
+              <#if result.metaData["videoDurationPretty"]??>
+                <span class="badge badge-default">${result.metaData["videoDurationPretty"]!}</span>
+              <#elseif result.metaData["videoDuration"]??>
+                <span class="badge badge-default">${result.metaData["videoDuration"]!?number}s</span>
               </#if>
             </div>
           </a>
@@ -32,7 +32,7 @@
                 </a>
               </h4>
               <div class="card-subtitle text-muted">
-                <small>${result.date?date?string.short!} - Uploaded by ${result.metaData["stencilsVideoAuthor"]!"Unknown"}</small>
+                <small>${result.date?date?string.short!} - Uploaded by ${result.metaData["videoAuthor"]!"Unknown"}</small>
                 <@history_cart.LastVisitedLink result=result/>
               </div>
             </div>
