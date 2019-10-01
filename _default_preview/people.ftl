@@ -69,8 +69,8 @@
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-people" type="text/x-handlebar-template">
     <div class="media">
-      {{#if extra.disp.metaData.I}}
-        <img class="d-flex mr-3 rounded-circle" src="{{extra.disp.metaData.I}}" alt="{{extra.disp.title}}" />
+      {{#if extra.disp.metaData.image}}
+        <img class="d-flex mr-3 rounded-circle" src="{{extra.disp.metaData.image}}" alt="{{extra.disp.title}}" />
       {{/if}}
       <div class="media-body">
         <h6>{{extra.disp.metaData.peopleFirstName}} {{extra.disp.metaData.peopleLastName}}</h6>
