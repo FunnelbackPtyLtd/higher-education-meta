@@ -66,7 +66,7 @@
     <div class="container">
       <div class="row">
 
-        <#local tabFacets = question.collection.configuration.value("stencils.tabs.facets.${(response.customData.stencilsTabsSelectedTab)!}", "") />
+        <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab}")!>
 
         <div class="col-md-<#if tabFacets?has_content>9<#else>12</#if>">
 
