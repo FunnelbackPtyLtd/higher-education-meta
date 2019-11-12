@@ -53,7 +53,7 @@
   <script src="/stencils/resources/thirdparty/jquery/v3.2.1/jquery-3.2.1.min.js"></script>
   <script src="/stencils/resources/thirdparty/popper/v1.12.3/umd/popper.min.js"></script>
   <script src="/stencils/resources/thirdparty/bootstrap/v4.0.0/js/bootstrap.min.js"></script>
-  <script src="/stencils/resources/base/v15.8/js/base.js"></script>
+  <script src="/stencils/resources/base/v15.24/js/base.js"></script>
 
   <script src="/stencils/resources/autocompletion/js/typeahead.bundle-0.11.1.min.js"></script>
   <script src="/stencils/resources/autocompletion/js/handlebars.min-v4.0.5.js"></script>
@@ -65,7 +65,7 @@
   <script>
     jQuery(document).ready( function() {
       setupDeferredImages();
-      setupFacetLessMoreButtons(${question.getCurrentProfileConfig().get("stencils.faceted_navigation.max_displayed_categories", "8")}, '.search-facet');
+      setupFacetLessMoreButtons(${question.getCurrentProfileConfig().get("stencils.faceted_navigation.max_displayed_categories")!"undefined"}, '.search-facet');
 
       <@project.AutoComplete />
     });
