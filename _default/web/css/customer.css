@@ -192,9 +192,17 @@ footer.customer ul.social li {
     -webkit-appearance: searchfield-cancel-button;
 }
 
-.jumbotron button {
+.jumbotron .btn-primary {
     background-color: #242D3D;
     border: none;
+}
+
+.jumbotron .btn-link {
+    border: none;
+}
+
+.jumbotron .btn-link:hover {
+    cursor: pointer;
 }
 
 .jumbotron .list-inline-item a {
