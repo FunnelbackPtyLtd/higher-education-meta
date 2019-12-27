@@ -74,9 +74,14 @@
   <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
     <@history_cart.CartTemplate />
     <@courses.CartTemplate />
-    <script nomodule src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-    <script defer type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.js"></script>
-    <script defer type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.js"></script>
+    <script nomodulesrc="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+    <#if question.profile?contains("_preview")>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.js"></script>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.js"></script>
+    <#else>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.min.js"></script>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.min.js"></script>
+    </#if>
     <@history_cart.Configuration />
   </#if>
 

@@ -74,7 +74,7 @@
 
       <div class="card-body">
         <div class="card-text">
-          {{#if metaData.image}}<img class="img-fluid float-right ng-cloak" alt="{{result.title}}" src="{{metaData.image}}">{{/if}}
+          {{#if metaData.image}}<img class="img-fluid float-right" alt="{{result.title}}" src="{{metaData.image}}">{{/if}}
 
           {{metaData.courseDesc}}
         </div>

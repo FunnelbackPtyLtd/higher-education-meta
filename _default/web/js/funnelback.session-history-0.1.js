@@ -212,9 +212,24 @@ window.Funnelback.SessionHistory = (function() {
       View.setListeners(options.clearClickSelector, Constructor.prototype.clearClicks, 'clickClear');
       View.setListeners(options.clearSearchSelector, Constructor.prototype.clearSearches, 'searchClear');
 
-      // Toggle display of history resulst and no-data message
-      View.clickResults ? View.results('click') : View.noResults('click');
-      View.searchResults ? View.results('search') : View.noResults('search');
+      // Toggle display of history results and no-data message
+      if (View.clickResults 
+        && View.clickResults.querySelector('ul') 
+        && View.clickResults.querySelector('ul').childElementCount > 0
+        ) {
+          View.results('click');
+      } else {
+          View.noResults('click');
+      }
+      
+      if (View.searchResults 
+        && View.searchResults.querySelector('ul') 
+        && View.searchResults.querySelector('ul').childElementCount > 0
+        ) {
+          View.results('search');
+      } else {
+          View.noResults('search');
+      }
 
       var i, len;
       // Find elements to be hidden when history box is displayed

@@ -298,7 +298,7 @@ window.Funnelback.SessionCart = (function() {
         xhr.open(method, url, true);
         xhr.setRequestHeader('Accept', 'application/json');
         xhr.setRequestHeader('Content-Type', 'text/plain');
-        xhr.send(params || {});
+        xhr.send(JSON.stringify(params || {}));
       });
     },
 
@@ -421,6 +421,11 @@ window.Funnelback.SessionCart = (function() {
     set: function(count) {
       ElementUtil.setContent(CartCount.element, CartCount.template(CartCount.data(count)));
       CartCount.element.setAttribute('title', CartCount.title(count));
+      if (count === 0) {
+        CartCount.element.closest('button').disabled = true;
+      } else {
+        CartCount.element.closest('button').disabled = false;
+      }
     },
 
     // Get title attribute content of cart count

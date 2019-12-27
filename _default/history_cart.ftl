@@ -7,8 +7,8 @@
 <#macro LastVisitedLink result>
   <#if question.collection.configuration.valueAsBoolean("ui.modern.session") && session?? && session.getClickHistory(result.indexUrl)??>
     <small class="text-success search-last-visited session-history-link"> 
-      <button title="Click history" tabindex="0" class="text-success session-history-show border-0">
-        <span class="fa fa-clock-o"></span>
+      <button title="Click history" tabindex="0" class="btn-link text-success session-history-show border-0">
+        <span class="far fa-clock"></span>
         Last visited ${prettyTime(session.getClickHistory(result.indexUrl).clickDate)}
       </button>
     </small>
@@ -20,7 +20,7 @@
 -->
 <#macro SearchHistory>
   <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-    <section id="search-history" class="search-history">
+    <section id="search-history" class="search-history mb-3">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -31,7 +31,8 @@
 
               <#-- Click history -->
               <div class="col-md-6">
-                <div class="card session-history-click-results" data-ng-show="!clickHistoryEmpty && <@fb.HasClickHistory />">
+              <!-- ${session.clickHistory?size} -->
+                <div class="card session-history-click-results">
                   <div class="card-header">
                     <h3>
                       <span class="fa fa-heart"></span> Recently clicked results
@@ -51,7 +52,7 @@
                     </ul>
                   </div>
                 </div>
-
+              
                 <div class="card session-history-click-empty">
                   <div class="card-header">
                     <h3><span class="fa fa-heart"></span> Recently clicked results</h3>
@@ -60,10 +61,12 @@
                     <p class="text-muted">Your click history is empty.</p>
                   </div>
                 </div>
+              
               </div>
 
               <#-- Search history -->
               <div class="col-md-6">
+              
                 <div class="card session-history-search-results">
                   <div class="card-header">
                     <h3>
@@ -82,7 +85,7 @@
                     </ul>
                   </div>
                 </div>
-
+              
                 <div class="card session-history-search-empty">
                   <div class="card-header">
                     <h3><span class="fa fa-search"></span> Recent searches</h3>
@@ -91,6 +94,7 @@
                     <p class="text-muted">Your search history is empty.</p>
                   </div>
                 </div>
+              
               </div>
 
             </div>
@@ -153,7 +157,7 @@
         cart: {
           backIcon: 'fas fa-arrow-left',
           backLabel: 'Back to results',
-          clearIcon: 'times',
+          clearIcon: 'fas fa-times',
           label: ' Shortlist ',
           icon: 'fas fa-star',
           emptyMessage: '<span id="flb-cart-empty-message">No items in your shortlist</span>'
@@ -164,7 +168,7 @@
               '${collection}': document.getElementById('cart-template-${collection}').text,
             </#list>
           },
-          class: 'card'
+          class: 'mb-3'
         },
         itemTrigger: {
           selector: '.cart-item-trigger-parent',
