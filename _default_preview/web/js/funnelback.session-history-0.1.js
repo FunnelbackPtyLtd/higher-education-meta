@@ -136,6 +136,7 @@ window.Funnelback.SessionHistory = (function() {
     request: function(method, options, type) {
       return new Promise(function(resolve, reject) {
         const xhr = new XMLHttpRequest(), url = Api.getUrl(options, type);
+        xhr.withCredentials = true;
         // Setup callbacks
         xhr.onload = function() {
           if (this.status !== 200) { // If the request failed

@@ -82,6 +82,8 @@ window.Funnelback.SessionCart = (function() {
       clearClasses: 'btn btn-xs btn-danger', // CSS classes added to link element displayed in cart to clear all cart data
       clearIcon: 'remove', // icon to display for link element in cart to clear all cart data
       clearLabel: 'Clear', // label to display for link element in cart to clear all cart data
+      templateSelector: '#cart-template', // ID of element of Handlebars template to render the cart
+      emptyMessage: '<span id="flb-cart-empty-message">No items</span>',
     },
     cartCount: {
       selector: '.flb-cart-count', // CSS selector to element where cart count should be displayed
@@ -92,7 +94,10 @@ window.Funnelback.SessionCart = (function() {
     },
     item: {
       selector: '#search-results', // CSS selector to list of item; if item should be toggled into cart, item requires to have attribute 'data-fb-result' that has index URL value of item
-      template: '<h4><a href="{{indexUrl}}">{{#truncate 70}}{{title}}{{/truncate}}</a></h4><cite class="text-success">{{#cut "https://"}}{{indexUrl}}{{/cut}}</cite><p>{{#truncate 255}}{{summary}}{{/truncate}}</p>',
+      templates: {
+        default: '<h4><a href="{{indexUrl}}">{{#truncate 70}}{{title}}{{/truncate}}</a></h4><cite class="text-success">{{#cut "https://"}}{{indexUrl}}{{/cut}}</cite><p>{{#truncate 255}}{{summary}}{{/truncate}}</p>',
+      },
+      class: '' // CSS class to apply to the <li> element which is the outer-most element in each cart item. For example: 'card'
     },
     itemTrigger: {
       // Where item trigger should be displayed within search/cart result
@@ -105,6 +110,7 @@ window.Funnelback.SessionCart = (function() {
         afterend: after the `selector` element itself
       */
       // Set display of item trigger to add to / delete from cart
+      class: '',
       iconAdd: 'pushpin', // icon to display for trigger to add item to cart; will be prefixed with `iconPrefix`; if null/undefined, no icon will be displayed
       iconDelete: 'remove', // icon to display for trigger to delete item from cart; will be prefixed with `iconPrefix`; if null/undefined, no icon will be displayed
       isLabel: false, // [true|false]; if false `labelAdd`\`labelDelete` will be displayed as `title` attribute of element else will be displayed as text of element
@@ -270,6 +276,7 @@ window.Funnelback.SessionCart = (function() {
     request: function(method, options, params) {
       return new Promise(function(resolve, reject) {
         const xhr = new XMLHttpRequest(), url = Api.getUrl(options, params);
+        xhr.withCredentials = true;
         // Setup callbacks
         xhr.onload = function() {
           if (this.status !== 200) { // If the request failed
@@ -318,31 +325,36 @@ window.Funnelback.SessionCart = (function() {
     pageElements: [], // DOM elements to hide it when cart is displayed. see also hiddenPageElements
     modifiedPageElements: null, // Some page elements might already have been hidden. If we werent responsible for hiding them, dont unhide them.
     isHidden: true, // state of visibility of cart
-    emptyMessage: 'No items',
+    emptyMessage: null, // element to show a message when the cart is empty
 
     init: function(options) {
       CartBox.element = ElementUtil.findOnce(options.cart.selector);
-      if (!CartBox.element) console.warn('No element was found with provided selector "' + options.cart.selector + '"');
+      if (!CartBox.element) console.warn(`No element was found with provided selector "${options.cart.selector}"`);
       CartBox.element.style.display = 'none';
-
+      CartBox.emptyMessage = options.cart.emptyMessage;
       for (var i = 0, len = options.cart.pageSelector.length; i < len; i++) {
         const el = ElementUtil.findOnce(options.cart.pageSelector[i]);
         if (el) CartBox.pageElements.push(el);
       }
-      if (!CartBox.pageElements.length) console.warn('No element was found with provided page selector "' + options.cart.pageSelector + '"');
-
-      const template = HandlebarsUtil.compile(Templates.once.iconLabel),
-        // create DOM element of back button from cart to results
-        backEl = ElementUtil.create('flb-cart-box-back', CartBox.element, 'a', template({icon: options.cart.backIcon ? options.iconPrefix + options.cart.backIcon : null, label: options.cart.backLabel}), {style: 'cursor: pointer'}),
-        // create DOM elemenet of cart header
-        headerEl = ElementUtil.create('flb-cart-box-header', CartBox.element, 'h2', template({icon: options.cart.icon ? options.iconPrefix + options.cart.icon : null, label: options.cart.label + ' '})); // Ensure a space between this label and clear icon.
-      CartBox.clearElement = ElementUtil.create('flb-cart-box-clear', headerEl, 'a', template({icon: options.cart.clearIcon ? options.iconPrefix + options.cart.clearIcon : null, label: options.cart.clearLabel}), {class: options.cart.clearClasses});
-      ElementUtil.addEvent(backEl, 'click', Constructor.prototype.hide);
-      ElementUtil.addEvent(CartBox.clearElement, 'click', function() { return Constructor.prototype.clear(options); });
-      // create DOM element of list of cart items
-      CartBox.listElement = ElementUtil.create('flb-cart-box-list', CartBox.element, 'ul', null, {class: 'list-unstyled'});
-
-      if (options.cartCount.label) CartBox.emptyMessage += ' in your ' + options.cartCount.label.toLowerCase();
+      if (!CartBox.pageElements.length) console.warn(`No element was found with provided page selector "${options.cart.pageSelector}"`);
+      // Get configuration for icons and labels
+      const backIcon = options.cart.backIcon ? options.iconPrefix + options.cart.backIcon : null;
+      const headerIcon = options.cart.icon ? options.iconPrefix + options.cart.icon : null;
+      const clearIcon = options.cart.clearIcon ? options.iconPrefix + options.cart.clearIcon : null;
+      if (!document.querySelector(options.cart.templateSelector)) {
+        console.warn(`No element was found with the provided selector "${options.cart.templateSelector}"`)
+      }
+      // Generate the cart skeleton from the Handlebars template
+      const template = HandlebarsUtil.compile(document.querySelector(options.cart.templateSelector).text)
+      document.getElementById('search-cart').innerHTML = template({ 
+        backIcon: backIcon, headerIcon: headerIcon, clearIcon: clearIcon, 
+        backLabel: options.cart.backLabel, label: options.cart.label, clearLabel: options.cart.clearLabel
+      })
+      // Save references to elements and assign event listeners
+      CartBox.clearElement = document.getElementById('flb-cart-box-clear')
+      CartBox.clearElement.addEventListener('click', function() { Constructor.prototype.clear(options) })
+      document.getElementById('flb-cart-box-back').addEventListener('click', Constructor.prototype.hide)
+      CartBox.listElement = document.getElementById('flb-cart-box-list')
     },
 
     /**
@@ -350,7 +362,12 @@ window.Funnelback.SessionCart = (function() {
      * - list of cart data 
      */
     toggleClearElement: function(data) {
-      CartBox.clearElement.style.display = data.length ? 'inline-block' : 'none';
+      if (data.length > 0) {
+        CartBox.clearElement.style.display = 'inline-block'
+      } else {
+        CartBox.listElement.innerHTML = CartBox.emptyMessage;
+        CartBox.clearElement.style.display = 'none'
+      }
     },
 
     /**
@@ -391,7 +408,7 @@ window.Funnelback.SessionCart = (function() {
       if (options.cartCount.isLabel) CartCount.label = options.cartCount.label;
       if (options.cartCount.label) CartCount.partialTitle += ' in your ' + options.cartCount.label.toLowerCase();
       CartCount.template = HandlebarsUtil.compile(options.cartCount.template);
-      CartCount.element = ElementUtil.create(CartCount.selector, ElementUtil.findOnce(options.cartCount.selector), 'a', CartCount.template(CartCount.data(0)), {href: '#', title: CartCount.title(0)});
+      CartCount.element = ElementUtil.create(CartCount.selector, ElementUtil.findOnce(options.cartCount.selector), 'button', CartCount.template(CartCount.data(0)), {class: 'btn-link', type: 'button', tabindex: '0', title: CartCount.title(0)});
       ElementUtil.addEvent(CartCount.element, 'click', Constructor.prototype.toggle);
     },
 
@@ -416,10 +433,14 @@ window.Funnelback.SessionCart = (function() {
   const Item = {
     selectorAttr: 'data-fb-result', // name of attribute holding index URL of search result that should be toggled into cart
     listElement: null, // DOM element with list of search results
-    template: null, // compiled Handlebars template to display single item in cart
+    templates: null, // compiled Handlebars templates to display single item in cart
 
     init: function(options) {
-      if (options.item.template) Item.template = HandlebarsUtil.compile(options.item.template);
+      // Compile all available templates
+      Item.templates = Object.entries(options.item.templates).reduce(function(templates, [collection, template]) {
+        templates[collection] = HandlebarsUtil.compile(template)
+        return templates
+      });
       Item.listElement = ElementUtil.findOnce(options.item.selector);
       if (!Item.listElement) console.warn('No element was found with provided selector "' + options.item.selector + '"');
     },
@@ -453,12 +474,19 @@ window.Funnelback.SessionCart = (function() {
       } else {
         // Create new item to be displayed in cart
         const attributes = {};
+        if (options.item.class) attributes.class = options.item.class;
         attributes[Item.selectorAttr] = data.indexUrl;
-        const cartItem = ElementUtil.create('flb-cart-box-item', null, 'li', Item.template(data), attributes);
+        const template = Item.templates[data.collection] ? Item.templates[data.collection] : Item.templates.default;
+        const cartItem = ElementUtil.create('flb-cart-box-item', null, 'li', template(data), attributes);
         // Create cart trigger for new item in cart
         ItemTrigger.set('cart', options.cartItemTrigger, cartItem);
         // Set trigger to be delete trigger for new item in cart
         ItemTrigger.update('cart', cartItem);
+        // Remove the empty message when an item is added
+        const emptyMessage = document.getElementById('flb-cart-empty-message')
+        if (emptyMessage) {
+          emptyMessage.parentNode.removeChild(emptyMessage)
+        }
         // Add new item at the beginning of list of items in cart
         CartBox.listElement.insertAdjacentElement('afterbegin', cartItem);
       }
@@ -544,7 +572,7 @@ window.Funnelback.SessionCart = (function() {
      */
     set: function(type, trigger, item) {
       const el = ElementUtil.findOnce(trigger.selector, item);
-      const triggerEl = ElementUtil.create(ItemTrigger.selector, null, 'a', ItemTrigger[type + 'AddTemplate'], {style: 'cursor: pointer', title: ItemTrigger[type + 'AddTitle']});
+      const triggerEl = ElementUtil.create(ItemTrigger.selector, null, 'button', ItemTrigger[type + 'AddTemplate'], {class: trigger.class, title: ItemTrigger[type + 'AddTitle'], type: 'button', tabindex: '0'});
       ElementUtil.addEvent(triggerEl, 'click', ItemTrigger.addEvent);
       if (el) el.insertAdjacentElement(trigger.position, triggerEl);
       else console.info('No element was found with provided selector "' + trigger.selector + '"');
