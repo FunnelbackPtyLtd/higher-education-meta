@@ -197,6 +197,21 @@ footer.customer ul.social li {
     border: none;
 }
 
+.jumbotron .btn-link {
+    border: none;
+    background-color: transparent;
+}
+
+.jumbotron .btn-link:hover {
+    cursor: pointer;
+}
+
+.jumbotron .btn-link:hover:disabled {
+    cursor: initial;
+    color: #6c757d;
+    text-decoration: none;
+}
+
 .jumbotron .list-inline-item a {
     color: #242D3D;
 }
@@ -346,6 +361,39 @@ section.search-cart .container{
     .search-results .dropdown {
         display: none;
     }
+}
+
+/** Cart */
+
+.search-cart .btn-link {
+    border: none;
+}
+
+.search-cart .btn-link:hover {
+    cursor: pointer;
+}
+
+.search-cart .btn-clear {
+    margin-left: 1rem;
+}
+
+/** History */
+
+.search-history .btn-link {
+    border: none;
+}
+
+.search-history .btn-link:hover {
+    cursor: pointer;
+}
+
+.session-history-link .session-history-show {
+    background: none;
+    cursor: pointer;
+}
+
+.session-history-link .session-history-show:hover {
+    text-decoration: underline;
 }
 
 /** Facets */

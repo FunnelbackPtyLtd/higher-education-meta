@@ -23,24 +23,16 @@
               </div>
             </div>
 
-            <ul class="float-right list-inline">
-              <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-                <li class="list-inline-item ml-3">
-                  <small>
-                    <a data-ng-class="{active: isDisplayed('cart'), disabled: cart.length < 1}" data-ng-click="toggleCart()" title="{{cart.length}} item(s) in your shortlist" href="#">
-                      <span class="far fa-star"></span> Shortlist (<span class="ng-cloak">{{cart.length}}</span><span data-ng-show>0</span>)
-                    </a>
-                  </small>
+            <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
+              <ul class="float-right list-inline">
+                <li class="list-inline-item flb-cart-count"></li>
+                <li class="list-inline-item">
+                  <button type="button" tabindex="0" class="btn-link session-history-toggle">
+                    <span class="fa fa-history"></span> History
+                  </button>
                 </li>
-                <li class="list-inline-item ml-3">
-                  <small>
-                    <a data-ng-class="{active: isDisplayed('history')}" data-ng-click="toggleHistory()" href="#">
-                      <span class="fas fa-history"></span> History
-                    </a>
-                  </small>
-                </li>
-              </#if>
-            </ul>
+              </ul>
+            </#if>
 
             <small class="float-left pt-1">Search powered by Funnelback</small>
           </div>
@@ -62,8 +54,8 @@
 </#macro>
 
 <#macro Results>
-  <section class="search-results pt-3" data-ng-show="isDisplayed('results')">
-    <div class="container">
+  <section class="search-results pt-3" id="search-results">
+    <div class="container" id="search-results-content">
       <div class="row">
 
         <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab}")!>
