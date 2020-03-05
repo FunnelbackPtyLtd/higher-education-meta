@@ -422,7 +422,9 @@ window.Funnelback.SessionCart = (function() {
       ElementUtil.setContent(CartCount.element, CartCount.template(CartCount.data(count)));
       CartCount.element.setAttribute('title', CartCount.title(count));
       if (count === 0) {
-        CartCount.element.closest('button').setAttribute('disabled', 'true')
+        CartCount.element.closest('button').disabled = true;
+      } else {
+        CartCount.element.closest('button').disabled = false;
       }
     },
 
