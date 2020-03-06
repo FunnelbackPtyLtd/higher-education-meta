@@ -16,9 +16,7 @@
           </#if>
         </h4>
         <div class="card-subtitle text-muted">
-          <#if result.metaData["courseDepartment"]??>
-            ${result.metaData["courseDepartment"]}
-          </#if>
+          ${result.metaData["courseDepartment"]!}
         </div>
         <@history_cart.LastVisitedLink result=result/>
       </div>
@@ -26,7 +24,7 @@
       <div class="card-body">
         <div class="card-text">
           <#if result.metaData["image"]??>
-            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
+            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]}">
           </#if>
 
           <#if result.metaData["courseDesc"]??>
@@ -37,17 +35,29 @@
         <div class="row mt-3">
           <div class="col-md-4">
             <h5>Credits</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseCredit"]!"-" /></span>
+            <#if result.metaData["courseCredit"]??>
+              <span>${result.listMetadata["courseCredit"]?join(", ")}</span>
+            <#else>
+              <span>-</span>
+            </#if>
           </div>
 
           <div class="col-md-4">
             <h5>Term</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseTerm"]!"-" /></span>
+            <#if result.metaData["courseTerm"]??>
+              <span>${result.listMetadata["courseTerm"]?join(", ")}</span>
+            <#else>
+              <span>-</span>
+            </#if>
           </div>
 
           <div class="col-md-4">
             <h5>Delivery</h5>
-            <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["courseDelivery"]!"-" /></span>
+            <#if result.metaData["courseDelivery"]??>
+              <span>${result.listMetadata["courseDelivery"]?join(", ")}</span>
+            <#else>
+              <span>-</span>
+            </#if>
           </div>
         </div>
       </div>

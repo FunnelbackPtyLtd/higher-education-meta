@@ -10,7 +10,7 @@
 
         <div class="col-md-2 text-center my-auto pl-3">
           <#if result.metaData["image"]??>
-            <img class="img-fluid rounded-circle" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">            
+            <img class="img-fluid rounded-circle" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]}">          
           <#else>
             <div class="text-center">
               <span class="fas fa-user"></span>
@@ -31,10 +31,14 @@
                 </a>
               </h4>
               <div class="card-subtitle">
-                <h5><@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["peoplePosition"]! /></@s.boldicize></h5>            
+                <#if result.metaData["peoplePosition"]??>
+                  <h5><@s.boldicize>${result.listMetadata["peoplePosition"]?join(", ")}</@s.boldicize></h5>            
+                </#if>
               </div>
               <div class="card-subtitle text-muted">
-                <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["peopleDepartment"]! /></@s.boldicize>
+                <#if result.metaData["peopleDepartment"]??>
+                  <@s.boldicize>${result.listMetadata["peopleDepartment"]?join(", ")}</@s.boldicize>
+                </#if>
               </div>
             </div>
 

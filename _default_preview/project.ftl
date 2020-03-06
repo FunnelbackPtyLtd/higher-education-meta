@@ -179,7 +179,7 @@
       <div class="card-body">
         <div class="card-text">
           <#if result.metaData["image"]??>
-            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
+            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]}">
           </#if>
 
           <#if result.summary??>
@@ -190,8 +190,18 @@
 
         <#if result.metaData["author"]?? || result.metaData["publisher"]??>
           <div class="card-text search-metadata mt-1 text-muted">
-            <#if result.metaData["author"]??><div><strong>By:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["author"]! /></span></div></#if>
-            <#if result.metaData["publisher"]??><div><strong>Publisher:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["publisher"]! /></span></div></#if>
+            <#if result.metaData["author"]??>
+              <div>
+                <strong>By:</strong> 
+                <span>${result.listMetadata["author"]?join(", ")}</span>
+              </div>
+            </#if>
+            <#if result.metaData["publisher"]??>
+              <div>
+                <strong>Publisher:</strong> 
+                <span>${result.listMetadata["publisher"]?join(", ")}</span>
+              </div>
+            </#if>
           </div>
         </#if>
       </div>
@@ -207,19 +217,19 @@
         show: '<@s.cfg>auto-completion.show</@s.cfg>',
         sort: '<@s.cfg>auto-completion.sort</@s.cfg>',
         length: '<@s.cfg>auto-completion.length</@s.cfg>',
-        datasets:{
+        datasets: {
           <#list question.getCurrentProfileConfig().get("stencils.auto-completion.datasets")!?split(",") as dataset>
             ${dataset}: {
                 name: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.name")!}',
                 collection: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.collection")!}',
                 profile: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.profile")!question.profile}',
-                show: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.show")!"10"}'
+                show: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.show")!"10"}',
                 <#if dataset != "organic">
-                  , template: {
-                    suggestion: jQuery('#auto-completion-${dataset}').text()
-                  }
+                template: {
+                  suggestion: jQuery('#auto-completion-${dataset}').text()
+                },
                 </#if>
-            }<#if dataset_has_next>,</#if>
+            },
           </#list>
         }
     });
