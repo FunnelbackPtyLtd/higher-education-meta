@@ -179,7 +179,7 @@
       <div class="card-body">
         <div class="card-text">
           <#if result.metaData["image"]??>
-            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="//${question.inputParameterMap.HTTP_HOST}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]}" />
+            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]}" />
           </#if>
 
           <#if result.summary??>
