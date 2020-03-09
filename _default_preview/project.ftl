@@ -178,8 +178,8 @@
 
       <div class="card-body">
         <div class="card-text">
-          <#if result.metaData["image"]??>
-            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]}">
+          <#if result.listMetadata["image"]!?has_content>
+            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]!}">
           </#if>
 
           <#if result.summary??>
@@ -188,15 +188,15 @@
           </#if>
         </div>
 
-        <#if result.metaData["author"]?? || result.metaData["publisher"]??>
+        <#if result.listMetadata["author"]!?has_content || result.listMetadata["publisher"]!?has_content>
           <div class="card-text search-metadata mt-1 text-muted">
-            <#if result.metaData["author"]??>
+            <#if result.listMetadata["author"]!?has_content>
               <div>
                 <strong>By:</strong> 
                 <span>${result.listMetadata["author"]?join(", ")}</span>
               </div>
             </#if>
-            <#if result.metaData["publisher"]??>
+            <#if result.listMetadata["publisher"]!?has_content>
               <div>
                 <strong>Publisher:</strong> 
                 <span>${result.listMetadata["publisher"]?join(", ")}</span>

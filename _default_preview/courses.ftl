@@ -23,8 +23,8 @@
 
       <div class="card-body">
         <div class="card-text">
-          <#if result.metaData["image"]??>
-            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]}">
+          <#if result.listMetadata["image"]!?has_content>
+            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">
           </#if>
 
           <#if result.metaData["courseDesc"]??>
@@ -35,7 +35,7 @@
         <div class="row mt-3">
           <div class="col-md-4">
             <h5>Credits</h5>
-            <#if result.metaData["courseCredit"]??>
+            <#if result.listMetadata["courseCredit"]!?has_content>
               <span>${result.listMetadata["courseCredit"]?join(", ")}</span>
             <#else>
               <span>-</span>
@@ -44,7 +44,7 @@
 
           <div class="col-md-4">
             <h5>Term</h5>
-            <#if result.metaData["courseTerm"]??>
+            <#if result.listMetadata["courseTerm"]!?has_content>
               <span>${result.listMetadata["courseTerm"]?join(", ")}</span>
             <#else>
               <span>-</span>
@@ -53,7 +53,7 @@
 
           <div class="col-md-4">
             <h5>Delivery</h5>
-            <#if result.metaData["courseDelivery"]??>
+            <#if result.listMetadata["courseDelivery"]!?has_content>
               <span>${result.listMetadata["courseDelivery"]?join(", ")}</span>
             <#else>
               <span>-</span>

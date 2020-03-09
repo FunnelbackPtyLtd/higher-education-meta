@@ -22,9 +22,9 @@
 
         <div class="search-result-twitter-tweet mt-2"><@s.boldicize><@s.Truncate length=80>${result.metaData["c"]!?no_esc}</@s.Truncate></@s.boldicize></div>
 
-        <div class="text-right text-muted">
-          <a class="text-muted" href="${result.clickTrackingUrl}" title="Read full Tweet">read&hellip;</a>
-        </div>
+          <div class="text-right text-muted">
+            <a class="text-muted" href="${result.clickTrackingUrl}" title="Read full Tweet">read&hellip;</a>
+          </div>
  
         </div>
       </div>
