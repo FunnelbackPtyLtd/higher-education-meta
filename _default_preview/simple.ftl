@@ -13,6 +13,7 @@
 <#import "video.ftl" as video />
 <#import "facebook.ftl" as facebook />
 <#import "events.ftl" as events />
+<#import "instagram.ftl" as instagram />
 
 <!DOCTYPE html>
 <html lang="en">
