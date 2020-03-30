@@ -176,13 +176,13 @@ ul.nav-tabs li.nav-item a:focus {
     background-color: rgba(36, 45, 61, 1);
 }
 
+ul.nav-tabs li.nav-item a.disabled {
+    color: #999;
+}
+
 ul.nav-tabs li.nav-item a.active {
     border-color: rgba(0, 0, 0, .125);
     background-color: #F7F7F7;
-}
-
-ul.nav-tabs li.nav-item a.disabled {
-    color: #999;
 }
 
 @media (max-width: 992px) {
