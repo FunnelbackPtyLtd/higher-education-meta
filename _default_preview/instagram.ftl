@@ -33,7 +33,6 @@
               </#if>
 
               <span>
-                <#-- history_cart.ftl has ${prettyTime(session.getClickHistory(result.indexUrl).clickDate)} -->
                 <time datetime="${result.date?date?string.iso}" title="${result.date?date?string.medium}">${prettyTime(result.date?date)}</time>
               </span>
               <@history_cart.LastVisitedLink result=result/>  
