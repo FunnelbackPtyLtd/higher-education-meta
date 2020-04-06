@@ -10,7 +10,7 @@
 
         <div class="col-md-2 text-center my-auto pl-3">
           <#if result.listMetadata["image"]!?has_content>
-            <img class="img-fluid rounded-circle" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">          
+            <img class="img-fluid" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">          
           <#else>
             <div class="text-center">
               <span class="fas fa-user"></span>
