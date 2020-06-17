@@ -94,7 +94,20 @@ nav.customer .customer-community {
     border-bottom: solid 4px #a0a0a0;
 }
 
+nav.tabs {
+    margin-top: -2.51em;
+    background-color: transparent;
+}
+
 /** Jumbotron **/
+
+.jumbotron {
+    background: #fff url(../img/jumbotron-bg.jpg) 0% 40%;
+    background-size: cover;
+    color: #242D3D;
+    min-height: 330px;
+    display: flex;
+}
 
 @media (max-width: 768px) {
     .jumbotron {
@@ -188,3 +201,4 @@ footer.customer ul.social li {
     font-size: x-large;
     font-weight: 600;
 }
+
