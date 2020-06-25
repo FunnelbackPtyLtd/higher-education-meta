@@ -23,24 +23,16 @@
               </div>
             </div>
 
-            <ul class="float-right list-inline">
-              <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-                <li class="list-inline-item ml-3">
-                  <small>
-                    <a data-ng-class="{active: isDisplayed('cart'), disabled: cart.length < 1}" data-ng-click="toggleCart()" title="{{cart.length}} item(s) in your shortlist" href="#">
-                      <span class="far fa-star"></span> Shortlist (<span class="ng-cloak">{{cart.length}}</span><span data-ng-show>0</span>)
-                    </a>
-                  </small>
+            <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
+              <ul class="float-right list-inline">
+                <li class="list-inline-item flb-cart-count"></li>
+                <li class="list-inline-item">
+                  <button type="button" tabindex="0" class="btn-link session-history-toggle">
+                    <span class="fa fa-history"></span> History
+                  </button>
                 </li>
-                <li class="list-inline-item ml-3">
-                  <small>
-                    <a data-ng-class="{active: isDisplayed('history')}" data-ng-click="toggleHistory()" href="#">
-                      <span class="fas fa-history"></span> History
-                    </a>
-                  </small>
-                </li>
-              </#if>
-            </ul>
+              </ul>
+            </#if>
 
             <small class="float-left pt-1">Search powered by Funnelback</small>
           </div>
@@ -62,8 +54,8 @@
 </#macro>
 
 <#macro Results>
-  <section class="search-results pt-3" data-ng-show="isDisplayed('results')">
-    <div class="container">
+  <section class="search-results pt-3" id="search-results">
+    <div class="container" id="search-results-content">
       <div class="row">
 
         <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab}")!>
@@ -186,8 +178,8 @@
 
       <div class="card-body">
         <div class="card-text">
-          <#if result.metaData["image"]??>
-            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />">
+          <#if result.listMetadata["image"]!?has_content>
+            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]}" />
           </#if>
 
           <#if result.summary??>
@@ -196,10 +188,20 @@
           </#if>
         </div>
 
-        <#if result.metaData["author"]?? || result.metaData["publisher"]??>
+        <#if result.listMetadata["author"]!?has_content || result.listMetadata["publisher"]!?has_content>
           <div class="card-text search-metadata mt-1 text-muted">
-            <#if result.metaData["author"]??><div><strong>By:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["author"]! /></span></div></#if>
-            <#if result.metaData["publisher"]??><div><strong>Publisher:</strong> <span><@base.MultiValuedMetadataDisplay metadata=result.metaData["publisher"]! /></span></div></#if>
+            <#if result.listMetadata["author"]!?has_content>
+              <div>
+                <strong>By:</strong> 
+                <span>${result.listMetadata["author"]?join(", ")}</span>
+              </div>
+            </#if>
+            <#if result.listMetadata["publisher"]!?has_content>
+              <div>
+                <strong>Publisher:</strong> 
+                <span>${result.listMetadata["publisher"]?join(", ")}</span>
+              </div>
+            </#if>
           </div>
         </#if>
       </div>
@@ -215,19 +217,19 @@
         show: '<@s.cfg>auto-completion.show</@s.cfg>',
         sort: '<@s.cfg>auto-completion.sort</@s.cfg>',
         length: '<@s.cfg>auto-completion.length</@s.cfg>',
-        datasets:{
+        datasets: {
           <#list question.getCurrentProfileConfig().get("stencils.auto-completion.datasets")!?split(",") as dataset>
             ${dataset}: {
                 name: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.name")!}',
                 collection: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.collection")!}',
                 profile: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.profile")!question.profile}',
-                show: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.show")!"10"}'
+                show: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.show")!"10"}',
                 <#if dataset != "organic">
-                  , template: {
-                    suggestion: jQuery('#auto-completion-${dataset}').text()
-                  }
+                template: {
+                  suggestion: jQuery('#auto-completion-${dataset}').text()
+                },
                 </#if>
-            }<#if dataset_has_next>,</#if>
+            },
           </#list>
         }
     });

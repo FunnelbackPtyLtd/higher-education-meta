@@ -46,16 +46,16 @@
             </div>
 
             <div class="col-md-10">
-              <#if result.metaData["image"]??>
-                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="<@base.MultiValuedMetadataDisplayFirst metadata=result.metaData["image"]! />"> 
+              <#if result.metaData["image"]!?has_content>
+                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">
               </#if>
 
               <p><@s.boldicize>${result.summary?no_esc}</@s.boldicize></p>
-              <#if result.metaData["eventCategory"]??>
-                <span class="text-muted ml-2">Tags: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventCategory"]! /></@s.boldicize></span><br>
+              <#if result.listMetadata["eventCategory"]!?has_content>
+                <span class="text-muted ml-2">Tags: <@s.boldicize>${result.listMetadata["eventCategory"]?join(", ")}</@s.boldicize></span><br>
               </#if>
-              <#if result.metaData["eventAudience"]??>
-                <span class="text-muted ml-2">For: <@s.boldicize><@base.MultiValuedMetadataDisplay metadata=result.metaData["eventAudience"]! /></@s.boldicize></span>
+              <#if result.listMetadata["eventAudience"]!?has_content>
+                <span class="text-muted ml-2">For: <@s.boldicize>${result.listMetadata["eventAudience"]?join(", ")}</@s.boldicize></span>
               </#if>
             </div>
           </div>

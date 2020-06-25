@@ -13,6 +13,7 @@
 <#import "video.ftl" as video />
 <#import "facebook.ftl" as facebook />
 <#import "events.ftl" as events />
+<#import "instagram.ftl" as instagram />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@
 
   <@client_includes.ContentHeader />
 
-  <main class="funnelback" <#if question.collection.configuration.valueAsBoolean("ui.modern.session")> data-ng-app="Funnelback" data-ng-controller="DefaultCtrl"</#if>>
+  <main class="funnelback">
     <h1 class="sr-only">Search</h1>
 
       <@project.SearchForm />
@@ -72,9 +73,17 @@
   </script>
 
   <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-    <script src="${GlobalResourcesPrefix}thirdparty/angular-1.0.7/angular.min.js"></script>
-    <script src="${GlobalResourcesPrefix}thirdparty/angular-1.0.7/angular-resource.min.js"></script>
-    <script src="${GlobalResourcesPrefix}js/funnelback-session.js"></script>
+    <@history_cart.CartTemplate />
+    <@courses.CartTemplate />
+    <script nomodule src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+    <#if question.profile?contains("_preview")>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.js"></script>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.js"></script>
+    <#else>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.min.js"></script>
+      <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.min.js"></script>
+    </#if>
+    <@history_cart.Configuration />
   </#if>
 
 </body>

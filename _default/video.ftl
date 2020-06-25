@@ -8,8 +8,10 @@
       <div class="row no-gutters">
         <div class="col-md-3 my-auto">
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}" target="_blank">
-            <img class="card-img img-fluid" alt="Thumbnail for ${result.title}" src="${result.metaData["image"]!}">
-            
+            <#if result.listMetadata["image"]!?has_content>
+              <img class="card-img img-fluid" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">
+            </#if>
+
             <div class="card-img-overlay text-center">
               <span class="far fa-play-circle fa-4x"></span>
               <#if result.metaData["videoDurationPretty"]??>
