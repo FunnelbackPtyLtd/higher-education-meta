@@ -59,8 +59,9 @@
       <div class="row">
 
         <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab}")!>
-
-        <div class="col-md-<#if tabFacets?has_content>9<#else>12</#if>">
+        <#local leftCurators = (response.curator.exhibits![])?filter(exhibit -> exhibit.additionalProperties["position"]! == "left") />
+        <#local hasLeftContent = tabFacets?has_content || leftCurators?has_content>
+        <div class="col-md-<#if hasLeftContent>9<#else>12</#if>">
 
           <@base.BestBets />
           <@base.CuratorExhibits position="center" />
@@ -116,7 +117,7 @@
           <@base.Paging />
         </div>
 
-        <#if tabFacets?has_content>
+        <#if hasLeftContent>
           <div class="col-md-3 search-facets order-md-first order-lg-first order-xl-first mb-3">
 
             <@base.CuratorExhibits position="left" />
