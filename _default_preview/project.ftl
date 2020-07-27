@@ -121,11 +121,14 @@
 
             <@base.CuratorExhibits position="left" />
 
-            <div class="card search-refine">
-              <div class="card-header bg-dark text-white">
-                <h3 class="mb-0">Refine your results</h3>
+            <#local hasFacetValues = response.facets?filter(facet -> facet.allValues?has_content && facet.name != "Tabs")?has_content>
+            <#if tabFacets?has_content && hasFacetValues>
+              <div class="card search-refine">
+                <div class="card-header bg-dark text-white">
+                  <h3 class="mb-0">Refine your results</h3>
+                </div>
               </div>
-            </div>
+            </#if>
             
             <@facets.Facets facets=tabFacets />
           </div>
