@@ -59,8 +59,9 @@
       <div class="row">
 
         <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab}")!>
-
-        <div class="col-md-<#if tabFacets?has_content>9<#else>12</#if>">
+        <#local leftCurators = (response.curator.exhibits)![]?filter(exhibit -> exhibit.additionalProperties["position"]! == "left") />
+        <#local hasLeftContent = tabFacets?has_content || leftCurators?has_content>
+        <div class="col-md-<#if hasLeftContent>9<#else>12</#if>">
 
           <@base.BestBets />
           <@base.CuratorExhibits position="center" />
@@ -116,16 +117,19 @@
           <@base.Paging />
         </div>
 
-        <#if tabFacets?has_content>
+        <#if hasLeftContent>
           <div class="col-md-3 search-facets order-md-first order-lg-first order-xl-first mb-3">
 
             <@base.CuratorExhibits position="left" />
 
-            <div class="card search-refine">
-              <div class="card-header bg-dark text-white">
-                <h3 class="mb-0">Refine your results</h3>
+            <#local hasFacetValues = response.facets?filter(facet -> facet.allValues?has_content && facet.name != "Tabs")?has_content>
+            <#if tabFacets?has_content && hasFacetValues>
+              <div class="card search-refine">
+                <div class="card-header bg-dark text-white">
+                  <h3 class="mb-0">Refine your results</h3>
+                </div>
               </div>
-            </div>
+            </#if>
             
             <@facets.Facets facets=tabFacets />
           </div>
@@ -226,7 +230,7 @@
                 show: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.show")!"10"}',
                 <#if dataset != "organic">
                 template: {
-                  suggestion: jQuery('#auto-completion-${dataset}').text()
+                  suggestion: document.querySelector('#auto-completion-${dataset}').text
                 },
                 </#if>
             },

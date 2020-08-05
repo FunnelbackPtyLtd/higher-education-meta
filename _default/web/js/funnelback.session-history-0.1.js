@@ -25,7 +25,8 @@ window.Funnelback.SessionHistory = (function() {
 
   // Default options
   Constructor.defaults = {
-    apiBase: '/', // web service URL to get cart data from
+    searchApiBase: '/s/search-history.json', // web service URL for search history
+    clickApiBase: '/s/click-history.json', // web service URL for click history
     collection: null, // collection name; required parameter
 
     // Selectors to DOM elements displaying content; each CSS selector should return not more than one element
@@ -171,7 +172,7 @@ window.Funnelback.SessionHistory = (function() {
     },
 
     getUrl: function(options, type) {
-      return options.apiBase + Api[type + 'Url'] + '?' + Api.getParamsString({collection: options.collection});
+      return options[type + 'ApiBase'] + '?' + Api.getParamsString({collection: options.collection});
     }
   };
 

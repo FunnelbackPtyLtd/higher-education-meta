@@ -69,7 +69,7 @@ window.Funnelback.SessionCart = (function() {
 
   // Default options
   Constructor.defaults = {
-    apiBase: '/', // web service URL to get cart data from
+    apiBase: '/s/cart.json', // web service URL to get cart data from
     collection: null, // collection name; required parameter
     iconPrefix: 'glyphicon glyphicon-', // CSS class(es) prefix used to display icons
     cart: {
@@ -259,7 +259,6 @@ window.Funnelback.SessionCart = (function() {
 
   // Handle API request
   const Api = {
-    urlPath: 's/cart.json',
 
     delete: function(options, params) {
       return Api.request('delete', options, params);
@@ -313,7 +312,7 @@ window.Funnelback.SessionCart = (function() {
     getUrl: function(options, params) {
       if (!params) params = {};
       params['collection'] = options.collection;
-      return options.apiBase + Api.urlPath + '?' + Api.getParamsString(params);
+      return options.apiBase + '?' + Api.getParamsString(params);
     }
   };
 
