@@ -11,12 +11,12 @@
           <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
             <@s.boldicize><@s.Truncate length=70>${result.title}</@s.Truncate></@s.boldicize>
           </a>
-          <#if result.metaData["courseSubject"]?? && result.metaData["courseNumber"]??>
-            <small class="text-muted">(${result.metaData["courseSubject"]!}-${result.metaData["courseNumber"]!})</small>
+          <#if result.listMetadata?keys?seq_contains("courseSubject") && result.listMetadata?keys?seq_contains("courseNumber")>
+            <small class="text-muted">(${result.listMetadata["courseSubject"]?first!}-${result.listMetadata["courseNumber"]?first!})</small>
           </#if>
         </h4>
         <div class="card-subtitle text-muted">
-          ${result.metaData["courseDepartment"]!}
+          ${result.listMetadata["courseDepartment"]?first!}
         </div>
         <@history_cart.LastVisitedLink result=result/>
       </div>
@@ -27,8 +27,8 @@
             <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">
           </#if>
 
-          <#if result.metaData["courseDesc"]??>
-            <@s.boldicize>${result.metaData["courseDesc"]?no_esc}</@s.boldicize>
+          <#if result.listMetadata?keys?seq_contains("courseDesc")>
+            <@s.boldicize>${result.listMetadata["courseDesc"]?first!?no_esc}</@s.boldicize>
           </#if>
         </div>
 
@@ -66,7 +66,7 @@
 </#macro>
 
 <#macro CartTemplate>
-  <script id="cart-template-higher-education-courses" type="text/x-handlebar-template">
+  <script id="cart-template-testclient~higher-education-courses" type="text/x-handlebar-template">
     <div class="card search-result-course">
 
       <div class="card-header cart-item-trigger-parent">

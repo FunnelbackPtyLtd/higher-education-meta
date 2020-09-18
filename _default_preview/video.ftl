@@ -14,10 +14,10 @@
 
             <div class="card-img-overlay text-center">
               <span class="far fa-play-circle fa-4x"></span>
-              <#if result.metaData["videoDurationPretty"]??>
-                <span class="badge badge-default">${result.metaData["videoDurationPretty"]!}</span>
-              <#elseif result.metaData["videoDuration"]??>
-                <span class="badge badge-default">${result.metaData["videoDuration"]!?number}s</span>
+              <#if result.listMetadata?keys?seq_contains("videoDurationPretty")>
+                <span class="badge badge-default">${result.listMetadata["videoDurationPretty"]?first!}</span>
+              <#elseif result.listMetadata?keys?seq_contains("videoDuration")>
+                <span class="badge badge-default">${result.listMetadata["videoDuration"]?first!?number}s</span>
               </#if>
             </div>
           </a>
@@ -34,13 +34,13 @@
                 </a>
               </h4>
               <div class="card-subtitle text-muted">
-                <small>${result.date?date?string.short!} - Uploaded by ${result.metaData["videoAuthor"]!"Unknown"}</small>
+                <small>${result.date?date?string.short!} - Uploaded by ${result.listMetadata["videoAuthor"]?first!"Unknown"}</small>
                 <@history_cart.LastVisitedLink result=result/>
               </div>
             </div>
 
             <div class="card-text">
-              <@s.boldicize><@s.Truncate length=70>${result.metaData["c"]!?no_esc}</@s.Truncate></@s.boldicize>
+              <@s.boldicize><@s.Truncate length=70>${result.listMetadata["c"]?first!?no_esc}</@s.Truncate></@s.boldicize>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@
 
         <div class="col-md-2 text-center my-auto pl-3">
           <#if result.listMetadata["image"]!?has_content>
-            <img class="img-fluid" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">          
+            <img class="img-fluid" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"]?first!}">
           <#else>
             <div class="text-center">
               <span class="fas fa-user"></span>
@@ -27,7 +27,7 @@
               </div>
               <h4>
                 <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
-                  <@s.boldicize><@s.Truncate length=70>${result.metaData["peopleFirstName"]!} ${result.metaData["peopleLastName"]!}</@s.Truncate></@s.boldicize>
+                  <@s.boldicize><@s.Truncate length=70>${result.listMetadata["peopleFirstName"]?first!} ${result.listMetadata["peopleLastName"]?first!}</@s.Truncate></@s.boldicize>
                 </a>
               </h4>
               <div class="card-subtitle">
@@ -46,18 +46,18 @@
               <div class="row">
                 <div class="col-md-5">
                   <span class="far fa-fw fa-envelope text-muted"></span>
-                  <a class="text-muted" href="mailto:${result.metaData["peopleEmail"]!}">${result.metaData["peopleEmail"]!}</a>
+                  <a class="text-muted" href="mailto:${result.listMetadata["peopleEmail"]?first!}">${result.listMetadata["peopleEmail"]?first!}</a>
                 </div>
-                <#if result.metaData["peoplePhone"]??>
+                <#if result.listMetadata?keys?seq_contains("peoplePhone")>
                   <div class="col-md-3">
                     <span class="fas fa-fw fa-phone text-muted"></span>
-                    <a class="text-muted" href="tel:${result.metaData["peoplePhone"]!}">${result.metaData["peoplePhone"]!}</a>
+                    <a class="text-muted" href="tel:${result.listMetadata["peoplePhone"]?first!}">${result.listMetadata["peoplePhone"]?first!}</a>
                   </div>
                 </#if>
-                <#if result.metaData["peopleLocation"]??>
+                <#if result.listMetadata?keys?seq_contains("peopleLocation")>
                   <div class="col-md-4">
                     <span class="fas fa-fw fa-map-marker-alt text-muted"></span>
-                    <a class="text-muted" href="https://maps.google.com/?q=${result.metaData["peopleLocation"]!?url}" target="_blank">${result.metaData["peopleLocation"]!}</a>
+                    <a class="text-muted" href="https://maps.google.com/?q=${result.listMetadata["peopleLocation"]?first!?url}" target="_blank">${result.listMetadata["peopleLocation"]?first!}</a>
                   </div>
                 </#if>
               </div>

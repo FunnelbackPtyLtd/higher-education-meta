@@ -58,7 +58,7 @@
     <div class="container" id="search-results-content">
       <div class="row">
 
-        <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab}")!>
+        <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab!}")!>
         <#local leftCurators = (response.curator.exhibits)![]?filter(exhibit -> exhibit.additionalProperties["position"]! == "left") />
         <#local hasLeftContent = tabFacets?has_content || leftCurators?has_content>
         <div class="col-md-<#if hasLeftContent>9<#else>12</#if>">
