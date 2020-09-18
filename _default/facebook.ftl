@@ -3,7 +3,7 @@
 <#import "base.ftl" as base />
 
 <#macro Result result>
-  <#switch result.metaData["stencilsFacebookType"]!"">
+  <#switch result.listMetadata["stencilsFacebookType"]?first!"">
     <#case "PAGE">
       <@PageResult result=result />
       <#break>
@@ -15,11 +15,11 @@
       <#break>
     <#default>
       <div class="alert alert-danger" role="alert">
-        <#if !result.metaData["stencilsFacebookType"]!?has_content>
+        <#if !result.listMetadata["stencilsFacebookType"]?first!?has_content>
           <strong>Facebook content type not available</strong>: Ensure the content possesses a
           <code>facebookType</code> metadata and that it is returned in the data model.
         <#else>
-          <strong>Unsupported Facebook content type "${result.metaData["stencilsFacebookType"]!}":</strong>
+          <strong>Unsupported Facebook content type "${result.listMetadata["stencilsFacebookType"]?first!}":</strong>
           You may need to create a result template for this content type
         </#if>
       </div>
@@ -39,7 +39,7 @@
           <div class="media-body">
             <i class="fab fa-facebook-square float-right text-muted" aria-hidden="true"></i>
             <h4>
-              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["author"]!"Unknown author"}</a>
+              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.listMetadata["author"]?first!"Unknown author"}</a>
             </h4>
             <div class="card-subtitle text-muted">
               ${result.date?date?string("MMMM dd, yyyy")} via Facebook
@@ -49,15 +49,15 @@
         </div>
 
         <div class="card-text mt-3">
-          <@s.boldicize>${response.customData.stencilsMethods.linkify(result.metaData["c"]!)?no_esc}</@s.boldicize>
+          <@s.boldicize>${response.customData.stencilsMethods.linkify(result.listMetadata["c"]?first!)?no_esc}</@s.boldicize>
 
-          <#if result.metaData["stencilsFacebookPostLink"]??>
+          <#if result.listMetadata?keys?seq_contains("stencilsFacebookPostLink")>
             <hr>
             <#if result.listMetadata["image"]!?has_content>
               <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]!}">
             </#if>
-            <h5><a href="${result.metaData["stencilsFacebookPostLink"]!}">${result.metaData["stencilsFacebookPostLinkName"]!}</a></h5>
-            <p><@s.Truncate length=120>${result.metaData["stencilsFacebookPostLinkDescription"]!}</@s.Truncate></p>
+            <h5><a href="${result.listMetadata["stencilsFacebookPostLink"]?first!}">${result.listMetadata["stencilsFacebookPostLinkName"]?first!}</a></h5>
+            <p><@s.Truncate length=120>${result.listMetadata["stencilsFacebookPostLinkDescription"]?first!}</@s.Truncate></p>
           </#if>
         </div>
       </div>
@@ -84,7 +84,7 @@
 
               </h4>
               <div class="card-subtitle text-muted">
-                <a class="text-muted" href="${result.metaData["stencilsFacebookProfileUrl"]!}">${result.metaData["author"]!"Unknown author"}</a> via Facebook
+                <a class="text-muted" href="${result.listMetadata["stencilsFacebookProfileUrl"]?first!}">${result.listMetadata["author"]?first!"Unknown author"}</a> via Facebook
                 <@history_cart.LastVisitedLink result=result/>
               </div>
             </div>
@@ -105,12 +105,12 @@
                 </div>
               </div>
 
-              <#if result.metaData["d"]??>
+              <#if result.listMetadata?keys?seq_contains("d")>
                 <div class="text-center">
                   <small>
-                    ${result.metaData["d"]?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short}
-                    <#if result.metaData["stencilsFacebookEventEndDateTime"]??>
-                      - ${result.metaData["stencilsFacebookEventEndDateTime"]?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short}
+                    ${result.listMetadata["d"]?first!?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short}
+                    <#if result.listMetadata?keys?seq_contains("stencilsFacebookEventEndDateTime")>
+                      - ${result.listMetadata["stencilsFacebookEventEndDateTime"]!?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short}
                     </#if>
                   </small>
                 </div>
@@ -119,20 +119,20 @@
 
             <div class="col-md-10">
               <#if result.listMetadata["image"]!?has_content>
-                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]!}">
+                <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first!}">
               </#if>
               
-              <p><@s.boldicize><@s.Truncate length=250>${response.customData.stencilsMethods.linkify(result.metaData["c"]!)?no_esc}</@s.Truncate></@s.boldicize></p>
+              <p><@s.boldicize><@s.Truncate length=250>${response.customData.stencilsMethods.linkify(result.listMetadata["c"]?first!)?no_esc}</@s.Truncate></@s.boldicize></p>
             </div>
 
           </div>
         </div>
       </div>
 
-      <#if result.metaData["stencilsFacebookEventLocation"]??>
+      <#if result.listMetadata?keys?seq_contains("stencilsFacebookEventLocation")>
         <div class="card-footer">
           <span class="fas fa-fw fa-map-marker-alt text-muted"></span>
-          <a class="text-muted" href="https://maps.google.com/?q=${result.metaData["stencilsFacebookEventCoordinates"]!result.metaData["stencilsFacebookEventLocation"]}" target="_blank">${result.metaData["stencilsFacebookEventLocation"]!}</a>
+          <a class="text-muted" href="https://maps.google.com/?q=${result.listMetadata["stencilsFacebookEventCoordinates"]?first!result.listMetadata["stencilsFacebookEventLocation"]?first!}" target="_blank">${result.listMetadata["stencilsFacebookEventLocation"]?first!}</a>
         </div>
       </#if>
     </div>
@@ -151,37 +151,37 @@
           <div class="media-body">
             <i class="fab fa-facebook-square float-right text-muted" aria-hidden="true"></i>
             <h4>
-              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["author"]!"Unknown author"}</a>
+              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.listMetadata["author"]?first!"Unknown author"}</a>
             </h4>
             <div class="card-subtitle text-muted">
-              ${result.metaData["stencilsFacebookPageCity"]!}, ${result.metaData["stencilsFacebookPageCountry"]!}
+              ${result.listMetadata["stencilsFacebookPageCity"]?first!}, ${result.listMetadata["stencilsFacebookPageCountry"]?first!}
               <@history_cart.LastVisitedLink result=result/>
             </div>
           </div>
         </div>
 
         <div class="card-text mt-3">
-          <p><@s.boldicize>${response.customData.stencilsMethods.linkify(result.metaData["c"]!)?no_esc}</@s.boldicize></p>
+          <p><@s.boldicize>${response.customData.stencilsMethods.linkify(result.listMetadata["c"]?first!)?no_esc}</@s.boldicize></p>
 
-          <#if result.metaData["stencilsFacebookPageInfo"]??>
+          <#if resultlistMetadata?keys?seq_contains("stencilsFacebookPageInfo")>
               <span class="fas fa-fw fa-info-circle text-muted"></span>
-              ${response.customData.stencilsMethods.linkify(result.metaData["stencilsFacebookPageInfo"]!)?no_esc}
+              ${response.customData.stencilsMethods.linkify(result.listMetadata["stencilsFacebookPageInfo"]?first!)?no_esc}
           </#if>
         </div>
       </div>
 
       <div class="card-footer">
         <div class="row">
-          <#if result.metaData["stencilsFacebookPageWebsite"]??>
+          <#if result.listMetadata?keys?seq_contains("stencilsFacebookPageWebsite")>
             <div class="col">
               <span class="fas fa-fw fa-globe text-muted"></span>
-              <a class="text-muted" href="tel:${result.metaData["stencilsFacebookPageWebsite"]!}">${result.metaData["stencilsFacebookPageWebsite"]!}</a>
+              <a class="text-muted" href="tel:${result.listMetadata["stencilsFacebookPageWebsite"]?first!}">${result.listMetadata["stencilsFacebookPageWebsite"]?first!}</a>
             </div>
           </#if>
-          <#if result.metaData["stencilsFacebookPagePhone"]??>
+          <#if result.listMetadata?keys?seq_contains("stencilsFacebookPagePhone")>
             <div class="col">
               <span class="fas fa-fw fa-phone text-muted"></span>
-              <a class="text-muted" href="tel:${result.metaData["stencilsFacebookPagePhone"]!}">${result.metaData["stencilsFacebookPagePhone"]!}</a>
+              <a class="text-muted" href="tel:${result.listMetadata["stencilsFacebookPagePhone"]?first!}">${result.listMetadata["stencilsFacebookPagePhone"]?first!}</a>
             </div>
           </#if>
         </div>

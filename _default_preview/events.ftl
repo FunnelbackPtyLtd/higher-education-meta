@@ -17,7 +17,7 @@
             </a>
           </h4>
           <div class="card-subtitle">
-            <span class="text-muted">${result.metaData["eventContact"]!}</span>
+            <span class="text-muted">${result.listMetadata["eventContact"]?first!}</span>
           </div>
         </div>
 
@@ -33,12 +33,12 @@
                 </div>
               </div>
 
-              <#if result.metaData["eventStartTime"]??>
+              <#if result.listMetadata?keys?seq_contains("eventStartTime")>
                 <div class="text-center">
                   <small>
-                    ${result.metaData["eventStartTime"]!}
-                    <#if result.metaData["eventEndTime"]??>
-                      - ${result.metaData["eventEndTime"]!}
+                    ${result.listMetadata["eventStartTime"]?first!}
+                    <#if result.listMetadata?keys?seq_contains("eventEndTime")>
+                      - ${result.listMetadata["eventEndTime"]?first!}
                     </#if>
                   </small>
                 </div>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="col-md-10">
-              <#if result.metaData["image"]!?has_content>
+              <#if result.listMetadata["image"]!?has_content>
                 <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">
               </#if>
 
@@ -62,29 +62,29 @@
         </div>
       </div>
 
-      <#if result.metaData["eventContactEmail"]?? || result.metaData["eventContactPhone"]?? || result.metaData["eventLocationUrl"]?? || result.metaData["eventLocation"]??>
+      <#if result.listMetadata?keys?filter(key -> ["eventContactEmail", "eventContactPhone", "eventLocationUrl", "eventLocation"]?seq_contains(key))?size gt 0>
       <div class="card-footer">
         <div class="row">
-          <#if result.metaData["eventContactEmail"]??>
+          <#if result.listMetadata?keys?seq_contains("eventContactEmail")>
             <div class="col">
               <span class="fas fa-fw fa-info text-muted"></span>
-              <a class="text-muted" href="mailto:${result.metaData["eventContactEmail"]!}">${result.metaData["eventContactEmail"]!}</a>
+              <a class="text-muted" href="mailto:${result.listMetadata["eventContactEmail"]?first!}">${result.listMetadata["eventContactEmail"]?first!}</a>
             </div>
           </#if>
-          <#if result.metaData["eventContactPhone"]??>
+          <#if result.listMetadata?keys?seq_contains("eventContactPhone")>
             <div class="col">
               <span class="fas fa-fw fa-phone text-muted"></span>
-              <a class="text-muted" href="tel:${result.metaData["eventContactPhone"]!?url}">${result.metaData["eventContactPhone"]!}</a>
+              <a class="text-muted" href="tel:${result.listMetadata["eventContactPhone"]?first!?url}">${result.listMetadata["eventContactPhone"]?first!}</a>
             </div>
           </#if>
         </div>
         <div class="row">
           <div class="col">
             <span class="fas fa-fw fa-map-marker-alt text-muted"></span>
-            <#if result.metaData["eventLocationUrl"]??>
-              <a class="text-muted" href="${result.metaData["eventLocationUrl"]}" target="_blank">${result.metaData["eventLocation"]!}</a>
+            <#if result.listMetadata?keys?seq_contains("eventLocationUrl")>
+              <a class="text-muted" href="${result.listMetadata["eventLocationUrl"]?first}" target="_blank">${result.listMetadata["eventLocation"]?first!}</a>
             <#else>
-              <span class="text-muted">${result.metaData["eventLocation"]!}</span>
+              <span class="text-muted">${result.listMetadata["eventLocation"]?first!}</span>
             </#if>
           </div>
         </div>
