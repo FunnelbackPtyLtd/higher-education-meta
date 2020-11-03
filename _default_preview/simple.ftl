@@ -13,7 +13,6 @@
 <#import "video.ftl" as video />
 <#import "facebook.ftl" as facebook />
 <#import "events.ftl" as events />
-<#import "instagram.ftl" as instagram />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +23,7 @@
   
   <link rel="stylesheet" href="/stencils/resources/he/v15.12/css/he.css">
 
-  <link rel="stylesheet" href="/stencils/resources/thirdparty/bootstrap/v4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
 
   <@client_includes.HTMLHeader />
@@ -51,13 +50,12 @@
 
   <@client_includes.ContentFooter />
 
-  <script src="/stencils/resources/thirdparty/jquery/v3.2.1/jquery-3.2.1.min.js"></script>
-  <script src="/stencils/resources/thirdparty/popper/v1.12.3/umd/popper.min.js"></script>
-  <script src="/stencils/resources/thirdparty/bootstrap/v4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   <script src="/stencils/resources/base/v15.24/js/base.js"></script>
 
   <script src="/stencils/resources/autocompletion/js/typeahead.bundle-0.11.1.min.js"></script>
-  <script src="/stencils/resources/autocompletion/js/handlebars.min-v4.0.5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
   <script src="/s/resources/${question.collection.id}/${question.profile}/js/typeahead.fb-2.6.js"></script>
 
   <@courses.AutoCompleteTemplate />
