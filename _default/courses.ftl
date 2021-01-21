@@ -66,7 +66,7 @@
 </#macro>
 
 <#macro CartTemplate>
-  <script id="cart-template-testclient~higher-education-courses" type="text/x-handlebar-template">
+  <script id="cart-template-higher-education-courses" type="text/x-handlebar-template">
     <div class="card search-result-course">
 
       <div class="card-header cart-item-trigger-parent">
@@ -114,9 +114,9 @@
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-courses" type="text/x-handlebar-template">
     <div>
-      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.metaData.courseSubject}}-{{extra.disp.metaData.courseNumber}}</small></h6>
+      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.listMetadata.courseSubject.[0]}}-{{extra.disp.listMetadata.courseNumber.[0]}}</small></h6>
       <div class="details">
-        <small>{{extra.disp.metaData.courseTerm}}</small>
+        <small>{{extra.disp.listMetadata.courseTerm.[0]}}</small>
       </div>
     </div>
   </script>

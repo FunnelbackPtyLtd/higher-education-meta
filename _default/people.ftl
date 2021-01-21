@@ -73,16 +73,16 @@
 <#macro AutoCompleteTemplate>
   <script id="auto-completion-people" type="text/x-handlebar-template">
     <div class="media">
-      {{#if extra.disp.metaData.image}}
-        <img class="d-flex mr-3 rounded-circle" src="{{extra.disp.metaData.image}}" alt="{{extra.disp.title}}" />
+      {{#if extra.disp.listMetadata.image.[0]}}
+        <img class="d-flex mr-3 rounded-circle" src="{{extra.disp.listMetadata.image.[0]}}" alt="{{extra.disp.title}}" />
       {{/if}}
       <div class="media-body">
-        <h6>{{extra.disp.metaData.peopleFirstName}} {{extra.disp.metaData.peopleLastName}}</h6>
-        <div>{{extra.disp.metaData.peoplePosition}}</div>
+        <h6>{{extra.disp.listMetadata.peopleFirstName.[0]}} {{extra.disp.listMetadata.peopleLastName.[0]}}</h6>
+        <div>{{extra.disp.listMetadata.peoplePosition.[0]}}</div>
         <div class="details text-muted">
-          {{#if extra.disp.metaData.peopleDepartment}}<div><small><span class="fas fa-fw fa-university text-muted" aria-hidden="true"></span> {{extra.disp.metaData.peopleDepartment}}</small></div>{{/if}}
-          {{#if extra.disp.metaData.peoplePhone}}<div><small><span class="fas fa-fw fa-phone text-muted" aria-hidden="true"></span> {{extra.disp.metaData.peoplePhone}}</small></div>{{/if}}
-          {{#if extra.disp.metaData.peopleEmail}}<div><small><span class="far fa-fw fa-envelope text-muted" aria-hidden="true"></span> {{extra.disp.metaData.peopleEmail}}</small></div>{{/if}}
+          {{#if extra.disp.listMetadata.peopleDepartment.[0]}}<div><small><span class="fas fa-fw fa-university text-muted" aria-hidden="true"></span> {{extra.disp.listMetadata.peopleDepartment.[0]}}</small></div>{{/if}}
+          {{#if extra.disp.listMetadata.peoplePhone.[0]}}<div><small><span class="fas fa-fw fa-phone text-muted" aria-hidden="true"></span> {{extra.disp.listMetadata.peoplePhone.[0]}}</small></div>{{/if}}
+          {{#if extra.disp.listMetadata.peopleEmail.[0]}}<div><small><span class="far fa-fw fa-envelope text-muted" aria-hidden="true"></span> {{extra.disp.listMetadata.peopleEmail.[0]}}</small></div>{{/if}}
         </div>
       </div>
     </div>
