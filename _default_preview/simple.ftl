@@ -37,13 +37,12 @@
 	These imports are required for the automatic template selection to work
 	The various namespaces (e.g. 'video', 'facebook') need to be on the main scope 
 -->
-<#import "services.ftl" as services />
-<#import "cemetery.ftl" as cemetery />
-<#import "roadworks.ftl" as roadworks />
-<#import "planning_applications.ftl" as planning_applications />
-<#import "twitter.ftl" as twitter />
-<#import "faqs.ftl" as faqs />
-<#import "rates.ftl" as rates />
+<#import "project.ftl" as project />
+<#import "courses.ftl" as courses />
+<#import "people.ftl" as people />
+<#import "video.ftl" as video />
+<#import "facebook.ftl" as facebook />
+<#import "events.ftl" as events />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,8 +109,8 @@
 	<script src="${GlobalResourcesPrefix}js/funnelback.autocompletion-2.6.0.js"></script>
 
 	<#-- Output the auto complete templates for concierge -->
-	<@faqs.AutoCompleteTemplate />
-	<@planning_applications.AutoCompleteTemplate />
+	<@courses.AutoCompleteTemplate />
+	<@people.AutoCompleteTemplate />
 		
 	<script>
 		window.addEventListener('DOMContentLoaded', function() {			
