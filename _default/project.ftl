@@ -1,243 +1,130 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "base.ftl" as base />
-<#import "tabs.ftl" as tabs />
-<#import "facets.ftl" as facets />
-<#import "history_cart.ftl" as history_cart />
-
-<#import "twitter.ftl" as twitter />
+<#-- 
+    This file contains the project specific implementation for individual sections
+    of the Search Engine Results Page (SERP). Sections include things such as 
+    search form, results section, facets and tabs. More often than not,
+    this will involve calling macros from other libraries with specific parameters. 
+-->
 
 <#macro SearchForm>
-  <div class="jumbotron jumbotron-fluid mb-0">
-    <div class="container">
-    <h2 class="text-center mb-4">Search Funnelback University</h2>
-      <@base.SearchForm>
-        <div class="row">
-          <div class="col-md-8 offset-md-2">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text border-0 pl-0"><span class="fas fa-search"></span></span>
-              </div>
-              <input required name="query" id="query" title="Search query" type="search" autofocus value="${question.query!}" accesskey="q" class="form-control">
-              <div class="input-group-text border-0 pr-0">
-                <button type="submit" class="btn btn-primary px-4">Search</button>
-              </div>
+    <!-- project.SearchForm -->
+    <section class="module-search js-module-search content-wrapper module-search--bg" style="background-image: url('/s/resources/${question.collection.id}/${question.profile}/css/mysource_files/bg-search.png');">
+        <h1 class="sr-only">Search module</h1>
+        <@base.SearchForm>
+            <div class="module-search__group">
+                <label id="fb-query"for="query" class="sr-only">Search</label>                
+                <input required 
+                    name="query" 
+                    id="query" 
+                    type="Search query" 
+                    autofocus 
+                    class="module-search__query tt-input" 
+                    autocomplete="off" 
+                    placeholder="Start your search here…" 
+                    value="${question.query!}" 
+                    spellcheck="false" 
+                    dir="auto"
+                    aria-labelledby="fb-query"
+                    aria-required="true">
+
+                <button type="submit" class="module-search__btn"><span class="sr-only">Search</span></button>                
+
+                <@history_cart.Controls />
             </div>
-
-            <#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-              <ul class="float-right list-inline">
-                <li class="list-inline-item flb-cart-count"></li>
-                <li class="list-inline-item">
-                  <button type="button" tabindex="0" class="btn-link session-history-toggle">
-                    <span class="fa fa-history"></span> History
-                  </button>
-                </li>
-              </ul>
-            </#if>
-
-            <small class="float-left pt-1">Search powered by Funnelback</small>
-          </div>
-        </div>
-      </@base.SearchForm>
-    </div>
-  </div>
+        </@base.SearchForm>
+    </section>
 </#macro>
 
 <#macro Tabs>
-  <nav class="tabs container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="sr-only">Tabs</h2>
-        <@tabs.Tabs />
-      </div>
-    </div>
-  </nav>
+    <@tabs.Tabs tabs=["Tabs"] />
 </#macro>
 
+<#-- Outputs the search result section -->
 <#macro Results>
-  <section class="search-results pt-3" id="search-results">
-    <div class="container" id="search-results-content">
-      <div class="row">
+    <!-- project.Results -->
+    <div>
+        <section id="search-results" class="search-results">
+            <@facets.FacetBreadBox />
 
-        <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${response.customData.stencilsTabsSelectedTab}")!>
-        <#local leftCurators = (response.curator.exhibits)![]?filter(exhibit -> exhibit.additionalProperties["position"]! == "left") />
-        <#local hasLeftContent = tabFacets?has_content || leftCurators?has_content>
-        <div class="col-md-<#if hasLeftContent>9<#else>12</#if>">
-
-          <@base.BestBets />
-          <@base.CuratorExhibits position="center" />
-
-          <#if (response.resultPacket.resultsSummary.totalMatching)! != 0>
-            <@base.LimitDropdown />
-            <@base.SortDropdown />
-          </#if>
-
-          <@facets.SelectedFacetValues />
-
-          <#if (response.resultPacket.spell)??>
-            <div class="row search-spelling mb-3">
-              <div class="col-md-12">
-                <@base.Spelling />
-              </div>
-            </div>
-          </#if>
-
-          <#if (response.resultPacket.QSups)!?size gt 0>
-            <div class="row search-blending">
-              <div class="col-md-12">
-                <@base.Blending />
-              </div>
-            </div>
-          </#if>
-
-          <div class="row search-counts text-muted mb-3">
-            <div class="col-md-12">
-              <@base.Counts />
-            </div>
-          </div>
-
-          <@base.NoResults />
-          <@base.ResultList nestedRank=3>
-            <@fb.ExtraResults name="twitter">
-              <li><h4 class="sr-only">Tweet results</h4></li>
-              <li class="search-results-twitter">
-                <div class="row mb-3">
-                  <#list (response.resultPacket.results)![] as result>
-                    <#-- Limit to only 3 Twitter cards -->
-                    <#if result?index lt 3>
-                      <div class="col-md-4">
-                        <@twitter.TwitterCard result=result />
-                      </div>
-                    </#if>
-                  </#list>
-                </div>
-              </li>
-            </@fb.ExtraResults>
-          </@base.ResultList>
-
-          <@base.Paging />
-        </div>
-
-        <#if hasLeftContent>
-          <div class="col-md-3 search-facets order-md-first order-lg-first order-xl-first mb-3">
-
-            <@base.CuratorExhibits position="left" />
-
-            <#local hasFacetValues = response.facets?filter(facet -> facet.allValues?has_content && facet.name != "Tabs")?has_content>
-            <#if tabFacets?has_content && hasFacetValues>
-              <div class="card search-refine">
-                <div class="card-header bg-dark text-white">
-                  <h3 class="mb-0">Refine your results</h3>
-                </div>
-              </div>
-            </#if>
+            <@base.Blending />
             
-            <@facets.Facets facets=tabFacets />
-          </div>
-        </#if>
-      </div>
+            <@browse_mode.BrowseByFilter />
 
-      <div class="row mb-3">
-        <div class="col-md-12">
-          <@base.ContextualNavigation />
-        </div>
-      </div>
+            <#-- 
+                Only display the search tools such as sorting when there
+                are at least 1 result 
+            -->
+            <#if ((response.resultPacket.resultsSummary.totalMatching)!0) != 0>
+                <@base.SearchTools />            
+            </#if> 
+            
+            <@curator.BestBets />                
+            <@curator.Curator position="center" sectionCss="module-curator--no-bg" />      
+
+            <@base.NoResults />
+
+            <@base.ResultList nestedRank=3>            
+                <@fb.ExtraResults name="twitter">
+                    <li><h4 class="sr-only">Tweet results</h4></li>
+                    <li class="search-results-twitter">
+                        <div class="row mb-3">
+                            <#list (response.resultPacket.results)![] as result>
+                                <#-- Limit to only 3 Twitter cards -->
+                                <#if result?index lt 3>
+                                    <div class="col-md-4">
+                                        <@twitter.TwitterCard result=result />
+                                    </div>
+                                </#if>
+                            </#list>
+                        </div>
+                    </li>
+                </@fb.ExtraResults>
+            </@base.ResultList>
+
+            <@curator.Curator position="bottom" sectionCss="module-curator--no-bg" />
+
+            <@base.Paging />
+
+            <@contextual_navigation.ContextualNavigation />
+
+        </section>
     </div>
-  </section>
 </#macro>
 
-<#macro Result result>
-  <li class="search-result search-result-default mb-3">
-    <div class="card">
+<#-- 
+    Display the results with the ability to browse 
+    We want different markup here compared to the standard results.
+    e.g. Additional tab at the top
+-->
+<#-- -->
 
-      <div class="card-header">
-        <#switch result.fileType>
-          <#case "pdf">
-            <i class="far fa-file-pdf float-right text-muted" aria-hidden="true"></i>
-            <#break>
-          <#case "doc">
-          <#case "docx">
-          <#case "rtf">
-            <i class="far fa-file-word float-right text-muted" aria-hidden="true"></i>
-            <#break>
-          <#case "xls">
-          <#case "xlsx">
-            <i class="far fa-file-excel float-right text-muted" aria-hidden="true"></i>
-            <#break>
-          <#case "ppt">
-          <#case "pptx">
-            <i class="far fa-file-powerpoint float-right text-muted" aria-hidden="true"></i>
-            <#break>
-        </#switch>
 
-        <h4>
-          <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
-            <@s.boldicize><@s.Truncate length=70>${result.title}</@s.Truncate></@s.boldicize>
-          </a>
-        </h4>
-        <div class="card-subtitle text-muted">
-          <cite><@s.cut cut="http://"><@s.boldicize>${result.displayUrl}</@s.boldicize></@s.cut></cite>
-          <@history_cart.LastVisitedLink result=result/>
-        </div>
-      </div>
+<#-- Display the facets based on the configurations -->
+<#macro SideNavigation>
+    <!-- project.SideNavigation -->
+    <div>
+        
+        <@browse_mode.BrowseModeToggle />
 
-      <div class="card-body">
-        <div class="card-text">
-          <#if result.listMetadata["image"]!?has_content>
-            <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]}" />
-          </#if>
+        <#-- Get facets for the current selected tab -->
+        <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${(response.customData.stencilsTabsSelectedTab)!}")!>
+        
+        <#-- Display facets -->
+        <section class="module-filter module-filter--dark js-module-filter">
+            <@facets.HasFacets facets=tabFacets>
+                <div class="module-filter__wrapper">
+                    
+                    <h2 class="module-filter__title">Filter by</h2>
+                    <div class="module-filter__wrapper-mobile">
+                        <@facets.Facets tabFacets />
+                    </div>
+                </div>
+            </@facets.HasFacets>
+        </section>
 
-          <#if result.summary??>
-            <#if result.date??><small class="text-muted">${result.date?date?string("d MMM yyyy")}:</small></#if>
-            <@s.boldicize>${result.summary?no_esc}</@s.boldicize>
-          </#if>
-        </div>
-
-        <#if result.listMetadata["author"]!?has_content || result.listMetadata["publisher"]!?has_content>
-          <div class="card-text search-metadata mt-1 text-muted">
-            <#if result.listMetadata["author"]!?has_content>
-              <div>
-                <strong>By:</strong> 
-                <span>${result.listMetadata["author"]?join(", ")}</span>
-              </div>
-            </#if>
-            <#if result.listMetadata["publisher"]!?has_content>
-              <div>
-                <strong>Publisher:</strong> 
-                <span>${result.listMetadata["publisher"]?join(", ")}</span>
-              </div>
-            </#if>
-          </div>
-        </#if>
-      </div>
+        <#-- Curator - Left hand side -->
+        <section>
+            <@curator.Curator position="left" />  
+        </section>
     </div>
-  </li>
 </#macro>
-
-<#macro AutoComplete>
-  <#if (question.getCurrentProfileConfig().get("stencils.auto-completion.datasets")!"")?has_content>
-    jQuery('#query').qc({
-        program: '<@s.cfg>auto-completion.program</@s.cfg>',
-        alpha: '<@s.cfg>auto-completion.alpha</@s.cfg>',
-        show: '<@s.cfg>auto-completion.show</@s.cfg>',
-        sort: '<@s.cfg>auto-completion.sort</@s.cfg>',
-        length: '<@s.cfg>auto-completion.length</@s.cfg>',
-        datasets: {
-          <#list question.getCurrentProfileConfig().get("stencils.auto-completion.datasets")!?split(",") as dataset>
-            ${dataset}: {
-                name: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.name")!}',
-                collection: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.collection")!}',
-                profile: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.profile")!question.profile}',
-                show: '${question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.show")!"10"}',
-                <#if dataset != "organic">
-                template: {
-                  suggestion: document.querySelector('#auto-completion-${dataset}').text
-                },
-                </#if>
-            },
-          </#list>
-        }
-    });
-  </#if>
-</#macro>
-
-<#-- vim: set expandtab ts=2 sw=2 sts=2 :-->
