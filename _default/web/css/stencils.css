@@ -5,7 +5,6 @@
 /* Design overrides made by the vertical products team - Avoid changing these if possible */
 
 /* Colour overrides to make the contrast WCAG 2.1 compliant */
-
 .fb-container .highlight,
 .fb-container cite,
 .fb-container .btn--link,
@@ -19,10 +18,16 @@
     background-color: var(--red);
 }
 
+/* Helper classes */
+
+.fb-container .wrap {
+    white-space: normal !important;    
+}
+
 /* Increased the font on large viewports */
 @media only screen and (min-width: 1025px) {
     html {
-        font-size: 0.875rem;
+       
     }
 }
 
@@ -510,4 +515,29 @@
 .fb-container .search-results__group-see-more-label {
     text-align: right;
     padding-right: 2.1875rem;
+}
+
+/* Result presentation */
+.fb-container .contact__item {
+    display: inline;
+    white-space: nowrap;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+
+}
+
+@media only screen and (min-width: 1025px) {
+    .fb-container .contact__item {
+        margin-right: 3.125rem;
+    }
+}
+
+/* 
+    Adjust the font size of the description element in search results 
+    so that it is larger than 10px.
+*/
+@media only screen and (min-width: 1025px) and  (max-width: 1920px) {
+    .fb-container .search-results__desc {
+        font-size: 1.0375rem;
+    }
 }

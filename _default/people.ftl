@@ -1,5 +1,4 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "base.ftl" as base />
 
 <#-- 
     Macro decides how each result should be presented. 
@@ -28,7 +27,7 @@
     @param result An individual result fron the data model
 -->
 <#macro ListView result>
-    <@GenericView result=result cardClass="fb-card--list" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
@@ -37,20 +36,20 @@
     @param result An individual result fron the data model
 -->
 <#macro CardView result>
-    <@GenericView result=result cardClass="fb-card--fixed" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
     A generic view used to drive both the the list and card view
     @param result An individual result fron the data model
 -->
-<#macro GenericView result cardClass="fb-card--fixed">
-    <!-- planning_applications.GenericView -->
+<#macro GenericView result>
+    <!-- people.GenericView -->
     <article class="search-results__item search-results__item--people" data-fb-result="${result.indexUrl}">
         <figure class="search-results__bg">
             <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="https://jobs.ama.org${result.listMetadata["image"]?first}"> 
-            <#else>
+                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}"> 
+            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
                 <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.listMetadata["planningApplicationName"]?first)!''?url}"> 
             </#if>
         </figure>
@@ -59,16 +58,22 @@
                 <a href="${result.clickTrackingUrl!}" title="${result.liveUrl!}" class="search-results__link">
                     <@s.boldicize>
                         <@s.Truncate length=90>
-                            ${(result.listMetadata["planningApplicationName"]?first)!}
+                            ${(result.listMetadata["peopleFirstName"]?first)!} ${(result.listMetadata["peopleLastName"]?first)!}
                         </@s.Truncate>
                     </@s.boldicize>
                 </a>
             </h3>
             
             <#-- Subtitle -->
-            <span class="search-results__sub-title">
-                ${(result.listMetadata["planningWardName"]?first)!}                
-            </span>
+            <#if (result.listMetadata["peoplePosition"]?first)!?has_content>
+                <span class="search-results__sub-title">
+                    ${(result.listMetadata["peoplePosition"]?first)!}
+
+                    <#if (result.listMetadata["peoplePosition"]?first)!?has_content>            
+                        - ${(result.listMetadata["peopleDepartment"]?first)!}                
+                    </#if>
+                </span>
+            </#if>
             
             <#-- Summary -->
             <p class="search-results__desc">
@@ -76,39 +81,41 @@
                     ${result.summary!?no_esc}
                 </@s.boldicize>
             </p>
-
+            
+            <#--  Insert Tags here -->
+            <#--
             <section class="tags">
                 <ul class="tags__list">
                     <li class="tags__item">
-                        ${(result.listMetadata["planningSystemStatus"]?first)!}
-                    </li>
-                    <li class="tags__item">
-                        ${(result.listMetadata["planningDecisionType"]?first)!}
+                        
                     </li>
                 </ul>
-            </section>
-
-            <p>
-                <a href="#" class="btn--link">VIEW STATUS</a> 
-            </p>
+            </section>  
+            -->
 
             <@history_cart.LastVisitedLink result=result/>
 
             <div class="search-results__bottom">
                 <section class="contact js-contact">
                     <ul class="contact__list">                        
-                        <#if (result.listMetadata["planningRegisteredDate"]?first)!?has_content>
+                        <#if (result.listMetadata["peopleEmail"]?first)!?has_content>
                            <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Registered date"></span>
-                                ${(result.listMetadata["planningRegisteredDate"]?first)!}
+                                <span class="search-results__icon--red far fa-envelope" aria-label="Email"></span>
+                                ${(result.listMetadata["peopleEmail"]?first)!}
                             </li>
                         </#if>                        
-                        
-                        <#if (result.listMetadata["planningDevelopeAddress"]?first)!?has_content>
-                            <li class="contact__item contact__item--icon contact__item--icon-location">
-                                ${(result.listMetadata["planningDevelopeAddress"]?first)!}
+                        <#if (result.listMetadata["peoplePhone"]?first)!?has_content>
+                            <li class="contact__item">
+                                <span class="search-results__icon--red fas fa-phone" aria-label="Phone"></span>
+                                ${(result.listMetadata["peoplePhone"]?first)!}
                             </li>
                         </#if>                        
+                        <#if (result.listMetadata["peopleLocation"]?first)!?has_content>
+                           <li class="contact__item">
+                                <span class="search-results__icon--red fas fa-map-marker-alt" aria-label="Location"></span>
+                                ${(result.listMetadata["peopleLocation"]?first)!}
+                            </li>
+                        </#if>                                                
                     </ul>
                 </section>
             </div>            
@@ -122,28 +129,32 @@
     in concierge.
 --> 
 <#macro AutoCompleteTemplate>
-    <!-- planning_applications.AutoCompleteTemplate -->
-    <script id="auto-completion-planning_applications" type="text/x-handlebars-template">
+    <!-- people.AutoCompleteTemplate -->
+    <script id="auto-completion-people" type="text/x-handlebars-template">
         <div class="fb-auto-complete--non-organic">
             <h6>
-                {{extra.disp.metaData.planningApplicationName}}
+                {{extra.disp.metaData.peopleFirstName}}
+                {{extra.disp.metaData.peopleLastName}}
             </h6>
             <div class="details">
-                {{#if extra.disp.metaData.planningWardName}}
-                    <div class="text-capitalize">{{extra.disp.metaData.planningWardName}}</div>
-                {{/if}}
-
-                {{#if extra.disp.metaData.planningDevelopeAddress}}
-                    <div class="fb-auto-complete__body__metadata text-muted">
-                        <span class="fas fa-map-marker-alt text-muted" aria-hidden="true"></span> 
-                        {{extra.disp.metaData.planningDevelopeAddress}}
+                {{#if extra.disp.metaData.peopleDepartment}}
+                    <div class="fb-auto-complete__body__metadata">
+                        <span class="far fa-building" aria-hidden="true" aria-label="Department" title="Department"></span> 
+                        {{extra.disp.metaData.peopleDepartment}}
                     </div>
                 {{/if}}
 
-                {{#if extra.disp.metaData.planningRegisteredDate}}
-                    <div class="fb-auto-complete__body__metadata text-muted">
-                        <span class="fas fa-calendar-alt text-muted" aria-hidden="true"></span> 
-                        Registered on {{extra.disp.metaData.planningRegisteredDate}}
+                {{#if extra.disp.metaData.peoplePhone}}
+                    <div class="fb-auto-complete__body__metadata">
+                        <span class="fas fa-map-marker-alt" aria-hidden="true" aria-label="Phone" title="Phone"></span> 
+                        {{extra.disp.metaData.peoplePhone}}
+                    </div>
+                {{/if}}
+
+                {{#if extra.disp.metaData.peopleEmail}}
+                    <div class="fb-auto-complete__body__metadata">
+                        <span class="far fa-envelope" aria-hidden="true" aria-label="Email" title="DepartmEmailent"></span> 
+                        {{extra.disp.metaData.peopleEmail}}
                     </div>
                 {{/if}}
             </div>

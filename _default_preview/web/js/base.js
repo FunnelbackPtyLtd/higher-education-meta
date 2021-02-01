@@ -145,7 +145,6 @@ if (!Element.prototype.closest) {
     window.Funnelback.Handlebars = Handlebars.create()
     However, the autocomplete code code used by the product
     relies on the global Handlebars instance. 
-
 */
 if(Handlebars) {
     Handlebars.registerHelper({

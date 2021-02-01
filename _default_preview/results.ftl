@@ -32,7 +32,7 @@
     @param result An individual result fron the data model
 -->
 <#macro ListView result>
-    <@GenericView result=result cardClass="fb-card--list" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
@@ -41,28 +41,25 @@
     @param result An individual result fron the data model
 -->
 <#macro CardView result>
-    <@GenericView result=result cardClass="fb-card--fixed" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
     A generic view used to drive both the the list and card view
     @param result An individual result fron the data model
 -->
-<#macro GenericView result cardClass="fb-card--fixed">
+<#macro GenericView result>
     <!-- results.GenericView -->
     <article class="search-results__item search-results__item--default" data-fb-result="${(result.indexUrl)!}">
-            <#if (result.listMetadata["image"]?first)!?has_content>
+        <#if (result.listMetadata["image"]?first)!?has_content>
             <figure class="search-results__bg">
                 <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
             </figure>  
-            <#-- Removing the placeholder image for Local Government as it causes friction during presentations -->
-            <#--  
-            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
-                <figure class="search-results__bg">
-                    <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
-                </figure>
-            -->
-            </#if>
+        <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+            <figure class="search-results__bg">
+                <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
+            </figure>
+        </#if>
         <div class="search-results__content">
             <#if (result.title)!?has_content>
                 <h4 class="search-results__title">
@@ -243,9 +240,10 @@
     </section>    
 </#macro>
 
+<#-- Default template for items that have been added to the cart -->
 <#macro CartTemplate>
     <!-- results.CartTemplate -->
-    <script id="cart-template-local-government-web" type="text/x-handlebars-template">
+    <script id="cart-template-default" type="text/x-handlebars-template">
         <article class="search-results__item search-results__item--default">
             <figure class="search-results__bg">
                 {{#if metaData.image}}  
@@ -315,5 +313,4 @@
             </div>
         </article>
     </script>
-  
   </#macro>

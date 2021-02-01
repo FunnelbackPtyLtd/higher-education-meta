@@ -115,7 +115,6 @@
 	<script>
 		window.addEventListener('DOMContentLoaded', function() {			
 			setupDeferredImages();
-			setupFacetLessMoreButtons(${question.collection.configuration.value("stencils.faceted_navigation.max_displayed_categories", "8")}, '.fb-sidebar__nav');
 			<@auto_complete.Configuration />				
 			
 			// Make the history button accessible via the keyboard for WCAG 2.1
@@ -136,12 +135,18 @@
 	-->
 	<#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
 		<#-- Specifies how the cart is to be presented -->
+		<#-- Note: If you plan to change how items in the cart
+			should look, please ensure that the id of the cart 
+			template is updated so that it matches the collection. 
+		-->
+		<@courses.CartTemplate />
+
+		<#-- Specifies the presentation of a cart item if a custom one is not specified -->
 		<@results.CartTemplate />
 		
 		<#-- Specifies how each cart item should be presented -->
 		<@history_cart.CartTemplate />
-		<#-- Specifies the presentation of a cart item if a custom one is not specified -->
-		<@history_cart.CartItemTemplate />
+		
 
 		<script nomodule src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 		
