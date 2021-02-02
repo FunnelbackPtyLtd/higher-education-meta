@@ -53,7 +53,7 @@
         <a href="${result.clickTrackingUrl!}">
         <figure class="search-results__bg">
             <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}">   -->
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}">   -->
             <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
                 <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/collection/73776582/160x160"> 
             </#if>   
@@ -61,7 +61,7 @@
         </a>
         <div class="search-results__content">
             <#if (result.title)!?has_content>
-                <h4 class="search-results__title">
+                <h3 class="search-results__title">
                     <#--  <span class="fas fa-briefcase text-muted pull-right small mr-2" title="Job"></span>  -->
                     <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="search-results__link">
                         <@s.boldicize>
@@ -70,7 +70,17 @@
                             </@s.Truncate>
                         </@s.boldicize>
                     </a>
-                </h4>
+                    <#-- 
+                        Adds a control so that users can add this to the cart
+                        Note: Ensure that you review the cart templates if
+                        you enable this feature.
+                    -->
+                    <#--  
+                    <span class="enable-cart-on-result float-right"
+                        aria-label="Add result to the shortlist">
+                    </span>  
+                    -->  
+                </h3>
             </#if>
             
             <#-- Pretty version of the url of the document -->
@@ -129,7 +139,7 @@
                         </#if>
 
                         <li class="contact__item wrap">
-                            ${result.date?date?string.short!} - Uploaded by ${result.metaData["videoAuthor"]!"Unknown"}
+                            ${(result.date?date?string.short)!} - Uploaded by ${(result.metaData["videoAuthor"])!"Unknown"}
                         </li>
 
                         <#-- Uncomment to show likes and dislikes -->

@@ -43,6 +43,7 @@
 <#import "video.ftl" as video />
 <#import "facebook.ftl" as facebook />
 <#import "events.ftl" as events />
+<#import "twitter.ftl" as twitter />
 
 <!DOCTYPE html>
 <html lang="en">

@@ -71,6 +71,16 @@
                         </@s.Truncate>
                     </@s.boldicize>
                 </a>
+                <#-- 
+                    Adds a control so that users can add this to the cart
+                    Note: Ensure that you review the cart templates if
+                    you enable this feature.
+                -->
+                <#--  
+                <span class="enable-cart-on-result float-right"
+                    aria-label="Add result to the shortlist">
+                </span>  
+                -->                
             </h3>
             
             <#-- Subtitle -->
@@ -145,7 +155,6 @@
         </div>
     </article>
 </#macro>
-
 
 <#-- 
     Handlebars template used to display the current object

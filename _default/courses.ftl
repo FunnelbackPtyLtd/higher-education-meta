@@ -48,7 +48,7 @@
     <article class="search-results__item search-results__item--people" data-fb-result="${result.indexUrl}">
         <figure class="search-results__bg">
             <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
+                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
             <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
                 <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}"> 
             </#if>
@@ -191,14 +191,14 @@
             </figure>
             <div class="search-results__content">
                 {{#if title}} 
-                    <h4 class="search-results__title">
+                    <h3 class="search-results__title">
                         <a href="{{indexUrl}}" title="{{title}}" class="search-results__link">
                             {{#truncate 255}}
                                 {{title}}  
                             {{/truncate}}
                         </a>
                         <span class="enable-cart-on-result"></span>
-                    </h4>
+                    </h3>
                 {{/if}}
                 
                 <#-- Pretty version of the url of the document -->

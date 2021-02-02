@@ -191,14 +191,14 @@
             </figure>
             <div class="search-results__content">
                 {{#if title}} 
-                    <h4 class="search-results__title">
+                    <h3 class="search-results__title">
                         <a href="{{indexUrl}}" title="{{title}}" class="search-results__link">
                             {{#truncate 255}}
                                 {{title}}  
                             {{/truncate}}
                         </a>
                         <span class="enable-cart-on-result"></span>
-                    </h4>
+                    </h3>
                 {{/if}}
                 
                 <#-- Pretty version of the url of the document -->

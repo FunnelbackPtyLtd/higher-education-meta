@@ -541,3 +541,35 @@
         font-size: 1.0375rem;
     }
 }
+
+/* Facebook results */
+
+.fb-container .search-results__item__facebook-post h3 {
+    display: flex;
+}
+
+.fb-container .search-results__item__facebook-post .facebook-post__profile-thumbnail {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 10px;
+    overflow: hidden;
+    flex: 0 0 3.75rem;
+    margin: 0 0.75rem 0.75rem 0;
+}
+
+.fb-container .search-results__item__facebook-post .facebook-post__profile-thumbnail img {
+    width: 3.75rem;
+    height: 3.75rem;
+    object-fit: cover;
+ }
+
+.fb-container .search-results__item__facebook-post .facebook-post__post-link img {
+    height: 16.25rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.fb-container .search-results__list--list-view .search-results__content::after {
+    width: 0px;    
+}

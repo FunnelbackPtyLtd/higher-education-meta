@@ -62,7 +62,7 @@
         </#if>
         <div class="search-results__content">
             <#if (result.title)!?has_content>
-                <h4 class="search-results__title">
+                <h3 class="search-results__title">
                     <#-- Show an icon to represented the file type of the current document -->
                     <#switch result.fileType>
                         <#case "pdf">
@@ -83,7 +83,6 @@
                             <#break>
                     </#switch>
 
-                    <#--  <span class="fas fa-briefcase text-muted pull-right small mr-2" title="Job"></span>  -->
                     <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="search-results__link">
                         <@s.boldicize>
                             <@s.Truncate length=90>
@@ -92,20 +91,25 @@
                         </@s.boldicize>
                     </a>
 
-                    <span class="enable-cart-on-result float-right" 
+                    <#-- 
+                        Adds a control so that users can add this to the cart
+                        Note: Ensure that you review the cart templates if
+                        you enable this feature.
+                    -->
+                    <#--  
+                    <span class="enable-cart-on-result float-right"
                         aria-label="Add result to the shortlist">
-                    </span>
-                </h4>
+                    </span>  
+                    -->
+                </h3>
             </#if>
             
             <#-- Pretty version of the url of the document -->
             <cite>
                 <@s.Truncate length=90>
                     ${(result.displayUrl)!}
-                </@s.Truncate>
-                
+                </@s.Truncate>                
             </cite>
-
             
             <#-- Summary -->
             <p class="search-results__desc">
@@ -124,21 +128,31 @@
                     <li class="tags__item">
                         Lorem ipsum
                     </li>
-                    <li class="tags__item">
-                        Lorem
-                    </li>
-                    <li class="tags__item">
-                        Lorem ipsum
-                    </li>
-                    <li class="tags__item">
-                        Lorem
-                    </li>
                 </ul>
             </section>  
             -->
 
             <#-- Display the time which this result has last been visited by the user -->
-            <@history_cart.LastVisitedLink result=result/>            
+            <@history_cart.LastVisitedLink result=result/> 
+
+            <#-- Bottom container -->
+            <#--  
+            <div class="search-results__bottom">
+                <section class="contact js-contact">
+                    <ul class="contact__list">                        
+                        <li class="contact__item">
+                            <span class="search-results__icon--red fas far fa-clock" aria-label="" title=""></span> 
+                            Lorem ipsum
+                        </li>
+                        <li class="contact__item ">
+                            <span class="search-results__icon--red fas far fa-clock" aria-label="" title=""></span> 
+                            Lorem ipsum
+                        </li>
+                    </ul>
+                </section>
+            </div>                                  
+            -->
+
         </div>
     </article>
 </#macro>
@@ -170,65 +184,28 @@
                     <h3 class="quick-view__details-title">Program details</h3>
 
                     <div class="quick-view__details-content">
+                        <#--  Introduction  -->
                         <#--  
-                            <p>
-                                Insert more information
-                            </p>
-                            <p>
-                                Insert even more information
-                            </p>  
+                        <p>
+                            Insert more information
+                        </p>
+                        <p>
+                            Insert even more information
+                        </p>  
                         -->
-                        <#--  <dl>
+                        <#-- Details panel -->
+                        <#--                          
+                        <dl>
                             <#if (result.listMetadata["programCredentialType"]?first)!?has_content>
                                 <dt>Credential type:</dt>
                                 <dd>${(result.listMetadata["programCredentialType"]?first)!} </dd>
                             </#if>                    
-                            <#if ((result.listMetadata["courseCredit"]?first)!"0") != "0">
-                                <dt>Credits:</dt>
-                                <dd>${(result.listMetadata["courseCredit"]?first)!} credits</dd>
-                            </#if>                    
-                            <#if (result.listMetadata["programCampus"]?first)!?has_content>
-                                <dt>Campus:</dt>
-                                <dd>${(result.listMetadata["programCampus"]?first)!} </dd>
-                            </#if>
-                            <#if (result.listMetadata["stencilsDeliveryMethod"]?first)!?has_content >
-                                <dt>Delivery method:</dt>
-                                <dd>${(result.listMetadata["stencilsDeliveryMethod"]?first)!} </dd>
-                            </#if>
-                            <#if (result.listMetadata["programLengthYears"]?first)!?has_content &&
-                                ((result.listMetadata["programLengthYears"]?first)!"0") != "0">
-                                <dt>Duration:</dt>
-                                <dd>${(result.listMetadata["programLengthYears"]?first)!} years</dd>
-                            </#if>                                                                              
-                            <#if (result.listMetadata["programFaculty"]?first)!?has_content >
-                                <dt>Faculty:</dt>
-                                <dd>${(result.listMetadata["programFaculty"]?first)!} </dd>
-                            </#if>                                                  
-                            <#if (result.listMetadata["stencilsDepartment"]?first)!?has_content >
-                                <dt>Department:</dt>
-                                <dd>${(result.listMetadata["stencilsDepartment"]?first)!} </dd>
-                            </#if>                                                  
-                            <#if (result.listMetadata["programStatus"]?first)!?has_content >
-                                <dt>Status:</dt>
-                                <dd>${(result.listMetadata["programStatus"]?first)!} </dd>
-                            </#if>                                                  
-                            <#if (result.listMetadata["courseCode"]?first)!?has_content >
-                                <dt>Code:</dt>
-                                <dd>${(result.listMetadata["courseCode"]?first)!} </dd>
-                            </#if>
-                            <#if (result.listMetadata["courseNumber"]?first)!?has_content >
-                                <dt>Number:</dt>
-                                <dd>${(result.listMetadata["courseNumber"]?join(", "))!} </dd>
-                            </#if>
-                            <#if (result.listMetadata["programLength"]?first)!?has_content >
-                                <dt>Length:</dt>
-                                <dd>${(result.listMetadata["programLength"]?first)!} </dd>
-                            </#if>
                             <#if (result.listMetadata["stencilsTermCodes"]?first)!?has_content >
                                 <dt>Term codes:</dt>
                                 <dd>${(result.listMetadata["stencilsTermCodes"]?join(", "))!} </dd>
                             </#if>             
-                        </dl>  -->
+                        </dl>  
+                        -->
                         <a href="${result.clickTrackingUrl!}" class="btn" data-target="#${base.getCssID(result.liveUrl)}">
                             Visit page
                         </a>                    
