@@ -50,7 +50,7 @@
     <article class="search-results__item search-results__item--people" data-fb-result="${result.indexUrl}">
         <figure class="search-results__bg">
             <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="https://jobs.ama.org${result.listMetadata["image"]?first}"> 
+                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="https://jobs.ama.org${result.listMetadata["image"]?first}"> 
             <#else>
                 <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.listMetadata["planningApplicationName"]?first)!''?url}"> 
             </#if>
