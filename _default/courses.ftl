@@ -114,7 +114,7 @@
             </section>
 
             <p>
-                <a href="href="${result.clickTrackingUrl!}" class="btn--link">VIEW MORE</a> 
+                <a href="${result.clickTrackingUrl!}" class="btn--link">VIEW MORE</a> 
             </p>
 
             <@history_cart.LastVisitedLink result=result/>

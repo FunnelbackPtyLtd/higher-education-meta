@@ -48,13 +48,13 @@
     <article class="search-results__item search-results__item--event" data-fb-result="${result.indexUrl}">
         <figure class="search-results__bg">
             <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
+                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
             <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
                 <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.listMetadata["planningApplicationName"]?first)!''?url}"> 
             </#if>
         </figure>
 
-        <time class="search-results__time" datetime="08-27">
+        <time class="search-results__time" datetime="${(result.date?string("mm"))!}-${(result.date?string("dd")!)!}">
             <span class="search-results__month">                  
                 ${(result.date?string("MMM"))!}
             </span>
@@ -114,28 +114,29 @@
                         <#if (result.listMetadata["eventStartTime"]?first)!?has_content &&
                             (result.listMetadata["eventEndTime"]?first)!?has_content>
                             <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Event start and end time"></span>
+                                <span class="search-results__icon--red far fa-clock" title="Event start and end time" aria-label="Event start and end time"></span>
                                 ${(result.listMetadata["eventStartTime"]?first)!} - ${(result.listMetadata["eventEndTime"]?first)!}
                             </li>
                         <#else>
                             <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Event start and end time"></span>
+                                <span class="search-results__icon--red far fa-clock" title="Event start and end time" aria-label="Event start and end time"></span>
                                 Not available
                             </li>
                         </#if>
-
                         <#if (result.listMetadata["eventContactEmail"]?first)!?has_content>
                            <li class="contact__item">
-                                <span class="search-results__icon--red far fa-envelope" title="Event e-mail"></span>
+                                <span class="search-results__icon--red far fa-envelope" title="Event e-mail" aria-label="Event e-mail"></span>
                                 <a class="highlight" href="mailto:${(result.listMetadata["eventContactEmail"]?first)!}">
                                     ${(result.listMetadata["eventContactEmail"]?first)!}</a>                               
                                 </a>
                             </li>
-                        </#if>                        
+                        </#if>                                                
                         <#if (result.listMetadata["eventContactPhone"]?first)!?has_content>
                            <li class="contact__item">
-                                <span class="search-results__icon--red fas fa-phone" title="Event phone number"></span>
-                                ${(result.listMetadata["eventContactPhone"]?first)!}
+                                <span class="search-results__icon--red fas fa-phone" title="Event phone number" aria-label="Event phone number"></span>
+                                <a class="highlight" href="tel:${(result.listMetadata["eventContactPhone"]?first)!}">
+                                    ${result.metaData["eventContactPhone"]!}
+                                </a>                                
                             </li>
                         </#if>
                     </ul>
