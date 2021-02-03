@@ -1,4 +1,5 @@
 <#ftl encoding="utf-8" output_format="HTML" />
+
 <#-- 
     A collections of common elements used in search implementations.
 
@@ -571,5 +572,3 @@
 <#function getCssID input="">
     <#return (input)!?replace('[^A-Za-z0-9-]+', '_', 'r')>
 </#function>
-
-
