@@ -537,7 +537,8 @@
     so that it is larger than 10px.
 */
 @media only screen and (min-width: 1025px) and  (max-width: 1920px) {
-    .fb-container .search-results__desc {
+    .fb-container .search-results__desc,
+    .fb-container .search-results__list--list-view .search-results__desc {
         font-size: 1.0375rem;
     }
 }
