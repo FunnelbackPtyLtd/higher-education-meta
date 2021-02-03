@@ -127,11 +127,11 @@
             <div class="search-results__bottom">
                 <section class="contact js-contact">
                     <ul class="contact__list">                        
-                        <#if (result.listMetadata["courseTerm"]?first)!?has_content>
+                        <#if (result.listMetadata["courseTerm"])!?has_content>
                            <li class="contact__item">
                                 <span class="search-results__icon--red fas far fa-clock" aria-label="Term" title="Term"></span> 
 
-                                ${(result.listMetadata["courseTerm"]?first)!}
+                                ${(result.listMetadata["courseTerm"]?join(", "))!}
                             </li>
                         </#if>                        
                         
@@ -264,16 +264,14 @@
                             {{#if metaData.courseTerm}} 
                                 <li class="contact__item">
                                     <span class="search-results__icon--red fas far fa-clock" aria-label="Term" title="Term"></span> 
-                                    {{metaData.courseTerm}}  
+                                    {{#list metaData.courseTerm joinWith=", "}}{{this}}{{/list}}                                        
                                 </li>
                             {{/if}}                       
                             
                             {{#if metaData.courseCampus}} 
                                 <li class="contact__item ">
                                     <span class="search-results__icon--red fas fa-map-marker-alt" aria-label="Campus" title="Campus"></span> 
-                                    {{#list metaData.courseCampus joinWith=","}}
-                                        {{this}}
-                                    {{/list}}                                    
+                                    {{#list metaData.courseCampus joinWith=", "}}{{this}}{{/list}}                                    
                                 </li>
                             {{/if}}                       
                         </ul>
