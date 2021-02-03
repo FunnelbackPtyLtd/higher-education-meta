@@ -32,7 +32,7 @@
     @param result An individual result fron the data model
 -->
 <#macro ListView result>
-    <@GenericView result=result cardClass="fb-card--list" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
@@ -41,14 +41,14 @@
     @param result An individual result fron the data model
 -->
 <#macro CardView result>
-    <@GenericView result=result cardClass="fb-card--fixed" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
     A generic view used to drive both the the list and card view
     @param result An individual result fron the data model
 -->
-<#macro GenericView result cardClass="fb-card--fixed">
+<#macro GenericView result>
     <!-- twittter.GenericView -->
     <article class="search-results__item search-results__item--twitter"  data-fb-result="${(result.indexUrl)!}">
         <figure class="search-results__bg">
@@ -85,7 +85,8 @@
                 <span class="fab fa-twitter" aria-hidden="true"></span>                                             
                 via twitter
             </#if>
-        </div>        
+        </div>
+                
         <div class="search-results__content">
         
             <#-- Summary -->
@@ -95,6 +96,7 @@
                 </@s.boldicize>
             </p>
 
+            <#-- Metadata can be shown as tags -->
             <#list result.listMetadata["twitterHashTag"]![]>
                 <section class="tags hashtag">                
                     <ul class="tags__list">  
@@ -109,15 +111,34 @@
                 </section>  
             </#list> 
 
-            <#-- Display the time which this result has last been visited by the user -->
-            <@history_cart.LastVisitedLink result=result/>            
-        
+            <#-- Call to Action (CTA) -->
             <a href="${result.clickTrackingUrl!}" 
                 class="btn--link" 
                 title="View more on twitter"
                 aria-label="View more on twitter">
                 Read more
             </a>
+
+            <#-- Display the time which this result has last been visited by the user -->
+            <@history_cart.LastVisitedLink result=result/>            
+            
+            <#-- Footer -->
+            <#--  
+            <div class="search-results__bottom">
+                <section class="contact js-contact">
+                    <ul class="contact__list">                        
+                        <li class="contact__item">
+                            <span class="search-results__icon--red fas far fa-clock" aria-label="" title=""></span> 
+                            Lorem ipsum
+                        </li>
+                        <li class="contact__item ">
+                            <span class="search-results__icon--red fas far fa-clock" aria-label="" title=""></span> 
+                            Lorem ipsum
+                        </li>
+                    </ul>
+                </section>
+            </div>                                  
+            -->
         </div>
     </article>
 </#macro>

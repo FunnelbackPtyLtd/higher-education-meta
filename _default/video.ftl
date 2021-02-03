@@ -31,7 +31,7 @@
     @param result An individual result fron the data model
 -->
 <#macro ListView result>
-    <@GenericView result=result cardClass="fb-card--list" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
@@ -40,14 +40,14 @@
     @param result An individual result fron the data model
 -->
 <#macro CardView result>
-    <@GenericView result=result cardClass="fb-card--fixed" />
+    <@GenericView result=result />
 </#macro>
 
 <#--
     A generic view used to drive both the the list and card view
     @param result An individual result fron the data model
 -->
-<#macro GenericView result cardClass="fb-card--fixed">
+<#macro GenericView result>
     <!-- video.GenericView -->
     <article class="search-results__item search-results__item--video" data-fb-result="${(result.indexUrl)!}">
         <a href="${result.clickTrackingUrl!}">
@@ -61,8 +61,8 @@
         </a>
         <div class="search-results__content">
             <#if (result.title)!?has_content>
+            <#-- Title -->
                 <h3 class="search-results__title">
-                    <#--  <span class="fas fa-briefcase text-muted pull-right small mr-2" title="Job"></span>  -->
                     <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="search-results__link">
                         <@s.boldicize>
                             <@s.Truncate length=90>
@@ -113,10 +113,18 @@
                     </ul>
                 </section>  
             </#list>                     
-          
+
+            <#-- Call to Action (CTA) -->
+            <#--              
+            <p>
+                <a href="href="${result.clickTrackingUrl!}" class="btn--link">VIEW MORE</a> 
+            </p>  
+            -->
+
             <#-- Display the time which this result has last been visited by the user -->
             <@history_cart.LastVisitedLink result=result/> 
             
+            <#-- Footer -->
             <div class="search-results__bottom">
                 <section class="contact js-contact">
                     <ul class="contact__list">                        

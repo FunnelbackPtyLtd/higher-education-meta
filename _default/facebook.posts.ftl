@@ -47,6 +47,7 @@
     <!-- facebook.pages.GenericView -->
     <article class="search-results__item search-results__item search-results__item--default search-results__item__facebook-post " data-fb-result="${result.indexUrl}">
         <div class="search-results__content">
+            <#-- Title -->
             <h3 class="search-results__title">
                 <figure class="facebook-post__profile-thumbnail">
                     <#if (result.customData["stencilsFacebookProfileUrl"])!?has_content>
@@ -121,7 +122,7 @@
                 </div>
             </#if>
 
-            <#-- Tags -->
+            <#-- Metadata can be shown as tags -->
             <#--  
             <section class="tags">
                 <ul class="tags__list">
@@ -140,8 +141,10 @@
             </p>  
             -->
 
+            <#-- Display the time which this result has last been visited by the user -->
             <@history_cart.LastVisitedLink result=result/>
 
+            <#-- Footer -->
             <div class="search-results__bottom">
                 <section class="contact js-contact">
                     <ul class="contact__list">                        

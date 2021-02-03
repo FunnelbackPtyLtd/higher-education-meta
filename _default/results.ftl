@@ -53,7 +53,7 @@
     <article class="search-results__item search-results__item--default" data-fb-result="${(result.indexUrl)!}">
         <#if (result.listMetadata["image"]?first)!?has_content>
             <figure class="search-results__bg">
-                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
             </figure>  
         <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
             <figure class="search-results__bg">
@@ -61,6 +61,7 @@
             </figure>
         </#if>
         <div class="search-results__content">
+            <#-- Title -->
             <#if (result.title)!?has_content>
                 <h3 class="search-results__title">
                     <#-- Show an icon to represented the file type of the current document -->
@@ -132,10 +133,17 @@
             </section>  
             -->
 
+            <#-- Call to Action (CTA) -->
+            <#--              
+            <p>
+                <a href="href="${result.clickTrackingUrl!}" class="btn--link">VIEW MORE</a> 
+            </p>  
+            -->
+
             <#-- Display the time which this result has last been visited by the user -->
             <@history_cart.LastVisitedLink result=result/> 
 
-            <#-- Bottom container -->
+            <#-- Footer -->
             <#--  
             <div class="search-results__bottom">
                 <section class="contact js-contact">
