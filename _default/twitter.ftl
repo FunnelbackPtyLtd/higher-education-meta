@@ -112,12 +112,14 @@
             </#list> 
 
             <#-- Call to Action (CTA) -->
-            <a href="${result.clickTrackingUrl!}" 
-                class="btn--link" 
-                title="View more on twitter"
-                aria-label="View more on twitter">
-                Read more
-            </a>
+            <p>
+                <a href="${result.clickTrackingUrl!}" 
+                    class="btn--link" 
+                    title="View more on twitter"
+                    aria-label="View more on twitter">
+                    Read more
+                </a>
+            </p>
 
             <#-- Display the time which this result has last been visited by the user -->
             <@history_cart.LastVisitedLink result=result/>            
