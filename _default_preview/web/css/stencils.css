@@ -4,41 +4,15 @@
 
 /* Design overrides made by the vertical products team - Avoid changing these if possible */
 
-/* Colour overrides to make the contrast WCAG 2.1 compliant */
-.fb-container .highlight,
-.fb-container cite,
-.fb-container .btn--link,
-.fb-container .btn-toggle,  
-.fb-container .tags__item,
-.fb-container .module-filter__facets-link span {
-    color: var(--red);
-}
-
-.fb-container .btn {
-    background-color: var(--red);
-}
-
 /* Helper classes */
-
 .fb-container .wrap {
     white-space: normal !important;    
-}
-
-/* Increased the font on large viewports */
-@media only screen and (min-width: 1025px) {
-    html {
-       
-    }
 }
 
 /* Generic overrides to get the styling to work */
 .fb-container {
     padding-bottom: 0;
     overflow: initial;
-}
-
-.fb-container .float-right {
-    float: right;
 }
 
 .fb-container .list-unstyled {
@@ -288,8 +262,6 @@
     color: var(--red);
 }
 
-
-
 /**
   * Curator 
   **/
@@ -297,20 +269,6 @@
 .fb-container .module-curator {
     position: relative;
 }
-
-/* .fb-container .module-curator::after {
-    background: transparent linear-gradient(90deg, transparent 10%, #fff 100%) no-repeat;
-    background-color: transparent;
-    background-image: -webkit-linear-gradient(0deg, rgba(255,255,255,0.001) 10%, #f0f0f0 100%);
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 20px;
-    z-index: 2;
-} */
 
 .fb-container .module-curator__list {
     overflow-y: hidden;

@@ -8,7 +8,7 @@
 
 <#macro SearchForm>
     <!-- project.SearchForm -->
-    <section class="module-search js-module-search content-wrapper module-search--bg" style="background-image: url('/s/resources/${question.collection.id}/${question.profile}/css/mysource_files/bg-search.png');">
+    <section class="module-search js-module-search content-wrapper module-search--bg" style="background-image: url('//${httpRequest.getHeader('host')}/s/resources/${question.collection.id}/${question.profile}/css/mysource_files/bg-search.png');">
         <h1 class="sr-only">Search module</h1>
         <@base.SearchForm>
             <div class="module-search__group">

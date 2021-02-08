@@ -63,7 +63,7 @@
                         </@s.Truncate>
                     </@s.boldicize>
                 </a>
-                <span class="enable-cart-on-result float-right" 
+                <span class="enable-cart-on-result pull-right" 
                     aria-label="Add result to the shortlist">
                 </span>                
             </h3>
