@@ -20,71 +20,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2020-03-11T14:34:28.23796Z",
-  "lastModified" : "2021-01-12T16:19:46.075795Z",
-  "id" : "9e45ee31-7d21-44ee-a5ac-f91ea73035d2",
-  "name" : "[Example] Curators for \"No Results\"",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "Groovy",
-    "classFile" : "/opt/funnelback/conf/local-government-meta/@groovy/curator/triggers/NoResultTrigger.groovy",
-    "properties" : {
-      "key" : "value"
-    }
-  },
-  "actions" : [ {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Contact Us",
-    "displayUrl" : "www.local-council.com",
-    "linkUrl" : "www.local-council.com",
-    "descriptionHtml" : "Want to make an enquiry, get something fixed, or just give us some feedback? You can contact us in many ways.\n\nOne of the easiest ways to contact our Customer Services team is to use our below Contact form. The Customer Services email is only monitored during Rangiora office hours. If you have an urgent request outside of office hours, phone 0800 965 468 (0800WMKGOV).",
-    "additionalProperties" : {
-      "position" : "bottom",
-      "image" : "https://source.unsplash.com/random/40x40?email"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  }, {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Rates and property search",
-    "displayUrl" : "https://rates.gov",
-    "linkUrl" : "https://rates.gov",
-    "descriptionHtml" : "Find out the valuation or rates payable on a property.",
-    "additionalProperties" : {
-      "position" : "center",
-      "call_to_action_label" : "Search rates",
-      "call_to_action_url" : "https://eservices.waimakariri.govt.nz/ePropertyPROD/P1/eRates/RatingInformationSearch.aspx?r=P1.WMKWEBGUEST&f=%24P1.ERA.RATINFO.ENQ",
-      "image" : "https://source.unsplash.com/random/40x40?rates"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  }, {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Building Consent Search",
-    "displayUrl" : "www.build.consent.search/",
-    "linkUrl" : "www.build.consent.search/",
-    "descriptionHtml" : "Find the current status of your building consent.",
-    "additionalProperties" : {
-      "position" : "center"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  }, {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Recycling, Rubbish & Organics",
-    "displayUrl" : "https://www.rubbish.com",
-    "linkUrl" : "https://www.rubbish.com",
-    "descriptionHtml" : "The Council provides a number of waste services for the District's residents, businesses, schools and visitors",
-    "additionalProperties" : {
-      "call_to_action_label" : "Sign up",
-      "call_to_action_url" : "https://rethinkrubbish.waimakariri.govt.nz/s/#reminder",
-      "image" : "https://source.unsplash.com/random/40x40?recycling"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  } ]
-}, {
   "created" : "2020-03-12T14:33:01.536859Z",
   "lastModified" : "2020-12-03T09:16:38.588196Z",
   "id" : "f667e7b1-7136-405b-af29-16e0fee57036",
@@ -169,102 +104,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2020-08-17T16:12:56.407535Z",
-  "lastModified" : "2020-12-03T09:17:06.185081Z",
-  "id" : "fe3b1d3b-fa55-4fbe-a154-a3d4ed3c2e32",
-  "name" : "[Example] Curator on top - bins, rubbish, garbage, trash",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "And",
-    "triggers" : [ {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "bins" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "bin" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "rubbish" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "garbage" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "trash" ]
-      } ]
-    } ]
-  },
-  "actions" : [ {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Report street damage or a cleaning issue",
-    "displayUrl" : "https://www.conncil/report-street-issue",
-    "linkUrl" : "https://www.conncil/report-street-issue",
-    "descriptionHtml" : "Tell us about a problem on our streets so that we can have a look.",
-    "additionalProperties" : {
-      "position" : "center",
-      "call_to_action_label" : "REPORT DAMAGE",
-      "call_to_action_url" : "https://www.camden.gov.uk/report-street-issue",
-      "image" : "https://source.unsplash.com/random/160x160?damage"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  }, {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Recycling and rubbish collection days",
-    "displayUrl" : "https://environmentservices.gov.uk/property",
-    "linkUrl" : "https://environmentservices.gov.uk/property",
-    "descriptionHtml" : "Find out when your rubbish and recycling is collected.",
-    "additionalProperties" : {
-      "position" : "center",
-      "call_to_action_label" : "CHECK YOUR COLLECTION DAY",
-      "call_to_action_url" : "https://environmentservices.camden.gov.uk/property?",
-      "image" : "https://source.unsplash.com/random/160x160?bins"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  } ]
-}, {
-  "created" : "2020-08-17T16:48:38.568916Z",
-  "lastModified" : "2020-12-03T09:18:07.376916Z",
-  "id" : "2c27d476-f132-4772-95ad-06fb61b3323f",
-  "name" : "[Example] Curator in the center - term dates, school, holidays",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "And",
-    "triggers" : [ {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "school" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "term", "dates" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "holidays" ]
-      } ]
-    } ]
-  },
-  "actions" : [ {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Term dates",
-    "displayUrl" : "https://www.camden.gov.uk/term-dates",
-    "linkUrl" : "https://www.camden.gov.uk/term-dates",
-    "descriptionHtml" : "Find out when your child's school term starts. State school term and holiday dates through to summer 2022.",
-    "additionalProperties" : {
-      "call_to_action_label" : "VIEW DATES",
-      "call_to_action_url" : "https://www.camden.gov.uk/term-dates",
-      "class" : "center",
-      "image" : "https://source.unsplash.com/random/160x160?calendar"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  } ]
-}, {
   "created" : "2020-08-19T16:00:08.117078Z",
   "lastModified" : "2020-12-03T09:17:39.146201Z",
   "id" : "878f2174-ef98-48a1-9fdc-9ab1954a587b",
@@ -304,9 +143,9 @@
   } ]
 }, {
   "created" : "2020-12-02T13:44:32.48577Z",
-  "lastModified" : "2021-01-12T16:17:49.681397Z",
+  "lastModified" : "2021-02-08T19:29:49.028549Z",
   "id" : "36517c65-c621-48c4-bdda-8a1f35d64bfc",
-  "name" : "[Example] Curator on the left - bins, app, rubbish, trash, garbage, collection",
+  "name" : "[Example] Curator on the left - Classes",
   "label" : "DEFAULT",
   "enabled" : true,
   "trigger" : {
@@ -315,44 +154,67 @@
       "type" : "Or",
       "triggers" : [ {
         "type" : "AllQueryWords",
-        "triggerWords" : [ "bins" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "app" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "rubbish" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "trash" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "garbage" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "collection" ]
+        "triggerWords" : [ "classes" ]
       } ]
     } ]
   },
   "actions" : [ {
     "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Snap Send Solve",
-    "displayUrl" : "https://download.app",
-    "linkUrl" : "https://download.app",
-    "descriptionHtml" : "If you spot something in our district such as a pothole, vandalism, litter or damaged footpath, you can report it instantly to the District Council from a mobile phone.\n<br /> <br />\nThe app works by identifying the location the photo is taken using the phone's GPS data. It sends an email to the Council from the user's email address, including the incident type, notes, address of incident, photo and the user's contact details.",
+    "titleHtml" : "Planning for a Safe Start",
+    "displayUrl" : "https://example.com",
+    "linkUrl" : "https://example.com",
+    "descriptionHtml" : "Fall 2020 semester will start earlier than originally scheduled, on August 17 and end on Tuesday, Nov. 24",
     "additionalProperties" : {
       "position" : "left",
-      "call_to_action_label" : "DOWNLOAD APP",
-      "call_to_action_url" : "www.google.com"
+      "call_to_action_label" : "SEE MORE",
+      "call_to_action_url" : "www.example.com"
+    },
+    "category" : "",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2020-08-17T16:48:38.568916Z",
+  "lastModified" : "2021-02-08T19:31:36.992905Z",
+  "id" : "2c27d476-f132-4772-95ad-06fb61b3323f",
+  "name" : "[Example] Curator in the center - school, campus, term dates",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "school" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "term", "dates" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "campus" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Discover life at FBU",
+    "displayUrl" : "www.example.com",
+    "linkUrl" : "www.example.com",
+    "descriptionHtml" : "The Cumberland Student Guild manages all non-academic services on campus, including a food court, bookstore and shopping outlets.",
+    "additionalProperties" : {
+      "call_to_action_label" : "VIEW DATES",
+      "call_to_action_url" : "www.example.com",
+      "class" : "center",
+      "image" : "https://source.unsplash.com/random/160x160?calendar"
     },
     "category" : "",
     "removeCollectionUrl" : false
   } ]
 }, {
   "created" : "2020-03-11T14:34:28.23796Z",
-  "lastModified" : "2021-01-14T15:09:20.389722Z",
-  "id" : "d8ca0e61-6355-4f8d-adfd-09900978799b",
-  "name" : "[Example] Curators for \"No Results\" (Copy)",
+  "lastModified" : "2021-02-08T22:02:02.215045Z",
+  "id" : "9e45ee31-7d21-44ee-a5ac-f91ea73035d2",
+  "name" : "[Example] Curators for \"No Results\"",
   "label" : "DEFAULT",
   "enabled" : true,
   "trigger" : {
@@ -364,51 +226,258 @@
   },
   "actions" : [ {
     "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Contact Us",
-    "displayUrl" : "www.local-council.com",
-    "linkUrl" : "www.local-council.com",
-    "descriptionHtml" : "Want to make an enquiry, get something fixed, or just give us some feedback? You can contact us in many ways.\n\nOne of the easiest ways to contact our Customer Services team is to use our below Contact form. The Customer Services email is only monitored during Rangiora office hours. If you have an urgent request outside of office hours, phone 0800 965 468 (0800WMKGOV).",
+    "titleHtml" : "Reset your password",
+    "displayUrl" : "www.example.com",
+    "linkUrl" : "www.example.com",
+    "descriptionHtml" : "If you have forgotten your password, there's no need to call and wait on the phone.",
     "additionalProperties" : {
       "position" : "bottom",
-      "image" : "https://source.unsplash.com/random/40x40?email"
+      "image" : "https://source.unsplash.com/random/40x40?email",
+      "call_to_action_label" : "www.example.com"
     },
     "category" : "",
     "removeCollectionUrl" : false
   }, {
     "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Rates and property search",
-    "displayUrl" : "https://rates.gov",
-    "linkUrl" : "https://rates.gov",
-    "descriptionHtml" : "Find out the valuation or rates payable on a property.",
+    "titleHtml" : "Schedule - Homecoming Weekend 2021",
+    "displayUrl" : "www.example.com",
+    "linkUrl" : "www.example.com",
+    "descriptionHtml" : "Join us for a very special Homecoming celebration as we look back on 75 years.  Because this is such a special celebration, we've added two extra days to Homecoming that include a number of exciting new opportunities for our alumni, our students, their families, and staff and faculty.",
+    "additionalProperties" : {
+      "call_to_action_url" : "https://www.apu.edu/static/src/sites/homecoming/images/header.jpg",
+      "call_to_action_label" : "JOIN NOW",
+      "position" : "center"
+    },
+    "category" : "",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-06-13T09:49:12.186-07:00",
+  "lastModified" : "2021-02-08T22:06:06.762275Z",
+  "id" : "53ca94ee-cd8a-4c11-9d18-fbad04f324d6",
+  "name" : "[Example] Curator for a selected tab - Virtual information session",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "FacetSelection",
+        "facetName" : "Tabs",
+        "categoryValue" : "Programs",
+        "matchType" : "EXACT"
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Virtual information sessions",
+    "displayUrl" : "",
+    "linkUrl" : "-",
+    "descriptionHtml" : "Please register for one of the available dates",
     "additionalProperties" : {
       "position" : "center",
-      "call_to_action_label" : "Search rates",
-      "call_to_action_url" : "https://eservices.waimakariri.govt.nz/ePropertyPROD/P1/eRates/RatingInformationSearch.aspx?r=P1.WMKWEBGUEST&f=%24P1.ERA.RATINFO.ENQ",
-      "image" : "https://source.unsplash.com/random/40x40?rates"
+      "call_to_action_url" : "https://www.dtcc.edu/admissions-financial-aid/prospective-student-information/info-sessions-open-house/virtual-info-sessions",
+      "call_to_action_label" : "Schedule Now"
     },
     "category" : "",
     "removeCollectionUrl" : false
-  }, {
+  } ]
+}, {
+  "created" : "2019-09-06T05:07:18.601853+10:00",
+  "lastModified" : "2021-02-08T22:06:20.07507Z",
+  "id" : "b8526b84-fd33-4d99-bea3-759b073b2923",
+  "name" : "[Example] Curator on the left - Directory",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "Directory" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
     "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Building Consent Search",
-    "displayUrl" : "www.build.consent.search/",
-    "linkUrl" : "www.build.consent.search/",
-    "descriptionHtml" : "Find the current status of your building consent.",
+    "titleHtml" : "Staff Directory",
+    "displayUrl" : "www.example.com",
+    "linkUrl" : "www.example.com",
+    "descriptionHtml" : "It looks like you may be trying to find our directory. Try searching the name of the person you're looking for and selecting our \"People\" tab.",
+    "additionalProperties" : { },
+    "category" : "",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2019-10-18T06:40:31.729582+11:00",
+  "lastModified" : "2021-02-08T22:07:02.608846Z",
+  "id" : "446d8b5e-9bba-49c4-9138-b37322374316",
+  "name" : "[Example] Promoting results to the top - Engineering Videos",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "engineering" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "PromoteUrls",
+    "urlsToPromote" : [ "https://sydney.edu.au/engineering/home.html", "http://www.youtube.com/watch?v=JaeCWCP73sQ&feature=youtube_gdata_player", "https://sydney.edu.au/engineering/schools/school-of-electrical-and-information-engineering.html" ]
+  } ]
+}, {
+  "created" : "2019-10-18T04:37:02.729376+11:00",
+  "lastModified" : "2021-02-08T22:14:05.802604Z",
+  "id" : "90d338bf-5c18-4e03-8cd7-0c91a7ae42bc",
+  "name" : "[Example] Curator in the center and date restraint - Fall Schedule",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "schedule" ]
+      } ]
+    }, {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "DateRange",
+        "startDate" : 1610956800000,
+        "endDate" : 1617260400000
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Reminder: 2021 Schedule",
+    "displayUrl" : "",
+    "linkUrl" : "www.example.com",
+    "descriptionHtml" : "8-11 March: Spring Break - no curriculum classes<br><br>\n31 March: Spring graduation application submission deadline",
     "additionalProperties" : {
       "position" : "center"
     },
     "category" : "",
     "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2017-07-07T17:26:06.115-07:00",
+  "lastModified" : "2021-02-08T22:15:14.440146Z",
+  "id" : "5c2b2b38-581f-4eae-8d55-4cbd1d8f4de9",
+  "name" : "[Example] Curator on the bottom - Classes moving online",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "ExactQuery",
+        "triggerQuery" : "class schedule",
+        "ignoreCase" : true
+      }, {
+        "type" : "ExactQuery",
+        "triggerQuery" : "classes",
+        "ignoreCase" : true
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Planning for a Safe Start",
+    "displayUrl" : "",
+    "linkUrl" : "www.example.com",
+    "descriptionHtml" : "Fall 2020 semester will start earlier than originally scheduled, on August 17 and end on Tuesday, Nov. 24",
+    "additionalProperties" : {
+      "position" : "bottom"
+    },
+    "category" : "",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2019-10-03T07:03:43.417579+10:00",
+  "lastModified" : "2021-02-08T22:16:17.938928Z",
+  "id" : "cba44c9b-9e48-4e7d-adda-064e3f8701c9",
+  "name" : "[Example] Promoting results to the top - Psychology major",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "ExactQuery",
+        "triggerQuery" : "psychology",
+        "ignoreCase" : true
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "psychology major", "psychology undergrad" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "PromoteUrls",
+    "urlsToPromote" : [ "https://sydney.edu.au/courses/courses/uc/bachelor-of-psychology0.html", "https://sydney.edu.au/content/dam/corporate/documents/faculty-of-science/study/psychology/how-can-i-study-psychology.pdf", "https://sydney.edu.au/courses/uos-landing.html/content/courses/courses/uc/bachelor-of-psychology0.html" ]
+  } ]
+}, {
+  "created" : "2020-08-17T16:12:56.407535Z",
+  "lastModified" : "2021-02-08T22:22:47.940261Z",
+  "id" : "fe3b1d3b-fa55-4fbe-a154-a3d4ed3c2e32",
+  "name" : "[Example] Curator on top - timetable",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "timetable" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "schedule" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "tutorials" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "labs" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Tutorials and laboratories",
+    "displayUrl" : "www.example",
+    "linkUrl" : "www.example",
+    "descriptionHtml" : "For the remainder of the 2020/21 academic year, all compulsory teaching, learning and assessments, including those taking place in Summer Term 2021, will be delivered online.",
+    "additionalProperties" : {
+      "position" : "center",
+      "call_to_action_label" : "BOOK NOW",
+      "call_to_action_url" : "www.example.com",
+      "image" : "https://source.unsplash.com/random/160x160?damage"
+    },
+    "category" : "",
+    "removeCollectionUrl" : false
   }, {
     "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Recycling, Rubbish & Organics",
-    "displayUrl" : "https://www.rubbish.com",
-    "linkUrl" : "https://www.rubbish.com",
-    "descriptionHtml" : "The Council provides a number of waste services for the District's residents, businesses, schools and visitors",
+    "titleHtml" : "Having difficulties logging in?",
+    "displayUrl" : "www.example",
+    "linkUrl" : "www.example",
+    "descriptionHtml" : "One of the first steps you need to complete after accepting a course offer is to activate your University account, through the Account Management page.",
     "additionalProperties" : {
-      "call_to_action_label" : "Sign up",
-      "call_to_action_url" : "https://rethinkrubbish.waimakariri.govt.nz/s/#reminder",
-      "image" : "https://source.unsplash.com/random/40x40?recycling"
+      "position" : "center",
+      "call_to_action_label" : "ACTIVATE ACCOUNT",
+      "call_to_action_url" : "www.example.com",
+      "image" : "https://source.unsplash.com/random/160x160?bins"
     },
     "category" : "",
     "removeCollectionUrl" : false
