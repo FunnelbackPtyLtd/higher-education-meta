@@ -8,6 +8,14 @@
  * @requires jQuery https://jquery.com/
  * @requires typeahead.js https://twitter.github.io/typeahead.js/
  */
+if (!window.Funnelback) window.Funnelback = {}; // create namespace
+if (!Handlebars) {
+	throw new Error('Handlebars must be included (https://handlebarsjs.com/)')
+}
+if (!window.Funnelback.Handlebars) {
+	window.Funnelback.Handlebars = Handlebars.create();
+}
+
 (function($) {
     'use strict';
 
@@ -418,7 +426,7 @@
 		}
 
 		$.each(set.template, function(k, obj) {
-			if ($.isString(obj)) set.template[k] = Handlebars.compile(obj);
+			if ($.isString(obj)) set.template[k] = window.Funnelback.Handlebars.compile(obj);
 		});
 
 		return set.template;
