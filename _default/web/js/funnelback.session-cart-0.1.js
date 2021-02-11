@@ -19,6 +19,13 @@
  */
 if (!window.Funnelback) window.Funnelback = {}; // create namespace
 
+if (!Handlebars) {
+  throw new Error('Handlebars must be included (https://handlebarsjs.com/)');
+}
+if (!window.Funnelback.Handlebars) {
+  window.Funnelback.Handlebars = Handlebars.create();
+}
+
 
 // While best practice is to normally include polyfills as an external dependency,
 // for these two functions, its more convenient to include them with this file
@@ -444,7 +451,7 @@ window.Funnelback.SessionCart = (function() {
       Item.templates = Object.entries(options.item.templates).reduce(function(templates, [collection, template]) {
         templates[collection] = HandlebarsUtil.compile(template)
         return templates
-      });
+      }, {});
       Item.listElement = ElementUtil.findOnce(options.item.selector);
       if (!Item.listElement) console.warn('No element was found with provided selector "' + options.item.selector + '"');
     },
@@ -606,7 +613,7 @@ window.Funnelback.SessionCart = (function() {
   };
 
   const Templates = {
-    // List of partia templates registered with Handlebars
+    // List of partial templates registered with Handlebars
     // Usage ie. {{>icon-block}}, {{>badge-block}}
     partial: {
       badge: '<span class="badge">{{count}}</span>',
@@ -709,7 +716,7 @@ window.Funnelback.SessionCart = (function() {
       if (str.indexOf(toCut) === 0) return str.substring(toCut.length);
       return str;
     },
-    // Truncate content to provided lenght
+    // Truncate content to provided length
     // Usage: {{#truncate 70}}{{title}}{{/truncate}}
     truncate: function (len, options) {
       const str = options.fn(this);
