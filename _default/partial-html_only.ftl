@@ -77,5 +77,18 @@
 <@courses.AutoCompleteTemplate />
 <@people.AutoCompleteTemplate />
 
-  
+<#-- 
+    Enable session functonality which includes cart and click 
+    and query history 
+-->
+<#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
+    <#-- Specifies how the cart is to be presented -->
+    <@results.CartTemplate />
+    
+    <#-- Specifies how each cart item should be presented -->
+    <@history_cart.CartTemplate />
+    <#-- Specifies the presentation of a cart item if a custom one is not specified -->
+    <@history_cart.CartItemTemplate />
+</#if>
+ 
 <#-- vim: set expandtab ts=2 sw=2 sts=2 :-->
