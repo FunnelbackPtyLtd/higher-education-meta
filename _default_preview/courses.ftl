@@ -66,7 +66,8 @@
 </#macro>
 
 <#macro CartTemplate>
-  <script id="cart-template-higher-education-courses" type="text/x-handlebar-template">
+<#list question.getCurrentProfileConfig().get("stencils.courses.collections")!?split(",") as collection>
+  <script id="cart-template-${collection}" type="text/x-handlebar-template">
     <div class="card search-result-course">
 
       <div class="card-header cart-item-trigger-parent">
@@ -109,6 +110,7 @@
       </div>
     </div>
   </script>
+</#list>
 </#macro>
 
 <#macro AutoCompleteTemplate>
