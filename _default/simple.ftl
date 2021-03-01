@@ -145,15 +145,13 @@
 		and query history 
 	-->
 	<#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-		<#-- Specifies how the cart is to be presented -->
-		<#-- Note: If you plan to change how items in the cart
-			should look, please ensure that the id of the cart 
-			template is updated so that it matches the collection. 
+		<#-- 
+			Automatically includ the cart template for all document types defined
+			across available namespaces. i.e. You won't need to explicitly 
+			do calls like <@courses.CartTemplate> to include the Handlebars templates 
+			as this macro will automatically be include it for you.   
 		-->
-		<@courses.CartTemplate />
-
-		<#-- Specifies the presentation of a cart item if a custom one is not specified -->
-		<@results.CartTemplate />
+		<@history_cart.CartTemplatesForResults />
 		
 		<#-- Specifies how each cart item should be presented -->
 		<@history_cart.CartTemplate />
@@ -175,7 +173,6 @@
 		</#if>
 		<@history_cart.Configuration />
 	</#if>
-
 
 </body>
 </html>
