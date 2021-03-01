@@ -1,36 +1,3 @@
-<#-- Not to be used in production -->
-
-<#-- This file should be replaced by a copy of the Stencils file when
-    deploying, to allow customization. Explicitly fail if the collection is not
-    the showcase collection. To fix it, copy the file from
-    $SEARCH_HOME/share/stencils/libraries/... -->
-<#if question.collection.id == 'higher-education-meta' || 
-    question.collection.id == 'membership-association-meta' >
-    <#include "/share/stencils/libraries/tabs/tabs.ftl">
-<#else>
-    <#-- Create a dummy version of a tabs.ftl macro, as a way to display
-        the error message -->
-    <#macro Tabs>
-        <div class="alert alert-danger">
-            <p><code>tabs.ftl</code> is currently directly including the Stencils
-            file. This is discouraged as Stencils changes will break the collection
-            templates. Please make a copy of <code>tabs.ftl</code> instead, from the
-            Stencils sources (<code>$SEARCH_HOME/share/stencils/libraries/</code>).</p>
-
-            <p>Subsequent template processing will fail until this is fixed.</p>
-        </div>
-    </#macro>
-</#if>
-
-
-<#-- 
-    Macros specific to Vertical Product instance 
-    These can override those found in Stencils. 
-    i.e. Given /share/stencils/libraries/foo.ftl defines @SomeMacro,
-    and is included is this template, it can be overriden by 
-    defining <#macro SomeMacro>. 
---> 
-
 <#--
     Display tabs
     @param facets List of tabs to display as a string. The default is that all tabs
