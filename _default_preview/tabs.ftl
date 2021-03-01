@@ -50,7 +50,7 @@
     >
 
     <#list facets![] as facet>
-        <section class="tabs js-tabs content-wrapper">
+        <section class="tabs js-tabs content-wrapper desktop">
             <ul class="tabs__list" role="menu" aria-label="Tab navigation">
                 <#list facet.allValues as value>
                     <#if value?counter lt (question.getCurrentProfileConfig().get("stencils.tabs.max_display")!"5")?number> 
@@ -107,6 +107,26 @@
                 </#if>
             </ul>
         </section>
+
+        <#-- Tabs on mobile - We want to show all tabs as a list no matter how big -->
+        <section class="tabs js-tabs content-wrapper tablet mobile">
+            <ul class="tabs__list" role="menu" aria-label="Tab navigation">
+                <#list facet.allValues as value>
+                    <li class="tabs__item" role="none">
+                        <a <#if value.count gt 0>href="${value.toggleUrl}"</#if> 
+                            class="tabs__link tabs__link--icon <#if value.selected> active</#if><#if value.count lt 1> tabs__link--disabled </#if>"
+                            role="menuitem"
+                            tabindex="-1">
+                            <#if question.getCurrentProfileConfig().get("stencils.tabs.icon.${value.label}")??>
+                                <span class="${question.getCurrentProfileConfig().get("stencils.tabs.icon.${value.label}")}"></span>
+                            </#if>                            
+                            ${value.label}
+                            <span>(${value.count})</span>
+                        </a>
+                    </li>
+                </#list>                                        
+            </ul>
+        </section>        
     </#list>
 </#macro>
 
