@@ -180,9 +180,23 @@
 	</script>
 </#macro>
 
+<#-- Output the cart template -->
 <#macro CartTemplate>
     <!-- courses.CartTemplate -->    
-    <script id="cart-template-higher-education-courses" type="text/x-handlebars-template">
+    <#-- 
+        Note: Cart templates as assigned to document types in profile.cfg/collection.cfg using 
+        the following configuration:
+
+        stencils.template.shortlist.<collection>=<type> 
+        
+        e.g. stencils.template.shortlist.higher-education-meta=courses
+
+        For this to function correctly, the ID must be in the following format:
+        id="cart-template-<type>".
+
+        e.g. id="cart-template-courses"
+    -->
+    <script id="cart-template-courses" type="text/x-handlebars-template">
         <article class="search-results__item search-results__item--default">
             <figure class="search-results__bg">
                 {{#if metaData.image}}  

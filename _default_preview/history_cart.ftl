@@ -41,6 +41,7 @@
 	A handlebars template which is used to display all the items in the cart. 
 -->
 <#macro CartTemplate>
+	<!-- history_cart::CartTemplate -->
 	<script id="cart-template" type="text/x-handlebars-template">
 		<div>
 			<button id="flb-cart-box-back" class="btn-link highlight" type="button">
@@ -242,10 +243,7 @@
 					item: {
 						icon: 'fas fa-star',          
 						templates: {
-							<#list question.getCurrentProfileConfig().get("stencils.cart.collections")!?split(",") as collection>
-								'${collection}': document.getElementById('cart-template-${collection}').text,
-								<#if collection_has_next>,</#if>
-							</#list>
+							<@CartTemplatesConfig />
 						},
 						class: ''
 					},
@@ -304,4 +302,40 @@
 			<div>
 		</section>
 	</#if>
+</#macro>
+
+<#-- Output the config required to configure the cart templates -->
+<#macro CartTemplatesConfig >
+	<#-- 
+		Output the default template which is used when no cart template 
+		is explicitly defined.
+	-->
+	'default': document.getElementById('cart-template-default').text
+	<#if (question.getCurrentProfileConfig().getRawKeys())!?has_content>		
+		,
+		<#-- 
+			Output the custom cart templates config based on the 
+			user's configurations 
+		-->
+		<#list question.getCurrentProfileConfig().getRawKeys()?filter(key -> key?lower_case?starts_with("stencils.template.shortlist.")) as key>
+			<#local collection = key?keep_after_last(".")>
+			<#local templateName = question.getCurrentProfileConfig().get(key)>
+			'${collection}': document.getElementById('cart-template-${templateName}').text
+			<#if key_has_next>,</#if>
+		</#list> 
+	</#if>
+</#macro>
+
+<#-- 
+	Attempts to find and output all cart templates across all available
+	namespaces. It is assummed that cart templates are macros defined with 
+	the name <#macro CartTemplate> </#macro>.
+-->
+<#macro CartTemplatesForResults>
+	<!-- history_cart::CartTemplatesForResults -->
+	<#list .main as key, namespace >
+		<#if (namespace)!?is_hash && (namespace.CartTemplate)!?is_directive && key != "history_cart">
+			<@namespace.CartTemplate />
+		</#if>
+	</#list>
 </#macro>

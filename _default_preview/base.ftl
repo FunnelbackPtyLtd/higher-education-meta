@@ -512,9 +512,6 @@
     on the results type and what is configured in collection.cfg
 
     Defaults to <code>&lt;@project.Result /&gt;
-
-    @param nestedRank Before which result to insert the nested content of the macro.
-        This is used to insert content (usually an extra search) between results.
 -->
 <#macro QuickViewTemplates>
     <!-- base.QuickViewTemplates -->
