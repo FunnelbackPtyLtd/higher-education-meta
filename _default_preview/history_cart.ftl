@@ -244,6 +244,7 @@
 						templates: {
 							<#list question.getCurrentProfileConfig().get("stencils.cart.collections")!?split(",") as collection>
 								'${collection}': document.getElementById('cart-template-${collection}').text,
+								<#if collection_has_next>,</#if>
 							</#list>
 						},
 						class: ''
