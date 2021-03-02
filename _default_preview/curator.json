@@ -28,7 +28,7 @@
   "enabled" : true,
   "trigger" : {
     "type" : "Groovy",
-    "classFile" : "/opt/funnelback/conf/local-government-meta/@groovy/curator/triggers/NoResultTrigger.groovy",
+    "classFile" : "/opt/funnelback/conf/higher-education-meta/@groovy/curator/triggers/NoResultTrigger.groovy",
     "properties" : {
       "key" : "value"
     }
