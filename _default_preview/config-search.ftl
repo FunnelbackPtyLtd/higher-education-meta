@@ -134,22 +134,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
 
 <!-- The vendor.js file includes all the code from external libraries -->
-<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/vendors.js"></script>
+<script type="text/javascript" src="https://${httpHost!}/s/resources/${question.collection.id}/${question.profile}/js/vendors.js"></script>
 <!-- 
     Webpacks "runtime" code. Contains everything required to connect the
     modularized application while it’s running in the browser. It contains 
     the loading and resolving logic needed to connect your modules as they 
     interact.
 -->
-<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/runtime.js"></script>
+<script type="text/javascript" src="https://${httpHost!}/s/resources/${question.collection.id}/${question.profile}/js/runtime.js"></script>
 <!-- Stencil specific code such as the quickview and dropdowns -->
-<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/main.js"></script>
+<script type="text/javascript" src="https://${httpHost!}/s/resources/${question.collection.id}/${question.profile}/js/main.js"></script>
 
 <!-- Stencils specific code -->
-<script src="/s/resources/${question.collection.id}/${question.profile}/js/base.js"></script> 
+<script src="https://${httpHost!}/s/resources/${question.collection.id}/${question.profile}/js/stencils.js"></script>
+<script src="https://${httpHost!}/s/resources/${question.collection.id}/${question.profile}/js/handlebars-helpers.js"></script>  
 
 <!-- Funnelback auto-complete -->
-<script src="${GlobalResourcesPrefix}js/funnelback.autocompletion-2.6.0.js"></script>
+<script src="https://${httpHost!}/s/resources/${question.collection.id}/${question.profile}/js/funnelback.autocompletion-2.6.0.stencils.js"></script>
 </#assign>
 
                 <pre>${requiredJavascript!?markup_string}</pre>

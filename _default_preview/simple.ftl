@@ -114,8 +114,9 @@
 	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/main.js"></script>
 	
 	<#-- Stencils specific code -->
-	<script src="/s/resources/${question.collection.id}/${question.profile}/js/base.js"></script> 
-	
+	<script src="/s/resources/${question.collection.id}/${question.profile}/js/stencils.js"></script> 
+	<script src="/s/resources/${question.collection.id}/${question.profile}/js/handlebars-helpers.js"></script> 
+		
 	<#-- Funnelback auto-complete -->
 	<script src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.autocompletion-2.6.0.stencils.js"></script>
 
