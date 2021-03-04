@@ -7,7 +7,7 @@
 
     @param result An individual result fron the data model
     @param view An uppercase string which represents how
-        the result should be displayed. Defaults to DETAILED.
+        the result should be displayed. Defaults to List.
 -->
 <#macro Result result=result view="LIST">
     <#switch view?upper_case>
@@ -45,153 +45,132 @@
     A generic view used to drive both the the list and card view
     @param result An individual result fron the data model
 -->
-<#macro GenericView result >
-    <!-- planning_applications.GenericView -->
-    <article class="search-results__item search-results__item--people" data-fb-result="${result.indexUrl}">
-        <figure class="search-results__bg">
-            <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred rounded-circle fb-image-thumbnail" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="https://jobs.ama.org${result.listMetadata["image"]?first}"> 
-            <#else>
+<#macro GenericView result>
+    <!-- instagram.GenericView -->
+    <article class="search-results__item search-results__item--default" data-fb-result="${(result.indexUrl)!}">
+        
+        <#if (result.listMetadata["image"]?first)!?has_content>
+            <figure class="search-results__bg">
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
+            </figure>  
+        <#elseif (result.listMetadata["instagramMediaType"]?first)!?has_content>
+            <#-- 
+                Attempt to show the media from instagram. Please note that the app configured in the developers API (in facebook) needs to
+                have the instagram_graph_user_media enabled which requires an app review.
+            -->
+            <#switch result.listMetadata["instagramMediaType"]!?first!?upper_case>
+                <#case "IMAGE">                
+                <#case "CAROUSEL_ALBUM">
+                    <#if (result.listMetadata["instagramMediaUrl"]?first)!?has_content>
+                        <figure class="">
+                            <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["instagramMediaUrl"]?first}"> 
+                        </figure>
+                    </#if>  
+                    <#break>
+                <#case "VIDEO">
+                    <#if (result.listMetadata["instagramThumbnailUrl"]?first)!?has_content>
+                        <figure class="search-results__bg">
+                            <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["instagramThumbnailUrl"]?first}"> 
+                        </figure>
+                    </#if>                  
+                    <#break>
+                <#default>
+                    <#-- Do nothing in the default case -->
+                    <#break>                            
+            </#switch>
+        <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+            <figure class="search-results__bg">
                 <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
-            </#if>
-        </figure>
+            </figure>
+        </#if>
         <div class="search-results__content">
-            <h3 class="search-results__title">
-                <a href="${result.clickTrackingUrl!}" title="${result.liveUrl!}" class="search-results__link">
-                    <@s.boldicize>
-                        <@s.Truncate length=90>
-                            ${(result.listMetadata["planningApplicationName"]?first)!}
-                        </@s.Truncate>
-                    </@s.boldicize>
-                </a>
-            </h3>
+            <#-- Title -->
+             <#if (result.listMetadata["author"]?first)!?has_content>
+                <h3 class="search-results__title">
+                    ${(result.listMetadata["author"]?first)!"Unknown"}
+                    <#-- 
+                        Adds a control so that users can add this to the cart
+                        Note: Ensure that you review the cart templates if
+                        you enable this feature.
+                    -->
+                    <#--  
+                    <span class="enable-cart-on-result float-right"
+                        aria-label="Add result to the shortlist">
+                    </span>  
+                    -->
+                </h3>
+            </#if>
             
+            <#-- Pretty version of the url of the document -->
+            <#--  
+            <cite>
+                <@s.Truncate length=90>
+                    ${(result.displayUrl)!}
+                </@s.Truncate>                
+            </cite>  
+            -->
+
             <#-- Subtitle -->
             <span class="search-results__sub-title">
-                ${(result.listMetadata["planningWardName"]?first)!}                
+                <time datetime="${result.date?date?string.iso}" title="${result.date?date?string.medium}">
+                    ${prettyTime(result.date?date)}
+                </time> via 
+                <span class="fab fa-instagram" aria-hidden="true"></span>                                 
+                instagram
             </span>
-            
-            <#-- Summary -->
-            <p class="search-results__desc">
-                <@s.boldicize>
-                    ${result.summary!?no_esc}
-                </@s.boldicize>
-            </p>
 
+            <#-- Summary -->
+            <#if (result.listMetadata["instagramCaption"]?first)!?has_content>
+                <p class="search-results__desc">
+                    <@s.boldicize>                    
+                        ${(result.listMetadata["instagramCaption"]?first)!}
+                    </@s.boldicize>
+                </p>
+            </#if>                
+
+            <#-- Metadata can be shown as tags -->
+            <#--  
             <section class="tags">
                 <ul class="tags__list">
                     <li class="tags__item">
-                        ${(result.listMetadata["planningSystemStatus"]?first)!}
+                        Lorem
                     </li>
                     <li class="tags__item">
-                        ${(result.listMetadata["planningDecisionType"]?first)!}
+                        Lorem ipsum
                     </li>
                 </ul>
-            </section>
+            </section>  
+            -->
 
+            <#-- Call to Action (CTA) -->                        
             <p>
-                <a href="#" class="btn--link">VIEW STATUS</a> 
-            </p>
+                <a href="${result.clickTrackingUrl!}" class="btn--link" aria-label="View post on instagram">VIEW POST</a> 
+            </p>  
+          
 
-            <@history_cart.LastVisitedLink result=result/>
+            <#-- Display the time which this result has last been visited by the user -->
+            <@history_cart.LastVisitedLink result=result/> 
 
+            <#-- Footer -->
+            
             <div class="search-results__bottom">
                 <section class="contact js-contact">
                     <ul class="contact__list">                        
-                        <#if (result.listMetadata["planningRegisteredDate"]?first)!?has_content>
-                           <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Registered date"></span>
-                                ${(result.listMetadata["planningRegisteredDate"]?first)!}
+                        <#if (result.listMetadata["instagramLikesCount"]?first)!?has_content>                    
+                            <li class="contact__item" title="Duration of video">
+                                <span class="search-results__icon--red far fa-eye" aria-label="Number of views"></span>
+                                ${(result.listMetadata["instagramLikesCount"]?first)!}
                             </li>
-                        </#if>                        
-                        
-                        <#if (result.listMetadata["planningDevelopeAddress"]?first)!?has_content>
-                            <li class="contact__item contact__item--icon contact__item--icon-location">
-                                ${(result.listMetadata["planningDevelopeAddress"]?first)!}
+                        </#if>
+                        <#if (result.listMetadata["instagramCommentsCount"]?first)!?has_content>                    
+                            <li class="contact__item" title="Duration of video">
+                                <span class="search-results__icon--red far fa-comment" aria-label="Number of comments"></span>
+                                ${(result.listMetadata["instagramCommentsCount"]?first)!}
                             </li>
-                        </#if>                        
+                        </#if>
                     </ul>
                 </section>
-            </div>            
+            </div>                                            
         </div>
     </article>
-</#macro>
-
-
-<#-- 
-    Handlebars template used to display the current object
-    in concierge.
---> 
-<#macro AutoCompleteTemplate>
-    <!-- planning_applications.AutoCompleteTemplate -->
-    <script id="auto-completion-planning_applications" type="text/x-handlebars-template">
-        <div class="fb-auto-complete--non-organic">
-            <h6>
-                {{extra.disp.metaData.planningApplicationName}}
-            </h6>
-            <div class="details">
-                {{#if extra.disp.metaData.planningWardName}}
-                    <div class="text-capitalize">{{extra.disp.metaData.planningWardName}}</div>
-                {{/if}}
-
-                {{#if extra.disp.metaData.planningDevelopeAddress}}
-                    <div class="fb-auto-complete__body__metadata text-muted">
-                        <span class="fas fa-map-marker-alt text-muted" aria-hidden="true"></span> 
-                        {{extra.disp.metaData.planningDevelopeAddress}}
-                    </div>
-                {{/if}}
-
-                {{#if extra.disp.metaData.planningRegisteredDate}}
-                    <div class="fb-auto-complete__body__metadata text-muted">
-                        <span class="fas fa-calendar-alt text-muted" aria-hidden="true"></span> 
-                        Registered on {{extra.disp.metaData.planningRegisteredDate}}
-                    </div>
-                {{/if}}
-            </div>
-        </div>
-    </script>
-</#macro>
-
-
-<#macro Result2 result>
-  <li class="search-result instagram mb-3">
-    <div class="card">
-      <div class="row no-gutters">
-        <div class="col-md-3 instagram">
-          <a href="${result.clickTrackingUrl}" title="${result.liveUrl}" target="_blank">
-            <#if result.metaData["instagramMediaType"]?? && (result.metaData["instagramMediaType"] == "IMAGE" || result.metaData["instagramMediaType"] == "CAROUSEL_ALBUM") && result.metaData["instagramMediaUrl"]??>
-              <img class="card-img img-fluid" alt="Instagram Media Image" src="${result.metaData["instagramMediaUrl"]}">
-            </#if>
-            <#if (result.metaData["instagramMediaType"]!"") == "VIDEO" && result.metaData["instagramThumbnailUrl"]??>
-              <img class="card-img img-fluid" alt="Instagram Video Thumbnail" src="${result.metaData["instagramThumbnailUrl"]}">
-            </#if>
-          </a>
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <div class="card-text">
-              <strong>${result.metaData["author"]!"Unknown"}</strong>&nbsp;
-              <@s.boldicize><@s.Truncate length=500>${result.metaData["instagramCaption"]!}</@s.Truncate></@s.boldicize>
-            </div>
-            <div class="community-details">
-
-              <#-- Like and comment count is only available in Graph API, not Basic Display API  -->
-              <#-- Graph API requires more permissions to be approved in App Review -->
-              <#if result.metaData["instagramLikesCount"]??>
-                <i class="fa fa-heart"></i><span>  ${result.metaData["instagramLikesCount"]}</span>
-              </#if>
-              <#if result.metaData["instagramCommentsCount"]??>
-                <i class="fa fa-comment"></i><span>  ${result.metaData["instagramCommentsCount"]}</span>
-              </#if>
-
-              <span>
-                <time datetime="${result.date?date?string.iso}" title="${result.date?date?string.medium}">${prettyTime(result.date?date)}</time>
-              </span>
-              <@history_cart.LastVisitedLink result=result/>  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </li>
 </#macro>

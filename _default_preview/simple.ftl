@@ -44,6 +44,7 @@
 <#import "facebook.ftl" as facebook />
 <#import "events.ftl" as events />
 <#import "twitter.ftl" as twitter />
+<#import "instagram.ftl" as instagram />
 
 <!DOCTYPE html>
 <html lang="en">
