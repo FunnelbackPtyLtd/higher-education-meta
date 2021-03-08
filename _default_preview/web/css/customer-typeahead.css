@@ -1,77 +1,41 @@
-@media (max-width: 768px) {
-    /* Do not display auto-complete on small devices */
-    .tt-menu {
-        display: none !important;
+
+/* 
+    Highlight the selected auto complete suggestion when the user
+    hovers or navigates there via the keyboard.
+*/
+.fb-container .module-search .tt-suggestion:hover { 
+    cursor: pointer; 
+    background-color: #f0f0f0; 
+} 
+
+.fb-container .module-search .tt-suggestion.tt-cursor { 
+    background-color: #f0f0f0; 
+}
+
+/* 
+    TODO - Review if you need to adjust the presentation of the channels 
+    in concierge 
+*/
+@media only screen and (min-width: 1025px) {
+    .fb-container .module-search--bg .tt-dataset:nth-child(2),
+    .fb-container .module-search--bg .tt-dataset:nth-child(3)
+    {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-flex: 0;
+        flex: 0 0 50%;
+        flex-wrap: wrap;
+        max-width: 50%;
+        width: 50%;
+    }
+
+    .fb-container .module-search--bg .tt-category {
+        -webkit-box-flex: 0;
+        flex: 0 0 100%;
     }
 }
 
-.twitter-typeahead {
-    flex-grow: 2;
-    width: 50%;
-}
-
-.tt-menu {
-    background-color: #eeefea;
-    color: #292b2c;
-    left: -45% !important;
-    width: 203% !important;
-    padding: .5rem;
-    border: solid 1px rgba(0, 0, 0, .125);
-    border-radius: .25rem;
-}
-
-.tt-dataset {
-    float: left;
-    display: table-cell;
-    height: 100%;
-}
-
-.tt-dataset:first-child,
-.tt-dataset:first-child .tt-suggestion {
-    border-left: none;
-    padding-left: 0;
-}
-
-.tt-dataset h5 {
-    font-size: large;
-    font-weight: bold;
-
-    text-align: center;
-}
-
-.tt-suggestion {
-    cursor: pointer;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    border-left: solid 1px rgba(0, 0, 0, .125);
-}
-
-.tt-suggestion.tt-cursor,
-.tt-suggestion:hover {
-    background-color: #d7d8d2;
-}
-
-.tt-dataset-organic { width: 25%; }
-.tt-dataset-people  { width: 40%; }
-.tt-dataset-courses { width: 35%; }
-
-.tt-dataset-people .tt-suggestion,
-.tt-dataset-courses .tt-suggestion {
-    margin-top: .75rem;
-    margin-bottom: .75rem;
-}
-
-.tt-dataset .details {
-    line-height: 1rem;
-}
-
-.tt-dataset-people img {
-    max-width: 64px;
-    max-height: 64px;
-    
-}
-
-.tt-dataset h6 {
-    color: #9a1904;
-    margin: 0;
+/* Hide empty sections in concierge */
+.fb-container .module-search .tt-dataset:empty {
+    display: none;
 }
