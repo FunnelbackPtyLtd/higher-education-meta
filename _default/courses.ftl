@@ -1,124 +1,298 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "base.ftl" as base />
-<#import "history_cart.ftl" as history_cart />
 
-<#macro Result result>
-  <li data-fb-result="${result.indexUrl}" class="search-result search-result-course mb-3">
-    <div class="card">
+<#-- 
+    Macro decides how each result should be presented. 
 
-      <div class="card-header cart-item-trigger-parent">
-        <h4>
-          <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">
-            <@s.boldicize><@s.Truncate length=70>${result.title}</@s.Truncate></@s.boldicize>
-          </a>
-          <#if result.metaData["courseSubject"]?? && result.metaData["courseNumber"]??>
-            <small class="text-muted">(${result.metaData["courseSubject"]!}-${result.metaData["courseNumber"]!})</small>
-          </#if>
-        </h4>
-        <div class="card-subtitle text-muted">
-          ${result.metaData["courseDepartment"]!}
-        </div>
-        <@history_cart.LastVisitedLink result=result/>
-      </div>
-
-      <div class="card-body">
-        <div class="card-text">
-          <#if result.listMetadata["image"]!?has_content>
-            <img class="img-fluid float-right ml-3" alt="Thumbnail for ${result.title}" src="${result.listMetadata["image"][0]!}">
-          </#if>
-
-          <#if result.metaData["courseDesc"]??>
-            <@s.boldicize>${result.metaData["courseDesc"]?no_esc}</@s.boldicize>
-          </#if>
-        </div>
-
-        <div class="row mt-3">
-          <div class="col-md-4">
-            <h5>Credits</h5>
-            <#if result.listMetadata["courseCredit"]!?has_content>
-              <span>${result.listMetadata["courseCredit"]?join(", ")}</span>
-            <#else>
-              <span>-</span>
-            </#if>
-          </div>
-
-          <div class="col-md-4">
-            <h5>Term</h5>
-            <#if result.listMetadata["courseTerm"]!?has_content>
-              <span>${result.listMetadata["courseTerm"]?join(", ")}</span>
-            <#else>
-              <span>-</span>
-            </#if>
-          </div>
-
-          <div class="col-md-4">
-            <h5>Delivery</h5>
-            <#if result.listMetadata["courseDelivery"]!?has_content>
-              <span>${result.listMetadata["courseDelivery"]?join(", ")}</span>
-            <#else>
-              <span>-</span>
-            </#if>
-          </div>
-        </div>
-      </div>
-    </div>
-  </li>
+    @param result An individual result fron the data model
+    @param view An uppercase string which represents how
+        the result should be displayed. Defaults to DETAILED.
+-->
+<#macro Result result=result view="LIST">
+    <#switch view?upper_case>
+        <#case "CARD">
+            <@CardView result=result />
+            <#break>
+        <#case "LIST">
+            <#-- Determine if results should be hidden or not -->
+            <@ListView result=result />
+            <#break>
+        <#default>
+            <@ListView result=result />
+    </#switch>
 </#macro>
 
-<#macro CartTemplate>
-  <script id="cart-template-higher-education-courses" type="text/x-handlebar-template">
-    <div class="card search-result-course">
-
-      <div class="card-header cart-item-trigger-parent">
-
-        <h4>
-          <a href="{{indexUrl}}">
-            {{title}}
-          </a>
-          <small class="text-muted">({{metaData.courseSubject}}-{{metaData.courseNumber}})</small>
-        </h4>
-        <div class="card-subtitle text-muted">
-          {{metaData.courseDepartment}}
-        </div>
-      </div>
-
-      <div class="card-body">
-        <div class="card-text">
-          {{#if metaData.image}}<img class="img-fluid float-right" alt="{{result.title}}" src="{{metaData.image}}">{{/if}}
-
-          {{metaData.courseDesc}}
-        </div>
-
-        <div class="row mt-3">
-          <div class="col-md-4">
-            <h5>Credits</h5>
-            <span>{{#if metaData.courseCredit}}{{metaData.courseCredit}}{{else}}-{{/if}}</span>
-          </div>
-
-          <div class="col-md-4">
-            <h5>Term</h5>
-            <span>{{#if metaData.courseTerm}}{{metaData.courseTerm}}{{else}}-{{/if}}</span>
-          </div>
-
-          <div class="col-md-4">
-            <h5>Delivery</h5>
-            <span>{{#if metaData.courseDelivery}}{{metaData.courseDelivery}}{{else}}-{{/if}}</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </script>
+<#--
+    Stardard view of a result which is to be displayed in the 
+    main section of the search engine result page (SERP)
+    @param result An individual result fron the data model
+-->
+<#macro ListView result>
+    <@GenericView result=result />
 </#macro>
 
+<#--
+    Card view of a result which is to be displayed in the 
+    main section of the search engine result page (SERP)
+    @param result An individual result fron the data model
+-->
+<#macro CardView result>
+    <@GenericView result=result />
+</#macro>
+
+<#--
+    A generic view used to drive both the the list and card view
+    @param result An individual result fron the data model
+-->
+<#macro GenericView result>
+    <!-- courses.GenericView -->
+    <article class="search-results__item search-results__item--default" data-fb-result="${result.indexUrl}">
+        <figure class="search-results__bg">
+            <#if (result.listMetadata["image"]?first)!?has_content>
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
+            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
+                <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}"> 
+            </#if>
+        </figure>
+        <div class="search-results__content">
+            <#-- Title -->
+            <h3 class="search-results__title">
+                <a href="${result.clickTrackingUrl!}" title="${result.liveUrl!}" class="search-results__link">
+                    <@s.boldicize>
+                        <@s.Truncate length=90>
+                            ${(result.title)!}
+                        </@s.Truncate>
+                    </@s.boldicize>
+                </a>
+                <span class="enable-cart-on-result pull-right" 
+                    aria-label="Add result to the shortlist">
+                </span>                
+            </h3>
+            
+            <#-- Subtitle -->
+            <#if (result.listMetadata["courseSubject"]?first)!?has_content>
+                <span class="search-results__sub-title">
+                    ${(result.listMetadata["courseSubject"]?first)!}       
+                    <#if (result.listMetadata["courseNumber"]?first)!?has_content>
+                        (${(result.listMetadata["courseNumber"]?first)!})
+                    </#if>                                  
+                </span>
+            </#if>               
+            
+            <#-- Summary -->
+            <#if (result.listMetadata["courseDesc"]?first)!?has_content>
+                <p class="search-results__desc">
+                    <@s.boldicize>                    
+                        ${(result.listMetadata["courseDesc"]?first)!}
+                    </@s.boldicize>
+                </p>
+            </#if>                
+
+            <#-- Metadata can be shown as tags -->
+            <section class="tags">
+                <ul class="tags__list">
+                    <#if (result.listMetadata["courseDepartment"]?first)!?has_content>
+                        <li class="tags__item">
+                            <@s.boldicize>                    
+                                ${(result.listMetadata["courseDepartment"]?first)!}
+                            </@s.boldicize>
+                        </li>
+                    </#if>                   
+                    <#if (result.listMetadata["courseDelivery"]?first)!?has_content>
+                        <li class="tags__item">
+                            <@s.boldicize>                    
+                                ${(result.listMetadata["courseDelivery"]?first)!}
+                            </@s.boldicize>
+                        </li>
+                    </#if>                   
+                    <#if (result.listMetadata["courseCredit"]?first)!?has_content>
+                        <li class="tags__item">
+                            <@s.boldicize>                    
+                                ${(result.listMetadata["courseCredit"]?first)!}
+                            </@s.boldicize>
+                            credits
+                        </li>
+                    </#if>                   
+                </ul>
+            </section>
+
+            <#-- Call to Action (CTA) -->
+            <p>
+                <a href="${result.clickTrackingUrl!}" class="btn--link">VIEW MORE</a> 
+            </p>
+
+            <#-- Display the time which this result has last been visited by the user -->
+            <@history_cart.LastVisitedLink result=result/>
+
+            <#-- Footer -->
+            <div class="search-results__bottom">
+                <section class="contact js-contact">
+                    <ul class="contact__list">                        
+                        <#if (result.listMetadata["courseTerm"])!?has_content>
+                           <li class="contact__item">
+                                <span class="search-results__icon--red fas far fa-clock" aria-label="Term" title="Term"></span> 
+
+                                ${(result.listMetadata["courseTerm"]?join(", "))!}
+                            </li>
+                        </#if>                        
+                        
+                        <#if (result.listMetadata["courseCampus"]?first)!?has_content>
+                            <li class="contact__item ">
+                                <span class="search-results__icon--red fas fa-map-marker-alt" aria-label="Campus" title="Campus"></span> 
+                                ${(result.listMetadata["courseCampus"]?first)!} campus
+                            </li>
+                        </#if>                        
+                    </ul>
+                </section>
+            </div>            
+        </div>
+    </article>
+</#macro>
+
+<#-- 
+	Handlebars template used to display the current object
+	in concierge.
+--> 
 <#macro AutoCompleteTemplate>
-  <script id="auto-completion-courses" type="text/x-handlebar-template">
-    <div>
-      <h6>{{extra.disp.title}} <small class="text-muted">{{extra.disp.metaData.courseSubject}}-{{extra.disp.metaData.courseNumber}}</small></h6>
-      <div class="details">
-        <small>{{extra.disp.metaData.courseTerm}}</small>
-      </div>
-    </div>
-  </script>
+    <!-- courses.AutoCompleteTemplate -->
+	<script id="auto-completion-courses" type="text/x-handlebars-template">
+		<div class="fb-auto-complete--non-organic">
+            <h6>
+                {{extra.disp.title}}
+            </h6>
+
+            <div class="details">
+                {{#if extra.disp.metaData.courseSubject}}
+                    <div class="fb-auto-complete__body__metadata text-muted">
+                        {{extra.disp.metaData.courseSubject}} 
+                        {{#if extra.disp.metaData.courseNumber}}
+                            ({{extra.disp.metaData.courseNumber}})
+                        {{/if}} 
+                    </div>
+                {{/if}}
+
+                {{#if extra.disp.metaData.courseTerm}}
+                    <div class="fb-auto-complete__body__metadata text-muted">
+                        {{extra.disp.metaData.courseTerm}}
+                    </div>
+                {{/if}}
+            </div>      
+		</div>    
+	</script>
 </#macro>
-<#-- vim: set expandtab ts=2 sw=2 sts=2 :-->
+
+<#-- Output the cart template -->
+<#macro CartTemplate>
+    <!-- courses.CartTemplate -->    
+    <#-- 
+        Note: Cart templates as assigned to document types in profile.cfg/collection.cfg using 
+        the following configuration:
+
+        stencils.template.shortlist.<collection>=<type> 
+        
+        e.g. stencils.template.shortlist.higher-education-meta=courses
+
+        For this to function correctly, the ID must be in the following format:
+        id="cart-template-<type>".
+
+        e.g. id="cart-template-courses"
+    -->
+    <script id="cart-template-courses" type="text/x-handlebars-template">
+        <article class="search-results__item search-results__item--default">
+            <figure class="search-results__bg">
+                {{#if metaData.image}}  
+                    <img class="card-img-top" alt="Thumbnail for {{title}}" src="{{metaData.image}}" /> 
+                <#-- Show a placeholder image for showcase -->
+                <#if ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+                    {{else}}
+                        <img class="card-img-top" alt="Thumbnail for {{title}}" src="https://source.unsplash.com/random/335x192?{{title}}"> 
+                </#if>    
+                {{/if}}
+            </figure>
+            <div class="search-results__content">
+                {{#if title}} 
+                    <h3 class="search-results__title">
+                        <a href="{{indexUrl}}" title="{{title}}" class="search-results__link">
+                            {{#truncate 255}}
+                                {{title}}  
+                            {{/truncate}}
+                        </a>
+                        <span class="enable-cart-on-result"></span>
+                    </h3>
+                {{/if}}
+                
+                <#-- Pretty version of the url of the document -->
+                <#--  
+                <cite>
+                    {{#truncate 90}}
+                        {{indexUrl}}
+                    {{/truncate}}                
+                </cite>  
+                -->
+
+                <#-- Subtitle -->
+                {{#if metaData.courseSubject}}  
+                    <span class="search-results__sub-title">
+                        {{metaData.courseSubject}}       
+                        {{#if metaData.courseNumber}} 
+                            ({{metaData.courseNumber}})
+                        {{/if}}                                  
+                    </span>
+                {{/if}}    
+                
+                <#-- Summary -->
+                {{#if metaData.courseDesc}} 
+                    <p class="search-results__desc">
+                        {{#truncate 255}}
+                            {{metaData.courseDesc}}  
+                        {{/truncate}}
+                    </p>
+                {{/if}}
+
+                <#-- Metadata can be shown as tags -->
+                <section class="tags">
+                    <ul class="tags__list">
+                        {{#if metaData.courseDepartment}}  
+                            <li class="tags__item">
+                                {{metaData.courseDepartment}}  
+                            </li>
+                        {{/if}} 
+                        {{#if metaData.courseDelivery}}  
+                            <li class="tags__item">
+                                {{metaData.courseDelivery}}  
+                            </li>
+                        {{/if}} 
+                        {{#if metaData.courseCredit}}  
+                            <li class="tags__item">
+                                {{metaData.courseCredit}}  
+                            </li>
+                        {{/if}} 
+                    </ul>
+                </section> 
+                
+                <p>
+                    <span class="fb-cart__remove"></span>
+                </p>
+                <div class="search-results__bottom">
+                    <section class="contact js-contact">
+                        <ul class="contact__list">                        
+                            {{#if metaData.courseTerm}} 
+                                <li class="contact__item">
+                                    <span class="search-results__icon--red fas far fa-clock" aria-label="Term" title="Term"></span> 
+                                    {{#list metaData.courseTerm joinWith=", "}}{{this}}{{/list}}                                        
+                                </li>
+                            {{/if}}                       
+                            
+                            {{#if metaData.courseCampus}} 
+                                <li class="contact__item ">
+                                    <span class="search-results__icon--red fas fa-map-marker-alt" aria-label="Campus" title="Campus"></span> 
+                                    {{#list metaData.courseCampus joinWith=", "}}{{this}}{{/list}}                                    
+                                </li>
+                            {{/if}}                       
+                        </ul>
+                    </section>
+                </div>                         
+            </div>
+        </article>
+    </script>
+  
+  </#macro>
