@@ -143,28 +143,28 @@
     <script id="auto-completion-people" type="text/x-handlebars-template">
         <div class="fb-auto-complete--non-organic">
             <h6>
-                {{extra.disp.metaData.peopleFirstName}}
-                {{extra.disp.metaData.peopleLastName}}
+                {{extra.disp.listMetadata.peopleFirstName[0]}}
+                {{extra.disp.listMetadata.peopleLastName[0]}}
             </h6>
             <div class="details">
-                {{#if extra.disp.metaData.peopleDepartment}}
+                {{#if extra.disp.listMetadata.peopleDepartment[0]}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="far fa-building" aria-hidden="true" aria-label="Department" title="Department"></span> 
-                        {{extra.disp.metaData.peopleDepartment}}
+                        {{extra.disp.listMetadata.peopleDepartment[0]}}
                     </div>
                 {{/if}}
 
-                {{#if extra.disp.metaData.peoplePhone}}
+                {{#if extra.disp.listMetadata.peoplePhone[0]}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="fas fa-map-marker-alt" aria-hidden="true" aria-label="Phone" title="Phone"></span> 
-                        {{extra.disp.metaData.peoplePhone}}
+                        {{extra.disp.listMetadata.peoplePhone[0]}}
                     </div>
                 {{/if}}
 
-                {{#if extra.disp.metaData.peopleEmail}}
+                {{#if extra.disp.listMetadata.peopleEmail[0]}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="far fa-envelope" aria-hidden="true" aria-label="Email" title="DepartmEmailent"></span> 
-                        {{extra.disp.metaData.peopleEmail}}
+                        {{extra.disp.listMetadata.peopleEmail[0]}}
                     </div>
                 {{/if}}
             </div>

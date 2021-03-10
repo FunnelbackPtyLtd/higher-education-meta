@@ -161,18 +161,18 @@
             </h6>
 
             <div class="details">
-                {{#if extra.disp.metaData.courseSubject}}
+                {{#if extra.disp.listMetadata.courseSubject[0]}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{extra.disp.metaData.courseSubject}} 
-                        {{#if extra.disp.metaData.courseNumber}}
-                            ({{extra.disp.metaData.courseNumber}})
+                        {{extra.disp.listMetadata.courseSubject[0]}} 
+                        {{#if extra.disp.listMetadata.courseNumber[0]}}
+                            ({{extra.disp.listMetadata.courseNumber[0]}})
                         {{/if}} 
                     </div>
                 {{/if}}
 
-                {{#if extra.disp.metaData.courseTerm}}
+                {{#if extra.disp.listMetadata.courseTerm[0]}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{extra.disp.metaData.courseTerm}}
+                        {{extra.disp.listMetadata.courseTerm[0]}}
                     </div>
                 {{/if}}
             </div>      
@@ -199,7 +199,7 @@
     <script id="cart-template-courses" type="text/x-handlebars-template">
         <article class="search-results__item search-results__item--default">
             <figure class="search-results__bg">
-                {{#if metaData.image}}  
+                {{#if.listMetadata.image[0]}}  
                     <img class="card-img-top" alt="Thumbnail for {{title}}" src="{{metaData.image}}" /> 
                 <#-- Show a placeholder image for showcase -->
                 <#if ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
@@ -230,17 +230,17 @@
                 -->
 
                 <#-- Subtitle -->
-                {{#if metaData.courseSubject}}  
+                {{#if.listMetadata.courseSubject[0]}}  
                     <span class="search-results__sub-title">
                         {{metaData.courseSubject}}       
-                        {{#if metaData.courseNumber}} 
+                        {{#if.listMetadata.courseNumber[0]}} 
                             ({{metaData.courseNumber}})
                         {{/if}}                                  
                     </span>
                 {{/if}}    
                 
                 <#-- Summary -->
-                {{#if metaData.courseDesc}} 
+                {{#if.listMetadata.courseDesc[0]}} 
                     <p class="search-results__desc">
                         {{#truncate 255}}
                             {{metaData.courseDesc}}  
@@ -251,17 +251,17 @@
                 <#-- Metadata can be shown as tags -->
                 <section class="tags">
                     <ul class="tags__list">
-                        {{#if metaData.courseDepartment}}  
+                        {{#if.listMetadata.courseDepartment[0]}}  
                             <li class="tags__item">
                                 {{metaData.courseDepartment}}  
                             </li>
                         {{/if}} 
-                        {{#if metaData.courseDelivery}}  
+                        {{#if.listMetadata.courseDelivery[0]}}  
                             <li class="tags__item">
                                 {{metaData.courseDelivery}}  
                             </li>
                         {{/if}} 
-                        {{#if metaData.courseCredit}}  
+                        {{#if.listMetadata.courseCredit[0]}}  
                             <li class="tags__item">
                                 {{metaData.courseCredit}}  
                             </li>
@@ -275,17 +275,17 @@
                 <div class="search-results__bottom">
                     <section class="contact js-contact">
                         <ul class="contact__list">                        
-                            {{#if metaData.courseTerm}} 
+                            {{#if.listMetadata.courseTerm[0]}} 
                                 <li class="contact__item">
                                     <span class="search-results__icon--red fas far fa-clock" aria-label="Term" title="Term"></span> 
-                                    {{#list metaData.courseTerm joinWith=", "}}{{this}}{{/list}}                                        
+                                    {{#list.listMetadata.courseTerm[0] joinWith=", "}}{{this}}{{/list}}                                        
                                 </li>
                             {{/if}}                       
                             
-                            {{#if metaData.courseCampus}} 
+                            {{#if.listMetadata.courseCampus[0]}} 
                                 <li class="contact__item ">
                                     <span class="search-results__icon--red fas fa-map-marker-alt" aria-label="Campus" title="Campus"></span> 
-                                    {{#list metaData.courseCampus joinWith=", "}}{{this}}{{/list}}                                    
+                                    {{#list.listMetadata.courseCampus[0] joinWith=", "}}{{this}}{{/list}}                                    
                                 </li>
                             {{/if}}                       
                         </ul>
