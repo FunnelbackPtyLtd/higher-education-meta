@@ -150,7 +150,7 @@
                            <li class="contact__item">
                                 <span class="search-results__icon--red fas fa-phone" title="Event phone number" aria-label="Event phone number"></span>
                                 <a class="highlight" href="tel:${(result.listMetadata["eventContactPhone"]?first)!}">
-                                    ${result.metaData["eventContactPhone"]!}
+                                    ${result.listMetadata["eventContactPhone"]?first!}
                                 </a>                                
                             </li>
                         </#if>
@@ -174,22 +174,22 @@
             </h6>
 
             <div class="details">
-                {{#if extra.disp.metaData.eventLocation}}
+                {{#if extra.disp.listMetadata.eventLocation[0]}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="fas fa-map-marker-alt" aria-hidden="true" aria-label="Event location" title="Event location"></span> 
-                        {{extra.disp.metaData.eventLocation}}
+                        {{extra.disp.listMetadata.eventLocation[0]}}
                     </div>
                 {{/if}}
-                {{#if extra.disp.metaData.eventContactPhone}}
+                {{#if extra.disp.listMetadata.eventContactPhone[0]}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="fas fa-map-marker-alt" aria-hidden="true" aria-label="Event phone number" title="Event phone number"></span> 
-                        {{extra.disp.metaData.eventContactPhone}}
+                        {{extra.disp.listMetadata.eventContactPhone[0]}}
                     </div>
                 {{/if}}
-                {{#if extra.disp.metaData.eventContactEmail}}
+                {{#if extra.disp.listMetadata.eventContactEmail[0]}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="far fa-envelope" aria-hidden="true" aria-label="Event email" title="email"></span> 
-                        {{extra.disp.metaData.eventContactEmail}}
+                        {{extra.disp.listMetadata.eventContactEmail[0]}}
                     </div>
                 {{/if}}
             </div>      

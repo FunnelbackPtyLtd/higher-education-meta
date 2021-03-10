@@ -176,7 +176,7 @@
           <div class="media-body">
             <i class="fab fa-facebook-square float-right text-muted" aria-hidden="true"></i>
             <h4>
-              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.metaData["author"]!"Unknown author"}</a>
+              <a href="${result.clickTrackingUrl}" title="${result.liveUrl}">${result.listMetadata["author"]?first!"Unknown author"}</a>
             </h4>
             <div class="card-subtitle text-muted">
               ${result.date?date?string("MMMM dd, yyyy")} via Facebook
@@ -186,15 +186,15 @@
         </div>
 
         <div class="card-text mt-3">
-          <@s.boldicize>${response.customData.stencilsMethods.linkify(result.metaData["c"]!)?no_esc}</@s.boldicize>
+          <@s.boldicize>${response.customData.stencilsMethods.linkify(result.listMetadata["c"]?first!)?no_esc}</@s.boldicize>
 
-          <#if result.metaData["stencilsFacebookPostLink"]??>
+          <#if result.listMetadata["stencilsFacebookPostLink"]?first??>
             <hr>
             <#if result.listMetadata["image"]!?has_content>
               <img class="img-fluid float-right ml-3 deferred" alt="Thumbnail for ${result.title}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"][0]!}">
             </#if>
-            <h5><a href="${result.metaData["stencilsFacebookPostLink"]!}">${result.metaData["stencilsFacebookPostLinkName"]!}</a></h5>
-            <p><@s.Truncate length=120>${result.metaData["stencilsFacebookPostLinkDescription"]!}</@s.Truncate></p>
+            <h5><a href="${result.listMetadata["stencilsFacebookPostLink"]?first!}">${result.listMetadata["stencilsFacebookPostLinkName"]?first!}</a></h5>
+            <p><@s.Truncate length=120>${result.listMetadata["stencilsFacebookPostLinkDescription"]?first!}</@s.Truncate></p>
           </#if>
         </div>
       </div>
