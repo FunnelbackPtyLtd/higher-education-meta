@@ -8,23 +8,20 @@
                     <li class="header-top-links__item">
                         <a href="#" class="header-top-links__link">Contact us</a>
                     </li>
-                    <li class="header-top-links__item">
-                        <a href="#" class="header-top-links__link">Emergencies</a>
-                    </li>
                 </ul>
                 <ul class="header-top-links__list  header-top-links__list--icon">
                     <li class="header-top-links__item">
                         <a href="#" class="header-top-links__link header-top-links__link--icon header-top-links__link--icon-user">
-                            Register or Login</a>
+                            Alumni</a>
                     </li>
                     <li class="header-top-links__item">
                         <a href="#" class="header-top-links__link header-top-links__link--icon header-top-links__link--icon-star">
-                            Pay online
+                            My account
                         </a>
                     </li>
                     <li class="header-top-links__item">
                         <a href="#" class="header-top-links__link header-top-links__link--icon header-top-links__link--icon-case">
-                            Services A-Z
+                            Library
                         </a>
                     </li>
                 </ul>
@@ -48,13 +45,13 @@
                             <a href="/s/search.html?collection=${(question.collection.id)!}&profile=${(question.profile)!}" class="header-links__link">Home</a>
                         </li>
                         <li class="header-links__item">
-                            <a href="#" class="header-links__link">Community</a>
+                            <a href="#" class="header-links__link">Study</a>
                         </li>
                         <li class="header-links__item">
-                            <a href="#" class="header-links__link">Council</a>
+                            <a href="#" class="header-links__link">Research and Innovation</a>
                         </li>
                         <li class="header-links__item">
-                            <a href="#" class="header-links__link">Services</a>
+                            <a href="#" class="header-links__link">Industry and Community</a>
                         </li>
 
                     </ul>
@@ -62,14 +59,14 @@
 
                 <div class="header-search">
                     <a href="#" class="header-search__link">
-                        <span class="sr-only">Wyszukaj</span>
+                        <span class="sr-only">Search</span>
                     </a>
                 </div>
 
                 <a href="#" class="header-hamburger">
                     <span class="header-hamburger__button">
                         <span>
-                            <span class="sr-only">Nawigacja mobilna</span>
+                            <span class="sr-only">More</span>
                         </span>
                     </span>
                 </a>

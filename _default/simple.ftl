@@ -39,6 +39,7 @@
 -->
 <#import "project.ftl" as project />
 <#import "courses.ftl" as courses />
+<#import "programs.ftl" as programs />
 <#import "people.ftl" as people />
 <#import "video.ftl" as video />
 <#import "facebook.ftl" as facebook />
@@ -123,7 +124,7 @@
 
 
 	<#-- Output the auto complete templates for concierge -->
-	<@courses.AutoCompleteTemplate />
+	<@programs.AutoCompleteTemplate />
 	<@people.AutoCompleteTemplate />
 		
 	<script>
