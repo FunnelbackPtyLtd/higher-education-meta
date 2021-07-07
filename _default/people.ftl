@@ -143,28 +143,28 @@
     <script id="auto-completion-people" type="text/x-handlebars-template">
         <div class="fb-auto-complete--non-organic">
             <h6>
-                {{extra.disp.metaData.peopleFirstName}}
-                {{extra.disp.metaData.peopleLastName}}
+                {{{extra.disp.metaData.peopleFirstName}}}
+                {{{extra.disp.metaData.peopleLastName}}}
             </h6>
             <div class="details">
                 {{#if extra.disp.metaData.peopleDepartment}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="far fa-building" aria-hidden="true" aria-label="Department" title="Department"></span> 
-                        {{extra.disp.metaData.peopleDepartment}}
+                        {{{extra.disp.metaData.peopleDepartment}}}
                     </div>
                 {{/if}}
 
                 {{#if extra.disp.metaData.peoplePhone}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="fas fa-map-marker-alt" aria-hidden="true" aria-label="Phone" title="Phone"></span> 
-                        {{extra.disp.metaData.peoplePhone}}
+                        {{{extra.disp.metaData.peoplePhone}}}
                     </div>
                 {{/if}}
 
                 {{#if extra.disp.metaData.peopleEmail}}
                     <div class="fb-auto-complete__body__metadata">
                         <span class="far fa-envelope" aria-hidden="true" aria-label="Email" title="DepartmEmailent"></span> 
-                        {{extra.disp.metaData.peopleEmail}}
+                        {{{extra.disp.metaData.peopleEmail}}}
                     </div>
                 {{/if}}
             </div>

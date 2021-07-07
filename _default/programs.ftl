@@ -153,23 +153,23 @@
 	<script id="auto-completion-programs" type="text/x-handlebars-template">
 		<div class="fb-auto-complete--non-organic">
             <h6>
-                {{extra.disp.title}}
+                {{{extra.disp.title}}}
 
                 {{#if extra.disp.metaData.programCredentialType}}
-                        ({{extra.disp.metaData.programCredentialType}})
+                        ({{{extra.disp.metaData.programCredentialType}}})
                 {{/if}}                
             </h6>
 
             <div class="details">
                 {{#if extra.disp.metaData.programFaculty}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{extra.disp.metaData.programFaculty}} 
+                        {{{extra.disp.metaData.programFaculty}}}
                     </div>
                 {{/if}}
 
                 {{#if extra.disp.metaData.stencilsDeliveryMethod}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{extra.disp.metaData.stencilsDeliveryMethod}}
+                        {{{extra.disp.metaData.stencilsDeliveryMethod}}}
                     </div>
                 {{/if}}                
             </div>      
