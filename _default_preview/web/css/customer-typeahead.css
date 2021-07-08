@@ -6,7 +6,12 @@
 .fb-container .module-search .tt-suggestion:hover { 
     cursor: pointer; 
     background-color: #f0f0f0; 
-} 
+}
+
+/* Ensure each suggest occupies the entire line */
+.fb-container .module-search--bg .tt-suggestion {
+    width: 100%;
+}
 
 .fb-container .module-search .tt-suggestion.tt-cursor { 
     background-color: #f0f0f0; 

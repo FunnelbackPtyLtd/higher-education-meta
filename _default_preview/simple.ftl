@@ -39,6 +39,7 @@
 -->
 <#import "project.ftl" as project />
 <#import "courses.ftl" as courses />
+<#import "programs.ftl" as programs />
 <#import "people.ftl" as people />
 <#import "video.ftl" as video />
 <#import "facebook.ftl" as facebook />
@@ -66,6 +67,7 @@
 	<a href="#search-results" class="sr-only" title="Skip to search results">
 		Skip to search results
 	</a>
+	<@base.Overlay />
 	<@client_includes.ContentHeader />
 
 	<div class="fb-container">
@@ -102,15 +104,6 @@
 		Libraries required by the design developed by the Stencils cutup team. 
 		Avoid changing these if possible.
 	-->
-	<#-- The vendor.js file includes all the code from external libraries -->
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/vendors.js"></script>
-	<#-- 
-		Webpacks "runtime" code. Contains everything required to connect the
-	 	modularized application while it’s running in the browser. It contains 
-		the loading and resolving logic needed to connect your modules as they 
-		interact.
-	-->
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/runtime.js"></script>
 	<#-- Stencil specific code such as the quickview and dropdowns -->
 	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/main.js"></script>
 	
@@ -123,7 +116,7 @@
 
 
 	<#-- Output the auto complete templates for concierge -->
-	<@courses.AutoCompleteTemplate />
+	<@programs.AutoCompleteTemplate />
 	<@people.AutoCompleteTemplate />
 		
 	<script>
