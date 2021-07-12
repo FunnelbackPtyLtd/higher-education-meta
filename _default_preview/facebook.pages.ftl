@@ -143,7 +143,7 @@
                            <li class="contact__item">
                                 <span class="search-results__icon--red fas fa-phone" title="Contact details"></span>
                                 <a class="text-muted" href="tel:${(result.listMetadata["stencilsFacebookPagePhone"]?first)!}">
-                                    ${result.metaData["stencilsFacebookPagePhone"]!}
+                                    ${result.listMetadata["stencilsFacebookPagePhone"]?first!}
                                 </a>                                
                             </li>
                         </#if>

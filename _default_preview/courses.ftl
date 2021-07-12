@@ -161,18 +161,18 @@
             </h6>
 
             <div class="details">
-                {{#if extra.disp.metaData.courseSubject}}
+                {{#if extra.disp.listMetadata.courseSubject.[0]}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{extra.disp.metaData.courseSubject}} 
-                        {{#if extra.disp.metaData.courseNumber}}
-                            ({{extra.disp.metaData.courseNumber}})
+                        {{extra.disp.listMetadata.courseSubject.[0]}} 
+                        {{#if extra.disp.listMetadata.courseNumber.[0]}}
+                            ({{extra.disp.listMetadata.courseNumber.[0]}})
                         {{/if}} 
                     </div>
                 {{/if}}
 
-                {{#if extra.disp.metaData.courseTerm}}
+                {{#if extra.disp.listMetadata.courseTerm.[0]}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{extra.disp.metaData.courseTerm}}
+                        {{extra.disp.listMetadata.courseTerm.[0]}}
                     </div>
                 {{/if}}
             </div>      
@@ -275,17 +275,17 @@
                 <div class="search-results__bottom">
                     <section class="contact js-contact">
                         <ul class="contact__list">                        
-                            {{#if metaData.courseTerm}} 
+                            {{#if listMetadata.courseTerm}} 
                                 <li class="contact__item">
                                     <span class="search-results__icon--red fas far fa-clock" aria-label="Term" title="Term"></span> 
-                                    {{#list metaData.courseTerm joinWith=", "}}{{this}}{{/list}}                                        
+                                    {{#list listMetadata.courseTerm joinWith=", "}}{{this}}{{/list}}                                        
                                 </li>
                             {{/if}}                       
                             
-                            {{#if metaData.courseCampus}} 
+                            {{#if listMetadata.courseCampus}} 
                                 <li class="contact__item ">
                                     <span class="search-results__icon--red fas fa-map-marker-alt" aria-label="Campus" title="Campus"></span> 
-                                    {{#list metaData.courseCampus joinWith=", "}}{{this}}{{/list}}                                    
+                                    {{#list listMetadata.courseCampus joinWith=", "}}{{this}}{{/list}}                                    
                                 </li>
                             {{/if}}                       
                         </ul>

@@ -155,21 +155,21 @@
             <h6>
                 {{{extra.disp.title}}}
 
-                {{#if extra.disp.metaData.programCredentialType}}
-                        ({{{extra.disp.metaData.programCredentialType}}})
+                {{#if extra.disp.listMetadata.programCredentialType.[0]}}
+                    ({{{extra.disp.listMetadata.programCredentialType.[0]}}})
                 {{/if}}                
             </h6>
 
             <div class="details">
-                {{#if extra.disp.metaData.programFaculty}}
+                {{#if extra.disp.listMetadata.programFaculty.[0]}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{{extra.disp.metaData.programFaculty}}}
+                        {{{extra.disp.listMetadata.programFaculty.[0]}}}
                     </div>
                 {{/if}}
 
-                {{#if extra.disp.metaData.stencilsDeliveryMethod}}
+                {{#if extra.disp.listMetadata.stencilsDeliveryMethod.[0]}}
                     <div class="fb-auto-complete__body__metadata text-muted">
-                        {{{extra.disp.metaData.stencilsDeliveryMethod}}}
+                        {{{extra.disp.listMetadata.stencilsDeliveryMethod.[0]}}}
                     </div>
                 {{/if}}                
             </div>      

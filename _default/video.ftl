@@ -147,7 +147,7 @@
                         </#if>
 
                         <li class="contact__item wrap">
-                            ${(result.date?date?string.short)!} - Uploaded by ${(result.metaData["videoAuthor"])!"Unknown"}
+                            ${(result.date?date?string.short)!} - Uploaded by ${(result.listMetadata["videoAuthor"]?first)!"Unknown"}
                         </li>
 
                         <#-- Uncomment to show likes and dislikes -->
