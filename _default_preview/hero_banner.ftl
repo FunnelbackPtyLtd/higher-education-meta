@@ -25,12 +25,7 @@
 
                 <input type="hidden" name="collection" value="${question.collection.id}">
 
-                <#-- Output all the parameters which are to persist between queries -->
-                <#list ["enc", "form", "scope", "lang", "profile", "userType", "displayMode", "num_ranks"] as parameter>
-                    <@s.IfDefCGI name=parameter>
-                        <input type="hidden" name="${parameter}" value="${question.inputParameters[parameter]?first!}">
-                    </@s.IfDefCGI>
-                </#list>
+                <@base.inputsForForms allowList= ["enc", "form", "scope", "lang", "profile", "userType", "displayMode", "num_ranks"] />
 
                 <#if preserveTab>
                     <#list question.selectedCategoryValues?keys as facetKey>

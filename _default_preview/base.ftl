@@ -298,5 +298,33 @@
     besides the dialog.
 -->
 <#macro Overlay>
-  <div class="overlay"></div>
+    <div class="overlay"></div>
 </#macro>
+
+
+<#--
+    Create html inputs based on the parameters pass on with search. 
+    Useful to retaining the user's selections when submitting to forms.
+-->
+<#macro inputsForForms allowList=[] denyList=[] alwaysIgnore=['HTTP_HOST', 'REMOTE_ADDR', 'REQUEST_URI', 'REQUEST_URL', 'REMOTE_USER']>    
+    <#list question.inputParameters as key, value>
+        <#if allowList!?has_content>
+            <#--  Output only the fields which are in the allow list  -->
+            <#if !alwaysIgnore?seq_contains(key) && allowList?seq_contains(key)>
+                <input type="hidden" name="${key}" value="${value!?first}">
+            </#if>
+        <#elseif denyList!?has_content>
+            <#--  Output the fields which do not appear in the denyList -->
+            <#if !alwaysIgnore?seq_contains(key) && !denyList?seq_contains(key)>
+                <input type="hidden" name="${key}" value="${value!?first}">
+            </#if>
+        <#else>
+            <#--  Output all input parameters in the scenario where no allow or deny lists are supplied  -->
+            <#if !alwaysIgnore?seq_contains(key)>
+                <input type="hidden" name="${key}" value="${value!?first}">
+            </#if>
+        </#if>
+    </#list>
+</#macro>
+
+

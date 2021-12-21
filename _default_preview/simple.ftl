@@ -22,6 +22,7 @@
 <#import "base.ftl" as base />
 <#import "hero_banner.ftl" as hero_banner />
 <#import "search_tools.ftl" as search_tools />
+<#import "counts.ftl" as counts />
 <#import "query_blending.ftl" as query_blending />
 <#import "curator.ftl" as curator />
 <#import "tabs.ftl" as tabs />
