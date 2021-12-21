@@ -257,3 +257,121 @@
         <#nested>
     </#if>
 </#macro>
+
+<#macro StoryBook>
+    <div class="facet funnelback-facet no-wysiwyg" data-component="facet">
+        <div class="facet__title">Refine your results <button type="button" class="facet-group__title facet-group__title--open facet-groups__controller" data-component="collapse-all">
+                <svg class="svg-icon svg-icon--closed">
+                    <use href="#add"></use>
+                </svg>
+                <svg class="svg-icon svg-icon--open">
+                    <use href="#subtract"></use>
+                </svg>
+                <span class="sr-only">Collapse all facets</span>
+            </button>
+        </div>
+        <div class="facet-groups">
+            <div class="facet-group" data-component="facet-group">
+                <button type="button" class="facet-group__title" data-component="facet-group-control" aria-expanded="false">Sites <svg class="svg-icon svg-icon--closed">
+                        <use href="#add"></use>
+                    </svg>
+                    <svg class="svg-icon svg-icon--open">
+                        <use href="#subtract"></use>
+                    </svg>
+                </button>
+                <div aria-multiselectable="true" role="listbox" aria-label="Sites options" class="facet-group__list facet-group__type-checkbox" data-component="facet-group-content" data-type="CHECKBOX" style="">
+                    <a aria-selected="true" role="option" class="facet-group__list-item facet-group__list-item-selected
+                            
+                            " href="#" title="Refine by 'Current Student Site Medicine, Dentistry And Health Sciences'" data-component="facet-group__list-item">Current Student Site Medicine, Dentistry And Health Sciences <span class="facet-group__results-number">128</span>
+                    </a>
+                    <a aria-selected="false" role="option" class="facet-group__list-item 
+                            
+                            " href="#" title="Refine by 'Handbook'" data-component="facet-group__list-item">Handbook <span class="facet-group__results-number">1394</span>
+                    </a>
+                    <a aria-selected="false" role="option" class="facet-group__list-item 
+                            
+                            " href="#" title="Refine by 'Study'" data-component="facet-group__list-item">Study <span class="facet-group__results-number">632</span>
+                    </a>
+                </div>
+                <a href="#" class="facet-group__clear" title="Remove all Sites refinements">
+                    <svg class="svg-icon">
+                        <title>Close search</title>
+                        <use href="#close"></use>
+                    </svg> Clear all </a>
+            </div>
+            <div class="facet-group facet-group__list--open" data-component="facet-group">
+                <button type="button" class="facet-group__title facet-group__title--open" data-component="facet-group-control" aria-expanded="true">Faculty/Graduate School <svg class="svg-icon svg-icon--closed">
+                        <use href="#add"></use>
+                    </svg>
+                    <svg class="svg-icon svg-icon--open">
+                        <use href="#subtract"></use>
+                    </svg>
+                </button>
+                <div role="listbox" aria-label="Faculty/Graduate School options" class="facet-group__list facet-group__type-radio-button facet-group__list--open" data-component="facet-group-content" data-type="RADIO_BUTTON">
+                    <a aria-selected="true" role="option" class="facet-group__list-item facet-group__list-item-selected
+                            
+                            " href="#" title="Refine by 'Medicine, Dentistry And Health Sciences'" data-component="facet-group__list-item">Medicine, Dentistry And Health Sciences <span class="facet-group__results-number">5183</span>
+                    </a>
+                    <a aria-selected="false" role="option" class="facet-group__list-item 
+                            
+                            " href="#" title="Refine by 'Law'" data-component="facet-group__list-item">Law <span class="facet-group__results-number">1303</span>
+                    </a>
+                    <a aria-selected="false" role="option" class="facet-group__list-item 
+                            
+                            " href="#" title="Refine by 'Arts'" data-component="facet-group__list-item">Arts <span class="facet-group__results-number">653</span>
+                    </a>
+                    <a aria-selected="false" role="option" class="facet-group__list-item 
+                            
+                            " href="#" title="Refine by 'Education'" data-component="facet-group__list-item">Education <span class="facet-group__results-number">570</span>
+                    </a>
+                    <a aria-selected="false" role="option" class="facet-group__list-item 
+                            
+                            " href="#" title="Refine by 'Business and Economics'" data-component="facet-group__list-item">Business and Economics <span class="facet-group__results-number">484</span>
+                    </a>
+                    <a aria-selected="false" role="option" class="facet-group__list-item 
+                            facet-group__list-item--hidden
+                            " href="#" title="Refine by 'Engineering'" data-component="facet-group__list-item">Engineering <span class="facet-group__results-number">112</span>
+                    </a>
+                    <button type="button" class="facet-group__show-more" data-component="facet-group-show-more-button">
+                        <svg class="svg-icon">
+                            <use href="#add"></use>
+                        </svg>Show more <span class="facet-group-show-more__hidden-items-count">(1)</span>
+                    </button>
+                </div>
+                <a href="#" class="facet-group__clear" title="Remove all Faculty/Graduate School refinements">
+                    <svg class="svg-icon">
+                        <title>Close search</title>
+                        <use href="#close"></use>
+                    </svg> Clear all </a>
+            </div>
+            <div class="facet-group facet-group__list--open" data-component="facet-group">
+                <button type="button" class="facet-group__title facet-group__title--open" data-component="facet-group-control" aria-expanded="true">Format <svg class="svg-icon svg-icon--closed">
+                        <use href="#add"></use>
+                    </svg>
+                    <svg class="svg-icon svg-icon--open">
+                        <use href="#subtract"></use>
+                    </svg>
+                </button>
+                <div role="listbox" aria-label="Format options" class="facet-group__list facet-group__type-single-drill-down facet-group__list--open" data-component="facet-group-content" data-type="SINGLE_DRILL_DOWN">
+                    <a role="option" class="facet-group__list-item 
+                            
+                            " title="Refine by 'Web Pages'" data-component="facet-group__list-item">Web Pages <span class="facet-group__results-number">11612</span>
+                    </a>
+                    <a role="option" class="facet-group__list-item 
+                            
+                            " title="Refine by 'Documents'" data-component="facet-group__list-item">Documents <span class="facet-group__results-number">8910</span>
+                    </a>
+                    <a role="option" class="facet-group__list-item 
+                            
+                            " title="Refine by 'video'" data-component="facet-group__list-item">video <span class="facet-group__results-number">9</span>
+                    </a>
+                </div>
+                <a href="#" class="facet-group__clear" title="Remove all Format refinements">
+                    <svg class="svg-icon">
+                        <title>Close search</title>
+                        <use href="#close"></use>
+                    </svg> Clear all </a>
+            </div>
+        </div>
+    </div>
+</#macro>

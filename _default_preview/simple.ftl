@@ -20,9 +20,15 @@
 -->
 <#import "project.ftl" as project />
 <#import "base.ftl" as base />
+<#import "hero_banner.ftl" as hero_banner />
+<#import "search_tools.ftl" as search_tools />
+<#import "blending.ftl" as blending />
 <#import "curator.ftl" as curator />
 <#import "tabs.ftl" as tabs />
+<#import "facets.breadcrumbs.ftl" as facets_breadcrumbs />
 <#import "facets.ftl" as facets />
+<#import "tier_bars.ftl" as tier_bars />
+<#import "pagination.ftl" as pagination />
 <#import "browse_mode.ftl" as browse_mode />
 <#import "contextual_navigation.ftl" as contextual_navigation />
 <#import "history_cart.ftl" as history_cart />
@@ -47,7 +53,7 @@
 <#import "instagram.ftl" as instagram />
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="stencils">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,36 +68,57 @@
 	</#if> 
 
 </head>
-<body>
+<body class="sb-show-main sb-main-padded vsc-initialized">
 	<a href="#search-results" class="sr-only" title="Skip to search results">
-		Skip to search results
+		Skip to search results asdsa
 	</a>
 	<@base.Overlay />
-	<@client_includes.ContentHeader />
+	
+	<#--  <@client_includes.ContentHeader />  -->
 
-	<div class="fb-container">
-		<main class="main <@s.InitialFormOnly>initial-search-form</@s.InitialFormOnly>" role="main">
-			<@project.SearchForm />
-			<@s.AfterSearchOnly>
-				<@project.Tabs />
-				 <#-- 
-				 	Would normally merge the span with the section element but due to the way sessions hide/show functionalty works, 
-				 	we need to separate this into it own element. -->
-				<span id="search-facets-and-results" >
-					<section class="content-wrapper content-wrapper--col search-facets-and-results">
-						<@project.SideNavigation />
-						<@project.Results />
-					</section>
-				</span>
-			</@s.AfterSearchOnly>
-			<section class="content-wrapper search-sessions">
-				<@history_cart.SearchHistory />
-				<@history_cart.Cart />
-			</section>
-		</main>
-	</div>    
+		<div class="stencils__main">
+			<@hero_banner.SearchForm />
+			<@tabs.StoryBook />
 
-	<@client_includes.ContentFooter />
+			<div class="funnelback-search no-wysiwyg">			
+				<div class="funnelback-search__body">
+					<h2 class="funnelback-search__title">Results</h2>
+
+					<@search_tools.StoryBook />
+					<@blending.StoryBook />
+					<@facets_breadcrumbs.StoryBook />
+					<@tier_bars.StoryBook />
+					<@pagination.StoryBook />
+					<@contextual_navigation.StoryBook />
+				</div>
+
+				<div class="funnelback-search__side">
+					<@facets.StoryBook />
+					<#--  <@project.SideNavigation />  -->
+				</div>
+			</div>
+
+
+			<main class="main <@s.InitialFormOnly>initial-search-form</@s.InitialFormOnly>" role="main">
+				<@s.AfterSearchOnly>
+					<#-- 
+						Would normally merge the span with the section element but due to the way sessions hide/show functionalty works, 
+						we need to separate this into it own element. 
+					-->
+					<span id="search-facets-and-results" >
+						<section class="content-wrapper content-wrapper--col search-facets-and-results">													
+							<#--  <@project.Results />  -->
+						</section>
+					</span>
+				</@s.AfterSearchOnly>
+				<section class="content-wrapper search-sessions">
+					<#--  <@history_cart.SearchHistory />
+					<@history_cart.Cart />  -->
+				</section>
+			</main>
+		</div>
+
+	<#--  <@client_includes.ContentFooter />  -->
 
 	<#-- Third parties -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>	

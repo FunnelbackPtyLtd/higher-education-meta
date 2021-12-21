@@ -39,3 +39,52 @@
         </section>
     </@HasContextualNavigation>
 </#macro>
+
+<#macro StoryBook>
+    <section class="related-links">
+        <h2 class="related-links__heading">Related searches for <strong>science</strong>
+        </h2>
+        <ul class="related-links__list">
+            <li class="related-links__item">
+                <a href="?clicked_fluster=social+science&amp;cluster0=science&amp;query=%60Social+Science%60&amp;collection=higher-education-meta" class="related-links__link">Social <strong>science</strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=computer+science&amp;cluster0=science&amp;query=%60Computer+Science%60&amp;collection=higher-education-meta" class="related-links__link">Computer <strong>science</strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=veterinary+science&amp;cluster0=science&amp;query=%60Veterinary+Science%60&amp;collection=higher-education-meta" class="related-links__link">Veterinary <strong>science</strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=computing+science&amp;cluster0=science&amp;query=%60Computing+Science%60&amp;collection=higher-education-meta" class="related-links__link">Computing <strong>science</strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=lunchbox+science&amp;cluster0=science&amp;query=%60Lunchbox+Science%60&amp;collection=higher-education-meta" class="related-links__link">Lunchbox <strong>science</strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=faculty+of+science&amp;cluster0=science&amp;query=%60Faculty+of+Science%60&amp;collection=higher-education-meta" class="related-links__link">Faculty of <strong>science</strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=science+courses&amp;cluster0=science&amp;query=%60Science+courses%60&amp;collection=higher-education-meta" class="related-links__link">
+                    <strong>science</strong> Courses </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=foundations+of+science&amp;cluster0=science&amp;query=%60Foundations+of+Science%60&amp;collection=higher-education-meta" class="related-links__link">Foundations of <strong>science</strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=school+of+science&amp;cluster0=science&amp;query=%60School+of+Science%60&amp;collection=higher-education-meta" class="related-links__link">School of <strong>science </strong>
+                </a>
+            </li>
+            <li class="related-links__item">
+                <a href="?clicked_fluster=science+and+technology&amp;cluster0=science&amp;query=%60science+and+technology%60&amp;collection=higher-education-meta" class="related-links__link">
+                    <strong>science</strong> and Technology </a>
+            </li>
+        </ul>
+    </section>
+</#macro>

@@ -97,6 +97,67 @@
     </#list>
 </#macro>
 
+<#macro StoryBook tabs=[]>
+    <!-- tabs.Tabs -->
+    <#-- 
+        Find all the tabs with values and determine if we want to display all tabs or just the tabs specified 
+    -->
+    <#local facets = (response.facets![])?filter(facet -> 
+            facet.guessedDisplayType == "TAB"
+            && facet.allValues?size gt 0
+            && (!tabs?has_content || tabs?seq_contains(facet.name))
+        )
+    >
+
+    <#list facets![] as facet>
+        <div class="tabs tabs--center">
+            <div class="tab__list" role="tablist">
+                <div class="tab-list__nav" data-tab-group-element="tab-list-nav">
+                    <#-- 
+                        Show all the tabs as individual buttons. 
+                        Note: Even though storybook uses buttons, we want to use anchors here 
+                        so that request are submitted when click which will display the new results.
+                    -->
+                    <#list facet.allValues as value>
+                        <a class="tab__button <#if value.selected>tab__button--active</#if><#if value.count lt 1>tab__button--disabled</#if>" 
+                            id="${base.getCssID(value.label)+value_index}" 
+                            role="tab" 
+                            aria-selected="${(value.selected)!?string('true','false')}"
+                            aria-controls="0-tab" 
+                            tabindex="0" 
+                            data-tab-group-control="${base.getCssID(value.label)+value_index}"
+                            <#if value.count gt 0>href="${value.toggleUrl}"</#if> 
+                        > 
+                            <#-- Display the icon if it is configured -->
+                            <#if question.getCurrentProfileConfig().get("stencils.tabs.icon.${value.label}")??>
+                                <span class="${question.getCurrentProfileConfig().get("stencils.tabs.icon.${value.label}")}"></span>
+                            </#if>                            
+
+                            ${value.label}                            
+                            &nbsp; <#--  Prevent the count from being glued to the value  -->
+                            <span class="tabs__count">(${value.count})</span>                             
+                        </a>
+                    </#list>                                        
+
+                    <#-- 
+                        Display the show more button which will be visible whent he viewport 
+                        is smaller than the available space to show all the tabs.
+                    -->
+                    <div class="tab-list-nav-overflow-menu__wrapper" data-tab-group-element="overflow-menu-wrapper">
+                        <button class="tab-list-nav-overflow-menu__button" type="button" data-tab-group-element="overflow-menu-button" aria-labelledby="View more">
+                            <span class="sr-only">show more tabs</span>
+                            <svg class="svg-icon">
+                                <use href="#overflow-menu"></use>
+                            </svg>
+                        </button>
+                        <div class="tab-list-nav__overflow-menu" data-tab-group-element="overflow-menu-container"></div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+     </#list>
+</#macro>
+
 <#-- 
     Provides preview of a tab. This allows the user to see 
     a sample of the results on another tab without having to click
