@@ -22,7 +22,7 @@
 <#import "base.ftl" as base />
 <#import "hero_banner.ftl" as hero_banner />
 <#import "search_tools.ftl" as search_tools />
-<#import "blending.ftl" as blending />
+<#import "query_blending.ftl" as query_blending />
 <#import "curator.ftl" as curator />
 <#import "tabs.ftl" as tabs />
 <#import "facets.breadcrumbs.ftl" as facets_breadcrumbs />
@@ -85,7 +85,7 @@
 					<h2 class="funnelback-search__title">Results</h2>
 
 					<@search_tools.StoryBook />
-					<@blending.StoryBook />
+					<@query_blending.QueryBlending />
 					<@facets_breadcrumbs.StoryBook />
 					<@tier_bars.StoryBook />
 					<@pagination.StoryBook />
