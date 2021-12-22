@@ -93,8 +93,8 @@
 					<@search_tools.StoryBook />
 					<@query_blending.QueryBlending />
 					<@facets_breadcrumbs.StoryBook />
-					<@tier_bars.StoryBook />
-					<@pagination.StoryBook />
+					<#--  <@tier_bars.StoryBook />  -->
+					<@pagination.Pagination />
 					<@contextual_navigation.StoryBook />
 				</div>
 

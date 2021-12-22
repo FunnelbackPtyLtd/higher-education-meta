@@ -4,20 +4,16 @@
 <#--
   Display a tier bar
 -->
-<#macro TierBar result>
-    <!-- base.TierBar -->
+<#macro TierBars result>
+    <!-- tier_bars.TierBar -->
     <#-- A tier bar -->
     <#if result.matched != result.outOf>
-        <h2 class="search-tier text-muted">Results that match ${result.matched} of ${result.outOf} words</h2>
+        <div class="tier-bar">Results that match ${result.matched} of ${result.outOf} words</div>
     <#else>
-        <h2 class="sr-only search-tier">Fully-matching results</h2>
+        <div class="tier-bar" class="sr-only search-tier">Fully-matching results</div>
     </#if>
     <#-- Print event tier bars if they exist -->
     <#if result.eventDate??>
-        <h2 class="text-muted search-tier">Events on ${result.eventDate?date}</h2>
+        <div class="tier-bar">Events on ${result.eventDate?date}</div>
     </#if>
-</#macro>
-
-<#macro StoryBook>
-    <div class="tier-bar">Results that match 1 of 2 words</div>
 </#macro>
