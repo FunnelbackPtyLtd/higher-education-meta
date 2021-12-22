@@ -141,7 +141,7 @@
         <#-- List view -->
         <a 
             class="search-tools__button <#if getDisplayMode(question) != 'LIST'>search-tools__button--inactive</#if>" 
-            title="list view" 
+            title="List view" 
             href='${question.getCurrentProfileConfig().get("ui.modern.search_link")}?${removeParam(QueryString, "displayMode")}&displayMode=list'>
             <svg class="svg-icon svg-icon--xlarge">
                 <use href="#list-view"></use>

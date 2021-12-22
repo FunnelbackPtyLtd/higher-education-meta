@@ -70,6 +70,11 @@
 
 </head>
 <body class="sb-show-main sb-main-padded vsc-initialized">
+	<#-- Import the icons so that they are available using the <use> directive. -->
+	<div style="display:none">
+		<#include "utilities.icons.ftl" />
+	</div>
+
 	<a href="#search-results" class="sr-only" title="Skip to search results">
 		Skip to search results asdsa
 	</a>
