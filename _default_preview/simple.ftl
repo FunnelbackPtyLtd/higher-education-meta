@@ -95,7 +95,7 @@
 					<@facets_breadcrumbs.StoryBook />
 					<#--  <@tier_bars.StoryBook />  -->
 					<@pagination.Pagination />
-					<@contextual_navigation.StoryBook />
+					<@contextual_navigation.ContextualNavigation />
 				</div>
 
 				<div class="funnelback-search__side">
