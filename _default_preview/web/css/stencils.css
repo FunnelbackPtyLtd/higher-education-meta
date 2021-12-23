@@ -8,3 +8,15 @@
 .stencils .tab__button .fas {
     margin-right: 0.25rem;
 }
+
+/* Move this into the Design System */
+.funnelback-facet  .facet-group__list-item--hidden {
+    position: absolute;
+}
+
+/* Provide a little indicator for drill down facets */
+.funnelback-facet  .facet-group__list-item .fas {
+    height: 1.5rem;
+    margin-right: 1rem;
+    transform: rotate(90deg);
+}

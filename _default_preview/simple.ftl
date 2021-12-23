@@ -99,7 +99,18 @@
 				</div>
 
 				<div class="funnelback-search__side">
-					<@facets.StoryBook />
+					
+
+					<#-- Get facets for the current selected tab -->
+					<#assign tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${(response.customData.stencils.tabs.selected)!}")!>
+
+					<@facets.HasFacets facets=tabFacets>
+						<@facets.StoryBook 
+							facets=tabFacets 
+							maxCategories=question.getCurrentProfileConfig().get("stencils.faceted_navigation.max_displayed_categories")!
+						/>
+					</@facets.HasFacets>
+
 					<#--  <@project.SideNavigation />  -->
 				</div>
 			</div>
