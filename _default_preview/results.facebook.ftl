@@ -1,7 +1,7 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "facebook.pages.ftl" as pages />
-<#import "facebook.posts.ftl" as posts />
-<#import "facebook.events.ftl" as events />
+<#import "results.facebook.pages.ftl" as pages />
+<#import "results.facebook.posts.ftl" as posts />
+<#import "results.facebook.events.ftl" as events />
 <#-- 
     Macro decides how each result should be presented. 
 

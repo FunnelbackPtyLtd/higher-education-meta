@@ -35,23 +35,25 @@
 <#import "history_cart.ftl" as history_cart />
 <#import "auto_complete.ftl" as auto_complete />
 <#import "curator.ftl" as curator />
+<#import "no_results.ftl" as no_results />
 <#import "extra_search.ftl" as extra_search />
 <#import "results.ftl" as results />
 <#import "client_includes.ftl" as client_includes />
+
 
 <#-- Specific result styling imports
 	These imports are required for the automatic template selection to work
 	The various namespaces (e.g. 'video', 'facebook') need to be on the main scope 
 -->
 <#import "project.ftl" as project />
-<#import "courses.ftl" as courses />
-<#import "programs.ftl" as programs />
-<#import "people.ftl" as people />
-<#import "video.ftl" as video />
-<#import "facebook.ftl" as facebook />
-<#import "events.ftl" as events />
-<#import "twitter.ftl" as twitter />
-<#import "instagram.ftl" as instagram />
+<#import "results.courses.ftl" as courses />
+<#import "results.programs.ftl" as programs />
+<#import "results.people.ftl" as people />
+<#import "results.video.ftl" as video />
+<#import "results.facebook.ftl" as facebook />
+<#import "results.events.ftl" as events />
+<#import "results.twitter.ftl" as twitter />
+<#import "results.instagram.ftl" as instagram />
 
 <!DOCTYPE html>
 <html lang="en" class="stencils">
@@ -78,7 +80,6 @@
 	<a href="#search-results" class="sr-only" title="Skip to search results">
 		Skip to search results asdsa
 	</a>
-	<@base.Overlay />
 	
 	<#--  <@client_includes.ContentHeader />  -->
 
@@ -92,8 +93,13 @@
 
 					<@search_tools.StoryBook />
 					<@query_blending.QueryBlending />
-					<@facets_breadcrumbs.StoryBook />
+					<@facets_breadcrumbs.Breadcrumb />
 					<#--  <@tier_bars.StoryBook />  -->
+
+					<@s.AfterSearchOnly>
+						<@project.Results />
+					</@s.AfterSearchOnly>
+
 					<@pagination.Pagination />
 					<@contextual_navigation.ContextualNavigation />
 				</div>
@@ -117,17 +123,6 @@
 
 
 			<main class="main <@s.InitialFormOnly>initial-search-form</@s.InitialFormOnly>" role="main">
-				<@s.AfterSearchOnly>
-					<#-- 
-						Would normally merge the span with the section element but due to the way sessions hide/show functionalty works, 
-						we need to separate this into it own element. 
-					-->
-					<span id="search-facets-and-results" >
-						<section class="content-wrapper content-wrapper--col search-facets-and-results">													
-							<#--  <@project.Results />  -->
-						</section>
-					</span>
-				</@s.AfterSearchOnly>
 				<section class="content-wrapper search-sessions">
 					<#--  <@history_cart.SearchHistory />
 					<@history_cart.Cart />  -->

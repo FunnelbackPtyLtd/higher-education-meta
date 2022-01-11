@@ -8,102 +8,6 @@
     its own freemarker template.
 -->
 
-<#--
-    Generates a search form for the current collection, passing through the
-    relevant parameters like collection, profile, form, scope, ...
-
-    @param preserveTab Boolean indicating if searching via the form should preserve the currently selected tab or not
-    @param class Optional <code>class</code> attribute to use on the &lt;form&gt; tag
--->
-<#macro SearchForm preserveTab=true class="">
-    <!-- base.SearchForm -->
-    <form 
-        action="${question.getCurrentProfileConfig().get("ui.modern.search_link")}" 
-        method="GET"
-        role="search"
-        <#if class?has_content>class="${class}"</#if>
-        >
-        <input type="hidden" name="collection" value="${question.collection.id}">
-
-        <#-- Output all the parameters which are to persist between queries -->
-        <#list ["enc", "form", "scope", "lang", "profile", "userType", "displayMode", "num_ranks"] as parameter>
-            <@s.IfDefCGI name=parameter>
-                <input type="hidden" name="${parameter}" value="${question.inputParameters[parameter]?first!}">
-            </@s.IfDefCGI>
-        </#list>
-
-        <#if preserveTab>
-            <#list question.selectedCategoryValues?keys as facetKey>
-                <#if facetKey?starts_with("f.Tabs|")>
-                    <#list question.selectedCategoryValues[facetKey] as value>
-                        <input type="hidden" name="${facetKey}" value="${value}">
-                    </#list>
-                </#if>
-            </#list>
-        </#if>
-
-        <#nested>
-    </form>
-</#macro>
-
-
-
-<#--
-    Display result counts
--->
-<#macro Counts>
-    <!-- base.Counts -->
-    <span class="search-results__total">                                                                    
-        <#if ((response.resultPacket.resultsSummary.totalMatching)!0) == 0>
-            <span class="search-counts-total-matching">0</span> search results for <strong class="highlight"><@s.QueryClean /></strong>
-        </#if>
-        <#if ((response.resultPacket.resultsSummary.totalMatching)!0) != 0>
-            <span class="search-counts-page-start">${(response.resultPacket.resultsSummary.currStart)!}</span> -
-            <span class="search-counts-page-end">${(response.resultPacket.resultsSummary.currEnd)!}</span> of
-            <span class="search-counts-total-matching">${(response.resultPacket.resultsSummary.totalMatching)!?string.number}</span>
-            <#if (question.inputParameters["s"]?first)!?has_content && question.inputParameters["s"]?first?contains("?:")>
-                <em>collapsed</em> 
-            </#if>
-            search results  
-            
-            <#-- Display the query if it is not the placeholder -->
-            <#if (question.query)!?has_content && 
-                (question.query)!?upper_case != (question.getCurrentProfileConfig().get("stencils.tabs.browse_mode.default_query"))!"">
-                for <strong class="highlight"><@s.QueryClean></@s.QueryClean></strong>
-            <#else>
-                <#-- We normally don't want to display the placeholder value -->
-            </#if>
-            
-            <#-- Display any blended queries -->
-            <#list response.resultPacket.QSups as qsup>
-                or <strong class="highlight">${(qsup.query)!}</strong>
-                <#if qsup_has_next>, </#if>
-            </#list>
-        </#if>
-
-        <#-- 
-            Display count for the number of document which match some but
-            not all of the the query terms.
-        -->
-        <#if ((response.resultPacket.resultsSummary.partiallyMatching)!0) != 0>
-            where <span class="search-counts-fully-matching">${(response.resultPacket.resultsSummary.fullyMatching)!?string.number}</span>
-            match all words and <span class="search-counts-partially-matching">${(response.resultPacket.resultsSummary.partiallyMatching)!?string.number}</span>
-            match some words.
-        </#if>
-        
-        <#-- 
-            Display the count for the number of documents which have been collapsed.
-            The collapsed results functionality prevents similar documents from being 
-            over represented on the search results page.
-        --> 
-        <#if ((response.resultPacket.resultsSummary.collapsed)!0) != 0>
-            where 
-            <span class="search-counts-collapsed">${(response.resultPacket.resultsSummary.collapsed)!}</span>
-            very similar results have been hidden.
-        </#if>
-    </span>
-</#macro>
-
 <#-- 
     Determines if the results are to be displayed normally
     or grouped together by some criteria
@@ -111,7 +15,7 @@
     ToDo - Add browsing results to this
 -->
 <#macro ResultList nestedRank=-1>
-    <#assign displayMode = getDisplayMode(question)>
+    <#assign displayMode = search_tools.getDisplayMode(question)>
 
     <#if (response.customData["stencilsGroupingResults"].mode)!?has_content>
         <@GroupedResults view=displayMode/>
@@ -133,10 +37,11 @@
 -->
 <#macro StandardResults view="LIST" nestedRank=-1>
     <!-- base.StandardResults -->
-    <article class="search-results__list <#if getDisplayMode(question)! == 'LIST' || getDisplayMode(question)! == 'BROWSE'>search-results__list--list-view</#if>">
+    <div class="no-wysiwyg listing listing--linked-title">
+        <div class="listing__intro "></div>
         <#list (response.resultPacket.resultsWithTierBars)![] as result>
             <#if result.class.simpleName == "TierBar">
-                <@TierBar result=result />
+                <#--  <@TierBar result=result />  -->
             <#else>
                 <#if nestedRank gte 0 && result.rank == nestedRank>
                     <#nested>
@@ -146,7 +51,7 @@
                 <@Result result=result view=view/>                
             </#if>
         </#list>
-    </article>
+    </div>
 </#macro>
 
 <#--
@@ -191,7 +96,7 @@
 <#macro GroupedResults view="LIST">
     <#-- Loop through each grouped result tier -->
     <#if (response.resultPacket.results)!?has_content>
-        <article class="search-results__list <#if getDisplayMode(question)! == 'LIST' || getDisplayMode(question)! == 'BROWSE'>search-results__list--list-view</#if>">
+        <article class="search-results__list <#if search_tools.getDisplayMode(question)! == 'LIST' || search_tools.getDisplayMode(question)! == 'BROWSE'>search-results__list--list-view</#if>">
             <#list (response.customData["stencilsGroupingResults"].groups)![] as group>
                 <#-- Create facet link to be used in the title and "see more" -->
                 <#assign searchLink = question.getCurrentProfileConfig().get("ui.modern.search_link")!>
@@ -292,16 +197,6 @@
     <#return (input)!?replace('[^A-Za-z0-9-]+', '_', 'r')>
 </#function>
 
-<#-- 
-    Overlay element
-    When a dialog is open (ex. QuickView), covers all elements 
-    besides the dialog.
--->
-<#macro Overlay>
-    <div class="overlay"></div>
-</#macro>
-
-
 <#--
     Create html inputs based on the parameters pass on with search. 
     Useful to retaining the user's selections when submitting to forms.
@@ -326,5 +221,7 @@
         </#if>
     </#list>
 </#macro>
+
+
 
 

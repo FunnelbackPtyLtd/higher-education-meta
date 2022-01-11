@@ -41,54 +41,25 @@
 
 <#-- Outputs the search result section -->
 <#macro Results>
-    <!-- project.Results -->
-    <div>
-        <section id="search-results" class="search-results">
-            <@facets.FacetBreadBox />
+    <@no_results.NoResults />
 
-            <@base.Blending />
-            
-            <@browse_mode.BrowseByFilter />
-
-            <#-- 
-                Only display the search tools such as sorting when there
-                are at least 1 result 
-            -->
-            <#if ((response.resultPacket.resultsSummary.totalMatching)!0) != 0>
-                <@base.SearchTools />            
-            </#if> 
-            
-            <@curator.BestBets />                
-            <@curator.Curator position="center" sectionCss="module-curator--no-bg" />      
-
-            <@base.NoResults />
-
-            <@base.ResultList nestedRank=3>            
-                <@fb.ExtraResults name="twitter">
-                    <li><h4 class="sr-only">Tweet results</h4></li>
-                    <li class="search-results-twitter">
-                        <div class="row mb-3">
-                            <#list (response.resultPacket.results)![] as result>
-                                <#-- Limit to only 3 Twitter cards -->
-                                <#if result?index lt 3>
-                                    <div class="col-md-4">
-                                        <@twitter.TwitterCard result=result />
-                                    </div>
-                                </#if>
-                            </#list>
-                        </div>
-                    </li>
-                </@fb.ExtraResults>
-            </@base.ResultList>
-
-            <@curator.Curator position="bottom" sectionCss="module-curator--no-bg" />
-
-            <@base.Paging />
-
-            <@contextual_navigation.ContextualNavigation />
-
-        </section>
-    </div>
+    <@base.ResultList nestedRank=3>            
+        <@fb.ExtraResults name="twitter">
+            <li><h4 class="sr-only">Tweet results</h4></li>
+            <li class="search-results-twitter">
+                <div class="row mb-3">
+                    <#list (response.resultPacket.results)![] as result>
+                        <#-- Limit to only 3 Twitter cards -->
+                        <#if result?index lt 3>
+                            <div class="col-md-4">
+                                <@twitter.TwitterCard result=result />
+                            </div>
+                        </#if>
+                    </#list>
+                </div>
+            </li>
+        </@fb.ExtraResults>
+    </@base.ResultList>
 </#macro>
 
 <#-- 
