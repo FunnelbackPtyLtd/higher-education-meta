@@ -48,126 +48,106 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- video.GenericView -->
-    <article class="search-results__item search-results__item--video" data-fb-result="${(result.indexUrl)!}">
-        <a href="${result.clickTrackingUrl!}">
-        <figure class="search-results__bg">
-            <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}">   -->
-            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
-                <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/collection/73776582/160x160"> 
-            </#if>   
-        </figure>
-        </a>
-        <div class="search-results__content">
-            <#if (result.title)!?has_content>
-            <#-- Title -->
-                <h3 class="search-results__title">
-                    <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="search-results__link">
-                        <@s.boldicize>
-                            <@s.Truncate length=90>
-                                ${(result.title)!} 
-                            </@s.Truncate>
-                        </@s.boldicize>
-                    </a>
-                    <#-- 
-                        Adds a control so that users can add this to the cart
-                        Note: Ensure that you review the cart templates if
-                        you enable this feature.
-                    -->
-                    <#--  
-                    <span class="enable-cart-on-result float-right"
-                        aria-label="Add result to the shortlist">
-                    </span>  
-                    -->  
-                </h3>
-            </#if>
-            
-            <#-- Pretty version of the url of the document -->
-            <cite>
-                <@s.Truncate length=90>
-                    ${(result.displayUrl)!}
-                </@s.Truncate>                
-            </cite>
-
-            <#-- Subtitle -->
-            <div class="search-results__sub-title">
+    <!-- results.video.GenericView -->
+    <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+        <#if (result.listMetadata["image"]?first)!?has_content >
+            <div class="listing-item__image-wrapper">
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}"> 
+            </div>  
+        <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+            <div class="listing-item__image-wrapper">
+                <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
             </div>
-            
-            <#-- Summary -->
-            <p class="search-results__desc">
-                <@s.boldicize>
-                    ${result.summary!?no_esc}
-                </@s.boldicize>
-            </p>
+        </#if>
+        <div class="listing-item__content">
+            <#-- Title -->
+            <#if (result.title)!?has_content>
+                <div class="listing-item__header">
+                    <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="listing-item__title-link">
+                        <h3 class="listing-item__title">
+                            <@s.boldicize>
+                                <@s.Truncate length=90>
+                                    ${(result.title)!} 
+                                </@s.Truncate>
+                            </@s.boldicize>
+                        </h3>
+                    </a>
 
-            <#-- Metadata can be shown as tags -->
-            <#list result.listMetadata["videoCategory"]![]>
-                <section class="tags">                
-                    <ul class="tags__list">
+                    <#-- Pretty version of the url of the document -->
+                    <cite class="listing-item__subtitle listing-item__subtitle--highlight">
+                        <@s.Truncate length=90>
+                            ${(result.displayUrl)!}
+                        </@s.Truncate>                
+                    </cite>
+                </div>
+            </#if>            
+            
+            <#-- Body -->
+            <div class="listing-item__body">
+                <#-- Summary -->
+                <div class="listing-item__summary">
+                    <@s.boldicize>
+                        ${result.summary!?no_esc}
+                    </@s.boldicize>
+                </div>
+
+                <#-- Metadata should as tags/pills -->
+                <#list result.listMetadata["videoCategory"]![]>
+                    <ul aria-label="Result tags" class="listing-item__tags">
                         <#items as category>                                                        
-                            <li class="tags__item" title="Video category">                        
+                            <li class="listing-item__tag">                       
                                 ${category!}
                             </li>
                         </#items>
                     </ul>
-                </section>  
-            </#list>                     
+                </#list>                   
 
-            <#-- Call to Action (CTA) -->
-            <#--              
-            <p>
-                <a href="href="${result.clickTrackingUrl!}" class="btn--link">VIEW MORE</a> 
-            </p>  
-            -->
+                <#-- Call to Action (CTA) -->                        
+                <a href="${result.clickTrackingUrl!}" class="listing-item__action">VIEW VIDEO</a> 
+            </div>          
 
             <#-- Display the time which this result has last been visited by the user -->
             <@history_cart.LastVisitedLink result=result/> 
-            
-            <#-- Footer -->
-            <div class="search-results__bottom">
-                <section class="contact js-contact">
-                    <ul class="contact__list">                        
-                        <#if (result.listMetadata["videoDurationPretty"]?first)!?has_content>                    
-                            <li class="contact__item" title="Duration of video">
-                                <span class="search-results__icon--red far fa-clock" aria-label="Duration of video" title="Duration of video"></span>
-                                ${(result.listMetadata["videoDurationPretty"]?first)!} 
-                            </li>
-                        <#elseif (result.listMetadata["videoDuration"]?first)!?has_content>                    
-                            <li class="contact__item" title="Duration of video">
-                                <span class="search-results__icon--red far fa-clock" aria-label="Duration of video" title="Duration of video"></span>
-                                ${(result.listMetadata["videoDuration"]?first)!} 
-                            </li>
-                        </#if>
-                        <#if (result.listMetadata["videoViewCount"]?first)!?has_content>                    
-                            <li class="contact__item" title="Duration of video">
-                                <span class="search-results__icon--red far fa-eye" aria-label="Number of views"></span>
-                                ${(result.listMetadata["videoViewCount"]?first)!} 
-                            </li>
-                        </#if>
 
-                        <li class="contact__item wrap">
-                            ${(result.date?date?string.short)!} - Uploaded by ${(result.listMetadata["videoAuthor"]?first)!"Unknown"}
-                        </li>
+            <#-- Footer -->                    
+            <div class="listing-item__footer">
+                <#if (result.listMetadata["videoDurationPretty"]?first)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Duration</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        ${(result.listMetadata["videoDurationPretty"]?first)!}
+                    </div>
+                <#elseif (result.listMetadata["videoDuration"]?first)!?has_content>                    
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Duration</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        ${(result.listMetadata["videoDuration"]?first)!} 
+                    </div>
+                </#if>
 
-                        <#-- Uncomment to show likes and dislikes -->
-                        <#-- 
-                        <#if (result.listMetadata["videoLikes"]?first)!?has_content>                    
-                            <li class="contact__item" title="Duration of video">
-                                <span class="search-results__icon--red far fa-thumbs-up" aria-label="Number of likes"></span>
-                                ${(result.listMetadata["videoLikes"]?first)!} 
-                            </li>
-                        </#if>
-                        <#if (result.listMetadata["videoDislikes"]?first)!?has_content>                    
-                            <li class="contact__item" title="Duration of video">
-                                <span class="search-results__icon--red far fa-thumbs-down" aria-label="Number of dislikes"></span>
-                                ${(result.listMetadata["videoDislikes"]?first)!} 
-                            </li>
-                        </#if>  
-                        -->
-                    </ul>
-                </section>
-            </div>                         
+                <#if (result.listMetadata["videoViewCount"]?first)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Contact email</title>
+                            <use href="#map"></use>
+                        </svg>
+                        <span class="search-results__icon--red far fa-eye" aria-label="Number of views"></span>
+                        ${(result.listMetadata["videoViewCount"]?first)!} 
+                    </div>
+                </#if>
+
+                <#if (result.date?date?string.short)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        ${(result.date?date?string.short)!} - Uploaded by ${(result.listMetadata["videoAuthor"]?first)!"Unknown"}
+                    </div>
+                </#if>
+            </div>                                        
         </div>
-    </article>
+    </article>     
 </#macro>

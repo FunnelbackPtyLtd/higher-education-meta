@@ -35,7 +35,7 @@
     main section of the search engine result page (SERP)
     @param result An individual result fron the data model
 -->
-<#macro CardView result>
+<#macro CardView result>`
     <@GenericView result=result />
 </#macro>
 
@@ -44,119 +44,122 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- events.GenericView -->
-    <article class="search-results__item search-results__item--event" data-fb-result="${result.indexUrl}">
-        <figure class="search-results__bg">
-            <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["image"]?first}"> 
-            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
-                <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
-            </#if>
-        </figure>
-
-        <time class="search-results__time" datetime="${(result.date?string("mm"))!}-${(result.date?string("dd")!)!}">
-            <span class="search-results__month">                  
-                ${(result.date?string("MMM"))!}
-            </span>
-            <span class="search-results__day">
-                ${(result.date?string("dd")!N/A)!}                         
-            </span>
-        </time>        
-        <div class="search-results__content">
+    <!-- results.events.GenericView -->
+    <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+        <#if (result.listMetadata["image"]?first)!?has_content>
+            <div class="listing-item__image-wrapper">
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}">  
+            </div>  
+        <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+            <div class="listing-item__image-wrapper">
+                <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
+            </div>
+        </#if>
+        <div class="listing-item__content">
             <#-- Title -->
-            <h3 class="search-results__title">
-                <a href="${result.clickTrackingUrl!}" title="${result.liveUrl!}" class="search-results__link">
-                    <@s.boldicize>
+            <#if (result.title)!?has_content>
+                <div class="listing-item__header">
+                    <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="listing-item__title-link">
+                        <h3 class="listing-item__title">
+                            <@s.boldicize>
+                                <@s.Truncate length=90>
+                                    ${(result.title)!} 
+                                </@s.Truncate>
+                            </@s.boldicize>
+                        </h3>
+                    </a>
+
+                    <#--  Example of subtitle with icon -->
+                    <#--
+                    <div class="listing-item__subtitle">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Location</title>
+                            <use href="#map"></use>
+                        </svg>
+                        <a href="https://goo.gl/maps/3Ze7mNBpey6D6Q2k6" target="_blank" title="Opens in new window" class="listing-item__subtitle-link" rel="noreferrer">
+                            Online
+                        </a>
+                    </div>
+                    -->
+                    <#-- Pretty version of the url of the document -->
+                    <cite class="listing-item__subtitle listing-item__subtitle--highlight">
                         <@s.Truncate length=90>
-                            ${(result.title)!}
-                        </@s.Truncate>
-                    </@s.boldicize>
-                </a>
-                <#-- 
-                    Adds a control so that users can add this to the cart
-                    Note: Ensure that you review the cart templates if
-                    you enable this feature.
-                -->
-                <#--  
-                <span class="enable-cart-on-result float-right"
-                    aria-label="Add result to the shortlist">
-                </span>  
-                -->                
-            </h3>
-            
-            <#-- Subtitle -->
-            <#if (result.listMetadata["eventLocation"]?first)!?has_content>
-                <span class="search-results__sub-title">
-                    <span class="search-results__icon--red fas fa-map-marker-alt" title="Event location"></span>
-                    ${(result.listMetadata["eventLocation"]?first)!}              
-                </span>
+                            ${(result.displayUrl)!}
+                        </@s.Truncate>                
+                    </cite>
+                </div>
             </#if>
             
-            <#-- Summary -->
-            <p class="search-results__desc">
-                <@s.boldicize>
-                    ${result.summary!?no_esc}
-                </@s.boldicize>
-            </p>
-
-            <#-- Metadata can be shown as tags -->
-            <section class="tags">
-                <ul class="tags__list">
-                    <#list (result.listMetadata["eventCategory"])![] as category>
-                        <li class="tags__item">
-                            ${category!}
-                        </li>
-                    </#list>
-                </ul>
-            </section>
-
-            <#-- Call to Action (CTA) -->
-            <p>
-                <a href="#" class="btn--link" 
-                    aria-label="Click to sign up to ${(result.title)!}"
-                    title="Click to sign up to ${(result.title)!}">
-                    Sign up
-                </a> 
-            </p>
-
-            <#-- Call to Action (CTA) -->
-            <@history_cart.LastVisitedLink result=result/>
             
-            <#-- Footer -->
-            <div class="search-results__bottom">
-                <section class="contact js-contact">
-                    <ul class="contact__list">                        
-                        <#if (result.listMetadata["eventStartTime"]?first)!?has_content &&
-                            (result.listMetadata["eventEndTime"]?first)!?has_content>
-                            <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Event start and end time" aria-label="Event start and end time"></span>
-                                ${(result.listMetadata["eventStartTime"]?first)!} - ${(result.listMetadata["eventEndTime"]?first)!}
-                            </li>
-                        <#else>
-                            <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Event start and end time" aria-label="Event start and end time"></span>
-                                Not available
-                            </li>
-                        </#if>
-                        <#if (result.listMetadata["eventContactEmail"]?first)!?has_content>
-                           <li class="contact__item">
-                                <span class="search-results__icon--red far fa-envelope" title="Event e-mail" aria-label="Event e-mail"></span>
-                                <a class="highlight" href="mailto:${(result.listMetadata["eventContactEmail"]?first)!}">
-                                    ${(result.listMetadata["eventContactEmail"]?first)!}</a>                               
-                                </a>
-                            </li>
-                        </#if>                                                
-                        <#if (result.listMetadata["eventContactPhone"]?first)!?has_content>
-                           <li class="contact__item">
-                                <span class="search-results__icon--red fas fa-phone" title="Event phone number" aria-label="Event phone number"></span>
-                                <a class="highlight" href="tel:${(result.listMetadata["eventContactPhone"]?first)!}">
-                                    ${result.listMetadata["eventContactPhone"]?first!}
-                                </a>                                
-                            </li>
-                        </#if>
+            <#-- Body -->
+            <div class="listing-item__body">
+                <#-- Summary -->
+                <div class="listing-item__summary">
+                    <@s.boldicize>
+                        ${result.summary!?no_esc}
+                    </@s.boldicize>
+                </div>
+
+                <#-- Metadata should as tags/pills -->        
+                <#if (result.listMetadata["eventCategory"])!?has_content>
+                    <ul aria-label="Result tags" class="listing-item__tags">
+                        <#list (result.listMetadata["eventCategory"])![] as category>
+                            <li class="listing-item__tag">${category}</li>
+                        </#list>
                     </ul>
-                </section>
-            </div>            
+                </#if>
+
+                <#-- Call to Action (CTA) -->                        
+                <a href="${result.clickTrackingUrl!}" class="listing-item__action">SIGN UP</a> 
+            </div>          
+
+            <#-- Display the time which this result has last been visited by the user -->
+            <@history_cart.LastVisitedLink result=result/> 
+
+            <#-- Footer -->                    
+            <div class="listing-item__footer">
+                <#if (result.listMetadata["eventStartTime"]?first)!?has_content &&
+                    (result.listMetadata["eventEndTime"]?first)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Time</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        ${(result.listMetadata["eventStartTime"]?first)!} - ${(result.listMetadata["eventEndTime"]?first)!}
+                    </div>
+                <#else>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Time</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        Not available
+                    </div>
+                </#if>
+
+                <#if (result.listMetadata["eventContactEmail"]?first)!?has_content>
+                    <a href="mailto:${(result.listMetadata["eventContactEmail"]?first)!}" class="listing-item__footer-block listing-item__footer-block--highlight">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Contact email</title>
+                            <use href="#email"></use>
+                        </svg>
+                        ${(result.listMetadata["eventContactEmail"]?first)!}</a> 
+                    </a>
+                </#if>
+
+                <#if (result.listMetadata["eventContactPhone"]?first)!?has_content>
+                    <a href="tel:${result.listMetadata["eventContactPhone"]?first!}" class="listing-item__footer-block listing-item__footer-block--highlight">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Contact phone</title>
+                            <use href="#phone"></use>
+                        </svg>
+                        ${result.listMetadata["eventContactPhone"]?first!}
+                    </a>
+                </#if>
+
+            </div>                                        
         </div>
     </article>
 </#macro>

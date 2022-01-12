@@ -44,104 +44,108 @@
     @param result An individual result from the data model
 -->
 <#macro GenericView result>
-    <!-- programs.GenericView -->
-    <article class="search-results__item search-results__item--default" data-fb-result="${result.indexUrl}">
-        <figure class="search-results__bg">
-            <#if (result.listMetadata["programImage"]?first)!?has_content>
-                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${result.listMetadata["programImage"]?first}"> 
-            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
-                <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}"> 
-            </#if>
-        </figure>
-        <div class="search-results__content">
+    <!-- results.programs.GenericView -->
+    <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+        <#if (result.listMetadata["programImage"]?first)!?has_content >
+            <div class="listing-item__image-wrapper">
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["programImage"]?first)!}"> 
+            </div>  
+        <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+            <div class="listing-item__image-wrapper">
+                <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
+            </div>
+        </#if>
+        <div class="listing-item__content">
             <#-- Title -->
-            <h3 class="search-results__title">
-                <a href="${result.clickTrackingUrl!}" title="${result.liveUrl!}" class="search-results__link">
-                    <@s.boldicize>
+            <#if (result.title)!?has_content>
+                <div class="listing-item__header">
+                    <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="listing-item__title-link">
+                        <h3 class="listing-item__title">
+                            <@s.boldicize>
+                                <@s.Truncate length=90>
+                                    ${(result.title)!} 
+                                </@s.Truncate>
+                            </@s.boldicize>
+                        </h3>
+                    </a>
+
+                    <#-- Subtitle -->
+                    <#if (result.listMetadata["programFaculty"]?first)!?has_content>
+                        <div class="listing-item__subtitle">
+                            ${(result.listMetadata["programFaculty"]?first)!}     
+                        </div>
+                    </#if>
+
+                    <#-- Pretty version of the url of the document -->
+                    <cite class="listing-item__subtitle listing-item__subtitle--highlight">
                         <@s.Truncate length=90>
-                            ${(result.title)!}
-                        </@s.Truncate>
-                    </@s.boldicize>
-                </a>
-                <span class="enable-cart-on-result pull-right" 
-                    aria-label="Add result to the shortlist">
-                </span>                
-            </h3>
+                            ${(result.displayUrl)!}
+                        </@s.Truncate>                
+                    </cite>
+                </div>
+            </#if>
             
-            <#-- Subtitle -->
-            <#if (result.listMetadata["programFaculty"]?first)!?has_content>
-                <span class="search-results__sub-title">
-                    ${(result.listMetadata["programFaculty"]?first)!}                                     
-                </span>
-            </#if>               
             
-            <#-- Summary -->
-            <#if (result.listMetadata["c"]?first)!?has_content>
-                <p class="search-results__desc">
-                    <@s.boldicize>                    
-                        ${(result.listMetadata["c"]?first)!}
+            <#-- Body -->
+            <div class="listing-item__body">
+                <#-- Summary -->
+                <div class="listing-item__summary">
+                    <@s.boldicize>
+                        ${result.summary!?no_esc}
                     </@s.boldicize>
-                </p>
-            </#if>                
+                </div>
 
-            <#-- Metadata can be shown as tags -->
-            <section class="tags">
-                <ul class="tags__list">
-                    <#if (result.listMetadata["programCredentialType"]?first)!?has_content>
-                        <li class="tags__item" title="Credential type">
-                            <@s.boldicize>                    
-                                ${(result.listMetadata["programCredentialType"]?first)!}
-                            </@s.boldicize>
-                        </li>
-                    </#if>                   
-                    <#if (result.listMetadata["stencilsDeliveryMethod"]?first)!?has_content>
-                        <li class="tags__item" title="Delivery method">
-                            <@s.boldicize>                    
-                                ${(result.listMetadata["stencilsDeliveryMethod"]?first)!}
-                            </@s.boldicize>
-                        </li>
-                    </#if>                   
-                    <#if (result.listMetadata["programCredits"]?first)!?has_content>
-                        <li class="tags__item" title="Credits">
-                            <@s.boldicize>                    
-                                ${(result.listMetadata["programCredits"]?first)!}
-                            </@s.boldicize>
-                            credits
-                        </li>
-                    </#if>                   
-                </ul>
-            </section>
+                <#-- Metadata should as tags/pills -->        
+                <#if (result.listMetadata["programCredentialType"])!?has_content
+                    || (result.listMetadata["stencilsDeliveryMethod"])!?has_content 
+                    || (result.listMetadata["programCredits"])!?has_content>
+                    <ul aria-label="Result tags" class="listing-item__tags">
+                        <#list (result.listMetadata["programCredentialType"])![] as value>
+                            <li class="listing-item__tag">${value}</li>
+                        </#list>
 
-            <#-- Call to Action (CTA) -->
-            <p>
-                <a href="${result.clickTrackingUrl!}" class="btn--link">VIEW MORE</a> 
-            </p>
+                        <#list (result.listMetadata["stencilsDeliveryMethod"])![] as value>
+                            <li class="listing-item__tag">${value}</li>
+                        </#list>
+
+                        <#list (result.listMetadata["programCredits"])![] as value>
+                            <li class="listing-item__tag">${value}</li>
+                        </#list>
+                    </ul>
+                </#if>
+
+                <#-- Call to Action (CTA) -->                        
+                <a href="${result.clickTrackingUrl!}" class="listing-item__action">VIEW PROGRAM DETAILS</a> 
+            </div>          
 
             <#-- Display the time which this result has last been visited by the user -->
-            <@history_cart.LastVisitedLink result=result/>
+            <@history_cart.LastVisitedLink result=result/> 
 
-            <#-- Footer -->
-            <div class="search-results__bottom">
-                <section class="contact js-contact">
-                    <ul class="contact__list">                        
-                        <#if (result.listMetadata["programLengthYears"])!?has_content>
-                           <li class="contact__item">
-                                <span class="search-results__icon--red fas far fa-clock" aria-label="Program length" title="Program length"></span> 
+            <#-- Footer -->                    
+            <div class="listing-item__footer">
+                <#if (result.listMetadata["programLengthYears"]?first)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Duration</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        ${(result.listMetadata["programLengthYears"]?first)!} years
+                    </div>
+                </#if>
 
-                                ${(result.listMetadata["programLengthYears"]?first)!} years
-                            </li>
-                        </#if>                                             
-                        <#if (result.listMetadata["programCampus"]?first)!?has_content>
-                            <li class="contact__item ">
-                                <span class="search-results__icon--red fas fa-map-marker-alt" aria-label="Campus" title="Campus"></span> 
-                                ${(result.listMetadata["programCampus"]?first)!} campus
-                            </li>
-                        </#if>                        
-                    </ul>
-               </section>
-            </div>            
+                <#if (result.listMetadata["programCampus"]?first)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Contact email</title>
+                            <use href="#map"></use>
+                        </svg>
+                        ${(result.listMetadata["programCampus"]?first)!}
+                    </div> 
+                </#if>
+            </div>                                        
         </div>
-    </article>
+    </article>    
 </#macro>
 
 <#-- 

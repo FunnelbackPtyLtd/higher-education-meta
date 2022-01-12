@@ -44,142 +44,120 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- facebook.events.GenericView -->
-    <article class="search-results__item search-results__item--event" data-fb-result="${result.indexUrl}">
-        <figure class="search-results__bg">
-            <#if (result.listMetadata["image"]?first)!?has_content>
+    <!-- results.facebook.events.GenericView -->
+    <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+        <#if (result.listMetadata["image"]?first)!?has_content >
+            <div class="listing-item__image-wrapper">
                 <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}"> 
-            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE"> 
-                <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}"> 
-            </#if>
-        </figure>
-        <time class="search-results__time" datetime="${(result.date?string("mm"))!}-${(result.date?string("dd")!)!}">
-            <span class="search-results__month">                  
-                ${(result.date?string("MMM"))!}
-            </span>
-            <span class="search-results__day">
-                ${(result.date?string("dd")!N/A)!}                 
-            </span>
-        </time>          
-        <div class="search-results__content">
+            </div>  
+        <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+            <div class="listing-item__image-wrapper">
+                <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
+            </div>
+        </#if>
+        <div class="listing-item__content">
             <#-- Title -->
-            <h3 class="search-results__title">
-                <a href="${(result.clickTrackingUrl)!}" title="${result.liveUrl!}" class="search-results__link">
-                    <@s.boldicize>
-                        <@s.Truncate length=90>
-                            ${(result.title)!}
-                        </@s.Truncate>
-                    </@s.boldicize>
-                </a>
-                <#-- 
-                    Adds a control so that users can add this to the cart
-                    Note: Ensure that you review the cart templates if
-                    you enable this feature.
-                -->
-                <#--  
-                <span class="enable-cart-on-result float-right"
-                    aria-label="Add result to the shortlist">
-                </span>  
-                -->                
-            </h3>
-            
-            <#-- Subtitle -->
-            <#if (result.listMetadata["stencilsFacebookEventLocation"]?first)!?has_content>
-                <span class="search-results__sub-title">
-                    <span class="search-results__icon--red fas fa-map-marker-alt" title="Event location"></span>
-                    <a class="text-muted" href="https://maps.google.com/?q=${(result.listMetadata["stencilsFacebookEventCoordinates"]?first)!(result.listMetadata["stencilsFacebookEventLocation"])!}" target="_blank">${(result.listMetadata["stencilsFacebookEventLocation"])!}</a>              
-                </span>
-            </#if>
-
-            <#if (result.listMetadata["stencilsFacebookProfileUrl"]?first)!?has_content>
-                <span class="search-results__sub-title">
-                    <a href="${(result.listMetadata["stencilsFacebookProfileUrl"]?first)!}">       
-                        ${(result.listMetadata["author"]?first)!"Unknown author"}
+            <#if (result.title)!?has_content>
+                <div class="listing-item__header">
+                    <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="listing-item__title-link">
+                        <h3 class="listing-item__title">
+                            <@s.boldicize>
+                                <@s.Truncate length=90>
+                                    ${(result.title)!} 
+                                </@s.Truncate>
+                            </@s.boldicize>
+                        </h3>
                     </a>
-                </span>
-            </#if>               
+
+                    <#--  Subtitle -->
+                    <#if (result.listMetadata["stencilsFacebookEventLocation"]?first)!?has_content>
+                        <div class="listing-item__subtitle">
+                            <svg class="svg-icon svg-icon--small">
+                                <title>Location</title>
+                                <use href="#map"></use>
+                            </svg>
+                            <a                                 
+                                href="https://maps.google.com/?q=${(result.listMetadata["stencilsFacebookEventCoordinates"]?first)!(result.listMetadata["stencilsFacebookEventLocation"])!}" target="_blank"
+                            >
+                                ${(result.listMetadata["stencilsFacebookEventLocation"])!}
+                            </a>              
+                        </div>
+
+                    </#if>
+
+                    <#if (result.listMetadata["stencilsFacebookProfileUrl"]?first)!?has_content>
+                        <div class="listing-item__subtitle">
+                            <a href="${(result.listMetadata["stencilsFacebookProfileUrl"]?first)!}">       
+                                ${(result.listMetadata["author"]?first)!"Unknown author"}
+                            </a>
+                        </div>
+                    </#if> 
+                </div>
+            </#if>            
             
-            <#-- Summary -->
-            <#if (result.listMetadata["c"]?first)!?has_content>            
-                <p class="search-results__desc">
-                    <@s.boldicize>                    
-                        ${(result.listMetadata["c"]?first)!}
+            <#-- Body -->
+            <div class="listing-item__body">
+                <#-- Summary -->
+                <div class="listing-item__summary">
+                    <@s.boldicize>
+                        ${result.summary!?no_esc}
                     </@s.boldicize>
-                </p>
-            </#if>                
+                </div>
 
-            <#-- Tags -->
-            <section class="tags">
-                <ul class="tags__list">
-                    <#if (result.listMetadata["courseDepartment"]?first)!?has_content>
-                        <li class="tags__item">
-                            <@s.boldicize>                    
-                                ${(result.listMetadata["courseDepartment"]?first)!}
-                            </@s.boldicize>
-                        </li>
-                    </#if>                   
-                    <#if (result.listMetadata["courseDelivery"]?first)!?has_content>
-                        <li class="tags__item">
-                            <@s.boldicize>                    
-                                ${(result.listMetadata["courseDelivery"]?first)!}
-                            </@s.boldicize>
-                        </li>
-                    </#if>                   
-                    <#if (result.listMetadata["courseCredit"]?first)!?has_content>
-                        <li class="tags__item">
-                            <@s.boldicize>                    
-                                ${(result.listMetadata["courseCredit"]?first)!}
-                            </@s.boldicize>
-                            credits
-                        </li>
-                    </#if>                   
-                </ul>
-            </section>
+                <#-- Metadata should as tags/pills -->
+                <#list result.listMetadata["videoCategory"]![]>
+                    <ul aria-label="Result tags" class="listing-item__tags">
+                        <#items as category>                                                        
+                            <li class="listing-item__tag">                       
+                                ${category!}
+                            </li>
+                        </#items>
+                    </ul>
+                </#list>                   
 
-            <#-- Call to Action (CTA) -->
-            <p>
-                <a href="${result.clickTrackingUrl!}" class="btn--link" aria-label="Find out more about ${(result.title)!}">
-                    FIND OUT MORE
-                </a> 
-            </p>
+                <#-- Call to Action (CTA) -->                        
+                <a href="${result.clickTrackingUrl!}" class="listing-item__action">VIEW EVENT</a> 
+            </div>          
 
             <#-- Display the time which this result has last been visited by the user -->
-            <@history_cart.LastVisitedLink result=result/>
+            <@history_cart.LastVisitedLink result=result/> 
 
-            <#-- Footer -->
-            <div class="search-results__bottom">
-                <section class="contact js-contact">
-                    <ul class="contact__list">                        
-                        <#-- Author -->
-                        <#if (result.listMetadata["stencilsFacebookProfileUrl"]?first)!?has_content>
-                           <li class="contact__item">                                
-                                By:
-                                <a class="highlight" href="${result.customData["stencilsFacebookProfileUrl"]!}">
-                                    ${(result.listMetadata["author"]?first)!}
-                                </a>                                                                 
-                            </li>
-                        </#if>                        
-
-                        <#-- Event date -->                        
-                        <#if (result.listMetadata["d"]?first)!?has_content>
-                            <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Event start and end time"></span>
-                                ${(result.listMetadata["d"]?first?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short)!} 
-                                
-                                <#if (result.listMetadata["stencilsFacebookEventEndDateTime"]?first)!?has_content>
-                                    - ${(result.listMetadata["stencilsFacebookEventEndDateTime"]?first?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short)!}
-                                </#if>
-                            </li>
-                        <#else>
-                            <li class="contact__item">
-                                <span class="search-results__icon--red far fa-clock" title="Event start and end time"></span>
-                                Not available
-                            </li>
+            <#-- Footer -->                    
+            <div class="listing-item__footer">
+                <#if (result.listMetadata["d"]?first)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Duration</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        ${(result.listMetadata["d"]?first?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short)!} 
+                        
+                        <#if (result.listMetadata["stencilsFacebookEventEndDateTime"]?first)!?has_content>
+                            - ${(result.listMetadata["stencilsFacebookEventEndDateTime"]?first?datetime("yyyy-MM-dd HH:mm:ss.S z")?time?string.short)!}
                         </#if>
-                    </ul>
-                </section>
-            </div>            
+                    </div>
+                <#else>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Duration</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        Not available
+                    </div>
+                </#if>
+
+                <#if (result.listMetadata["stencilsFacebookProfileUrl"]?first)!?has_content>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        By:
+                        <a class="highlight" href="${result.customData["stencilsFacebookProfileUrl"]!}">
+                            ${(result.listMetadata["author"]?first)!}
+                        </a> 
+                    </div>
+                </#if>
+            </div>                                        
         </div>
-    </article>
+    </article>          
 </#macro>
 <#-- vim: set expandtab ts=2 sw=2 sts=2 :-->
