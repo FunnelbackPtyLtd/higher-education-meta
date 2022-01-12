@@ -144,22 +144,28 @@
             <#-- Footer -->
             <#--              
                 <div class="listing-item__footer">
-                <div class="listing-item__footer-block listing-item__footer-block">
-                    <svg class="svg-icon svg-icon--small">
-                    <title>Time</title>
-                    <use href="#time"></use>
-                    </svg>10:30 AM - 1:30 PM
-                </div>
-                <a href="mailto:it@department.edu" class="listing-item__footer-block listing-item__footer-block--highlight">
-                    <svg class="svg-icon svg-icon--small">
-                    <title>Contact email</title>
-                    <use href="#email"></use>
-                    </svg>it@department.edu </a>
-                <a href="tel:650.725.4747" class="listing-item__footer-block listing-item__footer-block--highlight">
-                    <svg class="svg-icon svg-icon--small">
-                    <title>Contact phone</title>
-                    <use href="#phone"></use>
-                    </svg>650.725.4747 </a>
+                    <div class="listing-item__footer-block listing-item__footer-block">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Time</title>
+                            <use href="#time">
+                            </use>
+                        </svg>
+                        10:30 AM - 1:30 PM
+                    </div>
+                    <a href="mailto:it@department.edu" class="listing-item__footer-block listing-item__footer-block--highlight">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Contact email</title>
+                            <use href="#email"></use>
+                            </svg>
+                            it@department.edu 
+                    </a>
+                    <a href="tel:650.725.4747" class="listing-item__footer-block listing-item__footer-block--highlight">
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Contact phone</title>
+                            <use href="#phone"></use>
+                        </svg>
+                        650.725.4747 
+                    </a>
                 </div>                                
             -->
         </div>

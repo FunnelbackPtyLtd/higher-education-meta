@@ -49,98 +49,84 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- twittter.GenericView -->
-    <article class="search-results__item search-results__item--twitter"  data-fb-result="${(result.indexUrl)!}">
-        <figure class="search-results__bg">
-            <#if (result.listMetadata["image"]?first)!?has_content>
-                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}">
-            <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
-                <img alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}"> 
-            </#if>
-        </figure>
-        <div class="search-results__header">
-            <h3 class="search-results__title">
-                <#if (result.listMetadata["author"]?first)!?has_content>
-                    <a href="https://twitter.com/${(result.listMetadata["author"]?first)!}" 
-                        class="search-results__link"
-                        aria-label="View the profile of @${(result.listMetadata["author"]?first)!}">
-                        @${(result.listMetadata["author"]?first)!}
+    <!-- results.twitter.GenericView -->
+    <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+        <#if (result.listMetadata["image"]?first)!?has_content>
+            <div class="listing-item__image-wrapper">
+                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}">  
+            </div>  
+        <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
+            <div class="listing-item__image-wrapper">
+                <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
+            </div>
+        </#if>
+        <div class="listing-item__content">
+            <#-- Title -->
+            <#if (result.listMetadata["author"])!?has_content>
+                <div class="listing-item__header">
+                    <a href="${result.clickTrackingUrl!}" 
+                        title="${(result.listMetadata["author"]?first)!}" 
+                        class="listing-item__title-link"
+                        aria-label="View the profile of @${(result.listMetadata["author"]?first)!}"
+                    >   
+                        <h3 class="listing-item__title">
+                            <@s.boldicize>
+                                <@s.Truncate length=90>
+                                    @${(result.listMetadata["author"]?first)!}
+                                </@s.Truncate>
+                            </@s.boldicize>
+                        </h3>
                     </a>
-                </#if>
-                <#-- 
-                    Adds a control so that users can add this to the cart
-                    Note: Ensure that you review the cart templates if
-                    you enable this feature.
-                -->
-                <#--  
-                <span class="enable-cart-on-result float-right"
-                    aria-label="Add result to the shortlist">
-                </span>  
-                -->                   
-            </h3>
-            <#if (result.date)!?has_content>
-                <time datetime="${(result.date)!?date}">
-                    ${(result.date)!?date}
-                </time>                                 
-                <span class="fab fa-twitter" aria-hidden="true"></span>                                             
-                via twitter
-            </#if>
-        </div>
-                
-        <div class="search-results__content">
-        
-            <#-- Summary -->
-            <p class="search-results__desc">
-                <@s.boldicize>
-                    ${result.summary!?no_esc}
-                </@s.boldicize>
-            </p>
 
-            <#-- Metadata can be shown as tags -->
-            <#list result.listMetadata["twitterHashTag"]![]>
-                <section class="tags hashtag">                
-                    <ul class="tags__list">  
+                    <#-- Subtitle -->
+                    <div class="listing-item__subtitle">
+                        <#if (result.date)!?has_content>
+                            <span class="listing-item__subtitle-block">
+                                <time datetime="${(result.date)!?date}">
+                                    ${(result.date)!?date}
+                                </time>                                 
+                            </span>
+                        </#if>
+                        <span
+                            class="
+                            listing-item__subtitle-block
+                            listing-item__subtitle-block--highlight
+                            "
+                        >
+                            <svg aria-hidden="true" class="svg-icon">
+                            <use href="#logo-twitter"></use>
+                            </svg>
+                            via twitter
+                        </span>
+                    </div>
+                </div>
+            </#if>
+            
+            
+            <#-- Body -->
+            <div class="listing-item__body">
+                <#-- Summary -->
+                <div class="listing-item__summary">
+                    <@s.boldicize>
+                        ${result.summary!?no_esc}
+                    </@s.boldicize>
+                </div>
+
+                <#-- Metadata should as tags/pills -->        
+                <#list (result.listMetadata["twitterHashTag"])![]>
+                    <ul aria-label="Result tags" class="listing-item__tags">
                         <#items as hashtag>
-                            <li class="tags__item">
-                                <a class="hashtag__link" href="https://twitter.com/hashtag/${hashtag!}" title="Link to hashtag on twitter"> 
-                                    #${hashtag!}
-                                </a>
-                            </li>                        
+                            <li class="listing-item__tag">#${hashtag!}</li>
                         </#items>
                     </ul>
-                </section>  
-            </#list> 
+                </#list>
 
-            <#-- Call to Action (CTA) -->
-            <p>
-                <a href="${result.clickTrackingUrl!}" 
-                    class="btn--link" 
-                    title="View more on twitter"
-                    aria-label="View more on twitter">
-                    Read more
-                </a>
-            </p>
+                <#-- Call to Action (CTA) -->                        
+                <a href="${result.clickTrackingUrl!}" class="listing-item__action">VIEW TWEET</a> 
+            </div>          
 
             <#-- Display the time which this result has last been visited by the user -->
-            <@history_cart.LastVisitedLink result=result/>            
-            
-            <#-- Footer -->
-            <#--  
-            <div class="search-results__bottom">
-                <section class="contact js-contact">
-                    <ul class="contact__list">                        
-                        <li class="contact__item">
-                            <span class="search-results__icon--red fas far fa-clock" aria-label="" title=""></span> 
-                            Lorem ipsum
-                        </li>
-                        <li class="contact__item ">
-                            <span class="search-results__icon--red fas far fa-clock" aria-label="" title=""></span> 
-                            Lorem ipsum
-                        </li>
-                    </ul>
-                </section>
-            </div>                                  
-            -->
+            <@history_cart.LastVisitedLink result=result/>                                       
         </div>
-    </article>
+    </article>    
 </#macro>
