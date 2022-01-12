@@ -80,7 +80,19 @@
                                 href="https://maps.google.com/?q=${(result.listMetadata["stencilsFacebookEventCoordinates"]?first)!(result.listMetadata["stencilsFacebookEventLocation"])!}" target="_blank"
                             >
                                 ${(result.listMetadata["stencilsFacebookEventLocation"])!}
-                            </a>              
+                            </a>
+
+                            <span
+                                class="
+                                listing-item__subtitle-block
+                                listing-item__subtitle-block--highlight
+                                "
+                            >
+                                <svg aria-hidden="true" class="svg-icon">
+                                <use href="#logo-facebook"></use>
+                                </svg>
+                                via facebook
+                            </span>                                             
                         </div>
 
                     </#if>
