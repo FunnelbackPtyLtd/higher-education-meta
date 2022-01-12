@@ -48,13 +48,13 @@
 <#macro GenericView result>
     <#switch (result.listMetadata["stencilsFacebookType"]?first?upper_case)!"">
         <#case "PAGE">
-            <@Pages.Result result=result />
+            <@pages.Result result=result />
             <#break>
         <#case "POST">
-            <@Posts.Result result=result />
+            <@posts.Result result=result />
             <#break>
         <#case "EVENT">
-            <@Events.Result result=result />
+            <@events.Result result=result />
             <#break>
         <#default>
             <div class="alert alert-danger" role="alert">
