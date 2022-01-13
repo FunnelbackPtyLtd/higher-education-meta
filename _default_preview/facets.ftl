@@ -315,7 +315,7 @@
 </#macro>
 
 <#--  Display all the facet categories for the given facet.  -->
-<#macro FacetCategories facet maxCategories>
+<#macro FacetCategories facet maxCategories=6>
     <div
         role="listbox"
         <#if facet.guessedDisplayType == "CHECKBOX">aria-multiselectable</#if>
@@ -353,7 +353,7 @@
             </a>
         </#list>
 
-        <#if facet.allValues?size gt 5>
+        <#if facet.allValues?size gt maxCategories?number >
             <button
                 type="button"
                 class="facet-group__show-more"
@@ -362,7 +362,7 @@
                 <svg class="svg-icon"><use href="#add"></use></svg>
                 Show more
                 <span class="facet-group-show-more__hidden-items-count">
-                    (x)
+                    ( ${facet.allValues?size - maxCategories?number} )
                 </span>
             </button>
         </#if>

@@ -47,21 +47,21 @@
 -->
 <#macro GenericView result>
     <!-- results.instagram.GenericView -->
-    <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+    <article class="listing-item listing-item--instagram listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
 
         <#switch result.listMetadata["instagramMediaType"]!?first!?upper_case>
             <#case "IMAGE">                
             <#case "CAROUSEL_ALBUM">
                 <#if (result.listMetadata["instagramMediaUrl"]?first)!?has_content>
                     <div class="listing-item__image-wrapper">
-                        <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramMediaUrl"]?first)!}"> 
+                        <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramMediaUrl"]?first)!}"> 
                     </div>  
                 </#if>  
                 <#break>
             <#case "VIDEO">
                 <#if (result.listMetadata["instagramThumbnailUrl"]?first)!?has_content>
                     <div class="listing-item__image-wrapper">
-                        <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramThumbnailUrl"]?first)!}"> 
+                        <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramThumbnailUrl"]?first)!}"> 
                     </div>  
                 </#if>                  
                 <#break>
@@ -109,7 +109,7 @@
                             <time datetime="${result.date?date?string.iso}" title="${result.date?date?string.medium}">
                                 ${prettyTime(result.date?date)}
                             </time> 
-                            via                         
+                                              
                             <span
                                 class="
                                 listing-item__subtitle-block

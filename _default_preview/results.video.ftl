@@ -49,10 +49,10 @@
 -->
 <#macro GenericView result>
     <!-- results.video.GenericView -->
-    <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+    <article class="listing-item listing-item--video listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
         <#if (result.listMetadata["image"]?first)!?has_content >
             <div class="listing-item__image-wrapper">
-                <img class="deferred" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}"> 
+                <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}"> 
             </div>  
         <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
             <div class="listing-item__image-wrapper">
@@ -133,11 +133,7 @@
 
                 <#if (result.listMetadata["videoViewCount"]?first)!?has_content>
                     <div class="listing-item__footer-block listing-item__footer-block">
-                        <svg class="svg-icon svg-icon--small">
-                            <title>Contact email</title>
-                            <use href="#map"></use>
-                        </svg>
-                        <span class="search-results__icon--red far fa-eye" aria-label="Number of views"></span>
+                        <span class="far fa-eye" aria-label="Number of views"></span>
                         ${(result.listMetadata["videoViewCount"]?first)!} 
                     </div>
                 </#if>

@@ -77,14 +77,17 @@
                                 <use href="#map"></use>
                             </svg>
                             
-                            <#if (result.listMetadata["stencilsFacebookEventCoordinates"]?first)!?has_content>
-                                <a                                 
+                            <#if (result.listMetadata["stencilsFacebookEventLocation"]?first)!?has_content
+                                && (result.listMetadata["stencilsFacebookEventLocation"]?first)!?has_content>
+                                <a  
+                                    class="listing-item__subtitle-link"
+                                    target="_blank"                               
                                     href="https://maps.google.com/?q=${(result.listMetadata["stencilsFacebookEventCoordinates"]?first)!(result.listMetadata["stencilsFacebookEventLocation"]?first)!}" target="_blank"
                                 >
                                     ${(result.listMetadata["stencilsFacebookEventLocation"]?first)!}
                                 </a>
                             <#else>
-                                Unknown location
+                                ${(result.listMetadata["stencilsFacebookEventLocation"]?first)!"Unknown location"}
                             </#if>
 
                             <span
@@ -165,12 +168,15 @@
                     </div>
                 </#if>
 
-                <#if (result.listMetadata["stencilsFacebookProfileUrl"]?first)!?has_content>
+                <#if (result.listMetadata["author"]?first)!?has_content>
                     <div class="listing-item__footer-block listing-item__footer-block">
-                        By:
-                        <a class="highlight" href="${result.customData["stencilsFacebookProfileUrl"]!}">
-                            ${(result.listMetadata["author"]?first)!}
-                        </a> 
+                        <svg class="svg-icon svg-icon--small">
+                            <title>Author</title>
+                            <use href="#user-avatar">
+                            </use>
+                        </svg>
+
+                        ${(result.listMetadata["author"]?first)!}
                     </div>
                 </#if>
             </div>                                        
