@@ -76,11 +76,16 @@
                                 <title>Location</title>
                                 <use href="#map"></use>
                             </svg>
-                            <a                                 
-                                href="https://maps.google.com/?q=${(result.listMetadata["stencilsFacebookEventCoordinates"]?first)!(result.listMetadata["stencilsFacebookEventLocation"])!}" target="_blank"
-                            >
-                                ${(result.listMetadata["stencilsFacebookEventLocation"])!}
-                            </a>
+                            
+                            <#if (result.listMetadata["stencilsFacebookEventCoordinates"]?first)!?has_content>
+                                <a                                 
+                                    href="https://maps.google.com/?q=${(result.listMetadata["stencilsFacebookEventCoordinates"]?first)!(result.listMetadata["stencilsFacebookEventLocation"]?first)!}" target="_blank"
+                                >
+                                    ${(result.listMetadata["stencilsFacebookEventLocation"]?first)!}
+                                </a>
+                            <#else>
+                                Unknown location
+                            </#if>
 
                             <span
                                 class="

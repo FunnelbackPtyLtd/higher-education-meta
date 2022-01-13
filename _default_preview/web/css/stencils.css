@@ -26,5 +26,6 @@
 /* Ensure that the images for the results always span the entire area */
 .listing-item__image-wrapper img {
     height: 100%;
+    width: 100%;
     object-fit: cover;
 }
