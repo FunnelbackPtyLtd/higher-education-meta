@@ -3,13 +3,32 @@
     sorting and number of results to display
 -->
 <#macro SearchTools>
-    <div class="search-results__tools clearfix">
+    <div class="stencils-summary-and-search-tools">
         <@counts.Counts /> 
-        <div class="search-results__tools-right">
+        <form
+            action="${question.getCurrentProfileConfig().get("ui.modern.search_link")}" 
+            method="GET"
+            class="search-tools form custom-form custom-form--bg-white custom-form--color-black"
+            data-pnp-component="stencils-search-tools"
+        >
+        <input type="hidden" name="collection" value="${question.collection.id}">
+
+            <@base.inputsForForms allowList= ["enc", "form", "scope", "lang", "profile", "userType", "displayMode", "num_ranks"] />
+
+            <#list question.selectedCategoryValues?keys as facetKey>
+                <#list question.selectedCategoryValues[facetKey] as value>
+                    <!-- testing -->
+                    <input type="hidden" name="${facetKey}" value="${value}">
+                </#list>
+            </#list>
+
             <@LimitDropdown />
             <@SortDropdown />
             <@DisplayMode />                    
-        </div>
+            <button type="submit" class="sr-only">
+                Submit
+            </button>
+        </form>           
     </div>
 </#macro>
 
@@ -71,25 +90,6 @@
             </select>
         </div>
     </div>    
-</#macro>
-
-
-
-
-<#macro StoryBook>
-    <div class="stencils-summary-and-search-tools">
-        <@counts.Counts /> 
-
-        <form action="${question.collection.configuration.value("ui.modern.search_link")}?${removeParam(QueryString, ["num_ranks","sort"])}" method="get" class="search-tools form custom-form custom-form--bg-white custom-form--color-black" data-pnp-component="stencils-search-tools">
-            <@base.inputsForForms />
-            
-            <@LimitDropdown />
-            <@SortDropdown />
-            <@DisplayMode />
-
-            <button type="submit" class="sr-only">Submit</button>
-        </form>
-    </div>
 </#macro>
 
 <#-- Obtain the result mode from the CGI paramters; Valid values are LIST and CARD -->

@@ -91,7 +91,7 @@
 				<div class="funnelback-search__body">
 					<h2 class="funnelback-search__title">Results</h2>
 
-					<@search_tools.StoryBook />
+					<@search_tools.SearchTools />
 					<@query_blending.QueryBlending />
 					<@facets_breadcrumbs.Breadcrumb />
 					<#--  <@tier_bars.StoryBook />  -->
@@ -199,14 +199,14 @@
 				Use the non-minified version for the preview so that 
 				it is easier to step through and investigate bugs 
 			-->
-			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.js"></script>
-			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.js"></script>
+			<#--  <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.js"></script>
+			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.js"></script>  -->
 		<#else>
 			<script type="module" defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.module.min.js"></script>
       		<script nomodule defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.legacy.min.js"></script>
 			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.min.js"></script>
 		</#if>
-		<@history_cart.Configuration />
+		<#--  <@history_cart.Configuration />  -->
 	</#if>
 </body>
 </html>

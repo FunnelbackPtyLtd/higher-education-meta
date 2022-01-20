@@ -12,20 +12,49 @@
 /* ******************************** */
 /* Move this into the Design System */
 /* ******************************** */
-.funnelback-facet  .facet-group__list-item--hidden {
-    position: absolute;
+
+.stencils .listing-item__time {
+    margin-right: 0.25rem;
 }
 
-/* Provide a little indicator for drill down facets */
-.funnelback-facet  .facet-group__list-item .fas {
-    height: 1.5rem;
-    margin-right: 1rem;
-    transform: rotate(90deg);
+.stencils .listing-item__subtitle .fab,
+.stencils .listing-item__subtitle .far,
+.stencils .listing-item__subtitle .far {
+    margin: 0 0.25rem;
+    color: #da1007; /* Replace with primary colour variable */
 }
 
-/* Ensure that the images for the results always span the entire area */
-.listing-item__image-wrapper img {
-    height: 100%;
-    width: 100%;
+/* Make the images fill the LHS side of each document type */
+.stencils .listing-item__image-wrapper {
+    height: auto;
+    max-height: 16.25rem;
+    width: auto;
+    overflow: hidden;
+}
+
+@media (min-width: 992px) {
+    .stencils .listing-item__image-wrapper {
+        height: auto;
+        max-height: none;
+        width: 16.25rem;
+    }
+}
+
+.stencils .listing-item__image {
     object-fit: cover;
+    max-width: none;
+}
+
+/* Add a padding the to icon in the footer */
+.stencils .listing-item__footer-block .far,
+.stencils .listing-item__footer-block .fas,
+.stencils .listing-item__footer-block .fab{
+    margin-right: 0.25rem;
+    color: #da1007; /* Replace with primary colour variable */
+}
+
+/* Ensure that collapse items do not take up vertical space */
+
+.stencils .facet-group__list-item--hidden {
+    position: absolute;
 }

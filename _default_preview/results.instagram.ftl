@@ -54,14 +54,14 @@
             <#case "CAROUSEL_ALBUM">
                 <#if (result.listMetadata["instagramMediaUrl"]?first)!?has_content>
                     <div class="listing-item__image-wrapper">
-                        <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramMediaUrl"]?first)!}"> 
+                        <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/s/resources/${question.collection.id}/${question.profile}/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramMediaUrl"]?first)!}"> 
                     </div>  
                 </#if>  
                 <#break>
             <#case "VIDEO">
                 <#if (result.listMetadata["instagramThumbnailUrl"]?first)!?has_content>
                     <div class="listing-item__image-wrapper">
-                        <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/stencils/resources/base/v15.8/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramThumbnailUrl"]?first)!}"> 
+                        <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/s/resources/${question.collection.id}/${question.profile}/img/pixel.gif" data-deferred-src="${(result.listMetadata["instagramThumbnailUrl"]?first)!}"> 
                     </div>  
                 </#if>                  
                 <#break>
@@ -106,19 +106,12 @@
                     <#-- Subtitle -->
                     <#if (result.date)!?has_content>
                         <div class="listing-item__subtitle">
-                            <time datetime="${result.date?date?string.iso}" title="${result.date?date?string.medium}">
+                            <time class="listing-item__time" datetime="${result.date?date?string.iso}" title="${result.date?date?string.medium}">
                                 ${prettyTime(result.date?date)}
                             </time> 
-                                              
-                            <span
-                                class="
-                                listing-item__subtitle-block
-                                listing-item__subtitle-block--highlight
-                                "
-                            >
-                                <span class="fab fa-instagram" aria-hidden="true"></span>   
-                                via instagram
-                            </span>   
+                                <span class="fab fa-instagram " aria-hidden="true"></span>   
+                                via                                              
+                                instagram
                         </div>
                     </#if>
                 </div>
