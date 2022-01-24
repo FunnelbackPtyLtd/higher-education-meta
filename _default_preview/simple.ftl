@@ -96,8 +96,17 @@
 					<@facets_breadcrumbs.Breadcrumb />
 					<#--  <@tier_bars.StoryBook />  -->
 
-					<@s.AfterSearchOnly>
+					<@s.AfterSearchOnly>						
+						<@curator.HasCuratorOrBestBet position="top">
+							<@curator.Curator position="top" />
+						</@curator.HasCuratorOrBestBet>
+
 						<@project.Results />
+
+						<@curator.HasCuratorOrBestBet position="bottom">
+							<@curator.Curator position="bottom" />
+						</@curator.HasCuratorOrBestBet>
+
 					</@s.AfterSearchOnly>
 
 					<@pagination.Pagination />
@@ -106,18 +115,20 @@
 
 				<div class="funnelback-search__side">
 					
-
 					<#-- Get facets for the current selected tab -->
 					<#assign tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${(response.customData.stencils.tabs.selected)!}")!>
 
 					<@facets.HasFacets facets=tabFacets>
-						<@facets.StoryBook 
+						<@facets.Facets 
 							facets=tabFacets 
 							maxCategories=question.getCurrentProfileConfig().get("stencils.faceted_navigation.max_displayed_categories")!
 						/>
 					</@facets.HasFacets>
 
-					<#--  <@project.SideNavigation />  -->
+					<@curator.HasCuratorOrBestBet position="left">
+						<@curator.Curator position="left" />
+					</@curator.HasCuratorOrBestBet>
+
 				</div>
 			</div>
 

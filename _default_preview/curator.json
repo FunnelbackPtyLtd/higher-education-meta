@@ -55,7 +55,7 @@
     "additionalProperties" : {
       "call_to_action_url" : "https://www.apu.edu/static/src/sites/homecoming/images/header.jpg",
       "call_to_action_label" : "JOIN NOW",
-      "position" : "center"
+      "position" : "top"
     },
     "category" : "",
     "removeCollectionUrl" : false
@@ -64,7 +64,7 @@
   "created" : "2020-03-12T14:33:01.536859Z",
   "lastModified" : "2020-12-03T09:16:38.588196Z",
   "id" : "f667e7b1-7136-405b-af29-16e0fee57036",
-  "name" : "[Example] Curator in the center - health, corona, covid",
+  "name" : "[Example] Curator in the top - health, corona, covid",
   "label" : "DEFAULT",
   "enabled" : true,
   "trigger" : {
@@ -101,7 +101,7 @@
     "linkUrl" : "https://covid19.waimakariri.govt.nz/app",
     "descriptionHtml" : "New Zealand is at Alert Level 1.\n\nAuckland joined the rest of New Zealand at Alert Level 1 at 11:59pm on Wednesday 7 October.",
     "additionalProperties" : {
-      "position" : "center",
+      "position" : "top",
       "call_to_action_label" : "See more",
       "call_to_action_url" : "https://covid19.govt.nz/alert-system/alert-level-1/",
       "image" : "https://source.unsplash.com/random/40x40?covid"
@@ -146,7 +146,7 @@
   } ]
 }, {
   "created" : "2020-08-17T16:12:56.407535Z",
-  "lastModified" : "2021-02-08T22:22:47.940261Z",
+  "lastModified" : "2022-01-24T14:58:58.93274Z",
   "id" : "fe3b1d3b-fa55-4fbe-a154-a3d4ed3c2e32",
   "name" : "[Example] Curator on top - timetable",
   "label" : "DEFAULT",
@@ -177,7 +177,7 @@
     "linkUrl" : "www.example",
     "descriptionHtml" : "For the remainder of the 2020/21 academic year, all compulsory teaching, learning and assessments, including those taking place in Summer Term 2021, will be delivered online.",
     "additionalProperties" : {
-      "position" : "center",
+      "position" : "top",
       "call_to_action_label" : "BOOK NOW",
       "call_to_action_url" : "www.example.com",
       "image" : "https://source.unsplash.com/random/160x160?damage"
@@ -191,7 +191,7 @@
     "linkUrl" : "www.example",
     "descriptionHtml" : "One of the first steps you need to complete after accepting a course offer is to activate your University account, through the Account Management page.",
     "additionalProperties" : {
-      "position" : "center",
+      "position" : "top",
       "call_to_action_label" : "ACTIVATE ACCOUNT",
       "call_to_action_url" : "www.example.com",
       "image" : "https://source.unsplash.com/random/160x160?bins"
@@ -203,7 +203,7 @@
   "created" : "2020-08-17T16:48:38.568916Z",
   "lastModified" : "2021-02-08T19:31:36.992905Z",
   "id" : "2c27d476-f132-4772-95ad-06fb61b3323f",
-  "name" : "[Example] Curator in the center - school, campus, term dates",
+  "name" : "[Example] Curator in the top - school, campus, term dates",
   "label" : "DEFAULT",
   "enabled" : true,
   "trigger" : {
@@ -231,7 +231,7 @@
     "additionalProperties" : {
       "call_to_action_label" : "VIEW DATES",
       "call_to_action_url" : "www.example.com",
-      "class" : "center",
+      "class" : "top",
       "image" : "https://source.unsplash.com/random/160x160?calendar"
     },
     "category" : "",
@@ -241,7 +241,7 @@
   "created" : "2020-08-19T16:00:08.117078Z",
   "lastModified" : "2020-12-03T09:17:39.146201Z",
   "id" : "878f2174-ef98-48a1-9fdc-9ab1954a587b",
-  "name" : "[Example] Curator in the center - fines",
+  "name" : "[Example] Curator in the top - fines",
   "label" : "DEFAULT",
   "enabled" : true,
   "trigger" : {
@@ -268,7 +268,7 @@
     "descriptionHtml" : "Pay a Penalty Charge Notice (PCN) online",
     "additionalProperties" : {
       "call_to_action_url" : "https://www3.camden.gov.uk/pay",
-      "position" : "center",
+      "position" : "top",
       "call_to_action_label" : "Pay now",
       "image" : "https://source.unsplash.com/random/160x160?fines"
     },
@@ -353,7 +353,7 @@
     "linkUrl" : "-",
     "descriptionHtml" : "Please register for one of the available dates",
     "additionalProperties" : {
-      "position" : "center",
+      "position" : "top",
       "call_to_action_url" : "https://www.dtcc.edu/admissions-financial-aid/prospective-student-information/info-sessions-open-house/virtual-info-sessions",
       "call_to_action_label" : "Schedule Now"
     },
@@ -515,7 +515,7 @@
   "created" : "2019-10-18T04:37:02.729376+11:00",
   "lastModified" : "2021-02-08T22:14:05.802604Z",
   "id" : "90d338bf-5c18-4e03-8cd7-0c91a7ae42bc",
-  "name" : "[Example] Curator in the center and date restraint - Fall Schedule",
+  "name" : "[Example] Curator in the top and date restraint - Fall Schedule",
   "label" : "DEFAULT",
   "enabled" : true,
   "trigger" : {
@@ -542,7 +542,7 @@
     "linkUrl" : "www.example.com",
     "descriptionHtml" : "8-11 March: Spring Break - no curriculum classes<br><br>\n31 March: Spring graduation application submission deadline",
     "additionalProperties" : {
-      "position" : "center"
+      "position" : "top"
     },
     "category" : "",
     "removeCollectionUrl" : false

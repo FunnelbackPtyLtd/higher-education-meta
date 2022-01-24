@@ -292,15 +292,13 @@
 <#macro Controls>
 	<#if question.collection.configuration.valueAsBoolean("ui.modern.session")>		
 		<!-- history_cart.Controls -->
-		<section class="clearfix">
-			<div class="result-sessions__controls">
-				<span class="flb-cart-count"></span>
-				 <a class="session-history-toggle" tabindex="0">
-				 	<span class="fas fa-history"></span>
-				 	History
-				</a>
-			<div>
-		</section>
+		<div class="result-sessions__controls">
+			<span class="flb-cart-count"></span>
+				<a class="session-history-toggle" tabindex="0">
+				<span class="fas fa-history"></span>
+				History
+			</a>
+		<div>
 	</#if>
 </#macro>
 

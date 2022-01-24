@@ -145,61 +145,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2020-08-17T16:12:56.407535Z",
-  "lastModified" : "2021-02-08T22:22:47.940261Z",
-  "id" : "fe3b1d3b-fa55-4fbe-a154-a3d4ed3c2e32",
-  "name" : "[Example] Curator on top - timetable",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "And",
-    "triggers" : [ {
-      "type" : "Or",
-      "triggers" : [ {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "timetable" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "schedule" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "tutorials" ]
-      }, {
-        "type" : "AllQueryWords",
-        "triggerWords" : [ "labs" ]
-      } ]
-    } ]
-  },
-  "actions" : [ {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Tutorials and laboratories",
-    "displayUrl" : "www.example",
-    "linkUrl" : "www.example",
-    "descriptionHtml" : "For the remainder of the 2020/21 academic year, all compulsory teaching, learning and assessments, including those taking place in Summer Term 2021, will be delivered online.",
-    "additionalProperties" : {
-      "position" : "center",
-      "call_to_action_label" : "BOOK NOW",
-      "call_to_action_url" : "www.example.com",
-      "image" : "https://source.unsplash.com/random/160x160?damage"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  }, {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Having difficulties logging in?",
-    "displayUrl" : "www.example",
-    "linkUrl" : "www.example",
-    "descriptionHtml" : "One of the first steps you need to complete after accepting a course offer is to activate your University account, through the Account Management page.",
-    "additionalProperties" : {
-      "position" : "center",
-      "call_to_action_label" : "ACTIVATE ACCOUNT",
-      "call_to_action_url" : "www.example.com",
-      "image" : "https://source.unsplash.com/random/160x160?bins"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  } ]
-}, {
   "created" : "2020-08-17T16:48:38.568916Z",
   "lastModified" : "2021-02-08T19:31:36.992905Z",
   "id" : "2c27d476-f132-4772-95ad-06fb61b3323f",
@@ -609,6 +554,61 @@
     "descriptionHtml" : "The world health organisations updates and advice about the coronavirus.",
     "additionalProperties" : null,
     "category" : "BEST_BETS",
+    "removeCollectionUrl" : false
+  } ]
+}, {
+  "created" : "2020-08-17T16:12:56.407535Z",
+  "lastModified" : "2022-01-24T14:58:58.93274Z",
+  "id" : "fe3b1d3b-fa55-4fbe-a154-a3d4ed3c2e32",
+  "name" : "[Example] Curator on top - timetable",
+  "label" : "DEFAULT",
+  "enabled" : true,
+  "trigger" : {
+    "type" : "And",
+    "triggers" : [ {
+      "type" : "Or",
+      "triggers" : [ {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "timetable" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "schedule" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "tutorials" ]
+      }, {
+        "type" : "AllQueryWords",
+        "triggerWords" : [ "labs" ]
+      } ]
+    } ]
+  },
+  "actions" : [ {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Tutorials and laboratories",
+    "displayUrl" : "www.example",
+    "linkUrl" : "www.example",
+    "descriptionHtml" : "For the remainder of the 2020/21 academic year, all compulsory teaching, learning and assessments, including those taking place in Summer Term 2021, will be delivered online.",
+    "additionalProperties" : {
+      "position" : "top",
+      "call_to_action_label" : "BOOK NOW",
+      "call_to_action_url" : "www.example.com",
+      "image" : "https://source.unsplash.com/random/160x160?damage"
+    },
+    "category" : "",
+    "removeCollectionUrl" : false
+  }, {
+    "type" : "DisplayUrlAdvert",
+    "titleHtml" : "Having difficulties logging in?",
+    "displayUrl" : "www.example",
+    "linkUrl" : "www.example",
+    "descriptionHtml" : "One of the first steps you need to complete after accepting a course offer is to activate your University account, through the Account Management page.",
+    "additionalProperties" : {
+      "position" : "top",
+      "call_to_action_label" : "ACTIVATE ACCOUNT",
+      "call_to_action_url" : "www.example.com",
+      "image" : "https://source.unsplash.com/random/160x160?bins"
+    },
+    "category" : "",
     "removeCollectionUrl" : false
   } ]
 } ]
