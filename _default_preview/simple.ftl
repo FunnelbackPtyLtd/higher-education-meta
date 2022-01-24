@@ -100,7 +100,8 @@
 						<@curator.HasCuratorOrBestBet position="top">
 							<@curator.Curator position="top" />
 						</@curator.HasCuratorOrBestBet>
-
+						
+						<@no_results.NoResults />
 						<@project.Results />
 
 						<@curator.HasCuratorOrBestBet position="bottom">

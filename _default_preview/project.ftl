@@ -41,8 +41,6 @@
 
 <#-- Outputs the search result section -->
 <#macro Results>
-    <@no_results.NoResults />
-
     <@base.ResultList nestedRank=3>            
         <@fb.ExtraResults name="twitter">
             <li><h4 class="sr-only">Tweet results</h4></li>
