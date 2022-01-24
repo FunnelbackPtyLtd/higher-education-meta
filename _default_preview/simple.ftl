@@ -24,6 +24,7 @@
 <#import "search_tools.ftl" as search_tools />
 <#import "counts.ftl" as counts />
 <#import "query_blending.ftl" as query_blending />
+<#import "spelling_suggestions.ftl" as spelling_suggestions />
 <#import "curator.ftl" as curator />
 <#import "tabs.ftl" as tabs />
 <#import "facets.breadcrumbs.ftl" as facets_breadcrumbs />
@@ -93,6 +94,7 @@
 
 					<@search_tools.SearchTools />
 					<@query_blending.QueryBlending />
+					<@spelling_suggestions.SpellingSuggestions />
 					<@facets_breadcrumbs.Breadcrumb />
 					<#--  <@tier_bars.StoryBook />  -->
 
@@ -100,7 +102,7 @@
 						<@curator.HasCuratorOrBestBet position="top">
 							<@curator.Curator position="top" />
 						</@curator.HasCuratorOrBestBet>
-						
+
 						<@no_results.NoResults />
 						<@project.Results />
 
