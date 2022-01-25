@@ -35,7 +35,7 @@
     main section of the search engine result page (SERP)
     @param result An individual result fron the data model
 -->
-<#macro CardView result>`
+<#macro CardView result>
     <@GenericView result=result />
 </#macro>
 

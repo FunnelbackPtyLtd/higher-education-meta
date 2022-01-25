@@ -40,14 +40,13 @@
 </#macro>
 
 <#-- Outputs the search result section -->
-<#macro Results>
+<#--  <#macro Results>
     <@base.ResultList nestedRank=3>            
         <@fb.ExtraResults name="twitter">
             <li><h4 class="sr-only">Tweet results</h4></li>
             <li class="search-results-twitter">
                 <div class="row mb-3">
                     <#list (response.resultPacket.results)![] as result>
-                        <#-- Limit to only 3 Twitter cards -->
                         <#if result?index lt 3>
                             <div class="col-md-4">
                                 <@twitter.TwitterCard result=result />
@@ -58,42 +57,10 @@
             </li>
         </@fb.ExtraResults>
     </@base.ResultList>
-</#macro>
+</#macro>  -->
 
 <#-- 
     Display the results with the ability to browse 
     We want different markup here compared to the standard results.
     e.g. Additional tab at the top
 -->
-<#-- -->
-
-
-<#-- Display the facets based on the configurations -->
-<#macro SideNavigation>
-    <!-- project.SideNavigation -->
-    <div>
-        
-        <@browse_mode.BrowseModeToggle />
-
-        <#-- Get facets for the current selected tab -->
-        <#local tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${(response.customData.stencils.tabs.selected)!}")!>
-        
-        <#-- Display facets -->
-        <section class="module-filter module-filter--dark js-module-filter">
-            <@facets.HasFacets facets=tabFacets>
-                <div class="module-filter__wrapper">
-                    
-                    <h2 class="module-filter__title">Filter by</h2>
-                    <div class="module-filter__wrapper-mobile">
-                        <@facets.Facets tabFacets />
-                    </div>
-                </div>
-            </@facets.HasFacets>
-        </section>
-
-        <#-- Curator - Left hand side -->
-        <section>
-            <@curator.Curator position="left" />  
-        </section>
-    </div>
-</#macro>

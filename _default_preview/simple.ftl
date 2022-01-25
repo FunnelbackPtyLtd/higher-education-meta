@@ -36,6 +36,7 @@
 <#import "history_cart.ftl" as history_cart />
 <#import "auto_complete.ftl" as auto_complete />
 <#import "curator.ftl" as curator />
+<#import "result_list.ftl" as result_list />
 <#import "no_results.ftl" as no_results />
 <#import "extra_search.ftl" as extra_search />
 <#import "results.ftl" as results />
@@ -86,7 +87,7 @@
 
 		<div class="stencils__main">
 			<@hero_banner.SearchForm />
-			<@tabs.StoryBook />
+			<@tabs.Tabs />
 
 			<div class="funnelback-search no-wysiwyg">			
 				<div class="funnelback-search__body">
@@ -104,7 +105,7 @@
 						</@curator.HasCuratorOrBestBet>
 
 						<@no_results.NoResults />
-						<@project.Results />
+						<@result_list.ResultList />
 
 						<@curator.HasCuratorOrBestBet position="bottom">
 							<@curator.Curator position="bottom" />
