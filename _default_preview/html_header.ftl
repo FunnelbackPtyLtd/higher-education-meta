@@ -8,8 +8,8 @@
 <link href="https://unpkg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet">
 <link href="${ContextPath}/resources/${question.collection.id}/${question.profile}/css/main.css" rel="stylesheet">
 
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+
 <link rel="stylesheet" href="${ContextPath}/resources/${(question.collection.id)!}/${(question.profile)!}/css/customer-typeahead.css">
 
 <#-- 

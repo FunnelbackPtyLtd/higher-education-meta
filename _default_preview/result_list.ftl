@@ -34,19 +34,21 @@
 -->
 <#macro StandardResults view="LIST" nestedRank=-1>
     <!-- result_list.StandardResults -->
-    <div class="no-wysiwyg listing listing--linked-title listing--${view?lower_case}">
-        <#list (response.resultPacket.resultsWithTierBars)![] as result>
-            <#if result.class.simpleName == "TierBar">
-                <#--  <@TierBar result=result />  -->
-            <#else>
-                <#if nestedRank gte 0 && result.rank == nestedRank>
-                    <#nested>
+    <div class="no-wysiwyg listing listing--linked-item ">
+        <div class="listing__items listing__items--${view?lower_case}-view">
+            <#list (response.resultPacket.resultsWithTierBars)![] as result>
+                <#if result.class.simpleName == "TierBar">
+                    <#--  <@TierBar result=result />  -->
+                <#else>
+                    <#if nestedRank gte 0 && result.rank == nestedRank>
+                        <#nested>
+                    </#if>
+                    
+                    <#-- Display the result based on the configured template -->
+                    <@Result result=result view=view/>                
                 </#if>
-                
-                <#-- Display the result based on the configured template -->
-                <@Result result=result view=view/>                
-            </#if>
-        </#list>
+            </#list>
+        </div>
     </div>
 </#macro>
 
