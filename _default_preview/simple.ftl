@@ -42,6 +42,8 @@
 <#import "results.ftl" as results />
 <#import "client_includes.ftl" as client_includes />
 
+<#import "sessions.ftl" as sessions />
+
 
 <#-- Specific result styling imports
 	These imports are required for the automatic template selection to work
@@ -86,14 +88,18 @@
 	<#--  <@client_includes.ContentHeader />  -->
 
 		<div class="stencils__main">
+			<@sessions.Controls />
 			<@hero_banner.SearchForm />
+			
+
 			<@tabs.Tabs />
 
 			<div class="funnelback-search no-wysiwyg">			
-				<div class="funnelback-search__body">
+				<div class="funnelback-search__body" id="funnelbach-search-body">
 					<h2 class="funnelback-search__title">Results</h2>
-
+					
 					<@search_tools.SearchTools />
+					
 					<@query_blending.QueryBlending />
 					<@spelling_suggestions.SpellingSuggestions />
 					<@facets_breadcrumbs.Breadcrumb />
@@ -117,8 +123,7 @@
 					<@contextual_navigation.ContextualNavigation />
 				</div>
 
-				<div class="funnelback-search__side">
-					
+				<div class="funnelback-search__side" id="funnelbach-search-facets">					
 					<#-- Get facets for the current selected tab -->
 					<#assign tabFacets = question.getCurrentProfileConfig().get("stencils.tabs.facets.${(response.customData.stencils.tabs.selected)!}")!>
 
@@ -134,15 +139,9 @@
 					</@curator.HasCuratorOrBestBet>
 
 				</div>
-			</div>
-
-
-			<main class="main <@s.InitialFormOnly>initial-search-form</@s.InitialFormOnly>" role="main">
-				<section class="content-wrapper search-sessions">
-					<#--  <@history_cart.SearchHistory />
-					<@history_cart.Cart />  -->
-				</section>
-			</main>
+				
+					<@sessions.SearchHistoryAndShortlist />
+			</div>				
 		</div>
 
 	<#--  <@client_includes.ContentFooter />  -->
@@ -194,18 +193,8 @@
 		and query history 
 	-->
 	<#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-		<#-- 
-			Automatically includ the cart template for all document types defined
-			across available namespaces. i.e. You won't need to explicitly 
-			do calls like <@courses.CartTemplate> to include the Handlebars templates 
-			as this macro will automatically be include it for you.   
-		-->
-		<@history_cart.CartTemplatesForResults />
+		<@sessions.Templates />
 		
-		<#-- Specifies how each cart item should be presented -->
-		<@history_cart.CartTemplate />
-		
-
 		<script nomodule src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 		
 		<#-- We have replaced the products session code with an extended version for Stencils -->
@@ -214,14 +203,14 @@
 				Use the non-minified version for the preview so that 
 				it is easier to step through and investigate bugs 
 			-->
-			<#--  <script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.js"></script>
-			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.js"></script>  -->
+			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.js"></script>
+			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.js"></script>
 		<#else>
 			<script type="module" defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.module.min.js"></script>
       		<script nomodule defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-cart-0.1.legacy.min.js"></script>
 			<script defer src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.session-history-0.1.min.js"></script>
 		</#if>
-		<#--  <@history_cart.Configuration />  -->
+		<@sessions.Configuration />
 	</#if>
 </body>
 </html>

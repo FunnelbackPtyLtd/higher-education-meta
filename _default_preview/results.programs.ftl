@@ -45,7 +45,8 @@
 -->
 <#macro GenericView result>
     <!-- results.programs.GenericView -->
-    <article class="listing-item listing-item--program listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
+    <article class="listing-item listing-item--program listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">   
+
         <#if (result.listMetadata["programImage"]?first)!?has_content >
             <div class="listing-item__image-wrapper">
                 <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/s/resources/${question.collection.id}/${question.profile}/img/pixel.gif" data-deferred-src="${(result.listMetadata["programImage"]?first)!}"> 
@@ -115,7 +116,11 @@
                 </#if>
 
                 <#-- Call to Action (CTA) -->                        
-                <a href="${result.clickTrackingUrl!}" class="listing-item__action">VIEW PROGRAM DETAILS</a> 
+                <#--  <a href="${result.clickTrackingUrl!}" class="listing-item__action">VIEW PROGRAM DETAILS</a>  -->
+
+                <span class="enable-cart-on-result listing-item__action" 
+                        aria-label="Add result to the shortlist">
+                </span> 
             </div>          
 
             <#-- Display the time which this result has last been visited by the user -->
@@ -137,7 +142,7 @@
                 <#if (result.listMetadata["programCampus"]?first)!?has_content>
                     <div class="listing-item__footer-block listing-item__footer-block">
                         <svg class="svg-icon svg-icon--small">
-                            <title>Contact email</title>
+                            <title>Campus</title>
                             <use href="#map"></use>
                         </svg>
                         ${(result.listMetadata["programCampus"]?first)!}
@@ -182,8 +187,8 @@
 </#macro>
 
 <#-- Output the cart template -->
-<#macro CartTemplate>
-    <!-- programs.CartTemplate -->    
+<#macro ShortlistTemplate>
+    <!-- programs.Shortlist -->    
     <#-- 
         Note: Cart templates as assigned to document types in profile.cfg/collection.cfg using 
         the following configuration:
@@ -193,97 +198,114 @@
         e.g. stencils.template.shortlist.higher-education-meta=programs
 
         For this to function correctly, the ID must be in the following format:
-        id="cart-template-<type>".
+        id="shorlist-template-<type>".
 
-        e.g. id="cart-template-programs"
+        e.g. id="shorlist-template-programs"
     -->
-    <script id="cart-template-programs" type="text/x-handlebars-template">
-        <article class="search-results__item search-results__item--default">
-            <figure class="search-results__bg">
-                {{#if metaData.image}}  
-                    <img class="card-img-top" alt="Thumbnail for {{title}}" src="{{metaData.image}}" /> 
-                <#-- Show a placeholder image for showcase -->
+    <script id="shortlist-template-programs" type="text/x-handlebars-template">
+        <article class="listing-item listing-item--program listing-item--background-grey10 listing-item--color-black" data-fb-result="{{indexUrl}}">   
+
+            {{#if metaData.programImage}} 
+                <div class="listing-item__image-wrapper">
+                    <img class="listing-item__image" alt="Thumbnail for {{title}}" src="{{metaData.programImage}}"> 
+                </div> 
+                <#-- Show a placeholder image for showcase -->     
                 <#if ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
                     {{else}}
-                        <img class="card-img-top" alt="Thumbnail for {{title}}" src="https://source.unsplash.com/random/335x192?{{title}}"> 
-                </#if>    
-                {{/if}}
-            </figure>
-            <div class="search-results__content">
+                    <div class="listing-item__image-wrapper">
+                        <img class="listing-item__image" alt="Thumbnail for {{title}}" src="https://source.unsplash.com/random/160x160?{{title}}">
+                    </div>
+                </#if>
+            {{/if}} 
+            <div class="listing-item__content">
+                <#-- Title -->
                 {{#if title}} 
-                    <h3 class="search-results__title">
-                        <a href="{{indexUrl}}" title="{{title}}" class="search-results__link">
-                            {{#truncate 255}}
-                                {{title}}  
-                            {{/truncate}}
+                    <div class="listing-item__header">
+                        <a href="{{indexUrl}}" title="{{title}}" class="listing-item__title-link">
+                            <h3 class="listing-item__title">
+                                {{#truncate 255}}
+                                    {{title}}  
+                                {{/truncate}}
+                            </h3>
                         </a>
-                        <span class="enable-cart-on-result"></span>
-                    </h3>
-                {{/if}}
-                
-                <#-- Pretty version of the url of the document -->
-                <#--  
-                <cite>
-                    {{#truncate 90}}
-                        {{indexUrl}}
-                    {{/truncate}}                
-                </cite>  
-                -->
 
-                <#-- Subtitle -->
-                {{#if metaData.programFaculty}}  
-                    <span class="search-results__sub-title">
-                        {{metaData.programFaculty}}       
-                    </span>
-                {{/if}}    
-                
-                <#-- Summary -->
-                {{#if metaData.c}} 
-                    <p class="search-results__desc">
-                        {{#truncate 255}}
-                            {{metaData.c}}  
-                        {{/truncate}}
-                    </p>
-                {{/if}}
+                        <#-- Subtitle -->
+                        {{#if metaData.programFaculty}}  
+                            <div class="listing-item__subtitle">
+                                {{metaData.programFaculty}}       
+                            </div>
+                        {{/if}} 
 
-                <#-- Metadata can be shown as tags -->
-                <section class="tags">
-                    <ul class="tags__list">
-                        {{#if metaData.programCredentialType}}  
-                            <li class="tags__item" title="Credential type">
-                                {{metaData.programCredentialType}}  
-                            </li>
+                        <#-- Pretty version of the url of the document -->
+                        {{#if indexUrl}}  
+                            <cite class="listing-item__subtitle listing-item__subtitle--highlight">
+                                {{indexUrl}}
+                            </cite>
                         {{/if}} 
-                        {{#if metaData.stencilsDeliveryMethod}}  
-                            <li class="tags__item" title="Delivery method">
-                                {{metaData.stencilsDeliveryMethod}}  
-                            </li>
-                        {{/if}} 
-                        {{#if metaData.programCredits}}  
-                            <li class="tags__item" title="Credits">
-                                {{metaData.programCredits}} credits
-                            </li>
-                        {{/if}} 
+                    </div>
+                {{/if}} 
+                
+                
+                <#-- Body -->
+                <div class="listing-item__body">
+                    <#-- Summary -->
+                    {{#if metaData.c}} 
+                        <div class="listing-item__summary">
+                            {{#truncate 255}}
+                                {{metaData.c}}  
+                            {{/truncate}}
+                        </div>
+                    {{/if}} 
+
+                    <#-- Metadata should as tags/pills -->        
+                    <ul aria-label="Result tags" class="listing-item__tags">                                    
+                        {{#list metaData.programCredentialType joinWith=", "}}
+                            <li class="listing-item__tag">{{ this }}</li>
+                        {{/list}}
+
+                        {{#list metaData.stencilsDeliveryMethod joinWith=", "}}
+                            <li class="listing-item__tag">{{ this }}</li>
+                        {{/list}}
+
+                        {{#list metaData.programCredits joinWith=", "}}
+                            <li class="listing-item__tag">{{ this }} credits</li>
+                        {{/list}}
                     </ul>
-                </section> 
-                
-                <p>
-                    <span class="fb-cart__remove"></span>
-                </p>
-                <div class="search-results__bottom">
-                    <section class="contact js-contact">
-                        <ul class="contact__list">                        
-                            {{#if metaData.programLengthYears}} 
-                                <li class="contact__item">
-                                    <span class="search-results__icon--red fas far fa-clock" aria-label="Program length" title="Program length"></span> 
-                                    {{metaData.programLengthYears}} years                                       
-                                </li>
-                            {{/if}}                                                   
-                        </ul>
-                    </section>
-                </div>                         
+
+                    <p>
+                        <span class="fb-cart__remove"></span>
+                    </p>
+
+                    <span class="enable-cart-on-result listing-item__action" 
+                            aria-label="Add result to the shortlist">
+                    </span> 
+                </div>          
+
+                <#-- Footer -->                    
+                <div class="listing-item__footer">
+                    {{#if metaData.programLengthYears}} 
+                        <div class="listing-item__footer-block listing-item__footer-block">
+                            <svg class="svg-icon svg-icon--small">
+                                <title>Duration</title>
+                                <use href="#time">
+                                </use>
+                            </svg>
+                            {{metaData.programLengthYears}} years
+                        </div>
+                    {{/if}} 
+
+                    {{#if metaData.programCampus}} 
+                        <div class="listing-item__footer-block listing-item__footer-block">
+                            <svg class="svg-icon svg-icon--small">
+                                <title>Campus</title>
+                                <use href="#map"></use>
+                            </svg>
+                            {{metaData.programCampus}}
+                        </div> 
+                    {{/if}} 
+                </div>                                        
             </div>
-        </article>
+        </article>    
     </script>
   
   </#macro>

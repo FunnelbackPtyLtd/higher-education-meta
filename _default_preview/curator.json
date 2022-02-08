@@ -146,7 +146,7 @@
   } ]
 }, {
   "created" : "2020-08-17T16:12:56.407535Z",
-  "lastModified" : "2022-01-24T14:58:58.93274Z",
+  "lastModified" : "2022-02-03T22:39:01.876356Z",
   "id" : "fe3b1d3b-fa55-4fbe-a154-a3d4ed3c2e32",
   "name" : "[Example] Curator on top - timetable",
   "label" : "DEFAULT",
@@ -173,8 +173,8 @@
   "actions" : [ {
     "type" : "DisplayUrlAdvert",
     "titleHtml" : "Tutorials and laboratories",
-    "displayUrl" : "www.example",
-    "linkUrl" : "www.example",
+    "displayUrl" : "www.example.com",
+    "linkUrl" : "www.example.com",
     "descriptionHtml" : "For the remainder of the 2020/21 academic year, all compulsory teaching, learning and assessments, including those taking place in Summer Term 2021, will be delivered online.",
     "additionalProperties" : {
       "position" : "top",
@@ -187,8 +187,8 @@
   }, {
     "type" : "DisplayUrlAdvert",
     "titleHtml" : "Having difficulties logging in?",
-    "displayUrl" : "www.example",
-    "linkUrl" : "www.example",
+    "displayUrl" : "www.example.com",
+    "linkUrl" : "www.example.com",
     "descriptionHtml" : "One of the first steps you need to complete after accepting a course offer is to activate your University account, through the Account Management page.",
     "additionalProperties" : {
       "position" : "top",

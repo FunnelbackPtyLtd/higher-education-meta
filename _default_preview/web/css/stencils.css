@@ -27,12 +27,63 @@
     color: black;    
 }
 
-.fb-container .result-sessions__controls a, 
-.fb-container .result-sessions__controls button {
+.stencils .result-sessions__controls a, 
+.stencils .result-sessions__controls button {
     margin: 0.5rem;
     color: black;
     cursor: pointer;
     text-decoration: underline;
     background: none;
     border: none;
+}
+
+#search-history {
+    display: none;
+    width: 100%;
+    padding: 1rem;
+}
+
+.flb-cart-item-trigger {
+    --pnp-typeface-margin: 0.75rem;
+    background-color: inherit;
+    border: none;
+    color: #da1007;
+    font: inherit;
+    font-size: 100%;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.625rem;
+    margin: 0.625rem 0 0.75rem;
+    padding: 0.25rem;
+    vertical-align: baseline;    
+}
+
+.enable-cart-on-result.listing-item__action:hover,
+.enable-cart-on-result.listing-item__action:focus {
+    background-color: transparent;
+    cursor: pointer;    
+}
+
+.flb-cart-item-trigger {
+    cursor: pointer;
+    transition: color,background-color .3s ease-in-out;    
+}
+
+.flb-cart-box-item {
+    list-style: none;
+}
+
+#flb-cart-box-list {
+    padding-left: 0;
+}
+
+.flb-cart-item-trigger:hover,
+.flb-cart-item-trigger:focus {
+    background-color: #da1007;
+    color: white; 
+}
+
+.search-cart {
+    width: 100%;
+    padding: 0.25rem;
 }
