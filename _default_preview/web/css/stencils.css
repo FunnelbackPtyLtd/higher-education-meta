@@ -20,11 +20,15 @@
 /* Sessions controls */
 .stencils .result-sessions__controls {
     background-color: rgba(255,255,255,0.6);
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 1em;
     align-self: flex-end;
-    margin-top: 1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1.25rem;
     color: black;    
+    width: max-content;
+    font-size: 1rem;
+    margin-left: auto;
 }
 
 .stencils .result-sessions__controls a, 
@@ -64,7 +68,7 @@
     cursor: pointer;    
 }
 
-.flb-cart-item-trigger {
+.flb-cart-item-trigger, #flb-cart-box-clear {
     cursor: pointer;
     transition: color,background-color .3s ease-in-out;    
 }

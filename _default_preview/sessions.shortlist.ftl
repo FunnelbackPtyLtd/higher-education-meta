@@ -13,10 +13,7 @@
 			code is a bit too opinionated in injecting it own html markup which is messing with the 
 			cutups.
 		-->
-		<section class="search-cart">
-			<article id="search-cart" class="search-results__list search-results__list--list-view">
-			
-			</article>
+		<section class="search-cart" id="search-cart" class="search-results__list search-results__list--list-view">
 		</section>
 	</#if>
 </#macro>

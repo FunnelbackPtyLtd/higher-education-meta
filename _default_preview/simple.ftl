@@ -87,11 +87,8 @@
 	
 	<#--  <@client_includes.ContentHeader />  -->
 
-		<div class="stencils__main">
-			<@sessions.Controls />
+		<div class="stencils__main">			
 			<@hero_banner.SearchForm />
-			
-
 			<@tabs.Tabs />
 
 			<div class="funnelback-search no-wysiwyg">			
