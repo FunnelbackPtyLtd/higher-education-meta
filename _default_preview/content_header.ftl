@@ -1,4 +1,12 @@
 <#ftl encoding="utf-8"output_format="HTML"/>
+
+<#-- 
+    Hardcoded header which can be used if dynamically getting the 
+    header is not possible.
+
+    The example below is simple a sample and currently not being 
+    active used in any Stencil demo.
+-->
 <!--noindex-->
 <header class="fb-header">
     <section class="header-top">

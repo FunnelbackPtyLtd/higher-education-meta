@@ -121,7 +121,7 @@
             </p>
 
             <#-- Display the time which this result has last been visited by the user -->
-            <@history_cart.LastVisitedLink result=result/>
+            <@sessions.LastVisitedLink result=result/>
 
             <#-- Footer -->
             <div class="search-results__bottom">

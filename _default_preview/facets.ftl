@@ -1,7 +1,8 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 <#-- 
   This template contains markup and logic related to the 
-  faceted navigation feature.
+  faceted navigation feature. It provides the markup and logic
+  to display both the facet and facet categories.
 -->
 
 <#macro Facets facets="" maxCategories=6 >
@@ -38,16 +39,16 @@
                 <#list response.facets![] as facet>
                     <#--  
                         Show only the facets which have been configured. 
-                        If nothing has been configured, we want to default to showing
-                        all facets.
+                        If nothing has been configured, we want all facets 
+                        by default.
                     -->
                     <#if facetName == facet.name || facetNames?has_content == false>
                         <#if facet.allValues?size gt 0>
                             <#--  Facet  -->
                             <div class="facet-group" data-component="facet-group">
                                 <#--  
-                                    Facet name as a heading which allows the user to
-                                    expland and collapse.  
+                                    Show the name of the facet as a heading which allows the 
+                                    user to expland and collapse the associated facet categories.  
                                 -->
                                 <button 
                                     type="button" 
@@ -72,7 +73,7 @@
                                         <svg class="svg-icon svg-icon--large">
                                         <title>Close search</title>
                                         <use href="#close"></use>
-                                    </svg> Clear all
+                                        </svg> Clear all
                                     </a>
                                 </#if>
                             </div>
@@ -86,6 +87,7 @@
 
 <#--  Display all the facet categories for the given facet.  -->
 <#macro FacetCategories facet maxCategories=6>
+    <!-- facets.FacetCategories -->
     <div
         role="listbox"
         <#if facet.guessedDisplayType == "CHECKBOX">aria-multiselectable</#if>

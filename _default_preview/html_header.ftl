@@ -13,12 +13,13 @@
 <link rel="stylesheet" href="${ContextPath}/resources/${(question.collection.id)!}/${(question.profile)!}/css/customer-typeahead.css">
 
 <#-- 
-    Implementation specific style changes. It is recommended that changes to the 
-    presentation of this implementation should be made here.
+    Presentation logic specific to this Stencil. More often that not, this will eventually 
+    be refactored into the Stencils Design System.
+
 -->
 <link rel="stylesheet" href="${ContextPath}/resources/${(question.collection.id)!}/${(question.profile)!}/css/stencils.css">
 
-<#-- Showcase related presentation -->
+<#-- Presentation logic specific for demonstrations. -->
 <#if ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
     <link rel="stylesheet" href="${ContextPath}/resources/${(question.collection.id)!}/${(question.profile)!}/css/showcase.css">
 </#if>

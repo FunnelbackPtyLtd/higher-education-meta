@@ -1,7 +1,12 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
 <#--
-    Display result counts.
+    Display the number of results which matches the search terms. The count
+    can include fully matching results (documents match all the words 
+    in the search terms) and partially matching results (documents contain at 
+    one of the search term but less than all terms). 
+    
+    It also displays if blending has been activated.
 -->
 <#macro Counts>
     <!-- counts.Counts -->

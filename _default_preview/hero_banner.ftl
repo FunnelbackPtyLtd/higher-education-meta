@@ -16,6 +16,7 @@
         <div class="hero-banner-wrapper">
             <div class="hero-banner__contents-container">
                 <div class="hero-banner__contents">                                        
+                    <#-- Concierge currently also contains the logic and markup for the input box -->
                     <@concierge.Concierge />	                    
                     <@sessions.Controls />
                 </div>

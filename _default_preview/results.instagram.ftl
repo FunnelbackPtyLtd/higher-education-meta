@@ -1,6 +1,4 @@
 <#ftl encoding="utf-8" output_format="HTML" />
-<#import "history_cart.ftl" as history_cart />
-
 
 <#-- 
     Macro decides how each result should be presented. 
@@ -133,7 +131,7 @@
             </div>          
 
             <#-- Display the time which this result has last been visited by the user -->
-            <@history_cart.LastVisitedLink result=result/> 
+            <@sessions.LastVisitedLink result=result/> 
 
             <#-- Footer -->                    
             <div class="listing-item__footer">

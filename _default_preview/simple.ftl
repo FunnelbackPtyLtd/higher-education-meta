@@ -33,7 +33,6 @@
 <#import "pagination.ftl" as pagination />
 <#import "browse_mode.ftl" as browse_mode />
 <#import "contextual_navigation.ftl" as contextual_navigation />
-<#import "history_cart.ftl" as history_cart />
 <#import "auto_complete.ftl" as auto_complete />
 <#import "auto_complete.concierge.ftl" as concierge />
 <#import "curator.ftl" as curator />

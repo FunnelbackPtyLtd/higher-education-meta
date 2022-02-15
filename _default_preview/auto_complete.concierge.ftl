@@ -1,10 +1,12 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 <#-- 
     This template contains markup and logic related to the 
-    concierge feature.
+    concierge feature. Concierge is a advanced form of auto complete
+    where you can have suggestions from multuple channels. These
+    channels are powered by result pages on the search package.
 -->
-
 <#macro Concierge>
+    <!-- auto_complete.concierge::Concierge -->
     <div
         id="autocomplete"
         data-component="autocomplete-concierge"

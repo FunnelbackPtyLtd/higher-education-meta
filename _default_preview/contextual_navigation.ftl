@@ -1,8 +1,11 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 <#-- 
   This template contains markup and logic related to the 
-  contextual navigation feature.
+  contextual navigation feature. Contextual navigation is also 
+  known as related search. It provides a mechansim refine the results
+  by expanding the query terms based on the documents being crawled. 
 -->
+
 <#--
   Display the contextual navigation panel only if there are valid values
 -->
@@ -32,7 +35,7 @@
 </#macro>
 
 <#-- 
-    Displays the next code if contextual navigation has at least 1 entry.
+    Displays the nested code if contextual navigation has at least 1 entry.
 -->
 <#macro HasContextualNavigation>
     <#if (response.resultPacket.contextualNavigation.categories)!?has_content &&

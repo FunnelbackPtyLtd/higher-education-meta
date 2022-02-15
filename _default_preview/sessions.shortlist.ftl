@@ -1,25 +1,25 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
 <#--
-  Display the shopping cart / shortlist
+  Template which displays the shortlist/shopping cart.  
 
   Different shortlist templates can be used depending the source collection
   the result is coming from (based on the <code>C</code> metadata).
+
+  Note: Shortlist and cart are used interchangeably. There is a growing shift
+  of using the term shortlist.
+
 -->
 <#macro Shortlist>
 	<#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-		<#-- 
-			ToDo: Add support for card view. The problem at the moment is that the session 
-			code is a bit too opinionated in injecting it own html markup which is messing with the 
-			cutups.
-		-->
 		<section class="search-cart" id="search-cart" class="search-results__list search-results__list--list-view">
 		</section>
 	</#if>
 </#macro>
 
 <#-- 
-	A handlebars template which is used to display all the items in the cart. 
+	The handlebars template which is used to display the container which 
+    holds all the shortlist items.  
 -->
 <#macro ShortlistTemplate>
 	<!-- sessions.shortlist.ShortlisTtemplate -->
@@ -70,7 +70,7 @@
 </#macro>
 
 <#-- 
-	Attempts to find and output all cart templates across all available
+	Attempts to find and output all shortlist templates across all available
 	namespaces. It is assummed that cart templates are macros defined with 
 	the name <#macro ShortlistTemplate> </#macro>.
 -->
