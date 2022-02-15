@@ -1,10 +1,12 @@
+<#ftl encoding="utf-8" output_format="HTML" />
+
 <#--
     Display tabs
     @param facets List of tabs to display as a string. The default is that all tabs
         will be displayed
 -->
 <#macro Tabs tabs=[]>
-    <!-- tabs.Tabs -->
+    <!-- tabs::Tabs -->
     <#-- 
         Find all the tabs with values and determine if we want to display all tabs or just the tabs specified 
     -->
@@ -85,6 +87,7 @@
      </#list>
 </#macro>
 
+<#--  TODO - Update to suit the new design system  -->
 <#-- 
     Provides preview of a tab. This allows the user to see 
     a sample of the results on another tab without having to click
@@ -100,7 +103,7 @@
          global question which is currently in scope.
 -->
 <#macro Preview extraSearchName documentType="" view="DETAILED" parentQuestion=question>
-    <!-- tabs.Preview -->
+    <!-- tabs::Preview -->
     <#assign parentQuestion = question>
     <@fb.ExtraResults name=extraSearchName>
         <#if (response.resultPacket.results)!?has_content>

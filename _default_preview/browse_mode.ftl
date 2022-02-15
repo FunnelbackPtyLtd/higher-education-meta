@@ -1,4 +1,6 @@
 <#ftl encoding="utf-8" output_format="HTML" />
+<#--  TODO - Update to suit the new design system  -->
+
 <#-- 
   This template contains markup and logic related to the 
   providing the ability for users to browse documents 
@@ -12,7 +14,7 @@
     - Date for social media
 -->
 <#macro BrowseModeToggle>
-    <!-- browse_mode.BrowseModeToggle -->
+    <!-- browse_mode::BrowseModeToggle -->
     <#-- Check to see if browse mode config has been setup for the current selected tab -->
     <#if (question.getCurrentProfileConfig().get("stencils.tabs.browse_mode.facets.${(response.customData.stencilsTabsSelectedTab)!}"))!?has_content>
         <#switch (question.inputParameters["browse_mode"]?first)!?upper_case>
@@ -29,7 +31,7 @@
 <#-- Provides the user an option to turn the browse mode off -->
 <#-- TODO - Come up with a UX for toggling off browse mode -->
 <#macro BrowseModeToggleOff>
-    <!-- browse_mode.BrowseModeToggle -->            
+    <!-- browse_mode::BrowseModeToggleOff -->            
     <#-- 
         Output the controls to toggle browse mode from on to off 
         TODO - Need to decide how to handles the users query. Do we 
@@ -44,7 +46,7 @@
 
 <#-- Provides the user an option to turn the browse mode on -->
 <#macro BrowseModeToggleOn id="fb-browse-mode">
-    <!-- browse_mode.BrowseModeToggleOn -->
+    <!-- browse_mode::BrowseModeToggleOn -->
     <#-- Output the controls to toggle browse mode from off to on -->
     <section class="module-curator" role="complementary" aria-labelledby="${id}">
         <h2 id="${id}" class="sr-only">Toggle browse mode controls</h2>
@@ -95,7 +97,7 @@
     list of documents 
 -->
 <#macro BrowseByFilter>
-    <!-- browse_mode.BrowseByFilter -->
+    <!-- browse_mode::BrowseByFilter -->
     <#switch (question.inputParameters["browse_mode"]?first)!?upper_case>
         <#case "TRUE">
             

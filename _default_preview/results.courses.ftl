@@ -1,5 +1,6 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
+<#--  TODO - Update to suit the new design system  -->
 <#-- 
     Macro decides how each result should be presented. 
 
@@ -44,7 +45,7 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- courses.GenericView -->
+    <!-- results.courses::GenericView -->
     <article class="search-results__item search-results__item--default" data-fb-result="${result.indexUrl}">
         <figure class="search-results__bg">
             <#if (result.listMetadata["image"]?first)!?has_content>
@@ -153,7 +154,7 @@
 	in concierge.
 --> 
 <#macro AutoCompleteTemplate>
-    <!-- courses.AutoCompleteTemplate -->
+    <!-- results.courses::AutoCompleteTemplate -->
 	<script id="auto-completion-courses" type="text/x-handlebars-template">
 		<div class="fb-auto-complete--non-organic">
             <h6>
@@ -182,7 +183,7 @@
 
 <#-- Output the cart template -->
 <#macro CartTemplate>
-    <!-- courses.CartTemplate -->    
+    <!-- result.courses::CartTemplate -->    
     <#-- 
         Note: Cart templates as assigned to document types in profile.cfg/collection.cfg using 
         the following configuration:

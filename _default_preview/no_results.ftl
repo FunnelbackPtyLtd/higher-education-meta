@@ -1,12 +1,12 @@
+<#ftl encoding="utf-8" output_format="HTML" />
+
 <#--
-  Message to display when there are no results
+  Message to display when there are no results.
 -->
 <#macro NoResults>
-    <!-- base.NoResults -->
+    <!-- no_results::NoResults -->
     <#if (response.resultPacket.resultsSummary.totalMatching)!?has_content &&
         response.resultPacket.resultsSummary.totalMatching == 0>
-        <!-- base.NoResults -->
-
         <div class="no-results">
             <h3 class="no-results__title">
             <svg class="svg-icon svg-icon--xxlarge">

@@ -1,11 +1,15 @@
 
 <#ftl encoding="utf-8" output_format="HTML" />
+<#-- 
+    Contains the markup and logic to display the pagination feature.
+    Relies on the pagination plugin to be enabled.
+-->
 
 <#--
-  Display paging controls
+  Display paging controls.
 -->
 <#macro Pagination>
-    <!-- pagionation.Pagination -->
+    <!-- pagionation::Pagination -->
     <div>
         <#-- Previous page -->
         <nav class="pagination" role="navigation" aria-label="Pagination navigation">
@@ -22,10 +26,9 @@
                 </div>
             </#if>
 
-            <#-- Sibling pages - Desktop -->
+            <#-- Sibling pages - Should only be visibile on desktop -->
             <#if (response.customData.stencils.pagination.pages)!?has_content &&
                 response.customData.stencils.pagination.pages?size gt 1>
-
                 <ul class="pagination__list">
                     <#list response.customData.stencils.pagination.pages as page>
                         <#if page.selected>

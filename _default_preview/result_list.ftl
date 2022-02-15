@@ -33,12 +33,12 @@
         This is used to insert content (usually an extra search) between results.
 -->
 <#macro StandardResults view="LIST" nestedRank=-1>
-    <!-- result_list.StandardResults -->
+    <!-- result_list::StandardResults -->
     <div class="no-wysiwyg listing listing--linked-item ">
         <div class="listing__items listing__items--${view?lower_case}-view">
             <#list (response.resultPacket.resultsWithTierBars)![] as result>
                 <#if result.class.simpleName == "TierBar">
-                    <#--  <@TierBar result=result />  -->
+                    <@tier_bars.TierBars result=result />
                 <#else>
                     <#if nestedRank gte 0 && result.rank == nestedRank>
                         <#nested>
@@ -139,7 +139,7 @@
     Defaults to <code>&lt;@project.Result /&gt;
 -->
 <#macro QuickViewList Templates>
-    <!-- result_list.QuickViewTemplates -->
+    <!-- result_list::QuickViewTemplates -->
     <#list (response.resultPacket.resultsWithTierBars)![] as result>
         <#if result.class.simpleName == "TierBar">
             <#-- Ignore tier bars -->

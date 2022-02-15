@@ -8,7 +8,7 @@
     @param class Optional <code>class</code> attribute to use on the &lt;form&gt; tag
 -->
 <#macro SearchForm preserveTab=true class="">
-    <!-- hero_banner.SearchForm -->
+    <!-- hero_banner:SearchForm -->
     <div 
         class="no-wysiwyg hero-banner hero-banner--settings hero-banner--overlay-50 hero-banner--bg-compact hero-banner--undefined                            
         hero-banner-search

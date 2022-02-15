@@ -9,7 +9,7 @@
     It also displays if blending has been activated.
 -->
 <#macro Counts>
-    <!-- counts.Counts -->
+    <!-- counts::Counts -->
     <p class="counts">                                                                    
         <#if ((response.resultPacket.resultsSummary.totalMatching)!0) == 0>
             <span class="counts__total-matching">0</span> search results for <strong class="highlight"><@s.QueryClean /></strong>

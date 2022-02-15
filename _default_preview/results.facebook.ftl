@@ -3,7 +3,7 @@
 <#import "results.facebook.posts.ftl" as posts />
 <#import "results.facebook.events.ftl" as events />
 <#-- 
-    Macro decides how each result should be presented. 
+    Macro decides how each facebook result should be presented. 
 
     @param result An individual result fron the data model
     @param view An uppercase string which represents how

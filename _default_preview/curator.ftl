@@ -11,7 +11,7 @@
         Only messages with a position attribute matching this will be displayed. Can be empty to display all messages regardless of position.
 -->
 <#macro Curator position sectionCss="">
-    <!-- curator.Curator -->
+    <!-- curator::Curator -->
     <section class="curator ${sectionCss}"
         role="complementary"
         aria-labelledby="curator--${position!"top"}">

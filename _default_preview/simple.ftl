@@ -18,7 +18,6 @@
 	Global Stencils imports
 	The namespace will be available in all templates which are imported 
 -->
-<#import "project.ftl" as project />
 <#import "base.ftl" as base />
 <#import "hero_banner.ftl" as hero_banner />
 <#import "search_tools.ftl" as search_tools />
@@ -49,7 +48,6 @@
 	These imports are required for the automatic template selection to work
 	The various namespaces (e.g. 'video', 'facebook') need to be on the main scope 
 -->
-<#import "project.ftl" as project />
 <#import "results.courses.ftl" as courses />
 <#import "results.programs.ftl" as programs />
 <#import "results.people.ftl" as people />
@@ -101,7 +99,6 @@
 					<@query_blending.QueryBlending />
 					<@spelling_suggestions.SpellingSuggestions />
 					<@facets_breadcrumbs.Breadcrumb />
-					<#--  <@tier_bars.StoryBook />  -->
 
 					<@s.AfterSearchOnly>						
 						<@curator.HasCuratorOrBestBet position="top">

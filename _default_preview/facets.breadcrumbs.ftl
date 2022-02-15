@@ -6,7 +6,7 @@
     facets/filter options that have been selected by the user
 --> 
 <#macro Breadcrumb>
-    <!-- facets.breadcrumb.Breadcrumb -->
+    <!-- facets.breadcrumb::Breadcrumb -->
     <#if response.facetExtras.hasSelectedNonTabFacets>
         <section class="facet-breadcrumb">
             <span class="facet-breadcrumb__label">Selected filters:</span>

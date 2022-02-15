@@ -6,7 +6,7 @@
 -->
 
 <#macro Facets facets="" maxCategories=6 >
-    <!-- facets.Facets -->
+    <!-- facets::Facets -->
     <#local facetNames = [] />
     <#if facets != "">
         <#local facetNames = facets?split(",") />
@@ -87,7 +87,7 @@
 
 <#--  Display all the facet categories for the given facet.  -->
 <#macro FacetCategories facet maxCategories=6>
-    <!-- facets.FacetCategories -->
+    <!-- facets::FacetCategories -->
     <div
         role="listbox"
         <#if facet.guessedDisplayType == "CHECKBOX">aria-multiselectable</#if>
@@ -141,9 +141,10 @@
     </div>
 </#macro>
 
+<#--  TODO - Update to suit the new design system  -->
 <#-- Displays facet catergories in a facet as a dropdown list -->
 <#macro DropdownFacet facets=[]>
-    <!-- facets.DropdownFacet -->
+    <!-- facets::DropdownFacet -->
 
     <#-- 
         Find all the facets with values and determine if we want to display all tabs or just the tabs specified 
@@ -234,7 +235,7 @@
 </#macro>
 
 <#macro ClearAllFacets>
-    <!-- facets.ClearAllFacets -->
+    <!-- facets::ClearAllFacets -->
     <#if (response.facetExtras.hasSelectedNonTabFacets)!>
         <a href="${(response.facetExtras.unselectAllFacetsUrl)!}"
         class="search-results__tools-link highlight">Clear all filters</a>

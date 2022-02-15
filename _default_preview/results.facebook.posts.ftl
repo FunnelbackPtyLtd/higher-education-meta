@@ -44,7 +44,7 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- results.facebook.posts.GenericView -->
+    <!-- results.facebook.posts::GenericView -->
     <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
         <#if (result.listMetadata["stencilsFacebookProfileUrl"]?first)!?has_content >
             <div class="listing-item__image-wrapper">
@@ -151,6 +151,5 @@
         </div>
     </article>     
 </#macro>
-
 
 <#-- vim: set expandtab ts=2 sw=2 sts=2 :-->

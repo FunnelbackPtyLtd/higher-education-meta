@@ -10,7 +10,7 @@
   Display the contextual navigation panel only if there are valid values
 -->
 <#macro ContextualNavigation>
-    <!-- contextual_navigation.ContextNavigation -->
+    <!-- contextual_navigation::ContextNavigation -->
     <@HasContextualNavigation>
         <section class="related-links">
             <h2 class="related-links__heading">

@@ -49,7 +49,7 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- results.GenericView -->
+    <!-- results::GenericView -->
     <article class="listing-item listing-item--generic listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
         <#if (result.listMetadata["image"]?first)!?has_content>
             <div class="listing-item__image-wrapper">

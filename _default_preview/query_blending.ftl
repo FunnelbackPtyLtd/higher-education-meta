@@ -5,7 +5,7 @@
   Display query blending notice and provide the ability to turn it off.
 -->
 <#macro QueryBlending>
-    <!-- query_blending.QueryBlending -->
+    <!-- query_blending::QueryBlending -->
     <#if (response.resultPacket.QSups)!?size &gt; 0>        
         <p class="query-blending">
             <svg class="svg-icon svg-icon--small">
