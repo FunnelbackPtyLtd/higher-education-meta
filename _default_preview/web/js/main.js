@@ -2381,10 +2381,13 @@ module.exports = {
 
 /***/ }),
 
-/***/ 27695:
+/***/ 92405:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+;// CONCATENATED MODULE: ./src/styles/global.scss
+// extracted by mini-css-extract-plugin
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__(33948);
@@ -2414,19 +2417,13 @@ var runtime = __webpack_require__(35666);
 
 /***/ }),
 
-/***/ 26269:
+/***/ 16676:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "z": function() { return /* binding */ DatastoreEventAdapter; }
-});
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __webpack_require__(33948);
-;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/EventAdapters/BaseEventAdapter/BaseEventAdapter.js
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "L": function() { return /* binding */ BaseEventAdapter; }
+/* harmony export */ });
 /*!
  * @license
  * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
@@ -2496,7 +2493,19 @@ class BaseEventAdapter {
   }
 
 }
-;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/EventAdapters/DatastoreEventAdapter/DatastoreEventAdapter.js
+
+/***/ }),
+
+/***/ 77072:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "z": function() { return /* binding */ DatastoreEventAdapter; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(33948);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BaseEventAdapter_BaseEventAdapter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(16676);
 
 
 /*!
@@ -2505,7 +2514,7 @@ class BaseEventAdapter {
  */
  // eslint-disable-next-line import/prefer-default-export
 
-class DatastoreEventAdapter extends BaseEventAdapter {
+class DatastoreEventAdapter extends _BaseEventAdapter_BaseEventAdapter__WEBPACK_IMPORTED_MODULE_1__/* .BaseEventAdapter */ .L {
   constructor(dto) {
     super();
 
@@ -2594,13 +2603,22 @@ class DatastoreEventAdapter extends BaseEventAdapter {
       let mergedResults = [];
       values.forEach(results => {
         // Datastore accepts and returns dates in the ISO string format
-        const fixDates = results.map(e => {
-          const event = e;
+        const dataConversion = results.map(e => {
+          let event = e; // If a data payload exists
+
+          if (e.data) {
+            event = { // Expand out all the properties into the event data
+              ...JSON.parse(event.data),
+              // But let the base event information override any duplication
+              ...e
+            };
+          }
+
           event.start = new Date(event.start);
           event.end = new Date(event.end);
           return event;
         });
-        mergedResults = mergedResults.concat(fixDates);
+        mergedResults = mergedResults.concat(dataConversion);
       });
       return mergedResults;
     });
@@ -2679,7 +2697,7 @@ class DatastoreEventAdapter extends BaseEventAdapter {
 
 /***/ }),
 
-/***/ 40361:
+/***/ 20459:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2691,8 +2709,101 @@ __webpack_require__.d(__webpack_exports__, {
 
 // UNUSED EXPORTS: AuthService, BaseAuthAdapter, BaseEventAdapter, BaseStorageAdapter, CognitoAuthAdapter, DatastoreEventAdapter, EdifyCognitoAuthAdapter, LocalStorageAdapter, MemoryStorageAdapter, MockAuthAdapter, MockEventAdapter, PromiseDebouncer, StorageService, createMockDatastore, createMockEvent, createMockEventDto, createMockEventList, createMockToken, decodeJWT, isValidToken
 
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/AuthAdapters/BaseAuthAdapter/BaseAuthAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line import/prefer-default-export
+class BaseAuthAdapter_BaseAuthAdapter {
+  isAuthenticated() {
+    throw new Error("Method not implemented");
+  }
+
+  loginWithRedirect() {
+    throw new Error("Method not implemented");
+  }
+
+  logout() {
+    throw new Error("Method not implemented");
+  }
+
+  async refreshTokens() {
+    throw new Error("Method not implemented");
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/AuthAdapters/CognitoAuthAdapter/CognitoAuthAdapter.js
+/*!
+ * NOTE: This will eventually replace the 'EdifyCognitoAdapter' when migration to plug and play components
+ * from the Edify app has been completed. Right now it's implementation is unfinished.
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+ // eslint-disable-next-line import/prefer-default-export
+
+class CognitoAuthAdapter extends (/* unused pure expression or super */ null && (BaseAuthAdapter)) {
+  constructor(dto) {
+    super();
+
+    if (!dto) {
+      throw new Error("dto is required when instantiating a new CognitoAuthAdapter object");
+    }
+  }
+
+  isAuthenticated() {
+    return false;
+  } // TODO: actual implementation.
+
+
+}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__(33948);
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/libs/jwt.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+/**
+ * Decode the contents of a JWT token.
+ * @param {*} token The raw token.
+ * @returns
+ */
+function jwt_decodeJWT(token) {
+  const parts = token.split(".");
+  return {
+    header: JSON.parse(Buffer.from(parts[0], "base64").toString("utf8")),
+    payload: JSON.parse(Buffer.from(parts[1], "base64").toString("utf8")),
+    signature: JSON.parse(Buffer.from(parts[2], "base64").toString("utf8"))
+  };
+}
+/**
+ * Validate the structure of a token.
+ * @param {*} token The raw token.
+ * @return {boolean}
+ */
+
+function isValidToken(token) {
+  const tokens = /([^.]*)\.([^.]*)\.([^.]*)/.exec(token);
+
+  if (!tokens) {
+    return false;
+  }
+
+  try {
+    // Check to see if the token can be decoded.
+    jwt_decodeJWT(token);
+  } catch (e) {
+    return false;
+  }
+
+  return true;
+}
 ;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/AuthAdapters/EdifyCognitoAuthAdapter/EdifyCognitoAuthAdapter.js
 
 
@@ -2736,7 +2847,8 @@ class EdifyCognitoAuthAdapter extends (/* unused pure expression or super */ nul
     }
 
     let hasExpiredToken = false;
-    Object.entries(tokens, ([, token]) => {
+    Object.entries(tokens, _ref => {
+      let [, token] = _ref;
       const parsed = decodeJWT(token);
 
       if (parsed && parsed.payload && parsed.payload.exp && parsed.payload.exp * 1000 < time) {
@@ -2772,8 +2884,272 @@ class EdifyCognitoAuthAdapter extends (/* unused pure expression or super */ nul
   }
 
 }
-// EXTERNAL MODULE: ./src/modules/_data-layer/js/Adapters/EventAdapters/DatastoreEventAdapter/DatastoreEventAdapter.js + 1 modules
-var DatastoreEventAdapter = __webpack_require__(26269);
+// EXTERNAL MODULE: ./src/modules/_data-layer/js/Adapters/EventAdapters/BaseEventAdapter/BaseEventAdapter.js
+var BaseEventAdapter_BaseEventAdapter = __webpack_require__(16676);
+// EXTERNAL MODULE: ./src/modules/_data-layer/js/Adapters/EventAdapters/DatastoreEventAdapter/DatastoreEventAdapter.js
+var DatastoreEventAdapter = __webpack_require__(77072);
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/StorageAdapters/BaseStorageAdapter/BaseStorageAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line import/prefer-default-export
+class BaseStorageAdapter_BaseStorageAdapter {
+  delete(key) {
+    throw new Error("Method not implemented");
+  }
+
+  deleteAll() {
+    throw new Error("Method not implemented");
+  }
+
+  get(key) {
+    throw new Error("Method not implemented");
+  }
+
+  getAll() {
+    throw new Error("Method not implemented");
+  }
+
+  set(key, token) {
+    throw new Error("Method not implemented");
+  }
+
+  setAll(tokens) {
+    throw new Error("Method not implemented");
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/StorageAdapters/LocalStorageAdapter/LocalStorageAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+ // eslint-disable-next-line import/prefer-default-export
+
+class LocalStorageAdapter extends (/* unused pure expression or super */ null && (BaseStorageAdapter)) {
+  constructor() {
+    let dto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    super();
+    this.store = dto.store || window.localStorage;
+    this.storageKey = dto.storageKey || "@@values@@";
+  }
+  /**
+   * Delete a specific key.
+   * @param {string} key The key.
+   * @returns {void}
+   */
+
+
+  delete(key) {
+    const allValues = this.getAll();
+
+    if (allValues[key]) {
+      delete allValues[key];
+    }
+
+    this.setAll(allValues);
+  }
+  /**
+   * Delete all values.
+   * @returns {void}
+   */
+
+
+  deleteAll() {
+    this.setAll({});
+  }
+  /**
+   * Get a specific value.
+   * @param {string} key The key.
+   * @returns {any}
+   */
+
+
+  get(key) {
+    const allValues = this.getAll();
+    return allValues[key] || null;
+  }
+  /**
+   * Get all values.
+   * @returns {object}
+   */
+
+
+  getAll() {
+    const valuesStr = this.store.getItem(this.storageKey);
+
+    if (valuesStr) {
+      return JSON.parse(valuesStr);
+    }
+
+    return {};
+  }
+  /**
+   * Set a specific value.
+   * @param {string} key The key.
+   * @returns {any}
+   */
+
+
+  set(key, value) {
+    const values = this.getAll();
+    values[key] = value;
+    this.setAll(values);
+  }
+  /**
+   * Set all values.
+   * @returns {object}
+   */
+
+
+  setAll(values) {
+    this.store.clear();
+    this.store.setItem(this.storageKey, JSON.stringify(values));
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/StorageAdapters/MemoryStorageAdapter/MemoryStorageAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+ // eslint-disable-next-line import/prefer-default-export
+
+class MemoryStorageAdapter extends (/* unused pure expression or super */ null && (BaseStorageAdapter)) {
+  constructor() {
+    let dto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    super();
+    this.store = dto.store || {};
+  }
+  /**
+   * Delete a specific key.
+   * @param {string} key The key.
+   * @returns {void}
+   */
+
+
+  delete(key) {
+    const allValues = { ...this.getAll()
+    };
+
+    if (allValues[key]) {
+      delete allValues[key];
+    }
+
+    this.setAll(allValues);
+  }
+  /**
+   * Delete all values.
+   * @returns {void}
+   */
+
+
+  deleteAll() {
+    this.setAll({});
+  }
+  /**
+   * Get a specific value.
+   * @param {string} key The key.
+   * @returns {any}
+   */
+
+
+  get(key) {
+    return this.store[key] || null;
+  }
+  /**
+   * Get all values.
+   * @returns {object}
+   */
+
+
+  getAll() {
+    return { ...this.store
+    };
+  }
+  /**
+   * Set a specific value.
+   * @param {string} key The key.
+   * @returns {any}
+   */
+
+
+  set(key, value) {
+    this.store[key] = value;
+  }
+  /**
+   * Set all values.
+   * @returns {object}
+   */
+
+
+  setAll(values) {
+    this.store = values;
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Services/AuthService/AuthService.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+/**
+ * An auth service that provides authentication methods.
+ */
+class AuthService {
+  constructor(dto) {
+    if (!dto) {
+      throw new Error("dto is required when instantiating a new AuthService object");
+    }
+
+    ["authAdapter"].forEach(name => {
+      if (!dto[name]) {
+        throw new Error("".concat(name, " property is required when instantiating a new AuthService object"));
+      }
+    });
+    this.authAdapter = dto.authAdapter;
+  }
+  /**
+   * Check if the user authenticated.
+   * @returns {boolean} Returns true if the user is currently authenticated.
+   */
+
+
+  isAuthenticated() {
+    return this.authAdapter.isAuthenticated();
+  }
+  /**
+   * Login with a url redirect.
+   */
+
+
+  loginWithRedirect() {
+    this.authAdapter.loginWithRedirect();
+  }
+  /**
+   * Logout the current user.
+   */
+
+
+  logout() {
+    this.authAdapter.logout();
+  }
+  /**
+   * Refresh the current tokens.
+   */
+
+
+  refreshTokens() {
+    this.authAdapter.refreshTokens();
+  }
+
+}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.finally.js
 var es_promise_finally = __webpack_require__(17727);
 ;// CONCATENATED MODULE: ./src/modules/_data-layer/js/libs/PromiseDebouncer.js
@@ -2899,12 +3275,95 @@ class EventService {
   /**
    * Delete a single event.
    * @param {string} eventId The event id.
-   * @returns {Promise<object} The result of the delete.
+   * @returns {Promise<object>} The result of the delete.
    */
 
 
   deleteEvent(eventId) {
     return this.eventAdapter.deleteEvent(eventId);
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Services/StorageService/StorageService.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+/**
+ * An storage service that provides methods to store and retrieve key/value data.
+ */
+class StorageService {
+  constructor(dto) {
+    if (!dto) {
+      throw new Error("dto is required when instantiating a new StorageService object");
+    }
+
+    ["storageAdapter"].forEach(name => {
+      if (!dto[name]) {
+        throw new Error("".concat(name, " property is required when instantiating a new StorageService object"));
+      }
+    });
+    this.storageAdapter = dto.storageAdapter;
+  }
+  /**
+   * Delete a specific key.
+   * @param {string} key The key.
+   * @returns {void}
+   */
+
+
+  delete(key) {
+    return this.storageAdapter.delete(key);
+  }
+  /**
+   * Delete all values.
+   * @returns {void}
+   */
+
+
+  deleteAll() {
+    return this.storageAdapter.deleteAll();
+  }
+  /**
+   * Get a specific value.
+   * @param {string} key The key.
+   * @returns {any}
+   */
+
+
+  get(key) {
+    return this.storageAdapter.get(key);
+  }
+  /**
+   * Get all values.
+   * @returns {object}
+   */
+
+
+  getAll() {
+    return this.storageAdapter.getAll();
+  }
+  /**
+   * Set a specific value.
+   * @param {string} key The key.
+   * @returns {any}
+   */
+
+
+  set(key, value) {
+    return this.storageAdapter.set(key, value);
+  }
+  /**
+   * Set all values.
+   * @returns {object}
+   */
+
+
+  setAll(values) {
+    return this.storageAdapter.setAll(values);
   }
 
 }
@@ -2923,7 +3382,8 @@ var node_modules_faker = __webpack_require__(85384);
  * @returns {object} The mock event.
  */
 
-function createMockEvent(maybeMockEvent = {}) {
+function createMockEvent() {
+  let maybeMockEvent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   return {
     id: faker.datatype.uuid(),
     start: faker.date.soon().toISOString(),
@@ -2939,7 +3399,8 @@ function createMockEvent(maybeMockEvent = {}) {
  * @returns {object} The mock event.
  */
 
-function createMockEventDto(maybeMockEventDto = {}) {
+function createMockEventDto() {
+  let maybeMockEventDto = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   return {
     start: faker.date.soon().toISOString(),
     end: faker.date.future().toISOString(),
@@ -2954,7 +3415,9 @@ function createMockEventDto(maybeMockEventDto = {}) {
  * @returns {object} The mock event.
  */
 
-function createMockEventList(numberOfEvents = 10, maybeMockEvent = {}) {
+function createMockEventList() {
+  let numberOfEvents = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
+  let maybeMockEvent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   const events = [];
 
   for (let i = 0; i < numberOfEvents; i += 1) {
@@ -2962,6 +3425,131 @@ function createMockEventList(numberOfEvents = 10, maybeMockEvent = {}) {
   }
 
   return events;
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Mocks/Datastore/mockDatastore.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+/**
+ * Create a mock datastore object
+ * @returns {object} a mock datastore object.
+ */
+function createMockDatastore() {
+  let mockResult = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  return {
+    and: jest.fn().mockReturnThis(),
+    collection: jest.fn().mockReturnThis(),
+    count: jest.fn().mockReturnThis(),
+    doc: jest.fn().mockReturnThis(),
+    get: jest.fn().mockImplementation(() => mockResult),
+    getNextPage: jest.fn().mockReturnThis(),
+    getPrevPage: jest.fn().mockReturnThis(),
+    hasNextPage: jest.fn().mockReturnThis(),
+    hasPrevPage: jest.fn().mockReturnThis(),
+    limit: jest.fn().mockReturnThis(),
+    or: jest.fn().mockReturnThis(),
+    sortBy: jest.fn().mockReturnThis(),
+    where: jest.fn().mockReturnThis()
+  };
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Mocks/Auth/mockAuth.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+/**
+ *
+ * @param {*} maybeHeader
+ * @param {*} maybePayload
+ * @param {*} maybeSignature
+ * @returns
+ */
+function createMockToken() {
+  let maybeHeader = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  let maybePayload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  let maybeSignature = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  return "".concat(Buffer.from(JSON.stringify(maybeHeader), "utf8").toString("base64"), ".").concat(Buffer.from(JSON.stringify(maybePayload), "utf8").toString("base64"), ".").concat(Buffer.from(JSON.stringify(maybeSignature), "utf8").toString("base64"));
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Mocks/Events/MockEventAdapter/MockEventAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+class MockEventAdapter extends (/* unused pure expression or super */ null && (BaseEventAdapter)) {
+  constructor(mockEvents) {
+    super();
+    this.mockEvents = mockEvents;
+  }
+
+  setMockEvents(mockEvents) {
+    this.mockEvents = mockEvents;
+  }
+
+  getEvents() {
+    let {
+      start,
+      end
+    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    let events = this.mockEvents;
+
+    if (start || end) {
+      events = events.filter(event => {
+        let keepEvent = true;
+
+        if (start && event.start.getTime() < start.getTime()) {
+          keepEvent = false;
+        }
+
+        if (end && event.end.getTime() > end.getTime()) {
+          keepEvent = false;
+        }
+
+        return keepEvent;
+      });
+    }
+
+    return Promise.resolve(events);
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Mocks/Auth/MockAuthAdapter/MockAuthAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable import/prefer-default-export */
+
+class MockAuthAdapter extends (/* unused pure expression or super */ null && (BaseAuthAdapter)) {
+  constructor(dto) {
+    super();
+    this.isLoggedIn = dto.isLoggedIn;
+  }
+
+  setIsLoggedIn(isLoggedIn) {
+    this.isLoggedIn = isLoggedIn;
+  }
+
+  isAuthenticated() {
+    return this.isLoggedIn;
+  }
+
+  loginWithRedirect() {}
+
+  logout() {}
+
+  refreshTokens() {}
+
 }
 ;// CONCATENATED MODULE: ./src/modules/_data-layer/js/global.js
 /*!
@@ -3020,11 +3608,12 @@ var react = __webpack_require__(67294);
  * @returns {JSX.Element} Event context provider component.
  */
 
-const EventProvider = ({
-  children,
-  initialGetEventsDto,
-  eventService
-}) => {
+const EventProvider = _ref => {
+  let {
+    children,
+    initialGetEventsDto,
+    eventService
+  } = _ref;
   const [isLoading, setIsLoading] = (0,react.useState)(false);
   const [isReady, setIsReady] = (0,react.useState)(false);
   const [events, setEvents] = (0,react.useState)([]);
@@ -3083,10 +3672,11 @@ const EventContext = /*#__PURE__*/(0,react.createContext)({
  * @returns {JSX.Element} Auth context provider component.
  */
 
-const AuthProvider = ({
-  children,
-  authService
-}) => {
+const AuthProvider = _ref => {
+  let {
+    children,
+    authService
+  } = _ref;
   useEffect(() => {
     if (!authService.isAuthenticated()) {
       authService.loginWithRedirect();
@@ -3156,7 +3746,8 @@ const _win = typeof window === 'undefined' ? {} : window;
  */
 
 
-function hasDocument(win = _win) {
+function hasDocument() {
+  let win = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _win;
   return win.document !== undefined;
 }
 /**
@@ -3169,7 +3760,9 @@ function hasDocument(win = _win) {
  */
 
 
-function getCookie(key, win = _win) {
+function getCookie(key) {
+  let win = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _win;
+
   if (!hasDocument(win)) {
     return null;
   }
@@ -3211,7 +3804,13 @@ function getCookie(key, win = _win) {
  * @returns {void}
  */
 
-const setCookie = (name, value = '', daysToExpire = '', path = '/', win = _win, dateMock) => {
+const setCookie = function (name) {
+  let value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  let daysToExpire = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  let path = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '/';
+  let win = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : _win;
+  let dateMock = arguments.length > 5 ? arguments[5] : undefined;
+
   if (!hasDocument(win)) {
     return;
   }
@@ -3244,7 +3843,10 @@ const setCookie = (name, value = '', daysToExpire = '', path = '/', win = _win, 
  * @returns {void}
  */
 
-function clearCookie(name, path = '/', win = _win) {
+function clearCookie(name) {
+  let path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '/';
+  let win = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _win;
+
   if (!hasDocument(win)) {
     return;
   }
@@ -3902,6 +4504,220 @@ _aside();
 
 /***/ }),
 
+/***/ 83414:
+/***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// UNUSED EXPORTS: default
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
+var web_dom_collections_iterator = __webpack_require__(33948);
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(67294);
+// EXTERNAL MODULE: ./src/modules/autocomplete-concierge/jsx/helpers.js
+var helpers = __webpack_require__(66004);
+// EXTERNAL MODULE: ./node_modules/axios/index.js
+var axios = __webpack_require__(9669);
+var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/AutocompleteAdapters/BaseAutocompleteAdapter/BaseAutocompleteAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line import/prefer-default-export
+class BaseAutocompleteAdapter {
+  /**
+   * Get events.
+   * @param {object} getEventsDto The event dto.
+   * @returns void
+   */
+  getResults(query) {
+    throw new Error("Method not implemented");
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/_data-layer/js/Adapters/AutocompleteAdapters/FunnelbackAutocompleteAdapter/FunnelbackAutocompleteAdapter.js
+/*!
+ * @license
+ * Copyright Squiz Australia Pty Ltd. All Rights Reserved.
+ */
+// eslint-disable-next-line import/prefer-default-export
+
+ // eslint-disable-next-line import/prefer-default-export
+
+class FunnelbackAutocompleteAdapter extends BaseAutocompleteAdapter {
+  constructor(adapter) {
+    super();
+
+    if (!adapter) {
+      throw new Error("adapter is required when instantiating a new FunnelbackAutocompleteAdapter object");
+    }
+
+    ["funnelback"].forEach(name => {
+      if (!adapter[name]) {
+        throw new Error("".concat(name, " property is required when instantiating a new FunnelbackAutocompleteService object"));
+      }
+    });
+    this.autocomplete = adapter.funnelback;
+  }
+  /**
+   * Prepare ajax call to service provider.
+   *
+   * @param {string} query Query string.
+   * @param {function} fakeFetch Unit test mock.
+   *
+   * @returns {*}
+   */
+
+
+  getResults(query, fakeFetch) {
+    const requestOptions = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const queryParam = this.autocomplete.queryParam ? "".concat(this.autocomplete.queryParam, "=").concat(query) : "partial_query=".concat(query);
+    const params = this.autocomplete.params && this.autocomplete.params.split('&') || [];
+    params.push(queryParam);
+    const fetchUrl = "".concat(this.autocomplete.serviceUrl, "?").concat(params.join('&'));
+
+    if (fakeFetch) {
+      return fakeFetch(fetchUrl, requestOptions);
+    }
+
+    return axios_default().get(fetchUrl, requestOptions);
+  }
+
+}
+;// CONCATENATED MODULE: ./src/modules/autocomplete-concierge/jsx/global.jsx
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+/* eslint-disable react/jsx-props-no-spreading */
+
+
+
+function _executor() {
+  const AutocompleteProvider = /*#__PURE__*/(0,react.lazy)(() => Promise.all(/* import() | AutocompleteProvider */[__webpack_require__.e(354), __webpack_require__.e(701)]).then(__webpack_require__.bind(__webpack_require__, 82424)));
+  const appWrapper = document.querySelectorAll('[data-component="autocomplete-concierge"]');
+
+  if (appWrapper.length > 0) {
+    // Only load ReactDOM from if its needed as its pretty large
+    __webpack_require__.e(/* import() | ReactDOM */ 466).then(__webpack_require__.t.bind(__webpack_require__, 73935, 19)).then(ReactDOM => {
+      appWrapper.forEach(wrapper => {
+        const {
+          dataset
+        } = wrapper;
+        const config = dataset.autocmpleteConfig ? JSON.parse(dataset.autocmpleteConfig) : {};
+        const elements = (0,helpers/* parseHTML */.rg)(document, wrapper.innerHTML);
+        const parsedTemplates = Array.from(elements).map(el => ({
+          id: (0,helpers/* parseValue */.H2)(el.dataset.id),
+          label: (0,helpers/* parseValue */.H2)(el.dataset.label),
+          template: (0,helpers/* parseValue */.H2)(el.dataset.template),
+          serviceUrl: (0,helpers/* parseValue */.H2)(el.dataset.serviceUrl),
+          adapter: (0,helpers/* parseValue */.H2)(el.dataset.adapter),
+          params: (0,helpers/* parseValue */.H2)(el.dataset.params),
+          className: (0,helpers/* parseValue */.H2)(el.classList.value),
+          type: (0,helpers/* parseValue */.H2)(el.nodeName),
+          name: (0,helpers/* parseValue */.H2)(el.name),
+          value: (0,helpers/* parseValue */.H2)(el.value)
+        }));
+        const props = {
+          id: wrapper.id,
+          html: wrapper.innerHTML,
+          className: wrapper.className,
+          templates: parsedTemplates.filter(el => el.type === 'SPAN'),
+          hiddenFields: parsedTemplates.filter(el => el.type === 'INPUT'),
+          ...config
+        };
+        const adapters = [];
+        props.templates.forEach(template => {
+          // If there is no adapter we will take default one which is Funnelback.
+          if (!template.adapter || template.adapter === '') {
+            adapters.push(new FunnelbackAutocompleteAdapter({
+              funnelback: {
+                serviceUrl: template.serviceUrl,
+                params: template.params,
+                queryParam: template.queryParam
+              }
+            }));
+          }
+        });
+        ReactDOM.render( /*#__PURE__*/react.createElement(react.StrictMode, null, /*#__PURE__*/react.createElement(react.Suspense, {
+          fallback: /*#__PURE__*/react.createElement("div", {
+            className: "autocomplete-concierge__skeleton"
+          }, "Loading...")
+        }, /*#__PURE__*/react.createElement(AutocompleteProvider, _extends({}, props, {
+          adapters: adapters
+        })))), wrapper);
+      });
+    });
+  }
+}
+
+_executor();
+
+/***/ }),
+
+/***/ 66004:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "H2": function() { return /* binding */ parseValue; },
+/* harmony export */   "rg": function() { return /* binding */ parseHTML; },
+/* harmony export */   "S5": function() { return /* binding */ useArrayRef; }
+/* harmony export */ });
+/**
+ * Convert value into proper JS object.
+ *
+ * @param {*} value Any value we want to parse.
+ *
+ * @returns {string|any}
+ */
+function parseValue(value) {
+  try {
+    return JSON.parse(value);
+  } catch (err) {
+    return value || '';
+  }
+}
+/**
+ * Parses html string and build DOM element.
+ *
+ * @param {object} doc     Document object.
+ * @param {string} htmlStr html string to be transformed into DOM.
+ *
+ * @returns {object}
+ */
+
+
+function parseHTML(doc, htmlStr) {
+  const div = doc.createElement('div');
+  div.innerHTML = htmlStr;
+  return div.children;
+}
+/**
+ * This is a hook, where we build array of DOM elements.
+ * It is being used to handle key navigation in combobox.
+ *
+ * @returns {(*[]|(function(*=)))[]}
+ */
+
+
+function useArrayRef() {
+  const childRefs = [];
+  return [childRefs, el => el && childRefs.push(el)];
+}
+
+
+
+/***/ }),
+
 /***/ 40297:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
@@ -3939,10 +4755,11 @@ class AjaxCache {
    */
 
 
-  sendRequest({
-    url,
-    transform
-  }) {
+  sendRequest(_ref) {
+    let {
+      url,
+      transform
+    } = _ref;
     return new Promise((resolve, reject) => {
       const cacheData = this._getFromCache(url);
 
@@ -4176,7 +4993,7 @@ const EventActions = Object.freeze({
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(33948);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(67294);
-/* harmony import */ var PlugAndPlay_data_layer_js_Adapters_EventAdapters_DatastoreEventAdapter_DatastoreEventAdapter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(26269);
+/* harmony import */ var PlugAndPlay_data_layer_js_Adapters_EventAdapters_DatastoreEventAdapter_DatastoreEventAdapter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77072);
 /* harmony import */ var _enums__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(46984);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -4187,10 +5004,10 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
  // Lazy load the main Calendar 'app'
 
-const Calendar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.lazy(() => Promise.all(/* import() | Calendar */[__webpack_require__.e(466), __webpack_require__.e(614), __webpack_require__.e(213)]).then(__webpack_require__.bind(__webpack_require__, 99157)));
+const Calendar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.lazy(() => Promise.all(/* import() | Calendar */[__webpack_require__.e(466), __webpack_require__.e(354), __webpack_require__.e(543), __webpack_require__.e(213)]).then(__webpack_require__.bind(__webpack_require__, 19677)));
 const appWrapper = document.querySelectorAll('[data-component="calendar"]'); // Don't run on a non calendar page
 
-if (appWrapper !== null) {
+if (appWrapper.length > 0) {
   // Only load ReactDOM from if its needed as its pretty large
   __webpack_require__.e(/* import() | ReactDOM */ 466).then(__webpack_require__.t.bind(__webpack_require__, 73935, 19)).then(ReactDOM => {
     appWrapper.forEach(wrapper => {
@@ -4307,7 +5124,8 @@ class Timer {
    */
 
 
-  reset(newT = this.interval) {
+  reset() {
+    let newT = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.interval;
     this.interval = newT;
     return this.stop().start();
   }
@@ -4586,7 +5404,11 @@ function _carousel() {
      */
 
 
-    setEventListeners(nextButton = this.nextButton, previousButton = this.previousButton, navigationItems = this.navigationItems) {
+    setEventListeners() {
+      let nextButton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.nextButton;
+      let previousButton = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.previousButton;
+      let navigationItems = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.navigationItems;
+
       // Add the listener for the next button
       if (nextButton) {
         nextButton.addEventListener('click', this.moveCarouselForwards);
@@ -4740,7 +5562,11 @@ function _carousel() {
      */
 
 
-    removeEventListeners(nextButton = this.nextButton, previousButton = this.previousButton, navigationItems = this.navigationItems) {
+    removeEventListeners() {
+      let nextButton = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.nextButton;
+      let previousButton = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.previousButton;
+      let navigationItems = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.navigationItems;
+
       // Add the listener for the next button
       if (nextButton) {
         nextButton.removeEventListener('click', this.moveCarouselForwards);
@@ -6450,10 +7276,10 @@ _facets();
 
 "use strict";
 /* unused harmony export default */
-/* harmony import */ var PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(25857);
-/* harmony import */ var _header_search_js_global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(86379);
-/* harmony import */ var _modal_js_global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(67485);
-/* harmony import */ var _primary_nav_js_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(28591);
+/* harmony import */ var PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(25857);
+/* harmony import */ var _header_search_js_global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(86379);
+/* harmony import */ var _modal_js_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(67485);
+/* harmony import */ var _primary_nav_js_global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(28591);
 /* eslint-disable max-classes-per-file */
 
 
@@ -6507,12 +7333,12 @@ const HAMBURGER_MENU_SEARCH = '[data-click="hamburger-menu-search"]';
  * @class
  */
 
-class HamburgerMenuImpl extends _modal_js_global__WEBPACK_IMPORTED_MODULE_1__/* .Modal */ .u {
+class HamburgerMenuImpl extends _modal_js_global__WEBPACK_IMPORTED_MODULE_2__/* .Modal */ .u {
   constructor(hamburgerMenu) {
     super(hamburgerMenu);
     this.hamburgerMenu = hamburgerMenu;
     this.hamburgerDialog = this.hamburgerMenu.querySelector('[role="dialog"]');
-    const primaryNavInstance = _primary_nav_js_global__WEBPACK_IMPORTED_MODULE_2__/* ["default"].getInstance */ .ZP.getInstance();
+    const primaryNavInstance = _primary_nav_js_global__WEBPACK_IMPORTED_MODULE_3__/* ["default"].getInstance */ .ZP.getInstance();
 
     if (primaryNavInstance) {
       this.isDesktopHamburger = primaryNavInstance.isDesktopHamburger();
@@ -6558,7 +7384,7 @@ class HamburgerMenuImpl extends _modal_js_global__WEBPACK_IMPORTED_MODULE_1__/* 
 
   openMenu() {
     // If header search exists and is open, close it.
-    document.querySelectorAll(_header_search_js_global__WEBPACK_IMPORTED_MODULE_0__/* .HEADER_SEARCH_SELECTOR */ .U).forEach(element => {
+    document.querySelectorAll(_header_search_js_global__WEBPACK_IMPORTED_MODULE_1__/* .HEADER_SEARCH_SELECTOR */ .U).forEach(element => {
       if (element.headerSearch.isOpen()) {
         element.headerSearch.closeSearch();
       }
@@ -6643,7 +7469,7 @@ class HamburgerMenuImpl extends _modal_js_global__WEBPACK_IMPORTED_MODULE_1__/* 
 
   _listenForMediaQueryChange() {
     if (!this.isDesktopHamburger) {
-      this.watchForMediaQueryChange(PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_3__/* .minMediaQueryXL */ .QO, () => {
+      this.watchForMediaQueryChange(PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_0__/* .minMediaQueryXL */ .QO, () => {
         console.log('change to desktop, undo ally');
         this.deactivateAccessability();
       }, () => {
@@ -6704,8 +7530,8 @@ HamburgerMenu.getInstance();
 /* harmony export */   "U": function() { return /* binding */ HEADER_SEARCH_SELECTOR; }
 /* harmony export */ });
 /* unused harmony export default */
-/* harmony import */ var PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(25857);
-/* harmony import */ var _modal_js_global__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67485);
+/* harmony import */ var PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(25857);
+/* harmony import */ var _modal_js_global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(67485);
 
 
 /**
@@ -6796,7 +7622,7 @@ function _headerSearch() {
       this.headerSearchWrapper = headerSearchWrapper;
       this.headerSearch = headerSearchWrapper.querySelector(HEADER_SEARCH_BODY_SELECTOR); // HeaderSearch isnt always a Modal so use it as a composite rather than as a parent
 
-      this.modalHandler = new _modal_js_global__WEBPACK_IMPORTED_MODULE_0__/* .Modal */ .u(headerSearchWrapper); // Attach event handlers to open
+      this.modalHandler = new _modal_js_global__WEBPACK_IMPORTED_MODULE_1__/* .Modal */ .u(headerSearchWrapper); // Attach event handlers to open
 
       headerSearchWrapper.querySelectorAll(HEADER_SEARCH_OPEN_ACTION_SELECTOR).forEach(element => {
         element.addEventListener('click', () => {
@@ -6993,7 +7819,7 @@ function _headerSearch() {
 
 
     _isModal() {
-      return this.headerSearchWrapper.matches(HEADER_SEARCH_MODE_MODAL_SELECTOR) || (0,PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_1__/* .getCurrentScreenSizeInt */ .Yk)() < PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_1__/* .screenSizeMD */ .OG;
+      return this.headerSearchWrapper.matches(HEADER_SEARCH_MODE_MODAL_SELECTOR) || (0,PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_0__/* .getCurrentScreenSizeInt */ .Yk)() < PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_0__/* .screenSizeMD */ .OG;
     }
     /**
      * Function to check if search mode is fadein
@@ -7013,7 +7839,7 @@ function _headerSearch() {
     _listenForMediaQueryChange() {
       // If the mode is always modal we dont need to watch for changes
       if (!this.headerSearchWrapper.matches(HEADER_SEARCH_MODE_MODAL_SELECTOR)) {
-        this.modalHandler.watchForMediaQueryChange(PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_1__/* .minMediaQueryMD */ .q5, () => {
+        this.modalHandler.watchForMediaQueryChange(PlugAndPlay_global_js_screenSize__WEBPACK_IMPORTED_MODULE_0__/* .minMediaQueryMD */ .q5, () => {
           this._deactivateModal();
         }, () => {
           this._activateModal();
@@ -11903,7 +12729,8 @@ class Slider {
    */
 
 
-  moveSlide(direction = 'forwards') {
+  moveSlide() {
+    let direction = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'forwards';
     // Check if the slider would be looping backwards
     const wouldLoopBackwards = this.orderedSlides.find(slide => parseInt(slide.dataset.slideOrder, 10) === 1) === Array.from(this.slides).at(0) && direction === 'backwards'; // Check if the slider would be looping forwards
 
@@ -12403,7 +13230,11 @@ function debounce(fn) {
   // Define a variable to store an animation frame
   let requestAnimationFrame; // Return a function
 
-  return (...args) => {
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
     // If the animation frame is defined dont do anything (the window hasn't finished animating yet)
     if (requestAnimationFrame) {
       return;
@@ -175584,6 +176415,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 83705:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+      id: "building-usage",
+      viewBox: "0 0 16 16",
+      url: __webpack_require__.p + "mysource_files/sprite-map.svg#building",
+      toString: function () {
+        return this.url;
+      }
+    });
+
+/***/ }),
+
 /***/ 24702:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -176409,6 +177256,7 @@ var map = {
 	"./add-comment.svg": 26215,
 	"./add.svg": 79498,
 	"./arrow.svg": 59009,
+	"./building.svg": 83705,
 	"./calendar.svg": 24702,
 	"./check.svg": 34443,
 	"./chevron.svg": 68056,
@@ -176597,7 +177445,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/gtran/Development
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = function(chunkId) {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + ({"213":"Calendar","466":"ReactDOM"}[chunkId] || chunkId) + "-" + {"213":"5acb27473ac4c746470c","466":"e804ec190f2d83899d92","614":"b574ffa2fdfefc91dd21"}[chunkId] + ".js";
+/******/ 			return "js/" + ({"213":"Calendar","466":"ReactDOM","701":"AutocompleteProvider"}[chunkId] || chunkId) + "-" + {"113":"f99271131a6ece9cd1bc","213":"85705e2b40cedb8549ea","354":"5e10cf63df8830536b64","466":"e804ec190f2d83899d92","489":"6103f8e288dc8e1878c1","543":"f9407f4d6ecf2f0d8306","701":"fe1b96e9da8b550ffbb7","943":"35411c5ebceca71e71c4"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -176608,7 +177456,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/gtran/Development
 /******/ 			// return url for filenames not based on template
 /******/ 			if (chunkId === 179) return "main.css";
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + "Calendar" + "-" + "5acb27473ac4c746470c" + ".css";
+/******/ 			return "" + "Calendar" + "-" + "85705e2b40cedb8549ea" + ".css";
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -176883,9 +177731,9 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/gtran/Development
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	__webpack_require__(27695);
+/******/ 	__webpack_require__(92405);
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__(40361);
+/******/ 	__webpack_require__(20459);
 /******/ 	__webpack_require__(86632);
 /******/ 	__webpack_require__(29289);
 /******/ 	__webpack_require__(25508);
@@ -176925,6 +177773,7 @@ module.exports = JSON.parse('{"_args":[["axios@0.21.4","/Users/gtran/Development
 /******/ 	__webpack_require__(16249);
 /******/ 	__webpack_require__(67233);
 /******/ 	__webpack_require__(68199);
+/******/ 	__webpack_require__(83414);
 /******/ 	var __webpack_exports__ = __webpack_require__(49090);
 /******/ 	
 /******/ })()

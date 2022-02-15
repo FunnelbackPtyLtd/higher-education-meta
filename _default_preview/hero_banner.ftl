@@ -10,77 +10,13 @@
 <#macro SearchForm preserveTab=true class="">
     <!-- hero_banner.SearchForm -->
     <div 
-        class="no-wysiwyg hero-banner hero-banner--settings hero-banner--overlay-50 hero-banner--bg-compact hero-banner--undefined hero-banner--pull-centered                            
+        class="no-wysiwyg hero-banner hero-banner--settings hero-banner--overlay-50 hero-banner--bg-compact hero-banner--undefined                            
         hero-banner-search
         ">
         <div class="hero-banner-wrapper">
             <div class="hero-banner__contents-container">
-                <div class="hero-banner__contents">
-                    <div class="hero-banner__contents-text"></div>
-                    <form class="hero-banner-search__form"
-                        action="${question.getCurrentProfileConfig().get("ui.modern.search_link")}" 
-                        method="GET"
-                        role="search"            
-                    >
-
-                        <input type="hidden" name="collection" value="${question.collection.id}">
-
-                        <@base.inputsForForms allowList= ["enc", "form", "scope", "lang", "profile", "userType", "displayMode", "num_ranks"] />
-
-                        <#if preserveTab>
-                            <#list question.selectedCategoryValues?keys as facetKey>
-                                <#if facetKey?starts_with("f.Tabs|")>
-                                    <#list question.selectedCategoryValues[facetKey] as value>
-                                        <input type="hidden" name="${facetKey}" value="${value}">
-                                    </#list>
-                                </#if>
-                            </#list>
-                        </#if>
-
-                        <div class="hero-banner-search__bar">
-                            <label for="bannerQuery" class="visuallyhidden">Search: </label>
-                            <div data-component="autocomplete" data-suggest-source="https://stage-stencil-search.clients.funnelback.com/s/suggest.json" data-suggest-collection="higher-education-meta" data-suggest-additional-params="alpha=0.5&amp;profile=_default&amp;show=6&amp;sort=0" data-emphasis="notquery" class="autocomplete-search">
-                            <template data-template-id="autocomplete-result">
-                                <li id="result-item-" role="option" aria-selected="false" class="autocomplete-search-listbox__item"></li>
-                            </template>
-                            <template data-template-id="autocomplete-result-query">
-                                <span class="autocomplete-search-listbox__query"></span>
-                            </template>
-                            <div class="autocomplete-search__combobox-wrapper">
-                                <div id="autocomplete-search-combobox" role="combobox" aria-controls="autocomplete-search-input" aria-expanded="false" aria-owns="autocomplete-search-listbox" aria-haspopup="listbox" class="autocomplete-search__combobox">
-                                <input 
-                                    id="autocomplete-search-input" 
-                                    aria-label="Start you search here" 
-                                    type="text" 
-                                    aria-autocomplete="list" 
-                                    aria-controls="autocomplete-search-listbox" 
-                                    name="query" 
-                                    placeholder="Start you search here" 
-                                    autocomplete="off" 
-                                    class="autocomplete-search__input"
-                                    value="${question.query!}" 
-                                >
-                                </div>
-                                <ul id="autocomplete-search-listbox" role="listbox" aria-labelledby="autocomplete-search-input" data-active="false" class="autocomplete-search-listbox"></ul>
-                                <div data-component="autocomplete-result-status" aria-live="polite" role="status" data-active="false" class="autocomplete-search__status">
-                                <span data-component="autocomplete-result-count">0</span> results available.
-                                </div>
-                            </div>
-                            </div>
-                            <button type="button" data-click="hero-banner-search-clear" class="hero-banner-search__clear">
-                            <svg class="svg-icon svg-icon--large">
-                                <title>Close search</title>
-                                <use href="#close"></use>
-                            </svg>
-                            </button>
-                        </div>
-                        <button type="submit" class="hero-banner-search__submit">
-                            <svg class="svg-icon">
-                            <title>Submit search</title>
-                            <use href="#search"></use>
-                            </svg>
-                        </button>
-                    </form>
+                <div class="hero-banner__contents">                                        
+                    <@concierge.Concierge />	                    
                     <@sessions.Controls />
                 </div>
             </div>

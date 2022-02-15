@@ -35,6 +35,7 @@
 <#import "contextual_navigation.ftl" as contextual_navigation />
 <#import "history_cart.ftl" as history_cart />
 <#import "auto_complete.ftl" as auto_complete />
+<#import "auto_complete.concierge.ftl" as concierge />
 <#import "curator.ftl" as curator />
 <#import "result_list.ftl" as result_list />
 <#import "no_results.ftl" as no_results />
@@ -87,7 +88,8 @@
 	
 	<#--  <@client_includes.ContentHeader />  -->
 
-		<div class="stencils__main">			
+		<div class="stencils__main">
+					
 			<@hero_banner.SearchForm />
 			<@tabs.Tabs />
 
@@ -155,6 +157,15 @@
 	-->
 	<#-- Stencil specific code such as the quickview and dropdowns -->
 	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/main.js"></script>
+	<#--  <script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/ReactDOM-e804ec190f2d83899d92.js"></script>
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/Calendar-af1ade4fa56bbef0d9e1.js"></script>
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/AutocompleteProvider-fe1b96e9da8b550ffbb7.js"></script>
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/113-f99271131a6ece9cd1bc.js"></script>
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/354-5e10cf63df8830536b64.js"></script>
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/489-7a958ab95b3297c06cf1.js"></script>
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/543-f9407f4d6ecf2f0d8306.js"></script>
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/943-6d661ae923d6b2e991cb.js"></script>  -->
+
 	
 	<#-- Stencils specific code -->
 	<script src="/s/resources/${question.collection.id}/${question.profile}/js/stencils.js"></script> 

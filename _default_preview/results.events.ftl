@@ -46,15 +46,19 @@
 <#macro GenericView result>
     <!-- results.events.GenericView -->
     <article class="listing-item listing-item--promoted listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
-        <#if (result.listMetadata["image"]?first)!?has_content>
+        <div class="listing-item__image-wrapper">
+            <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://picsum.photos/300/300?sig=${(result.title)!''?url}">
+        </div>
+
+        <#--  <#if (result.listMetadata["image"]?first)!?has_content>
             <div class="listing-item__image-wrapper">
                 <img class="deferred listing-item__image" alt="Thumbnail for ${result.title!}" src="//${httpRequest.getHeader('host')}/s/resources/${question.collection.id}/${question.profile}/img/pixel.gif" data-deferred-src="${(result.listMetadata["image"]?first)!}">  
             </div>  
         <#elseif ((question.getCurrentProfileConfig().get("stencils.showcase"))!"FALSE")?upper_case == "TRUE">
             <div class="listing-item__image-wrapper">
-                <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://source.unsplash.com/random/160x160?${(result.title)!''?url}">
+                <img class="listing-item__image" alt="Thumbnail for ${result.title!}" src="https://picsum.photos/300/300?sig=${(result.title)!''?url}">
             </div>
-        </#if>
+        </#if>  -->
         <div class="listing-item__content">
             <#-- Title -->
             <#if (result.title)!?has_content>

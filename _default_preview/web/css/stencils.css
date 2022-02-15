@@ -17,6 +17,39 @@
     max-width: 100rem;
 }
 
+.stencils__main .hero-banner {
+    z-index: auto;
+}
+
+.stencils__main .hero-banner__contents {
+    z-index: 4;
+}
+
+@media (min-width: 768px) {
+    .stencils__main .autocomplete-concierge {
+        margin: 0;
+    }
+}
+
+
+.stencils__main #autocomplete-input {
+    padding: 0.75rem 1.75em;
+    border-radius: 10px 0 0 10px;    
+}
+
+.stencils__main .autocomplete-concierge__submit {
+    border-radius: 0 10px 10px 0;
+}
+
+.stencils__main .autocomplete-concierge__submit svg {
+    height: 32px;
+    width: 32px;
+}
+
+.stencils__main .autocomplete-concierge__form-wrapper {
+    border: none;
+}
+
 /* Sessions controls */
 .stencils .result-sessions__controls {
     background-color: rgba(255,255,255,0.6);
@@ -70,7 +103,8 @@
 
 .flb-cart-item-trigger, #flb-cart-box-clear {
     cursor: pointer;
-    transition: color,background-color .3s ease-in-out;    
+    transition: color,background-color .3s ease-in-out;
+    border-radius: 1rem;    
 }
 
 .flb-cart-box-item {
