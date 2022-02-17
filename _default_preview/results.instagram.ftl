@@ -1,4 +1,8 @@
 <#ftl encoding="utf-8" output_format="HTML" />
+<#-- 
+    Presentation and logic to determine how each instagram result
+    is to be presented in search results, shortlist and quickview.
+-->
 
 <#-- 
     Macro decides how each result should be presented. 
@@ -44,7 +48,7 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- results.instagram.GenericView -->
+    <!-- results.instagram::GenericView -->
     <article class="listing-item listing-item--instagram listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
 
         <#switch result.listMetadata["instagramMediaType"]!?first!?upper_case>

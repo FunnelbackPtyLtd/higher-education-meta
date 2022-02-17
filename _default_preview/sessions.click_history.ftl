@@ -1,10 +1,15 @@
 <#ftl encoding="utf-8" output_format="HTML" />
 
+<#-- 
+    Presentation and logic for the click history. Click history
+    is a list of previously clicked on results by the current user.
+-->
+
 <#--
-	Display the click history
+	Display the click history.
 -->
 <#macro ClickHistory>
-    <!-- sessions.click_history.CickHistory -->
+    <!-- sessions.click_history::CickHistory -->
     <article class="search-history__item history-panel click-history">
         <h3 class="history-panel__title">
             <svg aria-hidden="true" class="svg-icon">

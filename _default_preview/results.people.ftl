@@ -44,7 +44,7 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!--results.people.GenericView -->
+    <!--results.people::GenericView -->
     <article class="listing-item listing-item--people listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
         <#if (result.listMetadata["image"]?first)!?has_content>
             <div class="listing-item__image-wrapper">
@@ -148,7 +148,7 @@
     in concierge.
 --> 
 <#macro AutoCompleteTemplate>
-    <!-- people.AutoCompleteTemplate -->
+    <!-- results.people::AutoCompleteTemplate -->
     <script id="auto-completion-people" type="text/x-handlebars-template">
         <div class="fb-auto-complete--non-organic">
             <h6>

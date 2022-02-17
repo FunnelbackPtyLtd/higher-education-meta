@@ -48,7 +48,7 @@
     @param result An individual result fron the data model
 -->
 <#macro GenericView result>
-    <!-- results.video.GenericView -->
+    <!-- results.video::GenericView -->
     <article class="listing-item listing-item--video listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">
         <#if (result.listMetadata["image"]?first)!?has_content >
             <div class="listing-item__image-wrapper">

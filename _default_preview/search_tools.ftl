@@ -3,6 +3,7 @@
     sorting and number of results to display
 -->
 <#macro SearchTools>
+    <#-- search_tools::SearchTools-->
     <div class="stencils-summary-and-search-tools">
         <@counts.Counts /> 
         <form
@@ -17,7 +18,6 @@
 
             <#list question.selectedCategoryValues?keys as facetKey>
                 <#list question.selectedCategoryValues[facetKey] as value>
-                    <!-- testing -->
                     <input type="hidden" name="${facetKey}" value="${value}">
                 </#list>
             </#list>
@@ -125,7 +125,7 @@
     Show the various display mode options to the user
 -->
 <#macro DisplayMode>
-    <!-- search_tools.displayMode -->
+    <!-- search_tools.DisplayMode -->
     <div class="search-tools__button-group">
         <#-- Card view -->
         <a 

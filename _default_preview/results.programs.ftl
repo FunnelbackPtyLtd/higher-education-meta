@@ -44,7 +44,7 @@
     @param result An individual result from the data model
 -->
 <#macro GenericView result>
-    <!-- results.programs.GenericView -->
+    <!-- results.programs::GenericView -->
     <article class="listing-item listing-item--program listing-item--background-grey10 listing-item--color-black" data-fb-result="${(result.indexUrl)!}">   
 
         <#if (result.listMetadata["programImage"]?first)!?has_content >
@@ -158,7 +158,7 @@
 	in concierge.
 --> 
 <#macro AutoCompleteTemplate>
-    <!-- programs.AutoCompleteTemplate -->
+    <!-- results.programs::AutoCompleteTemplate -->
 	<script id="auto-completion-programs" type="text/x-handlebars-template">
 		<div class="fb-auto-complete--non-organic">
             <h6>
@@ -188,7 +188,7 @@
 
 <#-- Output the cart template -->
 <#macro ShortlistTemplate>
-    <!-- programs.Shortlist -->    
+    <!-- results.programs::Shortlist -->    
     <#-- 
         Note: Cart templates as assigned to document types in profile.cfg/collection.cfg using 
         the following configuration:
