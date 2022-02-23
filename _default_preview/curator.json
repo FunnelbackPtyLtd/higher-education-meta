@@ -20,47 +20,6 @@
     "removeCollectionUrl" : false
   } ]
 }, {
-  "created" : "2020-03-11T14:34:28.23796Z",
-  "lastModified" : "2021-02-08T22:02:02.215045Z",
-  "id" : "9e45ee31-7d21-44ee-a5ac-f91ea73035d2",
-  "name" : "[Example] Curators for \"No Results\"",
-  "label" : "DEFAULT",
-  "enabled" : true,
-  "trigger" : {
-    "type" : "Groovy",
-    "classFile" : "/opt/funnelback/conf/default~sp-higher-education-meta/@groovy/curator/triggers/NoResultTrigger.groovy",
-    "properties" : {
-      "key" : "value"
-    }
-  },
-  "actions" : [ {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Reset your password",
-    "displayUrl" : "www.example.com",
-    "linkUrl" : "www.example.com",
-    "descriptionHtml" : "If you have forgotten your password, there's no need to call and wait on the phone.",
-    "additionalProperties" : {
-      "position" : "bottom",
-      "image" : "https://source.unsplash.com/random/40x40?email",
-      "call_to_action_label" : "www.example.com"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  }, {
-    "type" : "DisplayUrlAdvert",
-    "titleHtml" : "Schedule - Homecoming Weekend 2021",
-    "displayUrl" : "www.example.com",
-    "linkUrl" : "www.example.com",
-    "descriptionHtml" : "Join us for a very special Homecoming celebration as we look back on 75 years.  Because this is such a special celebration, we've added two extra days to Homecoming that include a number of exciting new opportunities for our alumni, our students, their families, and staff and faculty.",
-    "additionalProperties" : {
-      "call_to_action_url" : "https://www.apu.edu/static/src/sites/homecoming/images/header.jpg",
-      "call_to_action_label" : "JOIN NOW",
-      "position" : "top"
-    },
-    "category" : "",
-    "removeCollectionUrl" : false
-  } ]
-}, {
   "created" : "2020-03-12T14:33:01.536859Z",
   "lastModified" : "2020-12-03T09:16:38.588196Z",
   "id" : "f667e7b1-7136-405b-af29-16e0fee57036",
