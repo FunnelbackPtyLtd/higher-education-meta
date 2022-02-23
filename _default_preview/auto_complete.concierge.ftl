@@ -4,39 +4,79 @@
     concierge feature. Concierge is a advanced form of auto complete
     where you can have suggestions from multuple channels. These
     channels are powered by result pages on the search package.
+
+    The version of concierge used here was created by the plug and play team
+    to address the use of deprecated libraries problem and various
+    accessiblity issues. Although both the plug and play version and 
+    the auto complete concierge version created by Funnelback R&D team
+    share some similaries, there are also quite a bit of differences.
+
+    e.g. 
+    - The ability to specify auto complete when the user has not
+    entered a query.
+    - Templating for the version in plug and play requires access to the 
+    the design system as it involves modifying or creating new react templates.
 -->
 <#macro Concierge>
     <!-- auto_complete.concierge::Concierge -->
+
+    <#-- Grab the variables used to construct the varioius requests -->
+    <#local host=httpRequest.getHeader('host')>
+    <#local alpha=(question.getCurrentProfileConfig().get("stencils.auto-completion.alpha"))!"0.5">
+    <#local length=(question.getCurrentProfileConfig().get("stencils.auto-completion.length"))!"3">
+    <#local program=(question.getCurrentProfileConfig().get("stencils.auto-completion.program"))!"/s/suggest.json">
+    <#local sort=(question.getCurrentProfileConfig().get("stencils.auto-completion.sort"))!"0">
+    <#local source=(question.getCurrentProfileConfig().get("stencils.auto-completion.source"))!"internal">
+
     <div
-        id="autocomplete"
+        id="autocomplete-concierge"
         data-component="autocomplete-concierge"
-        data-autocmplete-config="{&quot;placeholder&quot;:&quot;Sample text&quot;,&quot;action&quot;:&quot;search.html&quot;}"
+        data-autocomplete-config="{
+            &quot;portal&quot;:&quot;#autocomplete-search-input&quot;,
+            &quot;showSubmit&quot;:false
+        }"
     >
         <input type="hidden" name="collection" value="${question.collection.id}">
+
         <@base.inputsForForms allowList= ["enc", "form", "scope", "lang", "profile", "userType", "displayMode", "num_ranks"] />
 
-        <span class="custom__classname"
-              data-id="test_1"
-              data-service-url="https://stage-stencil-search.clients.funnelback.com/s/suggest.json"
-              data-params="alpha=0.5&profile=auto-completion&show=5&collection=higher-education-meta"
-              data-template="Organic"
-              data-label="Suggestions"
-        > </span>
+    
+        <#-- 
+            Diplay the markup for each channel using the config 
+            specified by the user in the result page configurations. 
+        -->
+        <#list question.getCurrentProfileConfig().get("stencils.auto-completion.datasets")!?split(",") as dataset>
+            <#local collection = question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.collection")!question.collection.id>
+            
+            <#-- Determine if we need the live or preview view. -->
+            <#if question.profile?ends_with("_preview") && question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.profile")!?has_content>
+                <#local profile = question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.profile")! + "_preview">
+            <#else>
+                <#local profile = question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.profile")!question.collection.id>        
+            </#if>
+            <#-- Used to style each channel. -->
+            <#local customClass = question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.customClass")!"">
+            <#-- THe display heading of each auto complete channel. -->
+            <#local label = question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.label")!"Suggestions">
+            <#-- The react template to use. -->
+            <#local template = question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.template")!"organic">
+            <#-- The API used to submit requests to. -->
+            <#local serviceUrl = "//${host}${program}">
+            <#-- The number of results to show for each auto complete channel. -->
+            <#local show = question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.show")!"10">
+            
+            <#local format=(question.getCurrentProfileConfig().get("stencils.auto-completion.datasets.${dataset}.format"))!"json++">
 
-        <span class="custom__classname"
-              data-id="test_2"
-              data-service-url="https://stage-stencil-search.clients.funnelback.com/s/suggest.json"
-              data-params="fmt=json%2B%2B&alpha=0.5&profile=auto-completion&show=5&sort=0&collection=higher-education-people"
-              data-template="People"
-              data-label="People"
-        > </span>
+            <#local params="fmt=${format}&alpha=${alpha}&show=5&sort=${sort}&collection=${collection}&profile=${profile}">
 
-        <span class="custom__classname custom__classname2"
-              data-id="test_3"
-              data-service-url="https://stage-stencil-search.clients.funnelback.com/s/suggest.json"
-              data-params="fmt=json%2B%2B&alpha=0.5&profile=auto-completion&show=5&sort=0&collection=higher-education-programs"
-              data-template="Programs"
-              data-label="Programs"
-        > </span>
-    </div>
+            <#-- Output the markup required to show each auto complete channel -->
+            <span class="${customClass}"
+                data-id="auto-complete-${dataset_index}"
+                data-label="${label}"
+                data-template="${template}"
+                data-service-url="${serviceUrl}"
+                data-params="${params}"
+            > </span>
+        </#list>
+    </div>    
 </#macro>

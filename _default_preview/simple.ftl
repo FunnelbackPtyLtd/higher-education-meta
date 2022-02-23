@@ -152,33 +152,16 @@
 		Avoid changing these if possible.
 	-->
 	<#-- Stencil specific code such as the quickview and dropdowns -->
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/main.js"></script>
-	<#--  <script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/ReactDOM-e804ec190f2d83899d92.js"></script>
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/Calendar-af1ade4fa56bbef0d9e1.js"></script>
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/AutocompleteProvider-fe1b96e9da8b550ffbb7.js"></script>
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/113-f99271131a6ece9cd1bc.js"></script>
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/354-5e10cf63df8830536b64.js"></script>
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/489-7a958ab95b3297c06cf1.js"></script>
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/543-f9407f4d6ecf2f0d8306.js"></script>
-	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/js/943-6d661ae923d6b2e991cb.js"></script>  -->
+	<script type="text/javascript" src="/s/resources/${question.collection.id}/${question.profile}/themes/stencils/js/main.js"></script>
 
 	
 	<#-- Stencils specific code -->
 	<script src="/s/resources/${question.collection.id}/${question.profile}/js/stencils.js"></script> 
 	<script src="/s/resources/${question.collection.id}/${question.profile}/js/handlebars-helpers.js"></script> 
-		
-	<#-- Funnelback auto-complete -->
-	<script src="/s/resources/${question.collection.id}/${question.profile}/js/funnelback.autocompletion-2.6.0.stencils.js"></script>
-
-
-	<#-- Output the auto complete templates for concierge -->
-	<@programs.AutoCompleteTemplate />
-	<@people.AutoCompleteTemplate />
-		
+				
 	<script>
 		window.addEventListener('DOMContentLoaded', function() {			
 			setupDeferredImages();
-			<@auto_complete.Configuration />				
 			
 			// Make the history button accessible via the keyboard for WCAG 2.1
 			var historyElement = document.querySelectorAll('.session-history-toggle');
