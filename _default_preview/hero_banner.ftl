@@ -90,13 +90,13 @@
                 </div>
             </div>
             <img 
-                src="/s/resources/default~sp-stencils-resources-meta/showcase/images/university_background-02.png" 
+                src="/s/resources/pnp~sp-stencils-resources-meta/showcase/images/university_background-02.png" 
                 alt="Alt text description" 
                 class="hero-banner__image hero-banner__image--top" 
-                srcset="/s/resources/default~sp-stencils-resources-meta/showcase/images/university_background-02.png 1600w,
-                        /s/resources/default~sp-stencils-resources-meta/showcase/images/university_background-02.png 1000w,
-                        /s/resources/default~sp-stencils-resources-meta/showcase/images/university_background-02.png 800w,
-                        /s/resources/default~sp-stencils-resources-meta/showcase/images/university_background-02.png 450w"
+                srcset="/s/resources/pnp~sp-stencils-resources-meta/showcase/images/university_background-02.png 1600w,
+                        /s/resources/pnp~sp-stencils-resources-meta/showcase/images/university_background-02.png 1000w,
+                        /s/resources/pnp~sp-stencils-resources-meta/showcase/images/university_background-02.png 800w,
+                        /s/resources/pnp~sp-stencils-resources-meta/showcase/images/university_background-02.png 450w"
             >
         </div>
     </div>
