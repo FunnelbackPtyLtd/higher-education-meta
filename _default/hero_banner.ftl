@@ -16,25 +16,8 @@
             <div class="hero-banner__contents-container">
                 <div class="hero-banner__contents">
                     <div class="hero-banner__contents-text"></div>
-                    <form class="hero-banner-search__form"
-                        action="${question.getCurrentProfileConfig().get("ui.modern.search_link")}" 
-                        method="GET"
-                        role="search" 
+                    <div class="hero-banner-search__form"
                     >
-                        <input type="hidden" name="collection" value="${question.collection.id}">
-
-                        <@base.inputsForForms allowList= ["enc", "form", "scope", "lang", "profile", "userType", "displayMode", "num_ranks"] />
-
-                        <#if preserveTab>
-                            <#list question.selectedCategoryValues?keys as facetKey>
-                                <#if facetKey?starts_with("f.Tabs|")>
-                                    <#list question.selectedCategoryValues[facetKey] as value>
-                                        <input type="hidden" name="${facetKey}" value="${value}">
-                                    </#list>
-                                </#if>
-                            </#list>
-                        </#if>
-
                         <div class="hero-banner-search__bar">
                             <label for="bannerQuery" class="visuallyhidden">
                             Search:
@@ -52,40 +35,14 @@
                                         aria-haspopup="listbox"
                                         class="autocomplete-search__combobox"
                                     >
-                                    <input
-                                        id="autocomplete-search-input"
-                                        aria-label="Start you search here"
-                                        type="text"
-                                        aria-autocomplete="list"
-                                        aria-controls="autocomplete-search-listbox"
-                                        name="query"
-                                        placeholder="Start you search here"
-                                        autocomplete="off"
-                                        class="autocomplete-search__input"
-                                        />
+                                        <#-- Concierge currently also contains the logic and markup for the input box -->
+                                        <@concierge.Concierge />	
                                     </div>
                                 </div>
                             </div>
-                            <button
-                                type="button"
-                                data-click="hero-banner-search-clear"
-                                class="hero-banner-search__clear"
-                                >
-                                <svg class="svg-icon svg-icon--large">
-                                    <title>Close search</title>
-                                    <use href="#close"></use>
-                                </svg>
-                            </button>
                         </div>
-                        <button type="submit" class="hero-banner-search__submit">
-                            <svg class="svg-icon">
-                                <title>Submit search</title>
-                                <use href="#search"></use>
-                            </svg>
-                        </button>
-                    </form>
-                        <#-- Concierge currently also contains the logic and markup for the input box -->
-                        <@concierge.Concierge />	                    
+                    </div>
+                    
                         <@sessions.Controls />                
                 </div>
             </div>
