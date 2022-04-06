@@ -32,8 +32,8 @@
         id="autocomplete-concierge"
         data-component="autocomplete-concierge"
         data-autocomplete-config="{
-            &quot;portal&quot;:&quot;#${inputID}&quot;,
-            &quot;showSubmit&quot;:false
+            <#--  &quot;portal&quot;:&quot;#${inputID}&quot;,  -->
+            &quot;showSubmit&quot;:true
         }"
     >
         <input type="hidden" name="collection" value="${question.collection.id}">
