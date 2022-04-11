@@ -9,7 +9,7 @@
   Display paging controls.
 -->
 <#macro Pagination>
-    <!-- pagionation::Pagination -->
+    <!-- pagination::Pagination -->
     <div>
         <#-- Previous page -->
         <nav class="pagination" role="navigation" aria-label="Pagination navigation">

@@ -25,7 +25,7 @@
                         <span class="sr-only">Revisit</span>
                         <a
                             class="history-panel__link"
-                            href="${(question.collection.configuration.value("ui.modern.search_link"))!}${item.indexUrl}"
+                            href="${item.indexUrl}"
                             >
                             ${item.title}
                         </a>
