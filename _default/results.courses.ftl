@@ -57,7 +57,12 @@
         <div class="search-results__content">
             <#-- Title -->
             <h3 class="search-results__title">
-                <a href="${result.clickTrackingUrl!}" title="${result.liveUrl!}" class="search-results__link">
+                <a 
+                    href="${result.clickTrackingUrl!}" 
+                    data-live-url="${result.liveUrl}" 
+                    title="${result.title!}" 
+                    class="listing-item__title-link"
+                >
                     <@s.boldicize>
                         <@s.Truncate length=90>
                             ${(result.title)!}

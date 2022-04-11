@@ -84,7 +84,12 @@
                             <#break>
                     </#switch>
 
-                    <a href="${result.clickTrackingUrl!}" title="${result.title!}" class="listing-item__title-link">
+                    <a 
+                        href="${result.clickTrackingUrl!}" 
+                        data-live-url="${result.liveUrl}" 
+                        title="${result.title!}" 
+                        class="listing-item__title-link"
+                    >
                         <h3 class="listing-item__title">
                             <@s.boldicize>
                                 <@s.Truncate length=90>
@@ -94,18 +99,6 @@
                         </h3>
                     </a>
 
-                    <#--  Example of subtitle with icon -->
-                    <#--
-                    <div class="listing-item__subtitle">
-                        <svg class="svg-icon svg-icon--small">
-                            <title>Location</title>
-                            <use href="#map"></use>
-                        </svg>
-                        <a href="https://goo.gl/maps/3Ze7mNBpey6D6Q2k6" target="_blank" title="Opens in new window" class="listing-item__subtitle-link" rel="noreferrer">
-                            Online
-                        </a>
-                    </div>
-                    -->
                     <#-- Pretty version of the url of the document -->
                     <cite class="listing-item__subtitle listing-item__subtitle--highlight">
                         <@s.Truncate length=90>
