@@ -26,14 +26,14 @@
     <#local length=(question.getCurrentProfileConfig().get("stencils.auto-completion.length"))!"3">
     <#local program=(question.getCurrentProfileConfig().get("stencils.auto-completion.program"))!"/s/suggest.json">
     <#local sort=(question.getCurrentProfileConfig().get("stencils.auto-completion.sort"))!"0">
-    <#local source=(question.getCurrentProfileConfig().get("stencils.auto-completion.source"))!"internal">
+    <#local inputID=(question.getCurrentProfileConfig().get("stencils.auto-completion.input_id"))!"autocomplete-search-input">
 
     <div
         id="autocomplete-concierge"
         data-component="autocomplete-concierge"
         data-autocomplete-config="{
-            &quot;portal&quot;:&quot;#autocomplete-search-input&quot;,
-            &quot;showSubmit&quot;:false
+            <#--  &quot;portal&quot;:&quot;#${inputID}&quot;,  -->
+            &quot;showSubmit&quot;:true
         }"
     >
         <input type="hidden" name="collection" value="${question.collection.id}">
