@@ -139,26 +139,6 @@
 			</div>				
 		</div>
 
-
-<div
-    data-component="search-history"
-    data-search-history-configuration="{}"
-> </div>
-
-
-	<span
-		class="visuallyhidden"
-		data-pnp-component="link-tracker"
-		data-search-form=".autocomplete-concierge__form-wrapper"
-		data-link-query=".listing-item__title-link"
-		data-search-term="${question.originalQuery!}"
-		data-results-count="${response.resultPacket.resultsSummary.totalMatching!}"
-		data-history-size="20"
-		data-delay="500"
-	></span>
-
-	testing
-
 	<#-- Third parties -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha512-hJSZLjaUow3GsiAkjUBMxN4eaFysMaBvg7j6mkBeo219ZGmSe1eVhKaJJAj5GzGoD0j0Gr2/xNDzjeecdg+OCw==" crossorigin="anonymous"></script>
