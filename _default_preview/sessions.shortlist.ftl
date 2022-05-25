@@ -22,7 +22,7 @@
     holds all the shortlist items.  
 -->
 <#macro ShortlistTemplate>
-	<!-- sessions.shortlist.ShortlisTtemplate -->
+	<!-- sessions.shortlist.ShortlistTemplate -->
 	<script id="cart-template" type="text/x-handlebars-template">
         <button id="flb-cart-box-back" class="search-shortlist__hide" type="button">
             <svg class="svg-icon svg-icon--small"><use href="#arrow"></use></svg>
