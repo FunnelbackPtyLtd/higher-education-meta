@@ -12,7 +12,7 @@
 -->
 <#macro Shortlist>
 	<#if question.collection.configuration.valueAsBoolean("ui.modern.session")>
-		<section class="search-cart" id="search-cart" class="search-results__list search-results__list--list-view">
+		<section class="search-cart" id="search-cart" class="search-results__list search-results__list--list-view" style="display: none;">
 		</section>
 	</#if>
 </#macro>
@@ -22,7 +22,7 @@
     holds all the shortlist items.  
 -->
 <#macro ShortlistTemplate>
-	<!-- sessions.shortlist.ShortlistTemplate -->
+	<!-- sessions.shortlist.ShortlisTtemplate -->
 	<script id="cart-template" type="text/x-handlebars-template">
         <button id="flb-cart-box-back" class="search-shortlist__hide" type="button">
             <svg class="svg-icon svg-icon--small"><use href="#arrow"></use></svg>
