@@ -18,28 +18,28 @@
 	Global Stencils imports
 	The namespace will be available in all templates which are imported 
 -->
+<#import "auto_complete.concierge.ftl" as concierge />
+<#import "auto_complete.ftl" as auto_complete />
 <#import "base.ftl" as base />
-<#import "hero_banner.ftl" as hero_banner />
-<#import "search_tools.ftl" as search_tools />
+<#import "browse_mode.ftl" as browse_mode />
+<#import "client_includes.ftl" as client_includes />
+<#import "contextual_navigation.ftl" as contextual_navigation />
 <#import "counts.ftl" as counts />
-<#import "query_blending.ftl" as query_blending />
-<#import "spelling_suggestions.ftl" as spelling_suggestions />
 <#import "curator.ftl" as curator />
-<#import "tabs.ftl" as tabs />
+<#import "curator.ftl" as curator />
+<#import "extra_search.ftl" as extra_search />
 <#import "facets.breadcrumbs.ftl" as facets_breadcrumbs />
 <#import "facets.ftl" as facets />
-<#import "tier_bars.ftl" as tier_bars />
-<#import "pagination.ftl" as pagination />
-<#import "browse_mode.ftl" as browse_mode />
-<#import "contextual_navigation.ftl" as contextual_navigation />
-<#import "auto_complete.ftl" as auto_complete />
-<#import "auto_complete.concierge.ftl" as concierge />
-<#import "curator.ftl" as curator />
-<#import "result_list.ftl" as result_list />
+<#import "hero_banner.ftl" as hero_banner />
 <#import "no_results.ftl" as no_results />
-<#import "extra_search.ftl" as extra_search />
+<#import "pagination.ftl" as pagination />
+<#import "query_blending.ftl" as query_blending />
+<#import "result_list.ftl" as result_list />
 <#import "results.ftl" as results />
-<#import "client_includes.ftl" as client_includes />
+<#import "search_tools.ftl" as search_tools />
+<#import "spelling_suggestions.ftl" as spelling_suggestions />
+<#import "tabs.ftl" as tabs />
+<#import "tier_bars.ftl" as tier_bars />
 
 <#import "sessions.ftl" as sessions />
 
