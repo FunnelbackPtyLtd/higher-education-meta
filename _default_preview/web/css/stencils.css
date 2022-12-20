@@ -53,6 +53,12 @@
     padding: 1rem;
 }
 
+#search-cart {
+    display: block!important;
+    width: 100%;
+    padding: 1rem;
+}
+
 .flb-cart-item-trigger {
     --pnp-typeface-margin: 0.75rem;
     background-color: inherit;
@@ -86,10 +92,4 @@
 
 #flb-cart-box-list {
     padding-left: 0;
-}
-
-.search-cart {
-    width: 100%;
-    padding: 0.25rem;
-    background-color: #f4f4f4;
 }
