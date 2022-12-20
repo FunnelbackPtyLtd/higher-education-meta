@@ -41,6 +41,8 @@
 <#import "tabs.ftl" as tabs />
 <#import "tier_bars.ftl" as tier_bars />
 
+<#import "sessions.search_history.ftl" as search_history />
+<#import "sessions.shortlist.ftl" as shortlist />
 <#import "sessions.ftl" as sessions />
 
 
