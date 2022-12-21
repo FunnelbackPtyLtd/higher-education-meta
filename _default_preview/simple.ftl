@@ -18,10 +18,10 @@
 	Global Stencils imports
 	The namespace will be available in all templates which are imported 
 -->
+<#import "a-z_listing.ftl" as az_listing />
 <#import "auto_complete.concierge.ftl" as concierge />
 <#import "auto_complete.ftl" as auto_complete />
 <#import "base.ftl" as base />
-<#import "browse_mode.ftl" as browse_mode />
 <#import "client_includes.ftl" as client_includes />
 <#import "contextual_navigation.ftl" as contextual_navigation />
 <#import "counts.ftl" as counts />
@@ -51,13 +51,13 @@
 	The various namespaces (e.g. 'video', 'facebook') need to be on the main scope 
 -->
 <#import "results.courses.ftl" as courses />
-<#import "results.programs.ftl" as programs />
-<#import "results.people.ftl" as people />
-<#import "results.video.ftl" as video />
-<#import "results.facebook.ftl" as facebook />
 <#import "results.events.ftl" as events />
-<#import "results.twitter.ftl" as twitter />
+<#import "results.facebook.ftl" as facebook />
 <#import "results.instagram.ftl" as instagram />
+<#import "results.people.ftl" as people />
+<#import "results.programs.ftl" as programs />
+<#import "results.twitter.ftl" as twitter />
+<#import "results.video.ftl" as video />
 
 <#-- Used to send absolute URLs for resources -->
 <#assign httpHost=httpRequest.getHeader('host')!"">
@@ -159,7 +159,7 @@
 		Libraries required by the design developed by the Stencils cutup team. 
 		Avoid changing these if possible.
 	-->
-	<#-- Stencil specific code such as the quickview and dropdowns -->
+	<#-- Plug and play framework -->
 	<script type="text/javascript" src="https://${httpHost!}/s/resources/${question.collection.id}/${question.profile}/themes/stencils/js/main.js"></script>
 
 	
