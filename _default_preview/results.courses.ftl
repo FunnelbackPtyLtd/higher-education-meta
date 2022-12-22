@@ -113,7 +113,7 @@
             <div class="listing-item__footer">
                 <#if (result.listMetadata["courseTerm"])!?has_content>
                     <div class="listing-item__footer-block listing-item__footer-block">
-                        <svg class="svg-icon svg-icon--small">
+                        <svg class="svg-icon listing-item__icon">
                             <title>Credits</title>
                             <use href="#time">
                             </use>
@@ -124,7 +124,7 @@
 
                  <#if (result.listMetadata["courseCampus"])!?has_content>
                     <div class="listing-item__footer-block listing-item__footer-block">
-                        <svg class="svg-icon svg-icon--small">
+                        <svg class="svg-icon listing-item__icon">
                             <title>Campus</title>
                             <use href="#map"></use>
                         </svg>
@@ -226,7 +226,7 @@
                 <div class="listing-item__footer">
                     {{#if metaData.courseTerm}} 
                         <div class="listing-item__footer-block listing-item__footer-block">
-                            <svg class="svg-icon svg-icon--small">
+                            <svg class="svg-icon listing-item__icon">
                                 <title>Credits</title>
                                 <use href="#time">
                                 </use>
@@ -237,7 +237,7 @@
 
                     {{#if metaData.courseCampus}} 
                         <div class="listing-item__footer-block listing-item__footer-block">
-                            <svg class="svg-icon svg-icon--small">
+                            <svg class="svg-icon listing-item__icon">
                                 <title>Campus</title>
                                 <use href="#map"></use>
                             </svg>
